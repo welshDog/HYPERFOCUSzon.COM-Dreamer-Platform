@@ -1,0 +1,107 @@
+body {
+    background: linear-gradient(135deg, #0f2027, #2c5364, #f7971e, #ffd200);
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1.5rem 1rem 1rem 1rem;
+    text-align: center;
+    border-bottom: 2px solid #ffd200;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px #ffd200, 0 0 2px #fff;
+}
+
+#stats {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+main {
+    padding: 2rem 1rem 1rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#timeline {
+    margin-bottom: 2rem;
+}
+
+#crystalTimeline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.crystal {
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: #fff;
+    box-shadow: 0 0 16px #ffd200, 0 0 4px #fff;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 3px solid #ffd200;
+}
+
+.crystal:hover {
+    transform: scale(1.15) rotate(-8deg);
+    box-shadow: 0 0 32px #ffd200, 0 0 8px #fff;
+}
+
+#celebration {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#celebrateBtn {
+    background: linear-gradient(90deg, #ffd200, #f7971e);
+    color: #222;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.7rem 2.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #ffd200;
+    margin-bottom: 1rem;
+    transition: background 0.2s;
+}
+
+#celebrateBtn:hover {
+    background: linear-gradient(90deg, #f7971e, #ffd200);
+}
+
+#confetti {
+    min-height: 40px;
+}
+
+#celebrationGif img {
+    max-width: 220px;
+    border-radius: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 0 16px #ffd200;
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem 0;
+    font-size: 1rem;
+    color: #ffd200;
+    background: rgba(0, 0, 0, 0.5);
+    margin-top: 2rem;
+}

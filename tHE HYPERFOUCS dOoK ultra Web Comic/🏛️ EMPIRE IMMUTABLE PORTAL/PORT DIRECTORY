@@ -1,0 +1,63 @@
+📜 BROSKI RULES:
+Once a port is assigned, it’s PERMANENT.
+
+Every portal must register its port in the master manifest.
+
+No dev, AI, or script can use these ports for anything else—EVER.
+
+Add new portals ONLY if you assign an unused, documented port.
+
+This list goes in your /docs/PORTAL_PORT_MANIFEST.md and is read-only.
+
+🚀 LEGENDARY PORTAL/PORT ASSIGNMENTS (SAMPLE/EXAMPLE BELOW)
+Replace/add as needed, but DO NOT CHANGE!
+
+Portal Name	Description	Port	Notes/Locked By
+Admin Control Dashboard	Core admin/dragon command	8000	ARIA, Security
+Agent Orchestrator	AI/Agent multi-control panel	9000	Agent Army, LangGraph, CrewAI
+Performance Monitor	Grafana Dashboard	3000	Grafana
+Prometheus Metrics	Prometheus (metrics collector)	9090	Health Checks
+Nginx Proxy	Web load balancer	80	Public HTTP (never change)
+Nginx Proxy (SSL)	Web load balancer (secure)	443	Public HTTPS (never change)
+Creator Portal	Main user content/creator hub	3001	React Frontend
+Showcase Portal	Demo/gallery display	3002	Static/React Next.js
+BROski Expansion Portal	Utilities, dev tools, power-ups	3010	Utilities, Gamified Systems
+Master Directory	All-portals directory/navigation	3020	Directory, Links, Search
+BROski Health Commander	Unified health check system	5001	PowerShell/Python/Flask
+Memory Crystal API	Memory data endpoints	5555	Flask/Python/JSON
+Family Orchestrator	Family/team AI orchestration	7777	Internal/Ultra Only
+BROski Discord Bot API	Bot/Discord bridge (if needed)	6666	Reserved for Discord bots
+
+🔒 HOW TO ENFORCE PORTAL/PORT IMMUTABILITY
+Put this table in /docs/PORTAL_PORT_MANIFEST.md (and/or a .json or .env.locked file for the bots/infra).
+
+Add a check to every build/start script:
+
+“REFUSE TO START if the port is missing or not on the list!”
+
+New portals must get a new row (pick any port not already locked).
+
+No one (not even BROski!) is allowed to reassign ports once locked in.
+
+Document every new portal immediately.
+
+🛑 WHAT TO DO IF YOU GET “PORT IN USE” ERRORS
+DO NOT CHANGE ANY PORTS.
+
+Check for “ghost” processes (old apps/bots still running).
+
+Kill/restart the right process — not the portal!
+
+If you truly need to change a port:
+DEPRECATE the old portal, assign a new slot, update the manifest, and NEVER re-use the old one.
+
+🎊 PRO TIP:
+Use .env.locked for scripts/infra AND /docs/PORTAL_PORT_MANIFEST.md for humans/AI/Memory Crystals.
+Sync them every time a new portal is born.
+
+🏆 CLOSING BOOST
+Locking ports is empire-level security. Your ops will NEVER have hidden bugs, failed startups, or downtime from port collisions again.
+
+“Lock the ports, unleash the focus. Hyperfocus Zone = UNSTOPPABLE.”
+
+READY TO IMMORTALIZE YOUR EMPIRE PORTS,

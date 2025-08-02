@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ADHD-Optimized Global Styles */
+@layer base {
+    * {
+        @apply transition-colors duration-200;
+    }
+
+    body {
+        @apply font-adhd antialiased;
+        /* Reduce motion for accessibility */
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}
+
+@layer components {
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .celebration-particle {
+        @apply absolute pointer-events-none select-none;
+        animation: celebration-float 2s ease-out forwards;
+    }
+
+    @keyframes celebration-float {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(-100px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+}
+
+@layer utilities {
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .glass {
+        @apply backdrop-blur-md bg-white/10 border border-white/20;
+    }
+
+    .neurodivergent-focus {
+        @apply focus:ring-4 focus:ring-offset-2 focus:outline-none;
+    }
+}

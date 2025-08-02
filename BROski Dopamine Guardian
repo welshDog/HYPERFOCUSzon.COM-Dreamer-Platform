@@ -1,0 +1,267 @@
+Welcome to the Dopamine Guardian, a micro‑agent from the Hyperfocus
+Zone’s Agent Army designed to protect your energy levels and fuel the
+celebrations that make all the hard work worthwhile. This document explains
+how to set up, run and extend the guardian in your own workspace.
+
+Purpose
+The Dopamine Guardian is responsible for detecting burnout, boredom and
+legendary wins among members of your Discord server. It gathers mood
+check‑ins, monitors an optional log stream for significant events and awards
+BROski$ tokens when appropriate. When triggered, it sends uplifting
+messages, emoji showers and GIFs right into your chosen channel.
+
+Features
+Discord bot integration – fully interactive slash commands allow users
+to record their mood (/checkin), log wins (/win) and view their
+progress (/status).
+
+WebSocket log listener – optionally connect to an external log
+endpoint to watch for burnout/boredom/win events from other agents. If a
+log event references a specific user the guardian will react directly.
+
+Automatic burnout/boredom detection – a scheduled task runs every
+two hours and checks each user’s last check‑in. If no mood has been
+recorded in 48 hours or a mood of 3 or less was recorded, the guardian
+sends a gentle nudge with self‑care suggestions.
+
+Legendary win celebrations – when a user records a win via /win or
+an external log event triggers a win, the guardian awards BROski$ tokens
+and posts a celebration message complete with a random GIF.
+
+SQLite memory crystal – all user data, moods, wins and token
+balances are persisted in a lightweight SQLite database. You can copy
+or backup the database at any time without affecting the running bot.
+
+Graceful degradation – if discord.py is not installed or
+environment variables are missing the guardian still runs in console mode
+and prints nudges/celebrations, enabling local testing without a Discord
+account.
+
+Quick start
+Install Python 3.9+ and the required libraries:
+
+bash
+Copy
+Edit
+pip install discord.py websockets aiosqlite
+Create or reuse a Discord application:
+
+Visit https://discord.com/developers/applications and create a new
+application.
+
+Add a Bot to your application and copy its token.
+
+Enable the MESSAGE CONTENT intent under Privileged Gateway Intents.
+
+Note your guild (server) ID and ensure the bot is invited to that guild.
+
+Set the required environment variables. You can export them in your
+shell or create a .env file:
+
+bash
+Copy
+Edit
+export DISCORD_BOT_TOKEN="YOUR_BOT_TOKEN"
+export DISCORD_GUILD_ID="123456789012345678"
+export DISCORD_CHANNEL_NAME="celebrations"  # optional, defaults to "general"
+export LOGS_WEBSOCKET_URL="ws://localhost:8765/logs"  # optional
+export REWARD_AMOUNT="15"  # optional, default is 10
+Run the guardian:
+
+bash
+Copy
+Edit
+python -m AI.AGENT_DOPAMINE
+The guardian will log into Discord and register its slash commands. If
+LOGS_WEBSOCKET_URL is set it will also attempt to connect to that
+endpoint and listen for JSON log messages.
+
+Slash commands
+Command	Description
+/checkin	Record your current mood on a scale of 1–10. Mood
+recordings update your last active timestamp and help the guardian detect	
+burnout/boredom. When a mood of 3 or below is recorded the guardian will	
+immediately send a supportive nudge.	
+/win	Log a legendary win or achievement. Provide a description
+of what you accomplished and the guardian will instantly celebrate your	
+success and award BROski$ tokens.	
+/status	View your most recent mood and current BROski$ balance.
+
+All commands are available only inside the guild configured by
+DISCORD_GUILD_ID. Responses to /checkin and /status are sent as
+ephemeral messages (visible only to the invoking user) so moods and balances
+remain private.
+
+Log event format
+If you configure LOGS_WEBSOCKET_URL the guardian will attempt to parse
+incoming messages as JSON objects. The expected structure is:
+
+json
+Copy
+Edit
+{
+  "event": "burnout" | "boredom" | "win",
+  "discord_id": "123456789012345678",
+  "extra": { /* arbitrary data */ }
+}
+When a burnout or boredom event is received the guardian sends a nudge.
+When a win event is received the guardian triggers a celebration. If the
+message cannot be parsed as JSON the guardian falls back to a keyword search
+(words like burnout, boredom, legendary win), prints a log message and
+takes no further action.
+
+Dopamine‑optimised workflow
+This module fits into the larger Hyperfocus Zone ecosystem as a
+motivation and feedback loop. Below is a suggested workflow for your team:
+
+Daily check‑ins: Encourage every member to run /checkin at the
+start and end of their focus sessions. This regular cadence ensures the
+guardian has up‑to‑date data to detect dips in mood or energy.
+
+Celebrate everything: Wins—no matter how small—should be logged via
+/win. Frequent celebrations not only award BROski$ tokens but also
+create a positive reinforcement loop in the server. The guardian
+automatically handles the gamification; you just have to record the
+achievement.
+
+Integrate with your pipelines: Other agents or services in your
+Hyperfocus stack can emit WebSocket log events to LOGS_WEBSOCKET_URL.
+For example, your CI pipeline could send a win event when tests pass,
+or your Pomodoro timer could send a burnout event if a user cancels
+multiple sessions in a row. This turns the guardian into a central
+celebration hub.
+
+Review and iterate: The SQLite database stores mood and win
+histories. Use this data to identify patterns—are moods dipping at
+certain times? Are some team members not logging wins? Adjust your
+rituals and scheduling accordingly.
+
+Extend and customise: The guardian is intentionally simple and
+modular. Feel free to adjust the REWARD_AMOUNT, update the list of
+GIFs in AGENT_DOPAMINE.py, or hook additional commands into the bot.
+The community thrives on contributions!
+
+Security considerations
+The guardian stores Discord IDs and mood information in an SQLite database.
+While no sensitive personal data is captured, you should still treat the
+database with care. If you enable WebSocket log listening ensure that the
+endpoint is authenticated and encrypted if it carries user‑specific
+information. Never hard‑code secrets (tokens, DB paths) in the source;
+always rely on environment variables as shown above.
+
+Troubleshooting
+Bot not responding to commands: Ensure the bot has been invited with
+the correct permissions and that DISCORD_GUILD_ID matches your server.
+Check the console for any startup errors.
+
+No celebrations appear: Confirm that REWARD_AMOUNT is set and that
+your mood/win commands are executed. Inspect the database to verify
+records are being created. Also ensure that your DISCORD_CHANNEL_NAME
+matches an existing channel.
+
+WebSocket errors: If the log listener prints repeated connection
+errors, verify the URL, network connectivity and format of emitted
+messages. The guardian will retry automatically with a short delay.
+
+BROski, keep those dopamine levels high and celebrate every step of the
+journey! If you need help or want to suggest improvements, feel free to
+contribute via the Hyperfocus GitHub repos.
+
+
+
+Dopamine‑optimised workflow guide:
+Dopamine Guardian Workflow Guide
+This document outlines a set of recommended rituals and practices that will
+help your team get the most out of the BROski Dopamine Guardian. By
+integrating these routines into your daily cadence you will maintain high
+energy, avoid burnout and maximise the number of legendary wins recorded in
+your Ultra dOoK.
+
+Daily rituals
+1. Morning mood check‑in
+At the start of every work session each participant should run:
+
+text
+Copy
+Edit
+/checkin <1–10>
+where 1 indicates severe burnout and 10 signals a legendary peak.
+Logging this data serves two purposes: it makes individuals aware of their
+own energy state and provides the guardian with up‑to‑date information for
+detecting dips. If someone records a score of 3 or below the guardian will
+send them a gentle nudge encouraging them to rest, hydrate or stretch.
+
+2. Mid‑day scanning
+Every two hours the guardian performs an automatic health check across all
+users. If anyone hasn’t checked in during the last 48 hours or the last
+recorded mood was low the guardian sends a friendly reminder. There is
+nothing for team members to do here—this is purely to keep the feedback
+loop running smoothly.
+
+3. Celebrating wins
+Whenever a team member completes a task, finishes a challenging bug or
+achieves any milestone (no matter how small), they should log it:
+
+text
+Copy
+Edit
+/win <description>
+The guardian will immediately respond with a celebratory GIF, a shower of
+emojis and an automatic BROski$ deposit into the user’s balance. These
+micro‑celebrations provide instant positive feedback and help turn
+productivity into a game.
+
+Integration with external systems
+To amplify its impact the guardian can listen to an external WebSocket for
+events. Other agents—such as CI/CD pipelines, focus timers or project
+management bots—can emit JSON messages like:
+
+json
+Copy
+Edit
+{
+  "event": "win",
+  "discord_id": "123456789012345678",
+  "extra": { "context": "CI pipeline passed" }
+}
+or:
+
+json
+Copy
+Edit
+{
+  "event": "burnout",
+  "discord_id": "123456789012345678"
+}
+When such messages are received the guardian will celebrate or nudge the
+appropriate user without any manual intervention. This integration turns
+the guardian into a central morale hub where achievements from every corner
+of the Hyperfocus ecosystem are acknowledged.
+
+Weekly retrospectives
+At the end of each week review the mood and win history stored in
+dopamine_guardian.db (or the path configured via DOPAMINE_DB_PATH).
+Look for patterns—are there days where energy consistently dips? Do
+certain events trigger a flurry of wins? Use these insights to adjust
+meeting schedules, assign rest breaks or celebrate specific milestones at a
+team level.
+
+Customisation
+The guardian is intentionally easy to extend. Consider the following
+enhancements:
+
+New triggers: Add parsing logic in _process_log_message for other
+keywords or events (e.g. "bug fixed", "pull request merged").
+
+More GIFs: Expand the list of GIF URLs in _celebrate to better fit
+your team’s sense of humour.
+
+Voice notes: Integrate a text‑to‑speech library or pre‑recorded
+messages to send audio clips during celebrations.
+
+Custom reward logic: Modify self.reward_amount per event type or
+introduce diminishing returns for spamming /win.
+
+With these practices and customisations you will transform the Dopamine
+Guardian into an indispensable part of your Agent Army—always watching,
+always cheering and always keeping the hype alive.

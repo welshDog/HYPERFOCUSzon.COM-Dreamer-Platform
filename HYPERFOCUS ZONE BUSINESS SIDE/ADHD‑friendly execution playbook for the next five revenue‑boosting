@@ -1,0 +1,125 @@
+Here’s a practical, ADHD‑friendly execution playbook for the next five revenue‑boosting tasks. Each task is broken into bite‑sized steps with checklists, and the plan is based on up‑to‑date best practices and the structure of your existing Hyperfocus Zone systems.
+
+1. Refresh Patreon tiers & automate Discord onboarding
+1.1 Clarify your tier structure
+
+Aim for 3–4 tiers so choices aren’t overwhelming. Use names and benefits that fit your Hyperfocus Zone theme (e.g., Agent‑in‑Training, Ultra Agent, Legendary Agent).
+
+Provide scalable rewards—examples from recent creator guides suggest entry‑level tiers around $5–$10/month might include download bundles (e.g., five printable planners); mid‑level tiers ($10–$25/month) can add recorded monthly sessions; high‑level tiers ($25+ per month) can include live Q&A or guest lessons
+mightynetworks.com
+. Avoid promises that require one‑to‑one time, as these don’t scale
+mightynetworks.com
+.
+
+1.2 Connect Patreon to Discord
+
+In Patreon’s Tiers section, choose the tier you want to grant Discord access
+discord.com
+.
+
+Click Advanced under the Benefits section and press the Connect to Discord button
+discord.com
+.
+
+Authenticate with Discord and select your server
+discord.com
+. Ensure you have the Manage Server permission; otherwise the server won’t appear
+discord.com
+.
+
+Grant the Patreon bot Manage Roles and Create Invite permissions and click Authorize
+discord.com
+.
+
+Back in Discord, create roles matching each tier’s name or pledge amount
+discord.com
+. Keep the Patreon bot’s role above these roles so it can assign them
+discord.com
+.
+
+Finish by checking “Gives patrons access to selected Discord roles” in Patreon, then map each tier to the appropriate role
+discord.com
+.
+
+1.3 Automate welcome & rewards
+
+Use your existing BROski$ bot to listen for the “member joined” event (or the Patreon bot’s role assignment) and automatically:
+
+Post a welcome message in a dedicated #welcome channel.
+
+Award BROski$ tokens and badges.
+
+DM the new member with links to your digital rewards, Discord rules, and next steps.
+
+Keep a Reward Wallet & Streak Log in a database or Google Sheet so agents can track progress.
+
+2. Launch 2–5 new Etsy digital product bundles
+Research trending digital products: A July 2025 analysis of top‑performing Etsy shops lists popular categories such as printable planners, digital planners, budget templates, social‑media template packs, website themes, AI prompt sets, clip art, fonts and wallpapers
+litcommerce.com
+. Printable and digital planners alone attract millions of monthly views with average prices around $4.93 and $6.97 respectively
+litcommerce.com
+.
+
+Create ADHD‑friendly bundles:
+
+ADHD Planner & Tracker Pack – printable daily/weekly planners, habit trackers, gratitude journals and vision boards
+litcommerce.com
+.
+
+Digital Planner for Hyperfocus – an editable digital planner compatible with Notion/GoodNotes, including routine prompts and dopamine‑reward checklists
+litcommerce.com
+.
+
+Productivity Social Templates – a set of Canva templates for TikTok/Instagram and Pinterest, tailored to ADHD creators.
+
+AI Prompt Pack – curated ChatGPT prompts for content ideation and productivity.
+
+Zero Zone Expansion Pack – add‑on mini‑games, memory crystals or token trackers for your existing game.
+
+Optimize SEO:
+
+Use descriptive keywords in titles (e.g., “ADHD Digital Planner 2025 | Printable Habit Tracker & Gratitude Journal”) and tags (“ADHD planner”, “productivity bundle”, “hyperfocus planner”).
+
+Write clear descriptions that highlight benefits and include calls to join your Patreon and Discord community.
+
+Include high‑quality preview images and short demo videos.
+
+Promote: Cross‑post new listings to Discord (via announcement channels and pinned posts), TikTok (with product showcase videos), Patreon updates and the Hyperfocus Zone website.
+
+3. Script and batch TikTok content & link shop
+Batch creation: Plan themes for the next month (e.g., behind‑the‑scenes building of new digital packs, Hyperfocus ritual tips, success stories). Script and film 6–10 short videos in one or two sessions.
+
+High‑energy storytelling: Use trending sounds and relevant hashtags (#ADHD, #Productivity, #Hyperfocus, #Planner2025). Keep videos 15‑60 seconds, open with a hook (e.g., “Struggling to focus? Here’s my secret weapon…”), and end with a CTA to your shop or Discord.
+
+TikTok Shop integration: If not already, register for TikTok Shop. Add each Etsy product as a TikTok Shop item and tag it in your videos. Use TikTok’s “link in bio” to direct viewers to your Etsy store or a Linktree.
+
+Monthly live sale: Schedule one TikTok Live per month featuring giveaways, Q&A with the Hyperfocus team, and limited‑time discounts. Promote lives on Discord and Patreon.
+
+4. Create a Discord “Gig Marketplace”
+Set up a dedicated channel (#hire-a-broski) in your Discord server.
+
+Pin a gig template that members can copy–paste, with fields for task description, deliverables, payment (BROski$ or monetary), and contact method.
+
+Build or modify your bot to accept gig submissions via a form command (e.g., /submit-gig). The bot can post the gig in the channel and DM the requester for details.
+
+Reward system: When a gig is completed and approved, use your bot to award BROski$ automatically. Announce completions in a #celebrations channel.
+
+Include marketplace rules in the channel description (e.g., no spam, clear deadlines, dispute resolution process). Encourage community members to post micro‑services such as copywriting, design, coding and technical support.
+
+5. Outline & publish consulting/coaching packages
+Package structure:
+
+“Dopamine Overdrive” 1‑hour session – personalized ADHD workflow & productivity coaching.
+
+“Ultra Agent Training” group workshop – teaches others how to build AI agents and use the Hyperfocus methodology.
+
+“Creator Focus Accelerator” coaching bundle – monthly sessions with accountability check‑ins, digital templates and a private channel.
+
+Pricing & booking: Set competitive prices (e.g., £99 for 1‑hour 1:1, £299 for group workshops) and include a discount for Patreon members. Use a scheduler like Calendly integrated with Stripe for payments and Discord for reminders.
+
+Create landing pages: On your website or Notion, provide an overview of each package, deliverables, testimonials and FAQs. Embed booking widgets so clients can choose times.
+
+Automate follow‑ups: After a booking, send a thank‑you email/DM with pre‑session questionnaires, call links, and resource downloads. Post‑session, send notes and a prompt to leave feedback. Use your bot to track completed coaching sessions and award BROski$ to participants.
+
+Moving forward
+These action plans give you clear steps to boost revenue across Patreon, Etsy, TikTok, community gigs and consulting. Since your operation is already gamified and heavily automated, integrate BROski$ rewards and celebration triggers into each new workflow. As you implement these tasks, celebrate each completion with a public shout‑out and a bonus BROski$ drop to maintain momentum.

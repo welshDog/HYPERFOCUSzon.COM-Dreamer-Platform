@@ -1,0 +1,94 @@
+{
+  "name": "Disco Fever",
+  "description": "Party mode with rainbow colors and maximum particles - celebrate everything!",
+  "author": "BCI Fusion Forge Team",
+  "version": "1.0",
+  "created_date": "2025-08-02T17:14:09.603709",
+  "theme_colors": {
+    "zen_boost": {
+      "background": "#001a2e",
+      "primary": "#003d5c",
+      "accent": "#00aaff",
+      "text": "#e0f7ff"
+    },
+    "rage_refactor": {
+      "background": "#2e1a1a",
+      "primary": "#5c2d2d",
+      "accent": "#ff4444",
+      "text": "#ffe0e0"
+    },
+    "flow_state": {
+      "background": "#1a2e1a",
+      "primary": "#2d5c2d",
+      "accent": "#00ff88",
+      "text": "#e0ffe0"
+    }
+  },
+  "particle_configs": {
+    "zen_boost": {
+      "count": 90,
+      "color": "#ff0000",
+      "speed_multiplier": 1.0,
+      "size_multiplier": 1.0,
+      "gravity": 200
+    },
+    "rage_refactor": {
+      "count": 150,
+      "color": "#ff8800",
+      "speed_multiplier": 1.5,
+      "size_multiplier": 1.2,
+      "gravity": 150
+    },
+    "flow_state": {
+      "count": 180,
+      "color": "#ffff00",
+      "speed_multiplier": 0.8,
+      "size_multiplier": 1.1,
+      "gravity": 180
+    }
+  },
+  "meme_preferences": {
+    "frustration": [
+      "😤 Deep breath, BROSKI! You got this!",
+      "🤖 ERROR 404: Rage not found. Zen mode activated!"
+    ],
+    "rage_refactor": [
+      "🔥 REFACTOR RAGE ACTIVATED! FEAR THE BRACKETS!",
+      "💪 Hulk SMASH... bad code patterns!"
+    ],
+    "zen_boost": [
+      "🧘✨ Inner peace = outer excellence",
+      "🌊 Flowing like water through the codebase"
+    ],
+    "flow_state": [
+      "🌊🚀 FLOW STATE: MAXIMUM OVERDRIVE!",
+      "⚡ Neo sees the Matrix. You see the code."
+    ]
+  },
+  "sound_mappings": {
+    "zen_boost": "zen_chime.wav",
+    "rage_refactor": "power_strike.wav",
+    "flow_state": "flow_ambient.wav",
+    "level_up": "level_up.wav"
+  },
+  "animation_speeds": {
+    "theme_transition": 0.5,
+    "particle_lifetime": 3.0,
+    "meme_popup_duration": 3.0,
+    "celebration_duration": 2.0
+  },
+  "celebration_triggers": {
+    "code_completion": {
+      "particle_burst": true,
+      "theme_flash": true,
+      "meme_popup": false,
+      "sound_effect": true
+    },
+    "bug_fixed": {
+      "particle_burst": true,
+      "theme_flash": false,
+      "meme_popup": true,
+      "sound_effect": true
+    }
+  }
+}

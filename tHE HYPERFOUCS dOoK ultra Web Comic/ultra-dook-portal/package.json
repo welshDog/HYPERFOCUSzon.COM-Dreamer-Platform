@@ -1,0 +1,46 @@
+{
+    "name": "ultra-dook-portal",
+    "version": "1.0.0",
+    "description": "🧠⚡💎 Ultra dOoK - ADHD-Optimized Interactive Portal 💎⚡🧠",
+    "private": true,
+    "scripts": {
+        "dev": "next dev -p 3000",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "export": "next export"
+    },
+    "dependencies": {
+        "next": "^14.0.0",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "@tailwindcss/typography": "^0.5.10",
+        "framer-motion": "^10.16.0",
+        "lucide-react": "^0.294.0",
+        "gray-matter": "^4.0.3",
+        "marked": "^9.1.0",
+        "date-fns": "^2.30.0"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0",
+        "@types/node": "^20.0.0",
+        "@types/react": "^18.0.0",
+        "@types/react-dom": "^18.0.0",
+        "tailwindcss": "^3.3.0",
+        "postcss": "^8.4.0",
+        "autoprefixer": "^10.4.0",
+        "eslint": "^8.0.0",
+        "eslint-config-next": "^14.0.0"
+    },
+    "keywords": [
+        "ADHD",
+        "neurodivergent",
+        "hyperfocus",
+        "memory-crystals",
+        "gamification",
+        "BROski",
+        "ultra-dook"
+    ],
+    "author": "BROski♾️ & The Hyperfocus Zone Empire",
+    "license": "MIT"
+}

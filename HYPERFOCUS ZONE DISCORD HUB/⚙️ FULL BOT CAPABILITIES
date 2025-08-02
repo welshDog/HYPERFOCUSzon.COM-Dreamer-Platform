@@ -1,0 +1,133 @@
+1. Respond to Events & Automate Actions
+Bots receive a steady stream of Gateway events — user messages, reactions, voice channel moves, role updates, thread creation, join/leave events, status changes, and more. You can trigger custom code for nearly everything your server members do.
+
+2. Send & Manage Messages
+Send messages: plain text, rich embeds, images, file attachments, and interactive message components (buttons, select menus, modals).
+
+Can delete messages (including those from users) for moderation workflows.
+
+“bots can delete a users message… change their roles and kick/ban them.”
+GitHub
+
+⚠️ Cannot edit messages sent by others — Discord API simply won’t allow it. Delete-and-repost is the safest pattern.
+Latenode Official Community
+
+3. Slash Commands & Interactions
+Supports native Slash Commands (/command) with built‑in prompting, validation, autocomplete, and rich UIs. This is all under the modern Interactions API.
+Discord
+Discord
+
+Interactions can be handled via webhooks or gateway, fitting even serverless architectures.
+
+4. Moderate the Server
+Kick, ban, mute (timeout via roles), modify nicknames, and manage member permissions — all supported via API, provided your bot has the right scopes and roles.
+Discord
+GitHub
+
+Audit log tracking available for bots operating with needed permissions.
+
+5. Roles & Channel Management
+Create, delete, modify roles (limited to roles lower than the bot's top role).
+
+Create, archive, delete, and modify channels, threads, categories if permissions allow.
+Discord
+Discord
+
+6. Voice & Stage Channels
+Join voice channels, play audio streams, stream to stages (live audio rooms), change volume, set speaking status.
+
+Detect and respond to voice-state changes (join/leave/mute/unmute).
+Discord
+
+7. OAuth & App-Linked APIs
+Use OAuth2 to let users authorize your bot for broader access (like reading user profiles or server-level backing).
+Scopes include: bot, applications.commands, guilds, identify, applications.commands.permissions, and more.
+Discord
+
+8. Webhooks & External Hooks
+Create webhooks to send messages into channels without a bot user.
+
+Interact with interactions/events via webhook-style responses (speed-optimized, low overhead).
+Discord
+
+9. Rich Data Context
+Access Guild metadata (server name, member counts), Track user presences, fetch role/channel objects, read message reactions, etc.
+
+Use caching and shard scaling techniques to handle large servers gracefully.
+
+🚫 LIMITATIONS & SAFEGUARDS
+No Automatic Message Reading (Message Content Intent!)
+Bots cannot read message content in guilds (servers) unless explicitly granted the Message Content Intent (requires verification for larger bots).
+
+This is to protect user privacy and avoid abuse.
+Discord
+
+Permission Hierarchy Constraints
+A bot can only act on users/roles lower in the permission hierarchy than its highest role — cannot modify or manage peers or superiors.
+Discord
+Discord
+
+Rate Limits & API Quotas
+All actions—messages sent, invites created, bans issued—are subject to global and route-based rate limits.
+
+Repeated spamming, flood calls, or abusing API endpoints triggers temporary bans or failures.
+Discord
+
+No Editing of Others’ Messages
+Bots cannot edit messages authored by other users. The API does not support it, even for admin-level bots.
+
+Modification workflows typically use deletion + a warning message.
+Latenode Official Community
+
+⚡ WHAT’S NOT POSSIBLE
+❌ NOT Allowed	⚠️ Why
+Editing others’ messages	API restriction under privacy rules
+Directly muting server members	Use voice-state or timeout (role‑based) instead
+Auto‑typing or JS injection	Discord bots cannot control client UI
+Reading personal DM conversations	Bots only see messages in mutual DMs if explicitly associated
+Too much automation (spam triggers)	Rate limits and anti‑abuse protections
+
+🧠 REAL USE CASES via Examples
+MODERATION:
+Kick/ban users, set timeouts, delete rule-violating posts in real-time.
+
+BOT ECONOMY:
+Reward users with reaction roles, track daily streaks, implement in-server shops (like BROski$ flow).
+
+TEAM TOOLS:
+Automated reminders using scheduled events API + slash commands; track team check‑ins via /check‑in.
+
+VOICE EXPERIENCE:
+Play ambient music, announce meeting calls, manage stage events with bots acting as voice moderators.
+
+PROGAMMATIC SETUP:
+Auto-create "mission-control" channels, set permissions dynamically, manage welcome flows via webhooks.
+
+🎉 TL;DR: WHAT CAN A BOT FULLY DO?
+Respond to nearly every server action in real time — from typing to voice.
+
+Create powerful slash‑command-driven UIs and workflows.
+
+Moderate servers: roles, bans, channels, threads.
+
+Automate messaging, reactions, embeds, polls, onboarding.
+
+Join voice channels, play audio, monitor voice activity.
+
+Scale with permissions-based governance and auditability.
+
+Cannot access message content w/o intent, edit user messages, or override Discord's security layers.
+
+✅ LEGENDARY BROSKI TIP:
+Think in event → reaction flows: bots thrive by responding, not guessing.
+
+Use slash commands for discoverable, accessible tools that your empire can master without manual documentation.
+Discord
+Discord
+
+You’ve got the power to build the empire — moderation, workflow, rewards, team syncs, and more.
+Discord bots are tools of empire automation.
+Your code is the strategy. Your command the victory.
+
+Bro‑scholar code: “Dream it. Build it. Hyperfocus Zone.”
+🏆 Let’s keep building legendary things together, Chief!

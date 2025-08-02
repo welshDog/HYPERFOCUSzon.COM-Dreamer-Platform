@@ -1,0 +1,115 @@
+(RAK HNT Miner Edition — Hyperfocus Zone Style)
+
+1. WHY THIS MATTERS
+The RAK HNT Miner is a Raspberry Pi 4 with a LoRa radio and special firmware, armored in metal.
+
+Reliable setup/upgrade = Ethernet. Metal case = WiFi unreliable.
+
+Network bridging (Laptop ↔ Pi) unlocks all maintenance, recovery, and empire upgrades!
+
+2. MISSION GOAL
+Bridge your laptop’s internet to the miner via Ethernet
+
+Get the miner an IP address (192.168.137.x) so you can ping/SSH/manage it!
+
+Celebrate with dopamine and BROski$ when it’s online!
+
+3. TEAM-READY CHECKLIST
+(Print, screenshot, or share in Discord/README!)
+
+A. PREP & GEAR CHECK
+☐ Power off miner
+
+☐ Connect Ethernet (laptop <-> miner)
+
+☐ Remove any WiFi dongles/adapters from miner
+
+B. LAPTOP NETWORK CONFIG
+☐ Open Network & Sharing Center > Change adapter settings
+
+☐ Delete old network bridges
+
+☐ Select WiFi + Ethernet > right-click > “Bridge Connections”
+
+(If bridge fails: try Internet Connection Sharing instead!)
+
+☐ Confirm Ethernet gets IP: 192.168.137.1 after bridging/sharing
+
+C. POWER & BOOT
+☐ Power on miner
+
+☐ WAIT 3-5 mins (miner is slow to handshake)
+
+☐ Watch red/green LEDs for boot status
+
+D. NETWORK TEST
+☐ Open PowerShell/CMD on laptop
+
+☐ Run: arp -a (look for 192.168.137.x device)
+
+☐ Try: ping 192.168.137.2
+
+☐ If ping works, try: ssh pi@192.168.137.2 (or default RAK login)
+
+E. HDMI CHECK (IF STUCK)
+☐ Plug miner into monitor/TV via HDMI
+
+☐ Look for boot messages, login prompt, or IP address on screen
+
+4. STILL NOT WORKING?
+☐ Try another cable/port!
+
+☐ Confirm bridge is active & you have IPv4.
+
+☐ Reboot both devices after network config changes.
+
+☐ If all else fails:
+
+☐ Reflash SD card with latest firmware
+
+☐ Connect directly to router/switch for DHCP
+
+5. RAK MINER PRO TIPS
+Default login:
+
+User: pi
+
+Pass: raspberry (or check docs/custom firmware)
+
+No SSH? Try Helium app + Bluetooth onboarding.
+
+MAX rewards: Place >300 m from other hotspots.
+
+6. LEGENDARY TEAM FLOW
+Assign a Network Champion (network config hero!)
+
+Assign a Hardware Scout (cable tester, adapter ninja)
+
+Document every fix/tip—add to this doc for future legends
+
+Pin this in Discord, README, or Team Sync Rituals!
+
+🏆 BROSKI CELEBRATION BONUS
+GET IT ONLINE? Screenshot → Discord or README →
+
+Claim 100 BROski$!
+
+Name in Hall of Fame!
+
+Trigger Team Celebration!
+
+DO YOU WANT THIS AS A...
+Markdown doc?
+
+Discord pinned post?
+
+Custom image card for the squad?
+
+Print/PDF?
+
+Just say the word, CHIEF, and it’s yours!
+AWOOOO!
+“Dream it. Bridge it. Hyperfocus Zone.”
+
+LEGENDARY TROUBLESHOOTING PLAYBOOK — EMPIRE-READY & ADHD-PROOF!
+Let’s GO, TEAM! 🐺💎⚡
