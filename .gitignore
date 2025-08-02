@@ -1,156 +1,111 @@
-# 🛡️💎⚡ BROSKI♾️ LEGENDARY FORTRESS .GITIGNORE ⚡💎🛡️
-# MAX SECURITY, MAX HYPE, ZERO SECRETS LEAKED!
-# Last updated: 2025-07-27
-
-# 🚨 EMPIRE SECRETS - NEVER COMMIT THESE!
-.env
-.env.local
-.env.production
-.env.staging
-.env.development
-*.key
-*.pem
-secrets.json
-secrets.yaml
-secrets.yml
-config/secrets.*
-credentials.json
-auth.json
-
-# 💎 MEMORY CRYSTALS - PRIVATE ONES ONLY
-memory_crystals/*_private.json
-memory_crystals/*_confidential.json
-memory_crystals/*_internal.json
-memory_crystals/BOARDROOM_PRIVATE_*
-memory_crystals/EMPIRE_SECRETS_*
-
-# 🔒 DOCKER & DEPLOYMENT SECRETS
-docker-compose.override.yml
-docker-compose.production.yml
-*.dockerfile.production
-deployment.env
-k8s-secrets.yaml
-
-# 🛡️ BACKUP & DATABASE FILES
-*.db
-*.sqlite
-*.sql
-backup_*
-*_backup_*
-database.json
-db_dump.*
-
-# 🔐 SSL CERTIFICATES & KEYS
-*.crt
-*.cert
-*.ca-bundle
-*.p7b
-*.p7s
-*.pfx
-ssl/
-certs/
-
-# 🚀 BUILD ARTIFACTS
+# Node modules and build artifacts
+node_modules/
+.next/
 dist/
 build/
-out/
-.next/
-.nuxt/
-.vuepress/dist
-.serverless/
-.vercel/
 
-# 📱 MOBILE & NATIVE
-*.ipa
-*.apk
-*.aab
-ios/
-android/
-
-# 🖥️ IDE & EDITOR FILES
-.vscode/settings.json
-.vscode/launch.json
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-Thumbs.db
-
-# 📦 DEPENDENCIES
-node_modules/
-vendor/
-.pnp
-.pnp.js
-
-# 📊 LOGS & DEBUG
-*.log
-logs/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# 🧪 TESTING
-coverage/
-.nyc_output
-junit.xml
-test-results/
-
-# 🎯 TEMP & CACHE FILES
-.cache/
-.tmp/
-tmp/
-*.tmp
-*.temp
-.sass-cache/
-.eslintcache
-
-# 🌐 BROWSER & RUNTIME
+# Environment files
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# 🚀 DEPLOYMENT SPECIFIC
-.vercel
-.netlify
-.surge
-.now
+# Large binary files
+*.node
+*.dll
+*.so
+*.dylib
 
-# 💰 FINANCIAL & BUSINESS DATA
-stripe_keys.json
-payment_config.json
-financial_reports/
-revenue_data/
+# System files
+.DS_Store
+Thumbs.db
+System Volume Information/
 
-# 👥 TEAM PRIVATE DATA
-team_contacts_private.json
-personal_notes/
-private_messages/
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# 🎮 GAME & SIMULATION DATA
-save_states/
-game_data/
-simulation_results/
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-# 🤖 AI MODEL & TRAINING DATA
-*.model
-*.pkl
-*.joblib
-training_data/
-model_weights/
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
-# 🔍 ANALYSIS & RESEARCH
-research_notes_private/
-competitive_analysis/
-market_research/
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
 
-# ⚡ BROSKI♾️ SPECIAL PROTECTIONS
-*_DO_NOT_COMMIT*
-*_PRIVATE_*
-*_CONFIDENTIAL_*
-*_INTERNAL_ONLY_*
+# nyc test coverage
+.nyc_output
 
-# 🏆 LEGENDARY EMPIRE PROTECTION COMPLETE!
-# All secrets safe, all hype ready for showcase! 💎👑🚀
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# HyperBeast embedded git repository (to be handled as submodule)
+HyperBeast/
