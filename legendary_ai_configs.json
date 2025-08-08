@@ -1,0 +1,35 @@
+{
+  "anomaly_detection": {
+    "empire_systems": {
+      "metric": "up",
+      "sensitivity": "high"
+    },
+    "dopamine_levels": {
+      "metric": "dopamine_level_current",
+      "sensitivity": "medium"
+    },
+    "agent_performance": {
+      "metric": "agent_tasks_completed",
+      "sensitivity": "medium"
+    }
+  },
+  "forecasting": {
+    "dopamine_prediction": {
+      "horizon": "4h",
+      "confidence": "90%"
+    },
+    "productivity_prediction": {
+      "horizon": "6h",
+      "confidence": "85%"
+    },
+    "economy_prediction": {
+      "horizon": "7d",
+      "confidence": "75%"
+    }
+  },
+  "celebrations": {
+    "ai_optimization": true,
+    "adhd_friendly": true,
+    "timing_optimization": true
+  }
+}

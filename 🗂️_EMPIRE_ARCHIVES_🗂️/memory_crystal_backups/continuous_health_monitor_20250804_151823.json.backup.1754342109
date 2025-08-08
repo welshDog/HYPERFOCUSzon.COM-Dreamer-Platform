@@ -1,0 +1,42 @@
+{
+  "timestamp": "2025-08-04T15:18:23.384806",
+  "empire_ports": {
+    "Grafana Dashboard": {
+      "status": "ACTIVE",
+      "response_code": 302,
+      "response_time": 591.814
+    },
+    "Admin Dashboard": {
+      "status": "ACTIVE",
+      "response_code": 404,
+      "response_time": 1182.3239999999998
+    },
+    "Command Center": {
+      "status": "ACTIVE",
+      "response_code": 307,
+      "response_time": 128.652
+    },
+    "Agent Orchestrator": {
+      "status": "ACTIVE",
+      "response_code": 404,
+      "response_time": 93.205
+    },
+    "Prometheus": {
+      "status": "ACTIVE",
+      "response_code": 405,
+      "response_time": 25.32
+    }
+  },
+  "tailscale_network": {
+    "status": "OPERATIONAL",
+    "nodes_active": 3,
+    "funnel_enabled": true
+  },
+  "system_resources": {
+    "cpu_percent": 61.0,
+    "memory_percent": 88.6,
+    "status": "OPTIMIZING"
+  },
+  "overall_status": "MONITORING",
+  "health_percentage": 100.0
+}

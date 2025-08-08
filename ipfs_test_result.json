@@ -1,0 +1,15 @@
+{
+  "IpfsHash": "bafkreiewqt3bsngyfrdy7qnwoue4lpcsue7bjryqunjm7e6m7r6xlogggq",
+  "PinSize": 709,
+  "Timestamp": "2025-08-04T15:04:40.821Z",
+  "ID": "a03e8c18-a17a-4395-aa69-dd45f5986c78",
+  "Name": "IMMORTAL_HYPERFOCUS_EMPIRE_TEST",
+  "NumberOfFiles": 1,
+  "MimeType": "text/html",
+  "GroupId": null,
+  "Keyvalues": {
+    "status": "IMMORTAL",
+    "empire_type": "Web3_Portal_Test",
+    "deployment_time": "1754319881"
+  }
+}

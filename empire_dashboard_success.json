@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "dashboard_url": "https://welshdog.grafana.net/d/5589c9ee-9eeb-4eca-8303-71fdae82b22b",
+  "dashboard_uid": "5589c9ee-9eeb-4eca-8303-71fdae82b22b",
+  "data_sources": {
+    "prometheus": "cetfwd7mefrpcf",
+    "loki": "grafanacloud-logs",
+    "pyroscope": "grafanacloud-profiles"
+  },
+  "created_at": "2025-08-03T22:07:33.071102"
+}

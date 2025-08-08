@@ -1,0 +1,67 @@
+{
+  "Features": {
+    "ParallelProcessing": {
+      "Performance": "COMPATIBLE",
+      "Method": "PowerShell Jobs",
+      "Supported": true,
+      "TestResult": "FALLBACK"
+    },
+    "JsonProcessing": {
+      "Performance": "NATIVE",
+      "ConvertToJson": true,
+      "DepthSupport": true,
+      "ConvertFromJson": true,
+      "AsHashtable": true
+    },
+    "ModernCmdlets": {
+      "Get-Counter": {
+        "Version": "7.0.0.0",
+        "Description": "Performance counter access",
+        "Available": true,
+        "Source": "Microsoft.PowerShell.Diagnostics"
+      },
+      "ConvertFrom-Json": {
+        "Version": "7.0.0.0",
+        "Description": "JSON parsing with -AsHashtable",
+        "Available": true,
+        "Source": "Microsoft.PowerShell.Utility"
+      },
+      "Start-ThreadJob": {
+        "Version": "2.0.3",
+        "Description": "Lightweight background jobs",
+        "Available": true,
+        "Source": "ThreadJob"
+      },
+      "Get-ComputerInfo": {
+        "Version": "7.0.0.0",
+        "Description": "System information gathering",
+        "Available": true,
+        "Source": "Microsoft.PowerShell.Management"
+      },
+      "Test-NetConnection": {
+        "Version": "1.0.0.0",
+        "Description": "Network connectivity testing",
+        "Available": true,
+        "Source": "NetTCPIP"
+      }
+    }
+  },
+  "PythonIntegration": {
+    "Version": "Python 3.13.5",
+    "Available": true,
+    "ExecutionTest": {
+      "Success": true,
+      "Platform": "win32",
+      "PythonVersion": "3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]"
+    }
+  },
+  "OS": "Microsoft Windows 10.0.26200",
+  "PowerShellEdition": "Core",
+  "PowerShellVersion": "7.5.2",
+  "CompatibilityLevel": "PS7_COMPATIBLE",
+  "Recommendations": [
+    "⚡ GOOD: PowerShell 7.x detected - most modern features available",
+    "💡 Recommend: Upgrade to PowerShell 7.6+ for latest parallel processing improvements"
+  ],
+  "Timestamp": "2025-08-07T13:41:58.1976855+01:00"
+}

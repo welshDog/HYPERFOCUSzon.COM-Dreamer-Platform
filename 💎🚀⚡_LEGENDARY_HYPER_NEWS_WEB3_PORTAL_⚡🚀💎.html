@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💎🚀⚡ LEGENDARY HYPER NEWS Web3 Portal ⚡🚀💎</title>
+    <style>
+        /* Enhanced CSS for Legendary Web3 Portal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .legendary-header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            margin: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .legendary-header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B6B, #4ECDC4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.8));
+            }
+        }
+
+        .legendary-subtitle {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .status-banner {
+            display: inline-block;
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .main-dashboard {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 25px;
+            margin: 20px;
+            min-height: 800px;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel h3 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #FFD700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Enhanced News Feed */
+        .news-feed {
+            max-height: 800px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 215, 0, 0.5) transparent;
+        }
+
+        .news-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #FFD700;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .news-item:hover::before {
+            transform: translateX(100%);
+        }
+
+        .news-item:hover {
+            transform: translateY(-5px) translateX(5px);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .news-source {
+            background: rgba(255, 215, 0, 0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .news-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .news-content {
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .news-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* DeFi Dashboard */
+        .defi-grid {
+            display: grid;
+            gap: 15px;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+
+        .defi-protocol {
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .defi-protocol:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: scale(1.02);
+        }
+
+        .protocol-name {
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+
+        .protocol-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 0.9em;
+        }
+
+        .stat-value {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        /* NFT Collections */
+        .nft-grid {
+            display: grid;
+            gap: 15px;
+            max-height: 700px;
+            overflow-y: auto;
+        }
+
+        .nft-collection {
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nft-collection:hover {
+            background: rgba(255, 107, 107, 0.2);
+            transform: scale(1.02);
+        }
+
+        .collection-name {
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 8px;
+        }
+
+        /* Gamification Panel */
+        .game-stats {
+            text-align: center;
+        }
+
+        .broskie-balance {
+            font-size: 2.5em;
+            color: #FFD700;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .level-indicator {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border-radius: 25px;
+            padding: 10px 20px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: black;
+        }
+
+        .achievement {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            margin: 8px 0;
+            border-left: 4px solid #FFD700;
+        }
+
+        .achievement-new {
+            animation: achievementPop 0.8s ease-out;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 165, 0, 0.2));
+        }
+
+        @keyframes achievementPop {
+            0% {
+                transform: scale(0) rotate(180deg);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.1) rotate(0deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+
+        /* Control Buttons */
+        .control-buttons {
+            display: grid;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-legendary {
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            color: black;
+        }
+
+        .btn-defi {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+        }
+
+        .btn-nft {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+
+        .btn-ai {
+            background: linear-gradient(45deg, #a55eea, #26de81);
+        }
+
+        .btn-tech {
+            background: linear-gradient(45deg, #ff9500, #ff6b6b);
+        }
+
+        /* AI Analysis Panel */
+        .ai-analysis {
+            background: rgba(165, 94, 234, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 1px solid rgba(165, 94, 234, 0.3);
+        }
+
+        .sentiment-indicator {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .sentiment-bullish {
+            background: rgba(0, 255, 136, 0.3);
+            color: #00ff88;
+        }
+
+        .sentiment-bearish {
+            background: rgba(255, 107, 107, 0.3);
+            color: #ff6b6b;
+        }
+
+        .sentiment-neutral {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Tech Blog Styles */
+        .tech-blog-section {
+            margin-top: 20px;
+        }
+
+        .tech-blog-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tech-blog-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tech-tab {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tech-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .tech-tab.active {
+            background: linear-gradient(45deg, #ff9500, #ff6b6b);
+            border-color: #ff9500;
+        }
+
+        .tech-blog-post {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tech-blog-post:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .tech-post-header h4 {
+            color: #ff9500;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .tech-post-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tech-category {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .tech-difficulty {
+            background: linear-gradient(45deg, #a55eea, #26de81);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .tech-time,
+        .tech-reward {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+        }
+
+        .tech-post-content {
+            line-height: 1.6;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .tech-post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tech-stats {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .tech-tutorial {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tutorial-header h4 {
+            color: #26de81;
+            margin-bottom: 10px;
+        }
+
+        .tutorial-meta {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tutorial-time {
+            background: rgba(255, 215, 0, 0.3);
+            color: #ffd700;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .tutorial-tech-stack {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tutorial-progress {
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #00ff88, #00ccff);
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .category-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .category-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #ff9500;
+        }
+
+        .category-count {
+            opacity: 0.8;
+            font-size: 0.9em;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-dashboard {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .legendary-header h1 {
+                font-size: 2.5em;
+            }
+
+            .panel {
+                padding: 20px;
+            }
+        }
+
+        /* Loading Animations */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: #FFD700;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Hyperfocus Mode */
+        .hyperfocus-mode {
+            filter: saturate(1.5) brightness(1.1);
+            animation: hyperfocusGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes hyperfocusGlow {
+            from {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+
+            to {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="legendary-header">
+        <h1>💎🚀⚡ LEGENDARY HYPER NEWS ⚡🚀💎</h1>
+        <div class="legendary-subtitle">Web3 Auto-Portal with DeFi, NFT & AI Enhancement</div>
+        <div class="status-banner" id="statusBanner">🌟 LEGENDARY MODE ACTIVE</div>
+    </div>
+
+    <div class="main-dashboard">
+        <!-- Left Panel: Controls & Gamification -->
+        <div class="panel">
+            <h3>🎮 Game Stats & Controls</h3>
+
+            <div class="game-stats">
+                <div class="broskie-balance" id="broskieBalance">1,337</div>
+                <div>BROski$ Balance</div>
+
+                <div class="level-indicator" id="levelIndicator">
+                    Level 5 - DeFi Explorer
+                </div>
+
+                <div id="userStats">
+                    <div>📖 Articles Read: <span id="articlesRead">42</span></div>
+                    <div>🔥 Streak: <span id="streakDays">7</span> days</div>
+                    <div>🏆 Achievements: <span id="totalAchievements">3</span></div>
+                </div>
+            </div>
+
+            <div class="control-buttons">
+                <button class="btn btn-legendary" onclick="toggleHyperfocus()">
+                    ⚡ HyperFocus Mode
+                </button>
+                <button class="btn btn-defi" onclick="fetchDeFiData()">
+                    💰 Update DeFi Data
+                </button>
+                <button class="btn btn-nft" onclick="fetchNFTData()">
+                    🎨 Update NFT Data
+                </button>
+                <button class="btn btn-ai" onclick="generateAIAnalysis()">
+                    🤖 AI Analysis
+                </button>
+                <button class="btn btn-tech" onclick="showTechBlog()">
+                    🔧 Tech Blog
+                </button>
+                <button class="btn" onclick="personalizeContent()">
+                    🧠 Personalize Feed
+                </button>
+            </div>
+
+            <div id="achievements">
+                <h4>🏆 Recent Achievements</h4>
+                <div class="achievement">
+                    <div>📖 First Steps</div>
+                    <div style="font-size: 0.8em; opacity: 0.8;">Read your first Web3 article</div>
+                </div>
+                <div class="achievement">
+                    <div>🔥 Week Warrior</div>
+                    <div style="font-size: 0.8em; opacity: 0.8;">7-day reading streak</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel: Enhanced News Feed -->
+        <div class="panel">
+            <h3>📰 Enhanced Web3 News Feed</h3>
+
+            <div class="news-feed" id="newsFeed">
+                <!-- News items will be populated here -->
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-source">CoinDesk</span>
+                        <span>2 minutes ago</span>
+                    </div>
+                    <div class="news-title">DeFi Protocol Achieves Record $2B TVL</div>
+                    <div class="news-content">Revolutionary DeFi protocol reaches unprecedented total value locked,
+                        signaling strong institutional adoption...</div>
+                    <div class="news-tags">
+                        <span class="tag">DeFi</span>
+                        <span class="tag">TVL</span>
+                        <span class="tag">Bullish</span>
+                    </div>
+                </div>
+
+                <div class="news-item">
+                    <div class="news-meta">
+                        <span class="news-source">CoinTelegraph</span>
+                        <span>5 minutes ago</span>
+                    </div>
+                    <div class="news-title">NFT Marketplace Volume Surges 300%</div>
+                    <div class="news-content">Leading NFT marketplace sees explosive growth as digital art adoption
+                        accelerates globally...</div>
+                    <div class="news-tags">
+                        <span class="tag">NFT</span>
+                        <span class="tag">Marketplace</span>
+                        <span class="tag">Volume</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Blog Section -->
+            <div class="tech-blog-section" id="techBlogSection" style="display: none;">
+                <div class="tech-blog-header">
+                    <h3>🔧 HYPER TECH BLOG</h3>
+                    <div class="tech-blog-tabs">
+                        <button class="tech-tab active" onclick="showTechPosts()">📝 Posts</button>
+                        <button class="tech-tab" onclick="showTechTutorials()">📚 Tutorials</button>
+                        <button class="tech-tab" onclick="showTechCategories()">🏷️ Categories</button>
+                    </div>
+                </div>
+
+                <div class="tech-blog-content">
+                    <!-- Tech Posts -->
+                    <div id="techPosts" class="tech-content-panel">
+                        <div class="tech-blog-post">
+                            <div class="tech-post-header">
+                                <h4>Getting Started with Web3 Development</h4>
+                                <div class="tech-post-meta">
+                                    <span class="tech-category">Web3 Development</span>
+                                    <span class="tech-difficulty">Beginner</span>
+                                    <span class="tech-time">8 min read</span>
+                                    <span class="tech-reward">+15 BROski$</span>
+                                </div>
+                            </div>
+                            <div class="tech-post-content">
+                                Web3 development is revolutionizing how we build applications. Learn the fundamentals of
+                                blockchain development, smart contracts, and decentralized applications...
+                            </div>
+                            <div class="tech-post-actions">
+                                <button class="btn btn-sm" onclick="readTechPost(1)">Read Full Post</button>
+                                <span class="tech-stats">👀 234 views • 👍 18 likes</span>
+                            </div>
+                        </div>
+
+                        <div class="tech-blog-post">
+                            <div class="tech-post-header">
+                                <h4>Advanced Solidity Smart Contract Patterns</h4>
+                                <div class="tech-post-meta">
+                                    <span class="tech-category">Web3 Development</span>
+                                    <span class="tech-difficulty">Advanced</span>
+                                    <span class="tech-time">15 min read</span>
+                                    <span class="tech-reward">+30 BROski$</span>
+                                </div>
+                            </div>
+                            <div class="tech-post-content">
+                                Explore advanced Solidity patterns including proxy contracts, upgradeable contracts, and
+                                gas optimization techniques for production-ready smart contracts...
+                            </div>
+                            <div class="tech-post-actions">
+                                <button class="btn btn-sm" onclick="readTechPost(2)">Read Full Post</button>
+                                <span class="tech-stats">👀 89 views • 👍 12 likes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tech Tutorials -->
+                    <div id="techTutorials" class="tech-content-panel" style="display: none;">
+                        <div class="tech-tutorial">
+                            <div class="tutorial-header">
+                                <h4>Build Your First DeFi Smart Contract</h4>
+                                <div class="tutorial-meta">
+                                    <span class="tech-difficulty">Intermediate</span>
+                                    <span class="tutorial-time">⏱️ 120 min</span>
+                                    <span class="tech-reward">+50 BROski$</span>
+                                </div>
+                            </div>
+                            <div class="tutorial-description">
+                                Learn to create a simple DeFi protocol using Solidity, Hardhat, and modern Web3 tools.
+                            </div>
+                            <div class="tutorial-tech-stack">
+                                <span class="tech-tag">Solidity</span>
+                                <span class="tech-tag">Hardhat</span>
+                                <span class="tech-tag">Ethereum</span>
+                                <span class="tech-tag">MetaMask</span>
+                            </div>
+                            <div class="tutorial-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <span>0/5 steps completed</span>
+                            </div>
+                            <button class="btn btn-sm" onclick="startTutorial(1)">Start Tutorial</button>
+                        </div>
+                    </div>
+
+                    <!-- Tech Categories -->
+                    <div id="techCategories" class="tech-content-panel" style="display: none;">
+                        <div class="categories-grid">
+                            <div class="category-card" onclick="filterByCategory('web3')">
+                                <div class="category-icon">🌐</div>
+                                <div class="category-name">Web3 Development</div>
+                                <div class="category-count">12 posts</div>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('ai')">
+                                <div class="category-icon">🤖</div>
+                                <div class="category-name">AI & Machine Learning</div>
+                                <div class="category-count">8 posts</div>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('python')">
+                                <div class="category-icon">🐍</div>
+                                <div class="category-name">Python Programming</div>
+                                <div class="category-count">15 posts</div>
+                            </div>
+                            <div class="category-card" onclick="filterByCategory('javascript')">
+                                <div class="category-icon">⚡</div>
+                                <div class="category-name">JavaScript & Web Dev</div>
+                                <div class="category-count">20 posts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel: DeFi & NFT Data -->
+        <div class="panel">
+            <h3>💰 DeFi Protocols</h3>
+
+            <div class="defi-grid" id="defiGrid">
+                <div class="defi-protocol">
+                    <div class="protocol-name">Uniswap V3</div>
+                    <div class="protocol-stats">
+                        <div>TVL: <span class="stat-value">$4.2B</span></div>
+                        <div>24h Vol: <span class="stat-value">$1.1B</span></div>
+                        <div>APY: <span class="stat-value">12.5%</span></div>
+                        <div>Risk: <span class="stat-value">Low (3/10)</span></div>
+                    </div>
+                </div>
+
+                <div class="defi-protocol">
+                    <div class="protocol-name">Aave</div>
+                    <div class="protocol-stats">
+                        <div>TVL: <span class="stat-value">$6.8B</span></div>
+                        <div>24h Vol: <span class="stat-value">$890M</span></div>
+                        <div>APY: <span class="stat-value">8.3%</span></div>
+                        <div>Risk: <span class="stat-value">Low (2/10)</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px;">🎨 NFT Collections</h3>
+
+            <div class="nft-grid" id="nftGrid">
+                <div class="nft-collection">
+                    <div class="collection-name">Bored Ape Yacht Club</div>
+                    <div class="protocol-stats">
+                        <div>Floor: <span class="stat-value">45 ETH</span></div>
+                        <div>24h Vol: <span class="stat-value">234 ETH</span></div>
+                        <div>Change: <span class="stat-value">+5.2%</span></div>
+                        <div>Trend: <span class="stat-value">🔥 8.5/10</span></div>
+                    </div>
+                </div>
+
+                <div class="nft-collection">
+                    <div class="collection-name">Art Blocks</div>
+                    <div class="protocol-stats">
+                        <div>Floor: <span class="stat-value">1.2 ETH</span></div>
+                        <div>24h Vol: <span class="stat-value">67 ETH</span></div>
+                        <div>Change: <span class="stat-value">+12.1%</span></div>
+                        <div>Trend: <span class="stat-value">📈 7.8/10</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Analysis Panel (appears when generated) -->
+    <div id="aiAnalysisPanel" style="margin: 20px; display: none;">
+        <div class="panel">
+            <h3>🤖 AI Market Analysis</h3>
+            <div class="ai-analysis" id="aiAnalysis">
+                <!-- AI analysis will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // LEGENDARY WEB3 NEWS PORTAL - Enhanced JavaScript
+
+        let isHyperfocusMode = false;
+        let currentUser = 'legendary_user_001';
+        let refreshInterval;
+
+        // Initialize the legendary portal
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeLegendaryPortal();
+            startAutoRefresh();
+        });
+
+        async function initializeLegendaryPortal() {
+            console.log('🚀 Initializing LEGENDARY Web3 Portal...');
+
+            await Promise.all([
+                updateUserStats(),
+                fetchEnhancedNews(),
+                fetchDeFiData(),
+                fetchNFTData()
+            ]);
+
+            console.log('✅ LEGENDARY Portal Ready!');
+            showAchievement('🚀 Portal Activated', 'Welcome to the LEGENDARY experience!');
+        }
+
+        async function updateUserStats() {
+            try {
+                const response = await fetch('/api/enhanced/user_stats', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: currentUser, action: 'portal_visit' })
+                });
+
+                if (response.ok) {
+                    const stats = await response.json();
+                    updateStatsDisplay(stats);
+                }
+            } catch (error) {
+                console.error('Stats update error:', error);
+            }
+        }
+
+        function updateStatsDisplay(stats) {
+            document.getElementById('broskieBalance').textContent = stats.broskie_balance || 1337;
+            document.getElementById('articlesRead').textContent = stats.articles_read || 42;
+            document.getElementById('streakDays').textContent = stats.streak_days || 7;
+            document.getElementById('totalAchievements').textContent = stats.total_achievements || 3;
+
+            const levelText = `Level ${stats.level || 5} - ${getLevelTitle(stats.level || 5)}`;
+            document.getElementById('levelIndicator').textContent = levelText;
+
+            // Show new achievements
+            if (stats.new_achievements && stats.new_achievements.length > 0) {
+                stats.new_achievements.forEach(achievement => {
+                    showAchievement(achievement.name, achievement.description);
+                });
+            }
+        }
+
+        function getLevelTitle(level) {
+            const titles = {
+                1: 'Web3 Newbie',
+                2: 'Crypto Curious',
+                3: 'DeFi Explorer',
+                4: 'NFT Enthusiast',
+                5: 'DeFi Expert',
+                6: 'Web3 Master',
+                7: 'Legendary Trader',
+                8: 'Hyperfocus Lord',
+                9: 'Empire Builder',
+                10: 'LEGENDARY SUPREME'
+            };
+            return titles[level] || 'Legendary Being';
+        }
+
+        async function fetchEnhancedNews() {
+            try {
+                const response = await fetch('/api/enhanced/personalized_feed', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: currentUser })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    displayNews(data.news || []);
+                }
+            } catch (error) {
+                console.error('News fetch error:', error);
+            }
+        }
+
+        function displayNews(newsItems) {
+            const newsFeed = document.getElementById('newsFeed');
+
+            newsItems.forEach(item => {
+                const newsElement = createNewsElement(item);
+                newsFeed.appendChild(newsElement);
+            });
+        }
+
+        function createNewsElement(item) {
+            const newsDiv = document.createElement('div');
+            newsDiv.className = 'news-item';
+
+            const sentiment = item.sentiment || 'neutral';
+            const sentimentColor = sentiment === 'bullish' ? '#00ff88' :
+                sentiment === 'bearish' ? '#ff6b6b' : '#ffffff';
+
+            newsDiv.innerHTML = `
+                <div class="news-meta">
+                    <span class="news-source">${item.source}</span>
+                    <span>${formatTime(item.timestamp)}</span>
+                </div>
+                <div class="news-title">${item.title}</div>
+                <div class="news-content">${item.content}</div>
+                <div class="news-tags">
+                    ${item.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    <span class="sentiment-indicator sentiment-${sentiment}">${sentiment.toUpperCase()}</span>
+                </div>
+            `;
+
+            // Add click handler for reading tracking
+            newsDiv.addEventListener('click', () => trackArticleRead(item));
+
+            return newsDiv;
+        }
+
+        async function trackArticleRead(article) {
+            try {
+                const response = await fetch('/api/enhanced/user_stats', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: currentUser,
+                        action: 'read_article',
+                        article_type: article.tags.includes('DeFi') ? 'defi_read' : 'read_article'
+                    })
+                });
+
+                if (response.ok) {
+                    const stats = await response.json();
+                    updateStatsDisplay(stats);
+
+                    if (stats.rewards_earned > 0) {
+                        showReward(stats.rewards_earned);
+                    }
+                }
+            } catch (error) {
+                console.error('Article tracking error:', error);
+            }
+        }
+
+        async function fetchDeFiData() {
+            try {
+                const response = await fetch('/api/enhanced/defi_data');
+
+                if (response.ok) {
+                    const data = await response.json();
+                    displayDeFiData(data.defi_protocols || []);
+                }
+            } catch (error) {
+                console.error('DeFi data fetch error:', error);
+            }
+        }
+
+        function displayDeFiData(protocols) {
+            const defiGrid = document.getElementById('defiGrid');
+            defiGrid.innerHTML = '';
+
+            protocols.forEach(protocol => {
+                const protocolDiv = document.createElement('div');
+                protocolDiv.className = 'defi-protocol';
+
+                protocolDiv.innerHTML = `
+                    <div class="protocol-name">${protocol.protocol}</div>
+                    <div class="protocol-stats">
+                        <div>TVL: <span class="stat-value">$${formatNumber(protocol.tvl)}</span></div>
+                        <div>24h Vol: <span class="stat-value">$${formatNumber(protocol.volume_24h)}</span></div>
+                        <div>APY: <span class="stat-value">${protocol.yield_percentage}%</span></div>
+                        <div>Risk: <span class="stat-value">${getRiskLevel(protocol.risk_score)}</span></div>
+                    </div>
+                `;
+
+                defiGrid.appendChild(protocolDiv);
+            });
+        }
+
+        async function fetchNFTData() {
+            try {
+                const response = await fetch('/api/enhanced/nft_collections');
+
+                if (response.ok) {
+                    const data = await response.json();
+                    displayNFTData(data.nft_collections || []);
+                }
+            } catch (error) {
+                console.error('NFT data fetch error:', error);
+            }
+        }
+
+        function displayNFTData(collections) {
+            const nftGrid = document.getElementById('nftGrid');
+            nftGrid.innerHTML = '';
+
+            collections.forEach(collection => {
+                const collectionDiv = document.createElement('div');
+                collectionDiv.className = 'nft-collection';
+
+                collectionDiv.innerHTML = `
+                    <div class="collection-name">${collection.name}</div>
+                    <div class="protocol-stats">
+                        <div>Floor: <span class="stat-value">${collection.floor_price} ETH</span></div>
+                        <div>24h Vol: <span class="stat-value">${collection.volume_24h} ETH</span></div>
+                        <div>Change: <span class="stat-value">${formatPercentage(collection.change_24h)}</span></div>
+                        <div>Trend: <span class="stat-value">${getTrendIcon(collection.trending_score)} ${collection.trending_score}/10</span></div>
+                    </div>
+                `;
+
+                nftGrid.appendChild(collectionDiv);
+            });
+        }
+
+        async function generateAIAnalysis() {
+            const button = event.target;
+            const originalText = button.textContent;
+            button.innerHTML = '🤖 <span class="loading"></span> Analyzing...';
+            button.disabled = true;
+
+            try {
+                const response = await fetch('/api/enhanced/ai_analysis', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: currentUser,
+                        analysis_type: 'trend_prediction'
+                    })
+                });
+
+                if (response.ok) {
+                    const analysis = await response.json();
+                    displayAIAnalysis(analysis);
+
+                    // Update user stats for AI usage
+                    await fetch('/api/enhanced/user_stats', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ user_id: currentUser, action: 'ai_summary' })
+                    });
+                }
+            } catch (error) {
+                console.error('AI analysis error:', error);
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
+        function displayAIAnalysis(analysis) {
+            const panel = document.getElementById('aiAnalysisPanel');
+            const analysisDiv = document.getElementById('aiAnalysis');
+
+            analysisDiv.innerHTML = `
+                <div class="sentiment-indicator sentiment-${analysis.sentiment || 'neutral'}">
+                    Market Sentiment: ${(analysis.sentiment || 'neutral').toUpperCase()}
+                </div>
+                <div style="margin: 15px 0;">
+                    <strong>AI Analysis:</strong><br>
+                    ${analysis.analysis || 'Analysis in progress...'}
+                </div>
+                <div style="font-size: 0.9em; opacity: 0.8;">
+                    Generated by: ${analysis.model || 'GPT-4'} | 
+                    Tokens: ${analysis.token_usage || 'N/A'}
+                </div>
+            `;
+
+            panel.style.display = 'block';
+            showAchievement('🤖 AI Pioneer', 'Used advanced AI analysis!');
+        }
+
+        function toggleHyperfocus() {
+            isHyperfocusMode = !isHyperfocusMode;
+            const body = document.body;
+
+            if (isHyperfocusMode) {
+                body.classList.add('hyperfocus-mode');
+                showAchievement('⚡ HyperFocus Activated', 'Enhanced focus mode enabled!');
+            } else {
+                body.classList.remove('hyperfocus-mode');
+            }
+
+            updateStatusBanner();
+        }
+
+        function updateStatusBanner() {
+            const banner = document.getElementById('statusBanner');
+            if (isHyperfocusMode) {
+                banner.textContent = '⚡ HYPERFOCUS MODE ACTIVE';
+                banner.style.background = 'linear-gradient(45deg, #FFD700, #FFA500)';
+                banner.style.color = 'black';
+            } else {
+                banner.textContent = '🌟 LEGENDARY MODE ACTIVE';
+                banner.style.background = 'linear-gradient(45deg, #00ff88, #00ccff)';
+                banner.style.color = 'white';
+            }
+        }
+
+        function showAchievement(title, description) {
+            const achievement = document.createElement('div');
+            achievement.className = 'achievement achievement-new';
+            achievement.innerHTML = `
+                <div>${title}</div>
+                <div style="font-size: 0.8em; opacity: 0.8;">${description}</div>
+            `;
+
+            document.getElementById('achievements').appendChild(achievement);
+
+            // Remove after animation
+            setTimeout(() => {
+                achievement.classList.remove('achievement-new');
+            }, 800);
+        }
+
+        function showReward(amount) {
+            const reward = document.createElement('div');
+            reward.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: linear-gradient(45deg, #FFD700, #FFA500);
+                color: black;
+                padding: 20px 30px;
+                border-radius: 15px;
+                font-weight: bold;
+                font-size: 1.5em;
+                z-index: 10000;
+                animation: rewardPop 2s ease-out forwards;
+            `;
+            reward.textContent = `+${amount} BROski$!`;
+
+            document.body.appendChild(reward);
+
+            setTimeout(() => {
+                document.body.removeChild(reward);
+            }, 2000);
+        }
+
+        function startAutoRefresh() {
+            refreshInterval = setInterval(async () => {
+                if (!isHyperfocusMode) {  // Don't auto-refresh in hyperfocus mode
+                    await fetchEnhancedNews();
+                    await fetchDeFiData();
+                    await fetchNFTData();
+                }
+            }, 60000); // Refresh every minute
+        }
+
+        // Utility Functions
+        function formatNumber(num) {
+            if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
+            if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
+            if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+            return num.toFixed(0);
+        }
+
+        function formatPercentage(num) {
+            const sign = num >= 0 ? '+' : '';
+            return `${sign}${num.toFixed(1)}%`;
+        }
+
+        function formatTime(timestamp) {
+            const now = new Date();
+            const time = new Date(timestamp);
+            const diff = Math.floor((now - time) / 1000 / 60);
+
+            if (diff < 1) return 'Just now';
+            if (diff < 60) return `${diff}m ago`;
+            if (diff < 1440) return `${Math.floor(diff / 60)}h ago`;
+            return `${Math.floor(diff / 1440)}d ago`;
+        }
+
+        function getRiskLevel(score) {
+            if (score <= 3) return 'Low';
+            if (score <= 6) return 'Medium';
+            return 'High';
+        }
+
+        function getTrendIcon(score) {
+            if (score >= 8) return '🔥';
+            if (score >= 6) return '📈';
+            if (score >= 4) return '⚡';
+            return '📊';
+        }
+
+        async function personalizeContent() {
+            const button = event.target;
+            const originalText = button.textContent;
+            button.innerHTML = '🧠 <span class="loading"></span> Personalizing...';
+            button.disabled = true;
+
+            try {
+                await fetchEnhancedNews();
+                showAchievement('🧠 Personalized', 'Content curated for your preferences!');
+            } catch (error) {
+                console.error('Personalization error:', error);
+            } finally {
+                button.textContent = originalText;
+                button.disabled = false;
+            }
+        }
+
+        // Add CSS animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rewardPop {
+                0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+                100% { transform: translate(-50%, -50%) scale(1) translateY(-100px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // ======================
+        // TECH BLOG FUNCTIONALITY
+        // ======================
+
+        function showTechBlog() {
+            const newsFeed = document.getElementById('newsFeed');
+            const techBlogSection = document.getElementById('techBlogSection');
+
+            if (techBlogSection.style.display === 'none') {
+                newsFeed.style.display = 'none';
+                techBlogSection.style.display = 'block';
+                loadTechBlogPosts();
+            } else {
+                newsFeed.style.display = 'block';
+                techBlogSection.style.display = 'none';
+            }
+        }
+
+        function showTechPosts() {
+            setActiveTab('posts');
+            document.getElementById('techPosts').style.display = 'block';
+            document.getElementById('techTutorials').style.display = 'none';
+            document.getElementById('techCategories').style.display = 'none';
+            loadTechBlogPosts();
+        }
+
+        function showTechTutorials() {
+            setActiveTab('tutorials');
+            document.getElementById('techPosts').style.display = 'none';
+            document.getElementById('techTutorials').style.display = 'block';
+            document.getElementById('techCategories').style.display = 'none';
+            loadTechTutorials();
+        }
+
+        function showTechCategories() {
+            setActiveTab('categories');
+            document.getElementById('techPosts').style.display = 'none';
+            document.getElementById('techTutorials').style.display = 'none';
+            document.getElementById('techCategories').style.display = 'block';
+            loadTechCategories();
+        }
+
+        function setActiveTab(activeTab) {
+            const tabs = document.querySelectorAll('.tech-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const tabMap = {
+                'posts': 0,
+                'tutorials': 1,
+                'categories': 2
+            };
+
+            if (tabs[tabMap[activeTab]]) {
+                tabs[tabMap[activeTab]].classList.add('active');
+            }
+        }
+
+        async function loadTechBlogPosts() {
+            try {
+                const response = await fetch('/api/tech_blog/posts');
+                if (response.ok) {
+                    const data = await response.json();
+                    displayTechPosts(data.posts);
+                } else {
+                    console.log('Using demo tech blog posts');
+                    displayDemoTechPosts();
+                }
+            } catch (error) {
+                console.error('Error loading tech posts:', error);
+                displayDemoTechPosts();
+            }
+        }
+
+        function displayTechPosts(posts) {
+            const container = document.getElementById('techPosts');
+            if (!posts || posts.length === 0) {
+                displayDemoTechPosts();
+                return;
+            }
+
+            container.innerHTML = posts.map(post => `
+                <div class="tech-blog-post">
+                    <div class="tech-post-header">
+                        <h4>${post.title}</h4>
+                        <div class="tech-post-meta">
+                            <span class="tech-category">${post.category}</span>
+                            <span class="tech-difficulty">${post.difficulty_level}</span>
+                            <span class="tech-time">${post.estimated_read_time} min read</span>
+                            <span class="tech-reward">+${post.broskie_reward} BROski$</span>
+                        </div>
+                    </div>
+                    <div class="tech-post-content">
+                        ${post.ai_summary || post.content.substring(0, 200) + '...'}
+                    </div>
+                    <div class="tech-post-actions">
+                        <button class="btn btn-sm" onclick="readTechPost(${post.id})">Read Full Post</button>
+                        <span class="tech-stats">� ${post.views} views • 👍 ${post.likes} likes</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function displayDemoTechPosts() {
+            // Demo posts are already in the HTML, so this function can enhance them
+            console.log('Displaying demo tech blog posts');
+        }
+
+        async function loadTechTutorials() {
+            try {
+                const response = await fetch('/api/tech_blog/tutorials');
+                if (response.ok) {
+                    const data = await response.json();
+                    displayTechTutorials(data.tutorials);
+                } else {
+                    console.log('Using demo tutorials');
+                }
+            } catch (error) {
+                console.error('Error loading tutorials:', error);
+            }
+        }
+
+        function displayTechTutorials(tutorials) {
+            if (!tutorials || tutorials.length === 0) return;
+
+            const container = document.getElementById('techTutorials');
+            container.innerHTML = tutorials.map(tutorial => `
+                <div class="tech-tutorial">
+                    <div class="tutorial-header">
+                        <h4>${tutorial.title}</h4>
+                        <div class="tutorial-meta">
+                            <span class="tech-difficulty">${tutorial.difficulty}</span>
+                            <span class="tutorial-time">⏱️ ${tutorial.completion_time} min</span>
+                            <span class="tech-reward">+${tutorial.broskie_reward} BROski$</span>
+                        </div>
+                    </div>
+                    <div class="tutorial-description">
+                        ${tutorial.description}
+                    </div>
+                    <div class="tutorial-tech-stack">
+                        ${tutorial.tech_stack.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                    </div>
+                    <div class="tutorial-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <span>0/${tutorial.steps.length} steps completed</span>
+                    </div>
+                    <button class="btn btn-sm" onclick="startTutorial(${tutorial.id})">Start Tutorial</button>
+                </div>
+            `).join('');
+        }
+
+        async function loadTechCategories() {
+            try {
+                const response = await fetch('/api/tech_blog/categories');
+                if (response.ok) {
+                    const data = await response.json();
+                    displayTechCategories(data.categories);
+                }
+            } catch (error) {
+                console.error('Error loading categories:', error);
+            }
+        }
+
+        function displayTechCategories(categories) {
+            if (!categories || categories.length === 0) return;
+
+            const container = document.querySelector('#techCategories .categories-grid');
+            container.innerHTML = categories.map(category => `
+                <div class="category-card" onclick="filterByCategory('${category.name.toLowerCase()}')">
+                    <div class="category-icon">${category.icon}</div>
+                    <div class="category-name">${category.name}</div>
+                    <div class="category-count">${category.post_count} posts</div>
+                </div>
+            `).join('');
+        }
+
+        async function readTechPost(postId) {
+            try {
+                // Track view
+                await fetch(`/api/tech_blog/posts/${postId}/view`, { method: 'POST' });
+
+                // Award BROski$ for reading
+                await updateUserStats({
+                    action: 'tech_read',
+                    reward: 15,
+                    description: 'Read tech blog post'
+                });
+
+                showAchievement('Tech Reader', 'Read a tech blog post!');
+
+                // In a real implementation, this would open the full post
+                alert('�🚀 Tech blog post opened! +15 BROski$ earned!');
+
+            } catch (error) {
+                console.error('Error reading tech post:', error);
+            }
+        }
+
+        async function startTutorial(tutorialId) {
+            try {
+                alert('🚀 Tutorial started! This would open the interactive tutorial system.');
+
+                // Award BROski$ for starting tutorial
+                await updateUserStats({
+                    action: 'tutorial_start',
+                    reward: 25,
+                    description: 'Started a tech tutorial'
+                });
+
+                showAchievement('Learning Mode', 'Started your first tutorial!');
+
+            } catch (error) {
+                console.error('Error starting tutorial:', error);
+            }
+        }
+
+        function filterByCategory(categoryName) {
+            console.log('Filtering by category:', categoryName);
+            // This would filter the posts by category
+            alert(`🔧 Filtering tech content by: ${categoryName}`);
+        }
+
+        // Initialize tech blog data on page load
+        setTimeout(() => {
+            loadTechBlogPosts();
+            loadTechTutorials();
+            loadTechCategories();
+        }, 2000);
+
+        console.log('🚀💎 LEGENDARY WEB3 NEWS PORTAL LOADED! 💎🚀');
+        console.log('🔧💎 TECH BLOG EXTENSION LOADED! 💎🔧');
+    </script>
+</body>
+
+</html>

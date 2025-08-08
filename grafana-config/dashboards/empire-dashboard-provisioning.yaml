@@ -1,0 +1,71 @@
+# 🚀💎⚡ GRAFANA EMPIRE DASHBOARD PROVISIONING V2.0 ⚡💎🚀
+
+apiVersion: 1
+
+providers:
+  # 🏰 EMPIRE CORE DASHBOARDS
+  - name: 'empire-core'
+    orgId: 1
+    folder: 'Empire Core'
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/core
+
+  # 🐳 DOCKER MONITORING DASHBOARDS  
+  - name: 'empire-docker'
+    orgId: 1
+    folder: 'Docker Monitoring'
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/docker
+
+  # 🖥️ HOST SYSTEM DASHBOARDS
+  - name: 'empire-host'
+    orgId: 1
+    folder: 'Host Monitoring'
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/host
+
+  # 📝 LOG MONITORING DASHBOARDS
+  - name: 'empire-logs'
+    orgId: 1
+    folder: 'Log Monitoring'
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/logs
+
+  # 🎯 APPLICATION DASHBOARDS
+  - name: 'empire-apps'
+    orgId: 1
+    folder: 'Applications'
+    type: file
+    disableDeletion: true
+    editable: true
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards/apps
+
+# 🏰 EMPIRE DASHBOARD ORGANIZATION:
+# ✅ Empire Core - Main monitoring stack health and performance
+# ✅ Docker Monitoring - Container resource usage, lifecycle, health
+# ✅ Host Monitoring - Windows system resources, hardware metrics
+# ✅ Log Monitoring - Centralized log analysis and alerting
+# ✅ Applications - Ultra dOoK Portal and other empire services

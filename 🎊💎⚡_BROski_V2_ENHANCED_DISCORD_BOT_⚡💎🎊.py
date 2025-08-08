@@ -13,6 +13,30 @@ import sqlite3
 import json
 from datetime import datetime
 from pathlib import Path
+import sys
+
+# Add path for external control integration
+sys.path.append(str(Path(__file__).parent))
+
+# Import the external control monitor
+try:
+    from pathlib import Path
+    import importlib.util
+    
+    # Load the external control module
+    module_path = Path("🤖💎⚡_DISCORD_BOT_EXTERNAL_CONTROL_INTEGRATION_⚡💎🤖.py")
+    spec = importlib.util.spec_from_file_location("external_control", module_path)
+    external_control_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(external_control_module)
+    
+    # Get the ExternalControlMonitor class
+    ExternalControlMonitor = external_control_module.ExternalControlMonitor
+    EXTERNAL_CONTROL_AVAILABLE = True
+    print("✅ External Control Monitor loaded successfully!")
+except Exception as e:
+    print(f"⚠️ External Control Monitor not available: {e}")
+    EXTERNAL_CONTROL_AVAILABLE = False
+    ExternalControlMonitor = None
 
 # Load Discord token from empire.env
 env_file = Path('HyperBeast/empire.env')
@@ -33,8 +57,15 @@ class BROskiV2Bot(commands.Bot):
         super().__init__(command_prefix='!', intents=intents)
         
     async def setup_hook(self):
-        """Setup slash commands"""
+        """Setup slash commands and external control monitor"""
         try:
+            # Add External Control Monitor if available
+            if EXTERNAL_CONTROL_AVAILABLE:
+                await self.add_cog(ExternalControlMonitor(self))
+                print("🤖💎⚡ EXTERNAL CONTROL MONITOR ACTIVATED! ⚡💎🤖")
+                print("📁 Monitoring: h:/DISCORD_EXTERNAL_CONTROL/")
+                print("🎊 Ready for file-based Discord control!")
+            
             synced = await self.tree.sync()
             print(f"✅ Synced {len(synced)} slash commands")
         except Exception as e:
@@ -45,6 +76,7 @@ bot = BROskiV2Bot()
 
 @bot.event
 async def on_ready():
+    external_status = "✅ ACTIVE" if EXTERNAL_CONTROL_AVAILABLE else "⚠️ INACTIVE"
     print(f"""
 🎊💎⚡ BROski♾️ V2.0 DISCORD BOT ENHANCED! ⚡💎🎊
 ====================================================
@@ -52,6 +84,7 @@ async def on_ready():
 🏰 Connected to {len(bot.guilds)} servers
 👥 Watching {sum(guild.member_count for guild in bot.guilds)} members
 🚀 STATUS: V2.0 LEGENDARY OPERATIONAL!
+🤖 External Control: {external_status}
 
 🎯 Available Commands:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -65,6 +98,9 @@ async def on_ready():
 /rewards - BROski$ balance
 /deploy - System deployment
 /analytics - View system analytics
+
+🎊 EXTERNAL CONTROL: {external_status}
+📁 File Control: Drop .md files in DISCORD_EXTERNAL_CONTROL folders!
     """)
     
     # Enhanced bot status

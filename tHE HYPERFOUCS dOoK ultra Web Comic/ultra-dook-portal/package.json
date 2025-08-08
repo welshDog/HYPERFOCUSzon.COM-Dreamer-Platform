@@ -4,7 +4,7 @@
     "description": "🧠⚡💎 Ultra dOoK - ADHD-Optimized Interactive Portal 💎⚡🧠",
     "private": true,
     "scripts": {
-        "dev": "next dev -p 3000",
+        "dev": "next dev --turbopack -p 3001",
         "build": "next build",
         "start": "next start",
         "lint": "next lint",

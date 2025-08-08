@@ -1,0 +1,96 @@
+{
+  "timestamp": "2025-08-06T12:11:05.504980",
+  "empire_version": "LEGENDARY_v3.0_AI_POWERED",
+  "check_duration": 0,
+  "overall_status": "NEEDS_ATTENTION",
+  "systems": {
+    "core_system": {
+      "cpu_usage": 40.0,
+      "memory_usage": 89.8,
+      "disk_usage": 0.4,
+      "uptime_hours": 82.16,
+      "processes": 271,
+      "status": "OPTIMAL"
+    },
+    "ai_integration": {
+      "gemini_cli": {
+        "status": "ERROR",
+        "version": null
+      },
+      "vs_code_copilot": {
+        "status": "CHECKING",
+        "integration": null
+      },
+      "empire_workflows": {
+        "status": "LEGENDARY",
+        "files": [
+          "\u2705 \ud83e\udd16\ud83d\udc8e\u26a1_GEMINI_EMPIRE_WORKFLOW_BRIDGE_\u26a1\ud83d\udc8e\ud83e\udd16.py",
+          "\u2705 \ud83c\udf93\ud83d\udc8e\u26a1_AI_ASSISTED_DEVELOPMENT_TRAINING_HUB_\u26a1\ud83d\udc8e\ud83c\udf93.py",
+          "\u2705 \ud83c\udf1f\ud83d\udc8e\u26a1_EMPIRE_GEMINI_BEST_PRACTICES_GUIDE_\u26a1\ud83d\udc8e\ud83c\udf1f.md"
+        ]
+      }
+    },
+    "portal_network": {
+      "admin_portal": {
+        "port": 8000,
+        "status": "LEGENDARY"
+      },
+      "agent_orchestrator": {
+        "port": 9000,
+        "status": "LEGENDARY"
+      },
+      "performance_monitor": {
+        "port": 3000,
+        "status": "LEGENDARY"
+      },
+      "memory_crystal_api": {
+        "port": 5555,
+        "status": "OFFLINE"
+      },
+      "health_commander": {
+        "port": 5001,
+        "status": "OFFLINE"
+      }
+    },
+    "dopamine_guardian": {
+      "database": "LEGENDARY_v2.0",
+      "websocket": "CHECKING",
+      "analytics": "LEGENDARY",
+      "interventions": "LEGENDARY",
+      "version": "2.0.0"
+    },
+    "ultimate_orchestrator": {
+      "files": [
+        "\u2705 \ud83c\udfaf\ud83d\udc8e\u26a1_HYPERFOCUS_ZONE_ULTIMATE_ORCHESTRATOR_\u26a1\ud83d\udc8e\ud83c\udfaf.py",
+        "\u2705 orchestrator_test.py"
+      ],
+      "status": "FUNCTIONAL"
+    },
+    "gemini_empire_integration": {
+      "workflow_bridge": "LEGENDARY",
+      "training_hub": "LEGENDARY",
+      "best_practices": "LEGENDARY",
+      "integration_demo": "LEGENDARY",
+      "demo_test": "PARTIAL"
+    },
+    "memory_crystal": {
+      "files_found": 201,
+      "json_crystals": 90,
+      "md_crystals": 30,
+      "status": "LEGENDARY"
+    }
+  },
+  "ai_diagnostics": {
+    "critical_issues": [],
+    "analysis_timestamp": "2025-08-06T12:11:45.447917",
+    "ai_confidence": "HIGH"
+  },
+  "recommendations": [
+    "\ud83c\udf10 RESTART: Bring online portals: memory_crystal_api, health_commander",
+    "\ud83c\udfc6 EXCELLENT: All critical systems operational!",
+    "\ud83d\ude80 OPTIMIZE: Consider deploying advanced AI workflows",
+    "\ud83d\udc8e ENHANCE: Explore new Gemini + Empire capabilities"
+  ],
+  "celebration_level": "MODERATE",
+  "legendary_ratio": "1/7"
+}

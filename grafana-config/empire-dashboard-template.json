@@ -1,0 +1,601 @@
+{
+    "dashboard": {
+        "id": null,
+        "title": "🏆 HyperFocus Zone Empire - Ultimate Legendary Dashboard",
+        "tags": [
+            "empire",
+            "hyperfocus",
+            "legendary",
+            "adhd-optimized"
+        ],
+        "style": "dark",
+        "timezone": "browser",
+        "editable": true,
+        "graphTooltip": 1,
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "timepicker": {
+            "refresh_intervals": [
+                "5s",
+                "10s",
+                "30s",
+                "1m",
+                "5m",
+                "15m"
+            ],
+            "time_options": [
+                "5m",
+                "15m",
+                "1h",
+                "6h",
+                "12h",
+                "24h",
+                "2d",
+                "7d",
+                "30d"
+            ]
+        },
+        "refresh": "10s",
+        "schemaVersion": 39,
+        "panels": [
+            {
+                "id": 1,
+                "title": "🚀 Empire System Status - LEGENDARY OVERVIEW",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "up{job=~\"empire-.*|hyperfocus-.*|agent-.*\"}",
+                        "legendFormat": "{{job}} - {{instance}}",
+                        "refId": "A"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "palette-classic"
+                        },
+                        "custom": {
+                            "displayMode": "list",
+                            "placement": "bottom"
+                        },
+                        "mappings": [
+                            {
+                                "options": {
+                                    "0": {
+                                        "text": "💀 DOWN"
+                                    },
+                                    "1": {
+                                        "text": "🟢 LEGENDARY"
+                                    }
+                                },
+                                "type": "value"
+                            }
+                        ],
+                        "thresholds": {
+                            "mode": "absolute",
+                            "steps": [
+                                {
+                                    "color": "red",
+                                    "value": null
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 0.8
+                                },
+                                {
+                                    "color": "green",
+                                    "value": 1
+                                }
+                            ]
+                        },
+                        "unit": "short"
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 24,
+                    "x": 0,
+                    "y": 0
+                },
+                "options": {
+                    "reduceOptions": {
+                        "values": false,
+                        "calcs": [
+                            "lastNotNull"
+                        ],
+                        "fields": ""
+                    },
+                    "orientation": "auto",
+                    "textMode": "auto",
+                    "colorMode": "background"
+                }
+            },
+            {
+                "id": 2,
+                "title": "🤖 Agent Army Performance - 677 STRONG",
+                "type": "timeseries",
+                "targets": [
+                    {
+                        "expr": "rate(http_requests_total{job=\"agent-army\"}[5m])",
+                        "legendFormat": "Requests/sec",
+                        "refId": "A"
+                    },
+                    {
+                        "expr": "agent_army_efficiency_percent",
+                        "legendFormat": "Efficiency %",
+                        "refId": "B"
+                    },
+                    {
+                        "expr": "agent_deployments_successful_total",
+                        "legendFormat": "Successful Deployments",
+                        "refId": "C"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "palette-classic"
+                        },
+                        "custom": {
+                            "axisLabel": "",
+                            "axisPlacement": "auto",
+                            "barAlignment": 0,
+                            "drawStyle": "line",
+                            "fillOpacity": 10,
+                            "gradientMode": "none",
+                            "hideFrom": {
+                                "legend": false,
+                                "tooltip": false,
+                                "vis": false
+                            },
+                            "lineInterpolation": "linear",
+                            "lineWidth": 2,
+                            "pointSize": 5,
+                            "scaleDistribution": {
+                                "type": "linear"
+                            },
+                            "showPoints": "never",
+                            "spanNulls": false,
+                            "stacking": {
+                                "group": "A",
+                                "mode": "none"
+                            },
+                            "thresholdsStyle": {
+                                "mode": "off"
+                            }
+                        },
+                        "mappings": [],
+                        "thresholds": {
+                            "mode": "absolute",
+                            "steps": [
+                                {
+                                    "color": "green",
+                                    "value": null
+                                },
+                                {
+                                    "color": "red",
+                                    "value": 80
+                                }
+                            ]
+                        },
+                        "unit": "short"
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 8
+                },
+                "options": {
+                    "legend": {
+                        "calcs": [],
+                        "displayMode": "list",
+                        "placement": "bottom"
+                    },
+                    "tooltip": {
+                        "mode": "single",
+                        "sort": "none"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "title": "💎 BROski$ Economy Tracker - LEGENDARY WEALTH",
+                "type": "gauge",
+                "targets": [
+                    {
+                        "expr": "broski_economy_total_value",
+                        "legendFormat": "Total Value",
+                        "refId": "A"
+                    },
+                    {
+                        "expr": "broski_economy_growth_rate",
+                        "legendFormat": "Growth Rate %",
+                        "refId": "B"
+                    },
+                    {
+                        "expr": "daily_revenue_broski",
+                        "legendFormat": "Daily Revenue",
+                        "refId": "C"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "mappings": [],
+                        "max": 10000,
+                        "min": 0,
+                        "thresholds": {
+                            "mode": "absolute",
+                            "steps": [
+                                {
+                                    "color": "red",
+                                    "value": null
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 2500
+                                },
+                                {
+                                    "color": "green",
+                                    "value": 5000
+                                },
+                                {
+                                    "color": "blue",
+                                    "value": 7500
+                                }
+                            ]
+                        },
+                        "unit": "currencyUSD"
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 8
+                },
+                "options": {
+                    "orientation": "auto",
+                    "reduceOptions": {
+                        "values": false,
+                        "calcs": [
+                            "lastNotNull"
+                        ],
+                        "fields": ""
+                    },
+                    "showThresholdLabels": false,
+                    "showThresholdMarkers": true
+                }
+            },
+            {
+                "id": 4,
+                "title": "🧠 Dopamine Guardian V2 - ADHD OPTIMIZATION",
+                "type": "timeseries",
+                "targets": [
+                    {
+                        "expr": "dopamine_level_current",
+                        "legendFormat": "Current Level",
+                        "refId": "A"
+                    },
+                    {
+                        "expr": "focus_session_duration_minutes",
+                        "legendFormat": "Focus Session (min)",
+                        "refId": "B"
+                    },
+                    {
+                        "expr": "distraction_events_per_hour",
+                        "legendFormat": "Distractions/hour",
+                        "refId": "C"
+                    },
+                    {
+                        "expr": "productive_hours_streak",
+                        "legendFormat": "Productivity Streak (hrs)",
+                        "refId": "D"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "palette-classic"
+                        },
+                        "custom": {
+                            "axisLabel": "",
+                            "axisPlacement": "auto",
+                            "barAlignment": 0,
+                            "drawStyle": "line",
+                            "fillOpacity": 15,
+                            "gradientMode": "opacity",
+                            "hideFrom": {
+                                "legend": false,
+                                "tooltip": false,
+                                "vis": false
+                            },
+                            "lineInterpolation": "smooth",
+                            "lineWidth": 3,
+                            "pointSize": 5,
+                            "scaleDistribution": {
+                                "type": "linear"
+                            },
+                            "showPoints": "auto",
+                            "spanNulls": false,
+                            "stacking": {
+                                "group": "A",
+                                "mode": "none"
+                            },
+                            "thresholdsStyle": {
+                                "mode": "area"
+                            }
+                        },
+                        "mappings": [],
+                        "thresholds": {
+                            "mode": "absolute",
+                            "steps": [
+                                {
+                                    "color": "transparent",
+                                    "value": null
+                                },
+                                {
+                                    "color": "red",
+                                    "value": 30
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 50
+                                },
+                                {
+                                    "color": "green",
+                                    "value": 70
+                                }
+                            ]
+                        },
+                        "unit": "percent"
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 24,
+                    "x": 0,
+                    "y": 16
+                },
+                "options": {
+                    "legend": {
+                        "calcs": [
+                            "last",
+                            "max",
+                            "mean"
+                        ],
+                        "displayMode": "table",
+                        "placement": "bottom"
+                    },
+                    "tooltip": {
+                        "mode": "multi",
+                        "sort": "desc"
+                    }
+                }
+            },
+            {
+                "id": 5,
+                "title": "🌟 Memory Crystal Storage & Analytics",
+                "type": "piechart",
+                "targets": [
+                    {
+                        "expr": "memory_crystal_usage_bytes",
+                        "legendFormat": "{{type}}",
+                        "refId": "A"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "palette-classic"
+                        },
+                        "custom": {
+                            "hideFrom": {
+                                "legend": false,
+                                "tooltip": false,
+                                "vis": false
+                            }
+                        },
+                        "mappings": [],
+                        "unit": "bytes"
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 8,
+                    "x": 0,
+                    "y": 24
+                },
+                "options": {
+                    "reduceOptions": {
+                        "values": false,
+                        "calcs": [
+                            "lastNotNull"
+                        ],
+                        "fields": ""
+                    },
+                    "pieType": "pie",
+                    "tooltip": {
+                        "mode": "single",
+                        "sort": "none"
+                    },
+                    "legend": {
+                        "displayMode": "list",
+                        "placement": "right"
+                    }
+                }
+            },
+            {
+                "id": 6,
+                "title": "🏛️ Empire Portal Performance",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "http_request_duration_seconds{job=~\"empire-.*\"}",
+                        "legendFormat": "{{job}} Response Time",
+                        "refId": "A"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "mappings": [],
+                        "thresholds": {
+                            "mode": "absolute",
+                            "steps": [
+                                {
+                                    "color": "green",
+                                    "value": null
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 1
+                                },
+                                {
+                                    "color": "red",
+                                    "value": 3
+                                }
+                            ]
+                        },
+                        "unit": "s"
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 8,
+                    "x": 8,
+                    "y": 24
+                },
+                "options": {
+                    "colorMode": "background",
+                    "graphMode": "area",
+                    "justifyMode": "center",
+                    "orientation": "horizontal",
+                    "reduceOptions": {
+                        "values": false,
+                        "calcs": [
+                            "lastNotNull"
+                        ],
+                        "fields": ""
+                    },
+                    "textMode": "auto"
+                }
+            },
+            {
+                "id": 7,
+                "title": "🎊 Celebration Triggers & Achievements",
+                "type": "logs",
+                "targets": [
+                    {
+                        "expr": "{job=~\"empire-.*\"} |= \"celebration\" or \"achievement\" or \"milestone\"",
+                        "refId": "A"
+                    }
+                ],
+                "gridPos": {
+                    "h": 8,
+                    "w": 8,
+                    "x": 16,
+                    "y": 24
+                },
+                "options": {
+                    "showTime": true,
+                    "showLabels": false,
+                    "showCommonLabels": false,
+                    "wrapLogMessage": true,
+                    "prettifyLogMessage": false,
+                    "enableLogDetails": true,
+                    "dedupStrategy": "none",
+                    "sortOrder": "Descending"
+                }
+            }
+        ],
+        "templating": {
+            "list": [
+                {
+                    "current": {
+                        "selected": false,
+                        "text": "All",
+                        "value": "$__all"
+                    },
+                    "definition": "label_values(up{job=~\"empire-.*\"}, job)",
+                    "hide": 0,
+                    "includeAll": true,
+                    "label": "Empire Service",
+                    "multi": true,
+                    "name": "service",
+                    "options": [],
+                    "query": {
+                        "query": "label_values(up{job=~\"empire-.*\"}, job)",
+                        "refId": "StandardVariableQuery"
+                    },
+                    "refresh": 1,
+                    "regex": "",
+                    "skipUrlSync": false,
+                    "sort": 0,
+                    "type": "query"
+                }
+            ]
+        },
+        "annotations": {
+            "list": [
+                {
+                    "builtIn": 1,
+                    "datasource": "-- Grafana --",
+                    "enable": true,
+                    "hide": true,
+                    "iconColor": "rgba(0, 211, 255, 1)",
+                    "name": "Annotations & Alerts",
+                    "type": "dashboard"
+                },
+                {
+                    "datasource": "HyperFocus-Empire-Prometheus",
+                    "enable": true,
+                    "expr": "ALERTS{alertstate=\"firing\",empire=\"hyperfocus\"}",
+                    "iconColor": "#FFD700",
+                    "name": "Empire Alerts",
+                    "titleFormat": "🚨 {{ $labels.alertname }}",
+                    "textFormat": "{{ $labels.summary }}"
+                }
+            ]
+        }
+    },
+    "overwrite": true,
+    "inputs": [
+        {
+            "name": "DS_PROMETHEUS",
+            "type": "datasource",
+            "pluginId": "prometheus",
+            "value": "HyperFocus-Empire-Prometheus"
+        }
+    ],
+    "meta": {
+        "type": "dashboard",
+        "canSave": true,
+        "canEdit": true,
+        "canAdmin": true,
+        "canStar": true,
+        "slug": "hyperfocus-zone-empire-legendary-dashboard",
+        "url": "/d/hyperfocus-empire/hyperfocus-zone-empire-legendary-dashboard",
+        "expires": "0001-01-01T00:00:00Z",
+        "created": "2025-08-03T00:00:00Z",
+        "updated": "2025-08-03T00:00:00Z",
+        "updatedBy": "Empire Admin",
+        "createdBy": "Empire Admin",
+        "version": 1,
+        "hasAcl": false,
+        "isFolder": false,
+        "folderId": 0,
+        "folderTitle": "General",
+        "folderUrl": "",
+        "provisioned": false,
+        "provisionedExternalId": ""
+    }
+}

@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-08-04T15:28:37.081584",
+  "empire_ports": {
+    "Grafana Dashboard": {
+      "status": "ERROR",
+      "error": "HTTPConnectionPool(host='localhost', port=3000): Read timed out. (read timeout=5)"
+    },
+    "Admin Dashboard": {
+      "status": "ERROR",
+      "error": "HTTPConnectionPool(host='localhost', port=8000): Read timed out. (read timeout=5)"
+    },
+    "Command Center": {
+      "status": "ERROR",
+      "error": "HTTPConnectionPool(host='localhost', port=8080): Read timed out. (read timeout=5)"
+    },
+    "Agent Orchestrator": {
+      "status": "ERROR",
+      "error": "HTTPConnectionPool(host='localhost', port=9000): Read timed out. (read timeout=5)"
+    },
+    "Prometheus": {
+      "status": "ACTIVE",
+      "response_code": 405,
+      "response_time": 3192.306
+    }
+  },
+  "tailscale_network": {
+    "status": "OPERATIONAL",
+    "nodes_active": 3,
+    "funnel_enabled": true
+  },
+  "system_resources": {
+    "cpu_percent": 65.5,
+    "memory_percent": 92.5,
+    "status": "OPTIMIZING"
+  },
+  "overall_status": "MONITORING",
+  "health_percentage": 20.0
+}

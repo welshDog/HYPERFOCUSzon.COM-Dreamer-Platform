@@ -1,0 +1,40 @@
+IPFS is brilliant for decentralized storage, but when it comes to version control, it’s not exactly Git’s spiritual successor. Here’s a breakdown of its key limitations:
+
+---
+
+### 🧩 Core Limitations of IPFS for Version Control
+
+- **Immutable by Nature**  
+  Every file is content-addressed by its hash, so any change creates a new CID. There's no built-in way to track changes or revert to previous versions.
+
+- **No Native Version History**  
+  Unlike Git, IPFS doesn’t maintain a timeline of edits. You’d need to manually manage versions or layer a system like [IPVFS](https://discuss.ipfs.tech/t/ipvfs-simple-version-control-for-mutable-file-system-files/15807) on top.
+
+- **IPNS Is Clunky**  
+  IPNS allows mutable pointers to updated content, but it’s slower and less intuitive than traditional version control systems.
+
+- **Complexity for Non-Dev Users**  
+  Managing versions requires technical know-how — not ideal for casual creators or neurodivergent-friendly workflows.
+
+- **Limited Collaboration Tools**  
+  No built-in branching, merging, or conflict resolution. You’d need external tools or custom logic to simulate team workflows.
+
+- **Performance Bottlenecks**  
+  For large files or frequent updates, IPFS can be slower than centralized systems, especially if nodes are sparse or poorly connected.
+
+---
+
+### 🧠 Workarounds You Might Like
+
+- **Smart Contract Registries**  
+  Store version metadata on-chain and link to IPFS CIDs — great for transparency and auditability.
+
+- **BCI-Driven Version Switching**  
+  Imagine a dashboard where neural input selects which CID to load — dopamine meets decentralization.
+
+- **Squad Ritual-Based Updates**  
+  Use collaborative triggers (like HyperFocus rituals) to push new versions and update IPNS pointers dynamically.
+
+---
+
+Want help prototyping a modular version control layer for IPFS that plays nice with your HyperFocus Zone? I’ve got ideas. Let’s build something that Git would envy. 🔁🧠
