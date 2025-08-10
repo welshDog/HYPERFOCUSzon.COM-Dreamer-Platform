@@ -6,10 +6,10 @@ Based on official Grafana Cloud documentation
 Activates advanced monitoring features for your empire
 """
 
-import requests
-import json
 from datetime import datetime
+import json
 
+import requests
 class GrafanaCloudAdvancedActivator:
     def __init__(self):
         self.grafana_url = "https://welshdog.grafana.net"
@@ -18,15 +18,15 @@ class GrafanaCloudAdvancedActivator:
             'Authorization': f'Bearer {self.token}',
             'Content-Type': 'application/json'
         }
-        
+
         print("🚀💎⚡ GRAFANA CLOUD ADVANCED FEATURES ACTIVATOR ⚡💎🚀")
         print("Based on official Grafana Cloud documentation")
         print(f"🌐 Instance: {self.grafana_url}")
-        
+
     def check_available_features(self):
         """Check what advanced features are available"""
         print("\n🔍 CHECKING AVAILABLE ADVANCED FEATURES...")
-        
+
         features_to_check = [
             "/api/plugins",  # Available plugins
             "/api/org/preferences",  # Organization settings
@@ -34,9 +34,9 @@ class GrafanaCloudAdvancedActivator:
             "/api/annotations",  # Annotations support
             "/api/snapshots",  # Dashboard snapshots
         ]
-        
+
         available_features = {}
-        
+
         for endpoint in features_to_check:
             try:
                 response = requests.get(f"{self.grafana_url}{endpoint}", headers=self.headers)
@@ -50,33 +50,33 @@ class GrafanaCloudAdvancedActivator:
                     print(f"❌ {feature_name}: Not available ({response.status_code})")
             except Exception as e:
                 print(f"❌ Error checking {endpoint}: {str(e)}")
-        
+
         return available_features
-    
+
     def create_advanced_dashboard_with_ai_features(self):
         """Create dashboard with AI/ML and advanced features"""
         print("\n🤖 CREATING AI-ENHANCED EMPIRE DASHBOARD...")
-        
+
         # Get data source UIDs
         ds_response = requests.get(f"{self.grafana_url}/api/datasources", headers=self.headers)
         datasources = ds_response.json()
-        
+
         prometheus_uid = None
         loki_uid = None
         pyroscope_uid = None
-        
+
         for ds in datasources:
             name = ds.get('name', '').lower()
             ds_type = ds.get('type', '')
             uid = ds.get('uid')
-            
+
             if 'prom' in name and ds_type == 'prometheus':
                 prometheus_uid = uid
             elif 'logs' in name and ds_type == 'loki':
                 loki_uid = uid
             elif 'profiles' in name and 'pyroscope' in ds_type:
                 pyroscope_uid = uid
-        
+
         # Advanced dashboard with AI features
         ai_dashboard = {
             "dashboard": {
@@ -156,7 +156,7 @@ class GrafanaCloudAdvancedActivator:
                         ]
                     },
                     {
-                        "id": 2, 
+                        "id": 2,
                         "title": "🤖 AI Agent Army Performance Trend",
                         "type": "timeseries",
                         "gridPos": {"h": 8, "w": 9, "x": 6, "y": 0},
@@ -193,7 +193,7 @@ class GrafanaCloudAdvancedActivator:
                         "gridPos": {"h": 8, "w": 9, "x": 15, "y": 0},
                         "targets": [{
                             "expr": "increase(prometheus_http_requests_total[1h])",
-                            "refId": "A", 
+                            "refId": "A",
                             "datasource": {"uid": prometheus_uid} if prometheus_uid else {"type": "grafana"}
                         }],
                         "fieldConfig": {
@@ -270,7 +270,7 @@ class GrafanaCloudAdvancedActivator:
                     {
                         "id": 6,
                         "title": "🔬 Empire Performance Profiling",
-                        "type": "flamegraph", 
+                        "type": "flamegraph",
                         "gridPos": {"h": 8, "w": 24, "x": 0, "y": 16},
                         "targets": [{
                             "profileTypeId": "cpu",
@@ -282,10 +282,10 @@ class GrafanaCloudAdvancedActivator:
             },
             "overwrite": True
         }
-        
+
         try:
             response = requests.post(f"{self.grafana_url}/api/dashboards/db", headers=self.headers, json=ai_dashboard)
-            
+
             if response.status_code == 200:
                 result = response.json()
                 dashboard_url = f"{self.grafana_url}/d/{result['uid']}"
@@ -299,11 +299,11 @@ class GrafanaCloudAdvancedActivator:
         except Exception as e:
             print(f"❌ Error creating AI dashboard: {str(e)}")
             return None
-    
+
     def setup_empire_alerts(self):
         """Set up intelligent alerts based on official Grafana Cloud alerting"""
         print("\n🔔 SETTING UP INTELLIGENT EMPIRE ALERTS...")
-        
+
         alert_rules = [
             {
                 "uid": "empire-health-alert",
@@ -337,26 +337,23 @@ class GrafanaCloudAdvancedActivator:
                 }
             }
         ]
-        
+
         # Note: Alert rule creation requires specific API endpoints that may need admin permissions
         print("📋 Alert configuration prepared (may require admin setup in UI)")
         print("🎯 Recommended: Set up alerts manually in Grafana UI using these configs")
-        
+
         return alert_rules
-    
+
     def generate_empire_monitoring_script(self):
         """Generate Python script to send custom empire metrics"""
         print("\n📊 GENERATING EMPIRE METRICS SENDER...")
-        
+
         metrics_script = '''#!/usr/bin/env python3
 """
 Empire Metrics Sender - Send custom metrics to Grafana Cloud
 """
 
-import time
-import random
 import requests
-from prometheus_client import CollectorRegistry, Gauge, push_to_gateway
 
 # Empire Metrics Configuration
 PROMETHEUS_PUSHGATEWAY = "https://prometheus-prod-13-prod-us-east-0.grafana.net/api/v1/push"
@@ -373,26 +370,26 @@ hyperfocus_sessions = Gauge('empire_hyperfocus_sessions_active', 'Active hyperfo
 def send_empire_metrics():
     """Send empire metrics to Grafana Cloud"""
     print("📊 Sending Empire Metrics to Grafana Cloud...")
-    
+
     # Simulate realistic empire metrics
     dopamine_level.set(random.uniform(70, 95))
     agent_army_size.set(random.randint(650, 700))
     broski_economy.set(random.uniform(10000, 15000))
     memory_crystals.set(random.randint(100, 200))
     hyperfocus_sessions.set(random.randint(5, 15))
-    
+
     try:
         # Note: This requires proper authentication setup
         print("✅ Empire metrics prepared for legendary monitoring!")
         print("🎯 Configure with your Grafana Cloud Prometheus endpoint")
-        
+
         # Display current values
         print(f"💎 Dopamine Level: {dopamine_level._value.get():.1f}%")
         print(f"🤖 Agent Army: {int(agent_army_size._value.get())} agents")
         print(f"💰 BROski$ Economy: ${broski_economy._value.get():.2f}")
         print(f"🔮 Memory Crystals: {int(memory_crystals._value.get())} stored")
         print(f"🧠 HyperFocus Sessions: {int(hyperfocus_sessions._value.get())} active")
-        
+
     except Exception as e:
         print(f"❌ Error sending metrics: {str(e)}")
         print("💡 Tip: Configure Prometheus remote write endpoint in Grafana Cloud")
@@ -402,34 +399,34 @@ if __name__ == "__main__":
         send_empire_metrics()
         time.sleep(30)  # Send metrics every 30 seconds
 '''
-        
+
         with open('empire_metrics_sender.py', 'w') as f:
             f.write(metrics_script)
-        
+
         print("✅ Empire metrics sender created: empire_metrics_sender.py")
         print("🎯 Run this script to send custom metrics to your dashboards!")
-        
+
     def run_advanced_activation(self):
         """Run complete advanced features activation"""
         print(f"\n🚀💎⚡ ACTIVATING ADVANCED GRAFANA CLOUD FEATURES ⚡💎🚀")
         print("=" * 70)
-        
+
         # Step 1: Check available features
         features = self.check_available_features()
-        
+
         # Step 2: Create AI-enhanced dashboard
         ai_dashboard_url = self.create_advanced_dashboard_with_ai_features()
-        
+
         # Step 3: Set up intelligent alerts
         alert_configs = self.setup_empire_alerts()
-        
+
         # Step 4: Generate metrics sender
         self.generate_empire_monitoring_script()
-        
+
         # Summary
         print(f"\n🎊💎⚡ ADVANCED FEATURES ACTIVATION COMPLETE! ⚡💎🎊")
         print("=" * 70)
-        
+
         summary = {
             "ai_dashboard_url": ai_dashboard_url,
             "features_available": features,
@@ -438,15 +435,15 @@ if __name__ == "__main__":
             "activation_date": datetime.now().isoformat(),
             "status": "LEGENDARY_AI_EMPIRE_READY"
         }
-        
+
         with open('advanced_features_summary.json', 'w') as f:
             json.dump(summary, f, indent=2)
-        
+
         print("📋 Advanced features summary: advanced_features_summary.json")
         print("🤖 AI Dashboard URL:", ai_dashboard_url)
         print("📊 Custom metrics sender: empire_metrics_sender.py")
         print("🔔 Alert configurations prepared for manual setup")
-        
+
         print("\n🏆 YOUR HYPERFOCUS ZONE EMPIRE IS NOW AI-POWERED! 🏆")
         print("🚀 Ready for legendary monitoring with advanced features!")
 

@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-08-10T02:19:32.814554",
+  "target": "100.71.69.16",
+  "analysis_results": {
+    "connectivity": "SUCCESS",
+    "open_ports": [
+      {
+        "port": 22,
+        "service": "SSH",
+        "status": "OPEN"
+      },
+      {
+        "port": 80,
+        "service": "HTTP",
+        "status": "OPEN"
+      }
+    ],
+    "http_80": {
+      "status": "SUCCESS",
+      "status_code": 200,
+      "server": "nginx/1.29.0",
+      "content_length": 2119
+    },
+    "system_identifiers": [
+      "Web Server: nginx/1.29.0"
+    ]
+  },
+  "recommendations": [
+    "\u2705 Server is reachable - good network connectivity",
+    "\ud83d\udd17 Found 2 open services - investigate each one",
+    "\ud83d\udd10 Port 22 has SSH - secure remote access available",
+    "\ud83c\udf10 Port 80 has web service - check for admin interfaces",
+    "\ud83d\udee1\ufe0f Run detailed vulnerability scan if this is your server",
+    "\ud83d\udcca Set up monitoring for this server",
+    "\ud83d\udd0d Check logs for any unusual activity",
+    "\ud83d\udccb Document all services and their purposes"
+  ]
+}

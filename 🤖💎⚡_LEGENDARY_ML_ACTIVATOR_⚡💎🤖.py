@@ -5,11 +5,11 @@
 IMMEDIATE ACTIVATION OF ALL AI SUPERPOWERS FOR THE EMPIRE!
 """
 
-import os
-import requests
-import json
 from datetime import datetime, timedelta
+import json
+import os
 
+import requests
 class LegendaryMLActivator:
     def __init__(self):
         self.grafana_url = "https://welshdog.grafana.net"
@@ -18,15 +18,15 @@ class LegendaryMLActivator:
             'Authorization': f'Bearer {self.token}',
             'Content-Type': 'application/json'
         }
-        
+
         print("🤖💎⚡ LEGENDARY ML ACTIVATOR INITIALIZED ⚡💎🤖")
         print("🚀 ACTIVATING ALL AI SUPERPOWERS FOR YOUR EMPIRE!")
         print("=" * 70)
-    
+
     def create_anomaly_detection_jobs(self):
         """Create all anomaly detection jobs for empire systems"""
         print("\n🚨 STEP 1: SETTING UP ANOMALY DETECTION FOR EMPIRE SYSTEMS...")
-        
+
         # Empire System Health Anomaly Detection
         empire_anomaly_job = {
             "name": "empire-system-health-anomalies",
@@ -44,7 +44,7 @@ class LegendaryMLActivator:
                 "message_template": "🚨 EMPIRE ALERT: AI detected anomaly in {{instance}}! Legendary attention required! 🚨"
             }
         }
-        
+
         # Dopamine Guardian Anomaly Detection
         dopamine_anomaly_job = {
             "name": "dopamine-guardian-anomalies",
@@ -62,14 +62,14 @@ class LegendaryMLActivator:
                 "message_template": "🎊 DOPAMINE ALERT: AI detected unusual pattern! Time for celebration boost! 🎊"
             }
         }
-        
+
         # Agent Army Performance Anomaly Detection
         agent_anomaly_job = {
             "name": "agent-army-performance-anomalies",
             "description": "🤖 AI monitoring of 677 agent performance patterns",
             "metric": "rate(agent_tasks_completed_total[5m])",
             "interval": "2m",
-            "training_window": "7d", 
+            "training_window": "7d",
             "detection_window": "15m",
             "sensitivity": "medium",
             "alert_on": "anomaly_detected",
@@ -80,7 +80,7 @@ class LegendaryMLActivator:
                 "message_template": "🤖 AGENT ARMY ALERT: AI detected performance anomaly in your 677 agents! 🤖"
             }
         }
-        
+
         # BROski$ Economy Anomaly Detection
         economy_anomaly_job = {
             "name": "broski-economy-anomalies",
@@ -98,25 +98,25 @@ class LegendaryMLActivator:
                 "message_template": "💎 BROski$ ECONOMY ALERT: AI detected unusual economic pattern! Check your legendary profits! 💎"
             }
         }
-        
+
         anomaly_jobs = [empire_anomaly_job, dopamine_anomaly_job, agent_anomaly_job, economy_anomaly_job]
-        
+
         # Save configuration for ML app setup
         with open('h:/ml_anomaly_detection_config.json', 'w') as f:
             json.dump(anomaly_jobs, f, indent=2)
-        
+
         print("✅ Empire System Health Anomalies: CONFIGURED")
-        print("✅ Dopamine Guardian Anomalies: CONFIGURED") 
+        print("✅ Dopamine Guardian Anomalies: CONFIGURED")
         print("✅ Agent Army Performance Anomalies: CONFIGURED")
         print("✅ BROski$ Economy Anomalies: CONFIGURED")
         print("📋 Configuration saved to: ml_anomaly_detection_config.json")
-        
+
         return anomaly_jobs
-    
+
     def create_forecasting_models(self):
         """Create predictive forecasting models"""
         print("\n🔮 STEP 2: CONFIGURING FORECASTING FOR DOPAMINE AND PRODUCTIVITY...")
-        
+
         # Dopamine Level Forecasting
         dopamine_forecast = {
             "name": "dopamine-level-prediction",
@@ -146,7 +146,7 @@ class LegendaryMLActivator:
                 "celebration_message": "🎊 AI PREDICTION: Perfect celebration window predicted! Time for legendary rewards! 🎊"
             }
         }
-        
+
         # Productivity Forecasting
         productivity_forecast = {
             "name": "hyperfocus-productivity-prediction",
@@ -176,7 +176,7 @@ class LegendaryMLActivator:
                 "break_recommendation_message": "⏱️ AI RECOMMENDATION: Break suggested in {{time}} for optimal performance maintenance! ⏱️"
             }
         }
-        
+
         # Agent Army Performance Forecasting
         agent_forecast = {
             "name": "agent-army-performance-prediction",
@@ -191,7 +191,7 @@ class LegendaryMLActivator:
             ],
             "model_type": "performance_optimization",
             "horizon": "24h",
-            "confidence_interval": "80%", 
+            "confidence_interval": "80%",
             "update_frequency": "2h",
             "training_window": "14d",
             "optimization_triggers": {
@@ -200,7 +200,7 @@ class LegendaryMLActivator:
                 "rebalance_threshold": 60
             }
         }
-        
+
         # BROski$ Economy Forecasting
         economy_forecast = {
             "name": "broski-economy-growth-prediction",
@@ -223,25 +223,25 @@ class LegendaryMLActivator:
                 "celebration_bonus_threshold": 500
             }
         }
-        
+
         forecasting_models = [dopamine_forecast, productivity_forecast, agent_forecast, economy_forecast]
-        
+
         # Save configuration
         with open('h:/ml_forecasting_models_config.json', 'w') as f:
             json.dump(forecasting_models, f, indent=2)
-        
+
         print("✅ Dopamine Level Prediction: CONFIGURED")
         print("✅ Hyperfocus Productivity Prediction: CONFIGURED")
         print("✅ Agent Army Performance Prediction: CONFIGURED")
         print("✅ BROski$ Economy Growth Prediction: CONFIGURED")
         print("📋 Configuration saved to: ml_forecasting_models_config.json")
-        
+
         return forecasting_models
-    
+
     def create_intelligent_celebrations(self):
         """Configure AI-optimized celebration system"""
         print("\n🎊 STEP 3: ENABLING INTELLIGENT CELEBRATIONS WITH AI-OPTIMIZED TIMING...")
-        
+
         celebration_config = {
             "name": "ai-optimized-celebration-system",
             "description": "🎊 AI-powered celebration timing for maximum dopamine optimization",
@@ -253,7 +253,7 @@ class LegendaryMLActivator:
                     "celebration_intensity": "adaptive",
                     "messages": [
                         "🎊 LEGENDARY TASK COMPLETED! AI detected perfect celebration moment! 🎊",
-                        "🚀 AMAZING WORK! Your empire grows stronger with each victory! 🚀", 
+                        "🚀 AMAZING WORK! Your empire grows stronger with each victory! 🚀",
                         "💎 BRILLIANT! AI calculated this achievement deserves epic celebration! 💎"
                     ]
                 },
@@ -330,11 +330,11 @@ class LegendaryMLActivator:
                 "celebration_analytics": True
             }
         }
-        
+
         # Save celebration configuration
         with open('h:/ai_celebration_system_config.json', 'w') as f:
             json.dump(celebration_config, f, indent=2)
-        
+
         print("✅ Task Completion Celebrations: AI-OPTIMIZED")
         print("✅ Productivity Milestone Celebrations: AI-OPTIMIZED")
         print("✅ Dopamine Optimization Celebrations: AI-OPTIMIZED")
@@ -342,13 +342,13 @@ class LegendaryMLActivator:
         print("✅ Economy Growth Celebrations: AI-OPTIMIZED")
         print("✅ ADHD-Optimized Timing: ENABLED")
         print("📋 Configuration saved to: ai_celebration_system_config.json")
-        
+
         return celebration_config
-    
+
     def create_ai_dashboard_enhancements(self):
         """Create enhanced AI dashboard with all the magic"""
         print("\n🚀 STEP 4: CREATING LEGENDARY AI-POWERED DASHBOARD...")
-        
+
         legendary_ai_dashboard = {
             "dashboard": {
                 "id": None,
@@ -385,7 +385,7 @@ class LegendaryMLActivator:
                                 "thresholds": {
                                     "steps": [
                                         {"color": "red", "value": 0},
-                                        {"color": "yellow", "value": 0.8}, 
+                                        {"color": "yellow", "value": 0.8},
                                         {"color": "green", "value": 1}
                                     ]
                                 }
@@ -568,7 +568,7 @@ class LegendaryMLActivator:
                             "name": "AI Celebration Moments",
                             "datasource": "HyperFocus-Empire-Prometheus",
                             "enable": True,
-                            "iconColor": "green", 
+                            "iconColor": "green",
                             "query": "celebration_triggered",
                             "textFormat": "🎊 AI CELEBRATION: {{celebration_type}}"
                         },
@@ -585,7 +585,7 @@ class LegendaryMLActivator:
             },
             "overwrite": True
         }
-        
+
         try:
             response = requests.post(
                 f'{self.grafana_url}/api/dashboards/db',
@@ -593,12 +593,12 @@ class LegendaryMLActivator:
                 json=legendary_ai_dashboard,
                 timeout=30
             )
-            
+
             if response.status_code in [200, 201]:
                 result = response.json()
                 dashboard_uid = result.get('uid', 'unknown')
                 dashboard_url = f"{self.grafana_url}/d/{dashboard_uid}"
-                
+
                 print("✅ LEGENDARY AI DASHBOARD DEPLOYED!")
                 print(f"🎯 Dashboard URL: {dashboard_url}")
                 return dashboard_url
@@ -608,32 +608,32 @@ class LegendaryMLActivator:
         except Exception as e:
             print(f"❌ Dashboard deployment error: {str(e)}")
             return None
-    
+
     def activate_all_legendary_features(self):
         """Activate all AI features in one legendary deployment"""
         print("🚀🤖💎 ACTIVATING ALL LEGENDARY AI FEATURES FOR YOUR EMPIRE! 💎🤖🚀")
         print("=" * 80)
-        
+
         # Step 1: Anomaly Detection
         anomaly_jobs = self.create_anomaly_detection_jobs()
-        
+
         # Step 2: Forecasting Models
         forecasting_models = self.create_forecasting_models()
-        
+
         # Step 3: Intelligent Celebrations
         celebration_config = self.create_intelligent_celebrations()
-        
+
         # Step 4: AI Dashboard
         dashboard_url = self.create_ai_dashboard_enhancements()
-        
+
         # Generate final summary
         self.generate_legendary_summary(anomaly_jobs, forecasting_models, celebration_config, dashboard_url)
-        
+
         print("\n🎊🤖💎 LEGENDARY AI ACTIVATION COMPLETE! 💎🤖🎊")
         print("=" * 80)
         print("🌟 Your HyperFocus Zone Empire now has LEGENDARY AI SUPERPOWERS!")
         print("🚀 All systems are AI-optimized and ready for legendary performance!")
-    
+
     def generate_legendary_summary(self, anomaly_jobs, forecasting_models, celebration_config, dashboard_url):
         """Generate the legendary deployment summary"""
         summary = {
@@ -659,7 +659,7 @@ class LegendaryMLActivator:
             "ai_dashboard_url": dashboard_url,
             "configuration_files": [
                 "ml_anomaly_detection_config.json",
-                "ml_forecasting_models_config.json", 
+                "ml_forecasting_models_config.json",
                 "ai_celebration_system_config.json"
             ],
             "next_legendary_actions": [
@@ -671,10 +671,10 @@ class LegendaryMLActivator:
             ],
             "empire_status": "AI-POWERED AND LEGENDARY"
         }
-        
+
         with open('h:/legendary_ai_activation_summary.json', 'w') as f:
             json.dump(summary, f, indent=2)
-        
+
         print(f"\n📋 LEGENDARY summary saved to: legendary_ai_activation_summary.json")
 
 if __name__ == "__main__":

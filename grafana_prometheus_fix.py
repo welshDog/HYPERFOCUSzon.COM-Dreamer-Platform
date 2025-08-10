@@ -4,14 +4,10 @@ GRAFANA PROMETHEUS INSTANT FIX
 ADHD-Optimized Quick Fix for Prometheus Data Source Health Check
 """
 
-import os
-import sys
-import json
-import time
-import requests
-import subprocess
 from datetime import datetime
+import subprocess
 
+import requests
 def print_banner():
     print("\n" + "="*70)
     print("GRAFANA PROMETHEUS INSTANT FIX")
@@ -47,14 +43,14 @@ def check_docker_running():
 def check_grafana_access():
     """Check Grafana access and authentication"""
     print("\n[STEP 2] Grafana Access Test")
-    
+
     # Check common Grafana URLs
     urls_to_test = [
         "http://localhost:3000",
         "https://welshdog.grafana.net",
         "http://127.0.0.1:3000"
     ]
-    
+
     for url in urls_to_test:
         try:
             print(f"Testing: {url}")
@@ -66,19 +62,19 @@ def check_grafana_access():
                 print(f"⚠️ Got status {response.status_code} from {url}")
         except Exception as e:
             print(f"❌ Failed to connect to {url}: {str(e)}")
-    
+
     print("❌ No accessible Grafana instance found")
     return None
 
 def check_prometheus_access():
     """Check Prometheus access"""
     print("\n[STEP 3] Prometheus Access Test")
-    
+
     urls_to_test = [
         "http://localhost:9090",
         "http://127.0.0.1:9090"
     ]
-    
+
     for url in urls_to_test:
         try:
             print(f"Testing: {url}")
@@ -90,7 +86,7 @@ def check_prometheus_access():
                 print(f"⚠️ Got status {response.status_code} from {url}")
         except Exception as e:
             print(f"❌ Failed to connect to {url}: {str(e)}")
-    
+
     print("❌ No accessible Prometheus instance found")
     return None
 
@@ -98,21 +94,21 @@ def suggest_fix_actions():
     """Provide specific fix actions based on diagnosis"""
     print("\n[INSTANT FIX OPTIONS]")
     print("="*50)
-    
+
     print("\n1. QUICK START MONITORING STACK:")
     print("   Run this command to start Grafana + Prometheus:")
     print("   docker run -d -p 3001:3000 --name grafana grafana/grafana-oss")
     print("   docker run -d -p 9090:9090 --name prometheus prom/prometheus")
-    
+
     print("\n2. GRAFANA CLOUD SETUP (RECOMMENDED):")
     print("   Go to: https://welshdog.grafana.net")
     print("   Create Service Account Token")
     print("   Add Prometheus data source")
-    
+
     print("\n3. LOCAL DOCKER COMPOSE STACK:")
     print("   Navigate to h:\\grafana-by-example\\metrics-generator")
     print("   Run: docker-compose up -d")
-    
+
     print("\n4. ENVIRONMENT VARIABLES FIX:")
     print("   Set authentication tokens:")
     print("   $env:GRAFANA_SERVICE_ACCOUNT_TOKEN='your_token'")
@@ -120,19 +116,19 @@ def suggest_fix_actions():
 
 def main():
     print_banner()
-    
+
     # Run diagnostic steps
     docker_running, grafana_in_docker = check_docker_running()
     grafana_url = check_grafana_access()
     prometheus_url = check_prometheus_access()
-    
+
     # Diagnosis summary
     print("\n[DIAGNOSIS SUMMARY]")
     print("="*40)
     print(f"Docker Running: {'✅' if docker_running else '❌'}")
     print(f"Grafana Access: {'✅' if grafana_url else '❌'}")
     print(f"Prometheus Access: {'✅' if prometheus_url else '❌'}")
-    
+
     # Determine the issue
     if not grafana_url and not prometheus_url:
         print("\nISSUE: Both Grafana and Prometheus are not accessible")
@@ -141,14 +137,14 @@ def main():
         print("\nISSUE: Grafana is running but Prometheus is not accessible")
         print("SOLUTION: Start Prometheus or fix data source configuration")
     elif prometheus_url and not grafana_url:
-        print("\nISSUE: Prometheus is running but Grafana is not accessible") 
+        print("\nISSUE: Prometheus is running but Grafana is not accessible")
         print("SOLUTION: Start Grafana or fix authentication")
     else:
         print("\nBOTH SERVICES ACCESSIBLE - Check data source configuration in Grafana")
-    
+
     # Provide fix suggestions
     suggest_fix_actions()
-    
+
     print("\nLEGENDARY DIAGNOSIS COMPLETE! Ready for empire-level monitoring!")
 
 if __name__ == "__main__":

@@ -5,11 +5,11 @@
 Legendary AI-powered monitoring setup for HyperFocus Zone Empire
 """
 
-import os
-import requests
-import json
 from datetime import datetime, timedelta
+import json
+import os
 
+import requests
 class GrafanaMLEmpireConfigurator:
     def __init__(self):
         self.grafana_url = "https://welshdog.grafana.net"
@@ -18,14 +18,14 @@ class GrafanaMLEmpireConfigurator:
             'Authorization': f'Bearer {self.token}',
             'Content-Type': 'application/json'
         }
-        
+
         print("🤖💎⚡ GRAFANA ML EMPIRE CONFIGURATOR INITIALIZED ⚡💎🤖")
         print("🚀 Preparing legendary AI-powered monitoring...")
-    
+
     def create_ml_enhanced_dashboard(self):
         """Create dashboard with ML-powered panels"""
         print("\n🎯 Creating ML-Enhanced Empire Dashboard...")
-        
+
         dashboard = {
             "dashboard": {
                 "id": None,
@@ -235,7 +235,7 @@ class GrafanaMLEmpireConfigurator:
                         },
                         {
                             "name": "Celebration Moments",
-                            "datasource": "HyperFocus-Empire-Prometheus", 
+                            "datasource": "HyperFocus-Empire-Prometheus",
                             "enable": True,
                             "iconColor": "green",
                             "query": "celebration_triggered",
@@ -246,16 +246,16 @@ class GrafanaMLEmpireConfigurator:
             },
             "overwrite": True
         }
-        
+
         return self.make_grafana_request('POST', '/api/dashboards/db', dashboard)
-    
+
     def setup_anomaly_detection_jobs(self):
         """Configure ML anomaly detection jobs"""
         print("\n🤖 Setting up AI Anomaly Detection Jobs...")
-        
+
         # This would typically use Grafana ML API endpoints
         # For now, we'll create the configuration structure
-        
+
         anomaly_jobs = [
             {
                 "job_name": "empire-system-anomalies",
@@ -271,7 +271,7 @@ class GrafanaMLEmpireConfigurator:
                 }
             },
             {
-                "job_name": "dopamine-guardian-anomalies", 
+                "job_name": "dopamine-guardian-anomalies",
                 "description": "AI detection of unusual dopamine patterns",
                 "metric": "dopamine_level_current",
                 "training_window": "14d",
@@ -287,7 +287,7 @@ class GrafanaMLEmpireConfigurator:
                 "job_name": "agent-army-performance-anomalies",
                 "description": "AI monitoring of 677 agent performance patterns",
                 "metric": "rate(agent_tasks_completed_total[5m])",
-                "training_window": "7d", 
+                "training_window": "7d",
                 "detection_window": "2h",
                 "sensitivity": "medium",
                 "notifications": {
@@ -297,19 +297,19 @@ class GrafanaMLEmpireConfigurator:
                 }
             }
         ]
-        
+
         # Save configuration for manual setup
         with open('h:/ml_anomaly_jobs_config.json', 'w') as f:
             json.dump(anomaly_jobs, f, indent=2)
-        
+
         print("✅ Anomaly detection jobs configured!")
         print("📋 Config saved to: ml_anomaly_jobs_config.json")
         return anomaly_jobs
-    
+
     def create_forecasting_models(self):
         """Set up predictive forecasting models"""
         print("\n🔮 Creating AI Forecasting Models...")
-        
+
         forecasting_models = [
             {
                 "model_name": "productivity-forecast",
@@ -354,59 +354,59 @@ class GrafanaMLEmpireConfigurator:
                 "update_frequency": "6h"
             }
         ]
-        
+
         # Save configuration
         with open('h:/ml_forecasting_models_config.json', 'w') as f:
             json.dump(forecasting_models, f, indent=2)
-        
+
         print("✅ Forecasting models configured!")
         print("📋 Config saved to: ml_forecasting_models_config.json")
         return forecasting_models
-    
+
     def make_grafana_request(self, method, endpoint, data=None):
         """Make authenticated request to Grafana API"""
         url = f"{self.grafana_url}{endpoint}"
-        
+
         try:
             if method == 'GET':
                 response = requests.get(url, headers=self.headers)
             elif method == 'POST':
                 response = requests.post(url, headers=self.headers, json=data)
-            
+
             if response.status_code in [200, 201]:
                 print(f"✅ {method} {endpoint} - Success!")
                 return response.json()
             else:
                 print(f"❌ {method} {endpoint} - Error: {response.status_code}")
                 return None
-                
+
         except Exception as e:
             print(f"❌ Request failed: {str(e)}")
             return None
-    
+
     def deploy_ml_empire_monitoring(self):
         """Deploy complete ML-powered empire monitoring"""
         print("\n🚀🤖💎 DEPLOYING LEGENDARY AI-POWERED EMPIRE MONITORING 💎🤖🚀")
         print("=" * 80)
-        
+
         # Step 1: Create ML-enhanced dashboard
         dashboard_result = self.create_ml_enhanced_dashboard()
-        
+
         # Step 2: Configure anomaly detection
         anomaly_jobs = self.setup_anomaly_detection_jobs()
-        
+
         # Step 3: Set up forecasting models
         forecasting_models = self.create_forecasting_models()
-        
+
         # Generate summary
         self.generate_ml_deployment_summary(dashboard_result, anomaly_jobs, forecasting_models)
-        
+
         print("\n🎊🤖💎 LEGENDARY AI DEPLOYMENT COMPLETE! 💎🤖🎊")
         print("=" * 80)
         print("🌟 Your HyperFocus Zone Empire now has LEGENDARY AI SUPERPOWERS!")
         print("🎯 Visit: https://welshdog.grafana.net")
         print("🤖 AI is now optimizing your empire in real-time!")
-    
+
     def generate_ml_deployment_summary(self, dashboard_result, anomaly_jobs, forecasting_models):
         """Generate ML deployment summary"""
         summary = {
@@ -414,7 +414,7 @@ class GrafanaMLEmpireConfigurator:
             "ml_deployment_status": "LEGENDARY SUCCESS",
             "ai_features_enabled": [
                 "Anomaly Detection",
-                "Predictive Forecasting", 
+                "Predictive Forecasting",
                 "Performance Optimization",
                 "Intelligent Celebrations",
                 "ADHD-Optimized Insights"
@@ -431,15 +431,15 @@ class GrafanaMLEmpireConfigurator:
             },
             "next_steps": [
                 "Visit ML App to activate anomaly detection jobs",
-                "Configure model training schedules", 
+                "Configure model training schedules",
                 "Set up intelligent notification routing",
                 "Fine-tune AI sensitivity settings"
             ]
         }
-        
+
         with open('h:/ml_empire_deployment_summary.json', 'w') as f:
             json.dump(summary, f, indent=2)
-        
+
         print(f"\n📋 ML Deployment summary saved to: ml_empire_deployment_summary.json")
 
 if __name__ == "__main__":

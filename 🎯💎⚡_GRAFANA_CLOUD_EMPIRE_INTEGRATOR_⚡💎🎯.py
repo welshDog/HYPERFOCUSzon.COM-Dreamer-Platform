@@ -6,40 +6,40 @@ LEGENDARY AUTO-CONFIGURATION FOR HYPERFOCUS ZONE EMPIRE
 Connects all empire systems to Grafana Cloud for ultimate monitoring
 """
 
-import os
-import json
-import requests
-import time
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
+import json
+import os
+import time
 
+import requests
 class GrafanaCloudEmpireIntegrator:
     def __init__(self):
         self.load_empire_config()
         self.grafana_url = "https://welshdog.grafana.net"
         self.grafana_token = os.getenv('GRAFANA_SERVICE_ACCOUNT_TOKEN')
         self.empire_ports = self.get_empire_ports()
-        
+
         print("🎯💎⚡ GRAFANA CLOUD EMPIRE INTEGRATOR INITIALIZED ⚡💎🎯")
         print(f"🌐 Grafana Cloud Instance: {self.grafana_url}")
         print(f"🏆 Empire Mode: {os.getenv('EMPIRE_MODE', 'LEGENDARY')}")
         print(f"🤖 Agent Army Size: {os.getenv('AGENT_ARMY_SIZE', '677')}")
-        
+
     def load_empire_config(self):
         """Load configuration from empire.env file"""
         env_path = Path("HyperBeast/empire.env")
         if not env_path.exists():
             env_path = Path("empire.env")
-        
+
         if env_path.exists():
             with open(env_path) as f:
                 for line in f:
                     if '=' in line and not line.strip().startswith('#'):
                         key, value = line.strip().split('=', 1)
                         os.environ[key] = value
-        
+
         print(f"✅ Empire configuration loaded from {env_path}")
-    
+
     def get_empire_ports(self):
         """Extract all empire service ports"""
         return {
@@ -55,11 +55,11 @@ class GrafanaCloudEmpireIntegrator:
             'agent_army': os.getenv('AGENT_ARMY_PORT', '8888'),
             'brain_intelligence': os.getenv('BRAIN_INTELLIGENCE_PORT', '5010'),
         }
-    
+
     def create_prometheus_data_source(self):
         """Create Prometheus data source in Grafana Cloud"""
         print("\n🎯 STEP 1: Creating Prometheus Data Source...")
-        
+
         prometheus_config = {
             "name": "HyperFocus-Empire-Prometheus",
             "type": "prometheus",
@@ -77,13 +77,13 @@ class GrafanaCloudEmpireIntegrator:
             },
             "secureJsonData": {}
         }
-        
+
         return self.make_grafana_request('POST', '/api/datasources', prometheus_config)
-    
+
     def create_empire_dashboards(self):
         """Create custom dashboards for empire monitoring"""
         print("\n📊 STEP 2: Creating Empire Monitoring Dashboards...")
-        
+
         # Main Empire Overview Dashboard
         empire_dashboard = {
             "dashboard": {
@@ -187,13 +187,13 @@ class GrafanaCloudEmpireIntegrator:
             },
             "overwrite": True
         }
-        
+
         return self.make_grafana_request('POST', '/api/dashboards/db', empire_dashboard)
-    
+
     def create_adhd_optimized_alerts(self):
         """Create ADHD-friendly alert rules"""
         print("\n🔔 STEP 3: Creating ADHD-Optimized Alert Rules...")
-        
+
         alert_rules = [
             {
                 "alert": "EmpireSystemDown",
@@ -241,7 +241,7 @@ class GrafanaCloudEmpireIntegrator:
                 }
             }
         ]
-        
+
         for rule in alert_rules:
             self.make_grafana_request('POST', '/api/ruler/grafana/api/v1/rules/hyperfocus-empire', {
                 "groups": [{
@@ -249,13 +249,13 @@ class GrafanaCloudEmpireIntegrator:
                     "rules": [rule]
                 }]
             })
-    
+
     def setup_discord_notifications(self):
         """Configure Discord webhook notifications"""
         print("\n💬 STEP 4: Setting up Discord Integration...")
-        
+
         discord_webhook = f"https://discord.com/api/webhooks/{os.getenv('DISCORD_CLIENT_ID')}/{os.getenv('DISCORD_CLIENT_SECRET')}"
-        
+
         notification_channel = {
             "name": "empire-discord-alerts",
             "type": "discord",
@@ -277,18 +277,18 @@ class GrafanaCloudEmpireIntegrator:
                 "color": "#FFD700"
             }
         }
-        
+
         return self.make_grafana_request('POST', '/api/alert-notifications', notification_channel)
-    
+
     def make_grafana_request(self, method, endpoint, data=None):
         """Make authenticated request to Grafana API"""
         headers = {
             'Authorization': f'Bearer {self.grafana_token}',
             'Content-Type': 'application/json'
         }
-        
+
         url = f"{self.grafana_url}{endpoint}"
-        
+
         try:
             if method == 'GET':
                 response = requests.get(url, headers=headers)
@@ -296,7 +296,7 @@ class GrafanaCloudEmpireIntegrator:
                 response = requests.post(url, headers=headers, json=data)
             elif method == 'PUT':
                 response = requests.put(url, headers=headers, json=data)
-            
+
             if response.status_code in [200, 201]:
                 print(f"✅ {method} {endpoint} - Success!")
                 return response.json()
@@ -304,37 +304,37 @@ class GrafanaCloudEmpireIntegrator:
                 print(f"❌ {method} {endpoint} - Error: {response.status_code}")
                 print(f"Response: {response.text}")
                 return None
-                
+
         except Exception as e:
             print(f"❌ Request failed: {str(e)}")
             return None
-    
+
     def deploy_empire_monitoring(self):
         """Deploy complete empire monitoring setup"""
         print("\n🚀💎⚡ DEPLOYING LEGENDARY EMPIRE MONITORING SYSTEM ⚡💎🚀")
         print("=" * 70)
-        
+
         # Step 1: Create Prometheus data source
         prometheus_result = self.create_prometheus_data_source()
-        
+
         # Step 2: Create empire dashboards
         dashboard_result = self.create_empire_dashboards()
-        
+
         # Step 3: Set up ADHD-optimized alerts
         alert_result = self.create_adhd_optimized_alerts()
-        
+
         # Step 4: Configure Discord notifications
         discord_result = self.setup_discord_notifications()
-        
+
         # Generate summary
         self.generate_deployment_summary()
-        
+
         print("\n🎊💎⚡ LEGENDARY DEPLOYMENT COMPLETE! ⚡💎🎊")
         print("=" * 70)
         print("🌟 Your HyperFocus Zone Empire is now fully monitored!")
         print("🎯 Visit: https://welshdog.grafana.net")
         print("🚀 All systems operational and legendary!")
-    
+
     def generate_deployment_summary(self):
         """Generate deployment summary and save to file"""
         summary = {
@@ -356,10 +356,10 @@ class GrafanaCloudEmpireIntegrator:
             "empire_ports": self.empire_ports,
             "status": "LEGENDARY DEPLOYMENT COMPLETE"
         }
-        
+
         with open('empire_grafana_deployment_summary.json', 'w') as f:
             json.dump(summary, f, indent=2)
-        
+
         print(f"\n📋 Deployment summary saved to: empire_grafana_deployment_summary.json")
 
 if __name__ == "__main__":

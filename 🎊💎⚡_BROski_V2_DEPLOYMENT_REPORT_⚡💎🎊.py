@@ -3,9 +3,8 @@
 🎊💎⚡ BROski♾️ V2.0 DEPLOYMENT COMPREHENSIVE REPORT ⚡💎🎊
 """
 
-import os
 from datetime import datetime
-
+import os
 def check_v2_deployment_status():
     print(f"""
 🎊💎⚡ BROski♾️ V2.0 DEPLOYMENT COMPREHENSIVE REPORT ⚡💎🎊
@@ -114,7 +113,7 @@ but your current setup is already achieving legendary status!
 def check_python_processes():
     print("\n🔍 Python Process Analysis:")
     print("============================")
-    
+
     try:
         import subprocess
         result = subprocess.run(
@@ -134,14 +133,14 @@ def check_python_processes():
 def check_bot_files():
     print("\n📁 Bot File Analysis:")
     print("======================")
-    
+
     bot_files = [
         "🚀💎⚡_BROski_INSTANT_LIVE_BOT_⚡💎🚀.py",
         "🎊💎⚡_BROski_V2_ENHANCED_DISCORD_BOT_⚡💎🎊.py",
         "🎊💎⚡_BROski_V2_SIMPLE_LAUNCHER_⚡💎🎊.py",
         "empire.env"
     ]
-    
+
     for file in bot_files:
         if os.path.exists(file):
             size = os.path.getsize(file)
@@ -153,7 +152,7 @@ if __name__ == "__main__":
     check_v2_deployment_status()
     check_python_processes()
     check_bot_files()
-    
+
     print(f"""
 🎊🏆 FINAL EMPIRE STATUS: LEGENDARY SUCCESS! 🏆🎊
 

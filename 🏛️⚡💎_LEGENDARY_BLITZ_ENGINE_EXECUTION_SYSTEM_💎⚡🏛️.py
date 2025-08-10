@@ -10,16 +10,13 @@ This system coordinates all revenue streams, tracks progress,
 and manages the 90-day empire expansion with ADHD-optimized execution.
 """
 
-import asyncio
-import sqlite3
-import json
-import datetime
-from pathlib import Path
 from dataclasses import dataclass, asdict
 from typing import Dict, List, Optional
+import datetime
 import logging
 
-# Configure logging
+import asyncio
+import sqlite3
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -32,7 +29,7 @@ class RevenueStream:
     status: str
     launch_week: int
     automation_level: int  # 0-100%
-    
+
 @dataclass
 class BlitzMilestone:
     """🎯 Blitz mode milestone tracking"""
@@ -56,12 +53,12 @@ class EmpireMetrics:
 
 class LegendaryBlitzEngine:
     """🚀 90-Day Empire Domination Execution Engine"""
-    
+
     def __init__(self):
         self.start_date = datetime.datetime.now()
         self.db_path = "h:/legendary_blitz_empire.db"
         self.setup_database()
-        
+
         # Initialize revenue streams
         self.revenue_streams = {
             "discord_gigs": RevenueStream("Discord Gig Marketplace", 0, 1800, "launching", 1, 0),
@@ -72,7 +69,7 @@ class LegendaryBlitzEngine:
             "consulting_pipeline": RevenueStream("Client Consultation", 3000, 8000, "scaling", 10, 40),
             "full_automation": RevenueStream("Automation Revenue", 0, 5000, "building", 11, 0)
         }
-        
+
         # Initialize milestones
         self.milestones = [
             BlitzMilestone(2, 14647, ["Discord Marketplace Live", "50+ Active Gigs"], "🚀 LAUNCH"),
@@ -80,15 +77,15 @@ class LegendaryBlitzEngine:
             BlitzMilestone(10, 34647, ["All Streams 300% Growth", "Optimization Complete"], "🏆 MASTERY"),
             BlitzMilestone(12, 39647, ["Full Automation Live", "Empire Consolidated"], "👑 LEGENDARY")
         ]
-        
+
         self.current_week = 1
         self.empire_metrics = EmpireMetrics(12847, 0, 6, 35, 5000, 95, "ULTRA LEGENDARY")
-        
+
     def setup_database(self):
         """🗄️ Initialize empire tracking database"""
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
-        
+
         # Revenue streams table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS revenue_streams (
@@ -102,7 +99,7 @@ class LegendaryBlitzEngine:
                 last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
-        
+
         # Daily progress table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS daily_progress (
@@ -118,7 +115,7 @@ class LegendaryBlitzEngine:
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
-        
+
         # Milestones table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS milestones (
@@ -133,7 +130,7 @@ class LegendaryBlitzEngine:
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
-        
+
         # Empire metrics table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS empire_metrics (
@@ -149,23 +146,23 @@ class LegendaryBlitzEngine:
                 timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         ''')
-        
+
         conn.commit()
         conn.close()
         logger.info("🏛️ Empire database initialized successfully")
-    
+
     def update_revenue_stream(self, stream_name: str, current_revenue: float, status: str = None):
         """💰 Update revenue stream performance"""
         if stream_name in self.revenue_streams:
             self.revenue_streams[stream_name].current_monthly = current_revenue
             if status:
                 self.revenue_streams[stream_name].status = status
-            
+
             # Update database
             conn = sqlite3.connect(self.db_path)
             cursor = conn.cursor()
             cursor.execute('''
-                INSERT OR REPLACE INTO revenue_streams 
+                INSERT OR REPLACE INTO revenue_streams
                 (name, current_monthly, target_monthly, status, launch_week, automation_level)
                 VALUES (?, ?, ?, ?, ?, ?)
             ''', (
@@ -178,17 +175,17 @@ class LegendaryBlitzEngine:
             ))
             conn.commit()
             conn.close()
-            
-            logger.info(f"💎 Updated {stream_name}: ${current_revenue}/month ({status})")
-    
+
+        logger.info("💎 Updated {stream_name}: ${current_revenue}/month (%s)", status)
+
     def log_daily_progress(self, tasks_completed: int, new_revenue: float, notes: str = ""):
         """📊 Log daily empire progress"""
         current_date = datetime.date.today()
         total_revenue = sum(stream.current_monthly for stream in self.revenue_streams.values())
-        
+
         # Calculate BROski$ earned (gamification)
         broski_earned = (tasks_completed * 50) + int(new_revenue * 10)  # 50 per task + 10 per dollar
-        
+
         # Determine celebration level
         if new_revenue >= 1000:
             celebration = "🏆 LEGENDARY"
@@ -198,17 +195,17 @@ class LegendaryBlitzEngine:
             celebration = "🚀 GREAT"
         else:
             celebration = "⚡ PROGRESS"
-        
+
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO daily_progress 
+            INSERT INTO daily_progress
             (date, week_number, total_revenue, new_revenue, tasks_completed, broski_earned, celebration_level, notes)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ''', (current_date, self.current_week, total_revenue, new_revenue, tasks_completed, broski_earned, celebration, notes))
         conn.commit()
         conn.close()
-        
+
         print(f"""
 🎊 DAILY EMPIRE PROGRESS LOGGED 🎊
 📅 Date: {current_date}
@@ -218,30 +215,30 @@ class LegendaryBlitzEngine:
 💎 BROski$ Earned: {broski_earned:,}
 {celebration} - {notes}
         """)
-    
+
     def check_milestone_completion(self):
         """🎯 Check if weekly milestones are achieved"""
         current_revenue = sum(stream.current_monthly for stream in self.revenue_streams.values())
-        
+
         for milestone in self.milestones:
             if milestone.week <= self.current_week and not milestone.completed:
                 if current_revenue >= milestone.target_revenue:
                     milestone.completed = True
                     milestone.actual_revenue = current_revenue
-                    
+
                     # Log milestone completion
                     conn = sqlite3.connect(self.db_path)
                     cursor = conn.cursor()
                     cursor.execute('''
-                        UPDATE milestones SET 
+                        UPDATE milestones SET
                         completed = TRUE, actual_revenue = ?, completion_date = ?
                         WHERE week = ?
                     ''', (current_revenue, datetime.date.today(), milestone.week))
                     conn.commit()
                     conn.close()
-                    
+
                     self.celebrate_milestone(milestone)
-    
+
     def celebrate_milestone(self, milestone: BlitzMilestone):
         """🎊 Execute legendary milestone celebration"""
         celebration_message = f"""
@@ -259,13 +256,13 @@ class LegendaryBlitzEngine:
 
 🎊 EMPIRE STATUS: ASCENDING TO GODTIER! 🎊
         """
-        
+
         print(celebration_message)
-        
+
         # Award massive BROski$ bonus
         bonus_broski = milestone.week * 1000
         print(f"💎 LEGENDARY BONUS: {bonus_broski:,} BROski$ AWARDED! 💎")
-        
+
         # Update empire status
         if milestone.week >= 12:
             self.empire_metrics.legendary_status = "🏛️ GODTIER EMPIRE 🏛️"
@@ -273,19 +270,19 @@ class LegendaryBlitzEngine:
             self.empire_metrics.legendary_status = "👑 LEGENDARY MASTER 👑"
         elif milestone.week >= 6:
             self.empire_metrics.legendary_status = "💎 EPIC EXPANSION 💎"
-        
-        logger.info(f"🎊 Milestone Week {milestone.week} celebrated with {celebration_message}")
-    
+
+        logger.info("🎊 Milestone Week {milestone.week} celebrated with %s", celebration_message)
+
     def generate_empire_dashboard(self) -> Dict:
         """📊 Generate comprehensive empire dashboard"""
         total_revenue = sum(stream.current_monthly for stream in self.revenue_streams.values())
         total_target = sum(stream.target_monthly for stream in self.revenue_streams.values())
         progress_percentage = (total_revenue / total_target) * 100
-        
+
         # Calculate weeks remaining
         weeks_elapsed = self.current_week
         weeks_remaining = 12 - weeks_elapsed
-        
+
         dashboard = {
             "empire_status": {
                 "current_revenue": total_revenue,
@@ -300,17 +297,17 @@ class LegendaryBlitzEngine:
             "next_actions": self.get_next_actions(),
             "celebration_queue": self.get_celebration_queue()
         }
-        
+
         return dashboard
-    
+
     def get_next_actions(self) -> List[str]:
         """🎯 Get prioritized next actions for current week"""
         actions = []
-        
+
         if self.current_week == 1:
             actions = [
                 "🚀 Deploy Discord Gig Marketplace bot system",
-                "💬 Create #gig-marketplace channels in Discord", 
+                "💬 Create #gig-marketplace channels in Discord",
                 "🎯 Post first 10 test gigs to validate system",
                 "📢 Announce marketplace launch to community",
                 "🏢 Begin LOOK-THEN-BUILD corporate training package"
@@ -347,17 +344,17 @@ class LegendaryBlitzEngine:
                 "🌍 Prepare for global expansion phase",
                 "💎 Lock in sustainable $40K+/month operations"
             ]
-        
+
         return actions
-    
+
     def get_celebration_queue(self) -> List[str]:
         """🎊 Get pending celebrations and rewards"""
         celebrations = []
-        
+
         # Check for daily achievements
         if datetime.datetime.now().hour < 12:
             celebrations.append("🌅 Morning Empire Review - 100 BROski$ bonus!")
-        
+
         # Check for weekly milestones approaching
         current_revenue = sum(stream.current_monthly for stream in self.revenue_streams.values())
         for milestone in self.milestones:
@@ -367,30 +364,30 @@ class LegendaryBlitzEngine:
                     celebrations.append(f"🎯 Week {milestone.week} milestone 90% complete - LEGENDARY achievement imminent!")
                 elif progress >= 75:
                     celebrations.append(f"💎 Week {milestone.week} milestone 75% complete - Epic progress!")
-        
+
         # Add motivational celebrations
         celebrations.extend([
             "🏆 Daily BROski$ bonus available - complete 3 tasks to earn!",
             "⚡ Empire energy at MAXIMUM - perfect time for major launches!",
             "🚀 All systems operational - ready for legendary expansion!"
         ])
-        
+
         return celebrations
-    
+
     async def run_daily_empire_check(self):
         """🏛️ Execute daily empire health check and coordination"""
         print(f"""
 🏛️⚡💎 DAILY EMPIRE COORDINATION 💎⚡🏛️
 📅 Day: {(datetime.datetime.now() - self.start_date).days + 1} | Week: {self.current_week}
         """)
-        
+
         # Generate and display dashboard
         dashboard = self.generate_empire_dashboard()
-        
+
         print(f"""
 📊 EMPIRE STATUS DASHBOARD 📊
 💰 Current Revenue: ${dashboard['empire_status']['current_revenue']:,.2f}/month
-🎯 Target Revenue: ${dashboard['empire_status']['target_revenue']:,.2f}/month  
+🎯 Target Revenue: ${dashboard['empire_status']['target_revenue']:,.2f}/month
 📈 Progress: {dashboard['empire_status']['progress_percentage']:.1f}%
 👑 Status: {dashboard['empire_status']['legendary_status']}
 ⏰ Weeks Remaining: {dashboard['empire_status']['weeks_remaining']}
@@ -401,28 +398,28 @@ class LegendaryBlitzEngine:
 🎊 CELEBRATION QUEUE:
 {chr(10).join('• ' + celebration for celebration in dashboard['celebration_queue'][:2])}
         """)
-        
+
         # Check milestone completion
         self.check_milestone_completion()
-        
+
         # Update empire metrics
         await self.update_empire_metrics()
-    
+
     async def update_empire_metrics(self):
         """📊 Update comprehensive empire metrics"""
         total_revenue = sum(stream.current_monthly for stream in self.revenue_streams.values())
         active_streams = len([s for s in self.revenue_streams.values() if s.current_monthly > 0])
         avg_automation = sum(s.automation_level for s in self.revenue_streams.values()) // len(self.revenue_streams)
-        
+
         self.empire_metrics.total_monthly_revenue = total_revenue
         self.empire_metrics.active_streams = active_streams
         self.empire_metrics.automation_percentage = avg_automation
-        
+
         # Store in database
         conn = sqlite3.connect(self.db_path)
         cursor = conn.cursor()
         cursor.execute('''
-            INSERT INTO empire_metrics 
+            INSERT INTO empire_metrics
             (date, total_monthly_revenue, growth_rate, active_streams, automation_percentage, broski_circulation, team_morale, legendary_status)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
@@ -437,7 +434,7 @@ class LegendaryBlitzEngine:
         ))
         conn.commit()
         conn.close()
-    
+
     def advance_week(self):
         """📅 Advance to next week of blitz mode"""
         self.current_week += 1
@@ -446,16 +443,16 @@ class LegendaryBlitzEngine:
 ⚡ LEGENDARY BLITZ MODE CONTINUES ⚡
 🎯 New phase objectives loading...
         """)
-        
+
         # Award weekly progression bonus
         weekly_bonus = self.current_week * 500
         print(f"💎 WEEKLY PROGRESSION BONUS: {weekly_bonus} BROski$ AWARDED! 💎")
-    
+
     def generate_final_report(self) -> str:
         """📋 Generate final 90-day blitz mode report"""
         total_revenue = sum(stream.current_monthly for stream in self.revenue_streams.values())
         completed_milestones = len([m for m in self.milestones if m.completed])
-        
+
         report = f"""
 🏛️👑💎 LEGENDARY BLITZ MODE - FINAL EMPIRE REPORT 💎👑🏛️
 
@@ -482,7 +479,7 @@ class LegendaryBlitzEngine:
 
 The HyperFocus Zone Empire has been TRANSFORMED! Ready for global domination! 🌍⚡
         """
-        
+
         return report
 
 # Initialize the Legendary Blitz Engine
@@ -493,12 +490,12 @@ async def main():
 90-DAY EMPIRE DOMINATION SEQUENCE INITIATED
 CHIEF LYNDZ COMMAND AUTHORIZED ⚡
     """)
-    
+
     blitz_engine = LegendaryBlitzEngine()
-    
+
     # Run daily empire coordination
     await blitz_engine.run_daily_empire_check()
-    
+
     print("""
 🎯 LEGENDARY BLITZ ENGINE OPERATIONAL! 🎯
 Ready to coordinate 90-day empire transformation!

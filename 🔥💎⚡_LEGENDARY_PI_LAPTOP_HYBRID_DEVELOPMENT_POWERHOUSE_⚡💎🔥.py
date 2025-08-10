@@ -17,25 +17,21 @@ FEATURES:
 STATUS: Pi SD Card (E:) detected and ready - 128GB "ras pi card" HEALTHY!
 """
 
-import asyncio
+from datetime import datetime
 import json
 import os
-import subprocess
 import time
-import psutil
-import socket
-import threading
-from pathlib import Path
-from datetime import datetime
-import shutil
 
+import asyncio
+import psutil
+import shutil
 class LegendaryPiLaptopFusion:
     def __init__(self):
         self.pi_card_drive = "E:\\"
         self.bridge_network = "192.168.137"
         self.pi_discovery_ips = ["192.168.137.2", "192.168.137.3", "192.168.137.10"]
         self.empire_services = ["nginx-gateway", "redis-cache", "broski-agent", "empire-monitor"]
-        
+
         # Development IDE configurations from Ninja-IDE research
         self.ide_configs = {
             "ninja_ide": {
@@ -45,7 +41,7 @@ class LegendaryPiLaptopFusion:
                 "features": ["Code locator", "Auto-indentation", "Project management", "Plugin support"]
             },
             "thonny": {
-                "name": "Thonny Python IDE", 
+                "name": "Thonny Python IDE",
                 "description": "Pre-installed beginner-friendly IDE",
                 "install_cmd": "pre-installed",
                 "features": ["Step-by-step debugging", "Syntax highlighting", "Variable inspection"]
@@ -69,10 +65,10 @@ class LegendaryPiLaptopFusion:
                 "features": ["Browser access", "Git integration", "Cloud sync"]
             }
         }
-        
+
         # Laptop performance metrics
         self.laptop_specs = self.get_laptop_specs()
-        
+
     def get_laptop_specs(self):
         """Get current laptop specifications for optimization planning"""
         return {
@@ -81,7 +77,7 @@ class LegendaryPiLaptopFusion:
             "disk_space_gb": round(shutil.disk_usage("/").free / (1024**3), 1),
             "network_speed": "Gigabit Ethernet Bridge"
         }
-    
+
     def legendary_startup_display(self):
         """Epic startup display showing fusion system status"""
         print("🔥💎⚡ LEGENDARY PI-LAPTOP HYBRID DEVELOPMENT POWERHOUSE ⚡💎🔥")
@@ -90,13 +86,13 @@ class LegendaryPiLaptopFusion:
         print("💎 METHOD: Existing empire bridge + new IDE intelligence")
         print("⚡ STATUS: READY FOR LEGENDARY FUSION!")
         print("=" * 80)
-        
+
         print(f"\n📊 LAPTOP SPECIFICATIONS:")
         print(f"   CPU Cores: {self.laptop_specs['cpu_cores']}")
         print(f"   RAM: {self.laptop_specs['ram_gb']} GB")
         print(f"   Free Disk: {self.laptop_specs['disk_space_gb']} GB")
         print(f"   Network: {self.laptop_specs['network_speed']}")
-        
+
         print(f"\n💾 PI SD CARD STATUS:")
         if os.path.exists(self.pi_card_drive):
             total, used, free = shutil.disk_usage(self.pi_card_drive)
@@ -106,19 +102,19 @@ class LegendaryPiLaptopFusion:
             print(f"   Status: 🟢 HEALTHY AND READY!")
         else:
             print(f"   Status: 🔴 SD Card not detected on {self.pi_card_drive}")
-            
+
     def scan_existing_empire_infrastructure(self):
         """Scan for existing Pi integration systems"""
         print(f"\n🔍 SCANNING EXISTING EMPIRE INFRASTRUCTURE:")
         print("=" * 50)
-        
+
         empire_scripts = [
             "🎊🚀💎⚡_LEGENDARY_HYBRID_PI_EMPIRE_DEPLOYMENT_⚡💎🚀🎊.ps1",
-            "🌐💎⚡_HYPER_V_BRIDGE_CONNECTOR_⚡💎🌐.ps1", 
+            "🌐💎⚡_HYPER_V_BRIDGE_CONNECTOR_⚡💎🌐.ps1",
             "🔌💎⚡_LEGENDARY_USB_PI_DEPLOYMENT_⚡💎🔌.ps1",
             "🚀💎⚡_SD_CARD_DIRECT_EMPIRE_DEPLOYMENT_⚡💎🚀.ps1"
         ]
-        
+
         found_systems = []
         for script in empire_scripts:
             if os.path.exists(script):
@@ -126,44 +122,44 @@ class LegendaryPiLaptopFusion:
                 print(f"   ✅ Found: {script}")
             else:
                 print(f"   📁 Checking: {script}")
-                
+
         print(f"\n🎊 LEGENDARY! Found {len(found_systems)} existing Pi integration systems!")
         return found_systems
-    
+
     def check_pi_sd_card_status(self):
         """Check SD card and prepare for development environment"""
         print(f"\n📋 PI SD CARD DEVELOPMENT SETUP:")
         print("=" * 40)
-        
+
         if not os.path.exists(self.pi_card_drive):
             print("🔴 SD Card not found. Please insert Pi SD card into laptop.")
             return False
-            
+
         # Check for existing empire integration
         empire_path = os.path.join(self.pi_card_drive, "EMPIRE_INTEGRATION")
         boot_files = ["config.txt", "cmdline.txt"]
-        
+
         print(f"🔍 Checking SD card structure...")
-        
+
         if os.path.exists(empire_path):
             print(f"   ✅ EMPIRE_INTEGRATION found: {empire_path}")
         else:
             print(f"   📁 EMPIRE_INTEGRATION not found - will create")
-            
+
         for boot_file in boot_files:
             boot_path = os.path.join(self.pi_card_drive, boot_file)
             if os.path.exists(boot_path):
                 print(f"   ✅ Boot file found: {boot_file}")
             else:
                 print(f"   📄 Boot file missing: {boot_file}")
-                
+
         return True
-    
+
     def generate_pi_development_config(self):
         """Generate comprehensive Pi development configuration"""
         print(f"\n🛠️ GENERATING PI DEVELOPMENT CONFIGURATION:")
         print("=" * 50)
-        
+
         dev_config = {
             "mission": "PI-LAPTOP HYBRID DEVELOPMENT POWERHOUSE",
             "created": datetime.now().isoformat(),
@@ -184,26 +180,26 @@ class LegendaryPiLaptopFusion:
             "development_workflow": {
                 "step_1": "Deploy Pi with development environment",
                 "step_2": "Configure remote IDE access",
-                "step_3": "Setup code synchronization", 
+                "step_3": "Setup code synchronization",
                 "step_4": "Create distributed development pipeline",
                 "step_5": "Implement testing and deployment automation"
             }
         }
-        
+
         # Save configuration to SD card if available
         if os.path.exists(self.pi_card_drive):
             config_path = os.path.join(self.pi_card_drive, "LEGENDARY_PI_DEV_CONFIG.json")
             with open(config_path, 'w') as f:
                 json.dump(dev_config, f, indent=2)
             print(f"   ✅ Configuration saved to: {config_path}")
-        
+
         return dev_config
-    
+
     def display_development_recommendations(self):
         """Display specific recommendations for Pi-Laptop development fusion"""
         print(f"\n🎯 LEGENDARY DEVELOPMENT FUSION RECOMMENDATIONS:")
         print("=" * 60)
-        
+
         recommendations = [
             {
                 "title": "🚀 IMMEDIATE DEPLOYMENT",
@@ -242,17 +238,17 @@ class LegendaryPiLaptopFusion:
                 ]
             }
         ]
-        
+
         for rec in recommendations:
             print(f"\n{rec['title']}:")
             for action in rec['actions']:
                 print(f"   • {action}")
-    
+
     def generate_deployment_script(self):
         """Generate PowerShell deployment script for Pi development setup"""
         print(f"\n📝 GENERATING DEPLOYMENT SCRIPT:")
         print("=" * 40)
-        
+
         deployment_script = '''# 🔥💎⚡ LEGENDARY PI DEVELOPMENT DEPLOYMENT SCRIPT ⚡💎🔥
 # Auto-generated by Pi-Laptop Fusion System
 
@@ -284,33 +280,33 @@ Write-Host "   📓 Jupyter Notebook: http://$PiIP:8888"
 
 Write-Host "🎊 DEPLOYMENT COMPLETE! Pi is now a development powerhouse!" -ForegroundColor Magenta
 '''
-        
+
         script_path = "🔥💎⚡_DEPLOY_PI_DEVELOPMENT_POWERHOUSE_⚡💎🔥.ps1"
         with open(script_path, 'w') as f:
             f.write(deployment_script)
-            
+
         print(f"   ✅ Deployment script created: {script_path}")
         return script_path
-    
+
     async def run_legendary_fusion_analysis(self):
         """Run complete Pi-Laptop fusion analysis and recommendations"""
         self.legendary_startup_display()
-        
+
         # Scan existing infrastructure
         existing_systems = self.scan_existing_empire_infrastructure()
-        
+
         # Check SD card status
         sd_ready = self.check_pi_sd_card_status()
-        
+
         # Generate development configuration
         dev_config = self.generate_pi_development_config()
-        
+
         # Display recommendations
         self.display_development_recommendations()
-        
+
         # Generate deployment script
         deployment_script = self.generate_deployment_script()
-        
+
         print(f"\n🎊 LEGENDARY FUSION ANALYSIS COMPLETE!")
         print("=" * 50)
         print("🚀 NEXT ACTIONS:")
@@ -318,7 +314,7 @@ Write-Host "🎊 DEPLOYMENT COMPLETE! Pi is now a development powerhouse!" -Fore
         print("   2. Access Pi development environment remotely")
         print("   3. Start hybrid laptop-Pi development workflow")
         print("   4. Experience LEGENDARY development acceleration!")
-        
+
         return {
             "existing_systems": len(existing_systems),
             "sd_card_ready": sd_ready,
@@ -330,11 +326,11 @@ Write-Host "🎊 DEPLOYMENT COMPLETE! Pi is now a development powerhouse!" -Fore
 # 🎊 LEGENDARY EXECUTION
 if __name__ == "__main__":
     print("🔥💎⚡ INITIALIZING LEGENDARY PI-LAPTOP FUSION... ⚡💎🔥")
-    
+
     fusion_system = LegendaryPiLaptopFusion()
-    
+
     # Run the legendary analysis
     result = asyncio.run(fusion_system.run_legendary_fusion_analysis())
-    
+
     print(f"\n🎊🎊🎊 LEGENDARY PI-LAPTOP DEVELOPMENT POWERHOUSE READY! 🎊🎊🎊")
     print("Transform your Pi into the ultimate laptop development accelerator!")

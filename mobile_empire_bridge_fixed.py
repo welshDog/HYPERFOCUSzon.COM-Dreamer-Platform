@@ -6,7 +6,7 @@ Connects Mobile Command Center to Advanced Memory Crystal Intelligence System
 and existing Empire infrastructure for seamless mobile operations.
 
 Features:
-- Real-time AI Crystal synchronization 
+- Real-time AI Crystal synchronization
 - Mobile-optimized API responses
 - Touch-friendly data formatting
 - Offline capability coordination
@@ -14,21 +14,20 @@ Features:
 - Mobile performance monitoring
 """
 
-import json
-import asyncio
-import websockets
-import threading
-import time
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-import subprocess
-import webbrowser
 from typing import Dict, List, Any, Optional
+import json
 import logging
-from dataclasses import dataclass
+import subprocess
 import sys
+import threading
+import time
 
-# Configure logging for mobile operations with Unicode support
+import asyncio
+import webbrowser
+import websockets
 logging.basicConfig(
     level=logging.INFO,
     format='MOBILE %(asctime)s - %(levelname)s - %(message)s',
@@ -52,11 +51,11 @@ class MobileSystemStatus:
 
 class MobileEmpireCommandCenter:
     """
-    LEGENDARY MOBILE EMPIRE COMMAND CENTER 
-    
+    LEGENDARY MOBILE EMPIRE COMMAND CENTER
+
     Bridges mobile interface with Memory Crystal Intelligence and Empire systems
     """
-    
+
     def __init__(self):
         self.mobile_systems = {}
         self.memory_crystals = None
@@ -66,34 +65,34 @@ class MobileEmpireCommandCenter:
         self.touch_optimizations = True
         self.offline_ready = False
         self.websocket_port = 8766  # Use different port to avoid conflicts
-        
+
         logger.info("MOBILE EMPIRE COMMAND CENTER INITIALIZING")
-        
+
     async def initialize_mobile_empire(self):
         """Initialize complete mobile empire infrastructure"""
         try:
             # Step 1: Connect to Memory Crystal Intelligence
             await self.connect_memory_crystals()
-            
+
             # Step 2: Initialize mobile-optimized systems
             await self.initialize_mobile_systems()
-            
+
             # Step 3: Start WebSocket server for real-time updates
             await self.start_mobile_websocket_server()
-            
+
             # Step 4: Deploy PWA if not already deployed
             await self.deploy_mobile_pwa()
-            
+
             # Step 5: Start mobile monitoring
             await self.start_mobile_monitoring()
-            
+
             logger.info("MOBILE EMPIRE COMMAND CENTER FULLY OPERATIONAL!")
             return True
-            
-        except Exception as e:
-            logger.error(f"Mobile Empire initialization failed: {e}")
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Mobile Empire initialization failed: %s", e)
             return False
-    
+
     async def connect_memory_crystals(self):
         """Connect to Advanced Memory Crystal Intelligence System"""
         try:
@@ -101,7 +100,7 @@ class MobileEmpireCommandCenter:
             crystal_file = Path("🧠💎⚡_ADVANCED_MEMORY_CRYSTAL_INTELLIGENCE_SYSTEM_⚡💎🧠.py")
             if crystal_file.exists():
                 logger.info("Connecting to Advanced Memory Crystal Intelligence...")
-                
+
                 # Execute crystal system and get patterns
                 self.memory_crystals = {
                     'patterns': 169,
@@ -113,19 +112,19 @@ class MobileEmpireCommandCenter:
                     'duplication_prevention': True,
                     'mobile_predictions': 'OPTIMAL'
                 }
-                
-                logger.info(f"Connected to {self.memory_crystals['patterns']} Memory Crystals")
-                logger.info(f"Mobile patterns available: {self.memory_crystals['mobile_optimized_patterns']}")
+
+        logger.info("Connected to %s Memory Crystals", self.memory_crystals['patterns'])
+        logger.info("Mobile patterns available: %s", self.memory_crystals['mobile_optimized_patterns'])
                 return True
             else:
                 logger.warning("Memory Crystal Intelligence not found - creating mobile patterns")
                 await self.create_mobile_patterns()
                 return True
-                
-        except Exception as e:
-            logger.error(f"Memory Crystal connection failed: {e}")
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Memory Crystal connection failed: %s", e)
             return False
-    
+
     async def create_mobile_patterns(self):
         """Create mobile-specific intelligence patterns"""
         self.memory_crystals = {
@@ -139,7 +138,7 @@ class MobileEmpireCommandCenter:
             'mobile_predictions': 'CREATING'
         }
         logger.info("Mobile-specific Memory Crystal patterns created")
-    
+
     async def initialize_mobile_systems(self):
         """Initialize all mobile-optimized empire systems"""
         mobile_systems = [
@@ -224,7 +223,7 @@ class MobileEmpireCommandCenter:
                 'offline_capable': True
             }
         ]
-        
+
         for system in mobile_systems:
             self.mobile_systems[system['name']] = MobileSystemStatus(
                 system_name=system['name'],
@@ -235,29 +234,29 @@ class MobileEmpireCommandCenter:
                 last_sync=datetime.now(),
                 performance_score=95 + (hash(system['name']) % 5)  # 95-99%
             )
-        
-        logger.info(f"Initialized {len(self.mobile_systems)} mobile-optimized systems")
-    
+
+        logger.info("Initialized %s mobile-optimized systems", len(self.mobile_systems))
+
     async def start_mobile_websocket_server(self):
         """Start WebSocket server for real-time mobile updates"""
         async def handle_mobile_client(websocket, path):
             """Handle mobile client connections"""
             self.mobile_clients.add(websocket)
-            logger.info(f"Mobile client connected: {websocket.remote_address}")
-            
+        logger.info("Mobile client connected: %s", websocket.remote_address)
+
             try:
                 # Send initial system status
                 await self.send_mobile_update(websocket, 'INITIAL_STATUS')
-                
+
                 # Keep connection alive and handle messages
                 async for message in websocket:
                     await self.handle_mobile_message(websocket, message)
-                    
+
             except websockets.exceptions.ConnectionClosed:
                 logger.info("Mobile client disconnected")
             finally:
                 self.mobile_clients.discard(websocket)
-        
+
         # Try different ports if 8766 is also in use
         for port in [8766, 8767, 8768, 8769]:
             try:
@@ -265,21 +264,21 @@ class MobileEmpireCommandCenter:
                     handle_mobile_client, "localhost", port
                 )
                 self.websocket_port = port
-                logger.info(f"Mobile WebSocket server started on ws://localhost:{port}")
+        logger.info("Mobile WebSocket server started on ws://localhost:%s", port)
                 break
             except OSError as e:
                 if "address already in use" in str(e).lower() or "10048" in str(e):
-                    logger.warning(f"Port {port} in use, trying next...")
+        logger.warning("Port %s in use, trying next...", port)
                     continue
                 else:
                     raise e
-    
+
     async def handle_mobile_message(self, websocket, message):
         """Handle messages from mobile clients"""
         try:
             data = json.loads(message)
             action = data.get('action')
-            
+
             if action == 'ACTIVATE_SYSTEM':
                 system_name = data.get('system')
                 await self.activate_mobile_system(system_name)
@@ -288,24 +287,24 @@ class MobileEmpireCommandCenter:
                     'status': 'ACTIVATED',
                     'timestamp': datetime.now().isoformat()
                 })
-                
+
             elif action == 'REQUEST_AI_SUGGESTIONS':
                 suggestions = await self.get_ai_suggestions()
                 await websocket.send(json.dumps({
                     'type': 'AI_SUGGESTIONS',
                     'data': suggestions
                 }))
-                
+
             elif action == 'SYNC_CRYSTALS':
                 await self.sync_memory_crystals()
                 await websocket.send(json.dumps({
                     'type': 'CRYSTAL_SYNC_COMPLETE',
                     'patterns': self.memory_crystals['patterns']
                 }))
-                
-        except Exception as e:
-            logger.error(f"Mobile message handling failed: {e}")
-    
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Mobile message handling failed: %s", e)
+
     async def send_mobile_update(self, websocket, update_type, data=None):
         """Send optimized update to mobile client"""
         try:
@@ -327,12 +326,12 @@ class MobileEmpireCommandCenter:
                     'data': data,
                     'timestamp': datetime.now().isoformat()
                 }
-            
+
             await websocket.send(json.dumps(mobile_data))
-            
-        except Exception as e:
-            logger.error(f"Mobile update send failed: {e}")
-    
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Mobile update send failed: %s", e)
+
     async def broadcast_mobile_update(self, update_type, data=None):
         """Broadcast update to all connected mobile clients"""
         if self.mobile_clients:
@@ -340,25 +339,25 @@ class MobileEmpireCommandCenter:
             for client in self.mobile_clients:
                 try:
                     await self.send_mobile_update(client, update_type, data)
-                except:
+                except (ConnectionError, OSError):
                     disconnected.add(client)
-            
+
             # Remove disconnected clients
             self.mobile_clients -= disconnected
-    
+
     async def activate_mobile_system(self, system_name):
         """Activate a specific empire system via mobile interface"""
         if system_name in self.mobile_systems:
             system = self.mobile_systems[system_name]
             system.last_sync = datetime.now()
             system.performance_score = min(99, system.performance_score + 1)
-            
-            logger.info(f"Mobile activation: {system_name} system")
-            
+
+        logger.info("Mobile activation: %s system", system_name)
+
             # Apply Memory Crystal intelligence
             if self.memory_crystals and self.memory_crystals['duplication_prevention']:
-                logger.info(f"Memory Crystal guidance applied to {system_name}")
-    
+        logger.info("Memory Crystal guidance applied to %s", system_name)
+
     async def get_ai_suggestions(self):
         """Generate AI-powered suggestions for mobile interface"""
         suggestions = [
@@ -388,62 +387,62 @@ class MobileEmpireCommandCenter:
                 'priority': 'medium'
             }
         ]
-        
+
         return suggestions[:3]  # Return top 3 for mobile display
-    
+
     async def sync_memory_crystals(self):
         """Synchronize with Memory Crystal Intelligence for mobile optimization"""
         if self.memory_crystals:
             self.memory_crystals['last_sync'] = datetime.now()
             self.memory_crystals['mobile_predictions'] = 'OPTIMAL'
-            
+
             # Simulate pattern learning
             if self.memory_crystals['mobile_optimized_patterns'] < 50:
                 self.memory_crystals['mobile_optimized_patterns'] += 1
-                
+
             logger.info("Memory Crystal sync completed for mobile operations")
-    
+
     async def deploy_mobile_pwa(self):
         """Deploy Progressive Web App if not already deployed"""
         try:
             mobile_html = Path("📱💎⚡_MOBILE_EMPIRE_COMMAND_CENTER_⚡💎📱.html")
             manifest = Path("mobile-manifest.json")
             service_worker = Path("mobile-sw.js")
-            
+
             if all(file.exists() for file in [mobile_html, manifest, service_worker]):
                 logger.info("Mobile PWA files confirmed - deployment ready")
                 self.pwa_deployed = True
                 self.offline_ready = True
-                
+
                 # Auto-launch mobile interface
                 await self.launch_mobile_interface()
                 return True
             else:
                 logger.warning("PWA files missing - creating deployment package")
                 return False
-                
-        except Exception as e:
-            logger.error(f"PWA deployment failed: {e}")
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("PWA deployment failed: %s", e)
             return False
-    
+
     async def launch_mobile_interface(self):
         """Launch mobile interface in default browser"""
         try:
             mobile_url = "file:///" + str(Path("📱💎⚡_MOBILE_EMPIRE_COMMAND_CENTER_⚡💎📱.html").absolute()).replace("\\", "/")
-            
+
             # Use threading to avoid blocking
             def open_browser():
                 time.sleep(1)  # Brief delay for server startup
                 webbrowser.open(mobile_url)
-                logger.info(f"Mobile Empire Command Center launched: {mobile_url}")
-            
+        logger.info("Mobile Empire Command Center launched: %s", mobile_url)
+
             thread = threading.Thread(target=open_browser)
             thread.daemon = True
             thread.start()
-            
-        except Exception as e:
-            logger.error(f"Mobile interface launch failed: {e}")
-    
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Mobile interface launch failed: %s", e)
+
     async def start_mobile_monitoring(self):
         """Start continuous mobile performance monitoring"""
         async def mobile_monitor():
@@ -452,33 +451,33 @@ class MobileEmpireCommandCenter:
                     # Update system performance scores
                     for system in self.mobile_systems.values():
                         # Simulate performance fluctuation
-                        system.performance_score = max(90, min(99, 
+                        system.performance_score = max(90, min(99,
                             system.performance_score + (hash(str(datetime.now())) % 3) - 1
                         ))
-                    
+
                     # Broadcast real-time updates to mobile clients
                     await self.broadcast_mobile_update('PERFORMANCE_UPDATE', {
-                        'systems': {name: system.performance_score 
+                        'systems': {name: system.performance_score
                                   for name, system in self.mobile_systems.items()},
                         'crystals_active': self.memory_crystals['patterns'],
                         'mobile_optimized': True
                     })
-                    
+
                     # Check if AI suggestions should be shown
                     if hash(str(datetime.now())) % 10 == 0:  # 10% chance
                         suggestions = await self.get_ai_suggestions()
                         await self.broadcast_mobile_update('AI_SUGGESTIONS', suggestions)
-                    
+
                     await asyncio.sleep(3)  # Update every 3 seconds for smooth mobile UX
-                    
-                except Exception as e:
-                    logger.error(f"Mobile monitoring error: {e}")
+
+                except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Mobile monitoring error: %s", e)
                     await asyncio.sleep(5)
-        
+
         # Start monitoring task
         asyncio.create_task(mobile_monitor())
         logger.info("Mobile performance monitoring started")
-    
+
     def generate_mobile_status_report(self):
         """Generate comprehensive mobile empire status report"""
         report = {
@@ -501,22 +500,22 @@ class MobileEmpireCommandCenter:
                 } for name, system in self.mobile_systems.items()
             }
         }
-        
+
         return report
 
 async def main():
     """
-    MAIN EXECUTION - LEGENDARY MOBILE EMPIRE ACTIVATION 
+    MAIN EXECUTION - LEGENDARY MOBILE EMPIRE ACTIVATION
     """
     print("MOBILE EMPIRE COMMAND CENTER STARTING")
     print("=" * 60)
-    
+
     # Initialize Mobile Empire Command Center
     mobile_empire = MobileEmpireCommandCenter()
-    
+
     # Full initialization
     success = await mobile_empire.initialize_mobile_empire()
-    
+
     if success:
         print("\nMOBILE EMPIRE COMMAND CENTER FULLY OPERATIONAL!")
         print("Features activated:")
@@ -526,7 +525,7 @@ async def main():
         print("   🚀 Touch-friendly interface")
         print("   🌐 PWA deployment with offline capability")
         print("   🤖 AI-powered suggestions")
-        
+
         # Generate and display status report
         status_report = mobile_empire.generate_mobile_status_report()
         print(f"\nMobile Empire Status: {status_report['mobile_empire_status']}")
@@ -535,12 +534,12 @@ async def main():
         print(f"PWA Deployed: {'YES' if status_report['pwa_deployed'] else 'NO'}")
         print(f"Offline Ready: {'YES' if status_report['offline_ready'] else 'NO'}")
         print(f"WebSocket Port: {status_report['websocket_port']}")
-        
+
         # Keep server running
         print("\nMobile Empire Command Center running...")
         print("Access via mobile browser for optimal experience")
         print("Press Ctrl+C to stop")
-        
+
         try:
             # Keep the server running indefinitely
             while True:
@@ -548,7 +547,7 @@ async def main():
         except KeyboardInterrupt:
             print("\nMobile Empire Command Center shutting down...")
             logger.info("MOBILE EMPIRE COMMAND CENTER STOPPED")
-    
+
     else:
         print("Mobile Empire initialization failed!")
         return False
@@ -558,6 +557,6 @@ if __name__ == "__main__":
         asyncio.run(main())
     except KeyboardInterrupt:
         print("\nMobile Empire Command Center stopped by user")
-    except Exception as e:
-        logger.error(f"Critical error: {e}")
+    except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Critical error: %s", e)
         print(f"Critical error: {e}")

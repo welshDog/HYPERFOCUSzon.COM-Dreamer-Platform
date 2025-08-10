@@ -4,16 +4,15 @@
 Custom workflows combining Gemini CLI + Empire tools for legendary development
 """
 
-import asyncio
-import json
-import subprocess
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Any, Optional
+import json
 import logging
+import subprocess
+import sys
 
-# Configure logging for empire integration
+import asyncio
 logging.basicConfig(
     level=logging.INFO,
     format='🤖💎⚡ %(asctime)s - %(levelname)s - %(message)s ⚡💎🤖'
@@ -22,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 class GeminiEmpireWorkflowBridge:
     """🌟 Bridge connecting Gemini CLI with Empire development workflows"""
-    
+
     def __init__(self):
         self.empire_root = Path("h:/")
         self.memory_crystals_path = self.empire_root / "memory_crystals"
@@ -32,62 +31,62 @@ class GeminiEmpireWorkflowBridge:
             "empire_aware": True,
             "output_style": "adhd_friendly"
         }
-        
+
         logger.info("🚀 Initializing Gemini Empire Integration Bridge...")
-        
+
     async def analyze_empire_codebase(self, focus_area: str = "all") -> Dict[str, Any]:
         """🔍 Use Gemini to analyze empire codebase with 1M token context"""
-        logger.info(f"🧠 Analyzing empire codebase - Focus: {focus_area}")
-        
+        logger.info("🧠 Analyzing empire codebase - Focus: %s", focus_area)
+
         try:
             # Prepare empire context for Gemini
             empire_context = await self._prepare_empire_context(focus_area)
-            
+
             # Execute Gemini analysis
             analysis_result = await self._execute_gemini_analysis(empire_context)
-            
+
             # Format results for empire use
             formatted_results = self._format_analysis_results(analysis_result)
-            
+
             logger.info("✅ Empire codebase analysis complete!")
             return formatted_results
-            
+
         except Exception as e:
-            logger.error(f"❌ Analysis error: {e}")
+        logger.error("❌ Analysis error: %s", e)
             return {"error": str(e), "status": "failed"}
-    
+
     async def create_development_workflow(self, feature_request: str) -> Dict[str, Any]:
         """🛠️ Create AI-assisted development workflow for empire features"""
-        logger.info(f"🎯 Creating development workflow for: {feature_request}")
-        
+        logger.info("🎯 Creating development workflow for: %s", feature_request)
+
         workflow = {
             "timestamp": datetime.now().isoformat(),
             "feature_request": feature_request,
             "workflow_phases": []
         }
-        
+
         # Phase 1: LOOK-THEN-BUILD Analysis
         look_build_phase = await self._execute_look_build_analysis(feature_request)
         workflow["workflow_phases"].append(look_build_phase)
-        
+
         # Phase 2: Gemini Code Analysis
         gemini_phase = await self._execute_gemini_development_analysis(feature_request)
         workflow["workflow_phases"].append(gemini_phase)
-        
+
         # Phase 3: Empire Integration Planning
         integration_phase = await self._plan_empire_integration(feature_request)
         workflow["workflow_phases"].append(integration_phase)
-        
+
         # Phase 4: Quality Assurance Protocol
         qa_phase = await self._create_qa_protocol(feature_request)
         workflow["workflow_phases"].append(qa_phase)
-        
+
         return workflow
-    
+
     async def train_team_on_ai_workflows(self, training_focus: str = "comprehensive") -> Dict[str, Any]:
         """🎓 Create AI-assisted development training for empire team"""
-        logger.info(f"📚 Creating team training - Focus: {training_focus}")
-        
+        logger.info("📚 Creating team training - Focus: %s", training_focus)
+
         training_modules = {
             "empire_ai_mastery": {
                 "title": "🌟 Empire AI Development Mastery",
@@ -96,25 +95,25 @@ class GeminiEmpireWorkflowBridge:
                 "modules": []
             }
         }
-        
+
         # Module 1: Gemini + Empire Integration Basics
         basic_module = await self._create_basic_training_module()
         training_modules["empire_ai_mastery"]["modules"].append(basic_module)
-        
+
         # Module 2: Advanced Multi-AI Coordination
         advanced_module = await self._create_advanced_training_module()
         training_modules["empire_ai_mastery"]["modules"].append(advanced_module)
-        
+
         # Module 3: Empire Quality Assurance with AI
         qa_module = await self._create_qa_training_module()
         training_modules["empire_ai_mastery"]["modules"].append(qa_module)
-        
+
         # Module 4: Real-World Empire Development Scenarios
         scenario_module = await self._create_scenario_training_module()
         training_modules["empire_ai_mastery"]["modules"].append(scenario_module)
-        
+
         return training_modules
-    
+
     async def _prepare_empire_context(self, focus_area: str) -> Dict[str, Any]:
         """📋 Prepare empire context for Gemini analysis"""
         context = {
@@ -123,25 +122,25 @@ class GeminiEmpireWorkflowBridge:
             "active_projects": [],
             "recent_achievements": []
         }
-        
+
         # Load Memory Crystal Intelligence
         if self.memory_crystals_path.exists():
             context["memory_crystals"] = await self._load_memory_crystals()
-        
+
         # Scan active empire systems
         context["empire_systems"] = await self._scan_empire_systems(focus_area)
-        
+
         # Load recent project updates
         context["active_projects"] = await self._scan_active_projects()
-        
+
         return context
-    
+
     async def _execute_gemini_analysis(self, context: Dict[str, Any]) -> Dict[str, Any]:
         """🤖 Execute Gemini CLI analysis with empire context"""
         try:
             # Prepare Gemini command with empire context
             gemini_prompt = self._create_empire_analysis_prompt(context)
-            
+
             # Execute Gemini CLI command
             result = subprocess.run([
                 "gemini",
@@ -149,15 +148,15 @@ class GeminiEmpireWorkflowBridge:
                 "--context", json.dumps(context),
                 "--prompt", gemini_prompt
             ], capture_output=True, text=True, encoding='utf-8')
-            
+
             if result.returncode == 0:
                 return {"status": "success", "analysis": result.stdout}
             else:
                 return {"status": "error", "error": result.stderr}
-                
+
         except Exception as e:
             return {"status": "error", "error": str(e)}
-    
+
     def _create_empire_analysis_prompt(self, context: Dict[str, Any]) -> str:
         """📝 Create empire-optimized analysis prompt for Gemini"""
         return f"""
@@ -178,7 +177,7 @@ ANALYSIS REQUIREMENTS:
 OUTPUT STYLE: ADHD-friendly with clear structure, bullet points, and actionable insights
 FOCUS: Practical recommendations for legendary empire development
         """
-    
+
     async def _execute_look_build_analysis(self, feature_request: str) -> Dict[str, Any]:
         """🔍 Execute LOOK-THEN-BUILD analysis phase"""
         return {
@@ -192,7 +191,7 @@ FOCUS: Practical recommendations for legendary empire development
             },
             "next_action": "Proceed to Gemini code analysis"
         }
-    
+
     async def _execute_gemini_development_analysis(self, feature_request: str) -> Dict[str, Any]:
         """🤖 Execute Gemini development analysis phase"""
         return {
@@ -206,7 +205,7 @@ FOCUS: Practical recommendations for legendary empire development
             },
             "estimated_completion": "5-10 minutes with 1M token context"
         }
-    
+
     async def _plan_empire_integration(self, feature_request: str) -> Dict[str, Any]:
         """🌐 Plan integration with existing empire systems"""
         return {
@@ -220,7 +219,7 @@ FOCUS: Practical recommendations for legendary empire development
             },
             "deployment_strategy": "Incremental rollout with testing phases"
         }
-    
+
     async def _create_qa_protocol(self, feature_request: str) -> Dict[str, Any]:
         """🛡️ Create quality assurance protocol"""
         return {
@@ -234,7 +233,7 @@ FOCUS: Practical recommendations for legendary empire development
             },
             "success_criteria": "Zero errors, full integration, legendary user experience"
         }
-    
+
     async def _create_basic_training_module(self) -> Dict[str, Any]:
         """📚 Create basic AI development training module"""
         return {
@@ -253,7 +252,7 @@ FOCUS: Practical recommendations for legendary empire development
             ],
             "success_metrics": "Confident use of Gemini for empire development"
         }
-    
+
     async def _create_advanced_training_module(self) -> Dict[str, Any]:
         """🚀 Create advanced multi-AI coordination training"""
         return {
@@ -272,7 +271,7 @@ FOCUS: Practical recommendations for legendary empire development
             ],
             "success_metrics": "Seamless multi-AI development mastery"
         }
-    
+
     async def _create_qa_training_module(self) -> Dict[str, Any]:
         """🛡️ Create quality assurance training module"""
         return {
@@ -291,7 +290,7 @@ FOCUS: Practical recommendations for legendary empire development
             ],
             "success_metrics": "100% error-free deployments"
         }
-    
+
     async def _create_scenario_training_module(self) -> Dict[str, Any]:
         """🎯 Create real-world scenario training"""
         return {
@@ -310,7 +309,7 @@ FOCUS: Practical recommendations for legendary empire development
             ],
             "success_metrics": "Legendary empire development mastery"
         }
-    
+
     async def _load_memory_crystals(self) -> List[Dict[str, Any]]:
         """💎 Load Memory Crystal Intelligence data"""
         crystals = []
@@ -321,17 +320,17 @@ FOCUS: Practical recommendations for legendary empire development
                         crystal_data = json.load(f)
                         crystals.append(crystal_data)
                 except Exception as e:
-                    logger.warning(f"⚠️ Could not load crystal {crystal_file}: {e}")
+        logger.warning("⚠️ Could not load crystal {crystal_file}: %s", e)
         return crystals
-    
+
     async def _scan_empire_systems(self, focus_area: str) -> List[Dict[str, Any]]:
         """🌐 Scan active empire systems"""
         systems = []
         empire_patterns = [
-            "*EMPIRE*", "*COMMAND*", "*PORTAL*", "*BRIDGE*", 
+            "*EMPIRE*", "*COMMAND*", "*PORTAL*", "*BRIDGE*",
             "*AUTOMATION*", "*INTELLIGENCE*", "*GUARDIAN*"
         ]
-        
+
         for pattern in empire_patterns:
             for system_file in self.empire_root.glob(f"**/{pattern}.py"):
                 systems.append({
@@ -340,14 +339,14 @@ FOCUS: Practical recommendations for legendary empire development
                     "type": "Python System",
                     "status": "Active"
                 })
-        
+
         return systems[:10]  # Limit for performance
-    
+
     async def _scan_active_projects(self) -> List[Dict[str, Any]]:
         """📋 Scan active empire projects"""
         projects = []
         recent_files = []
-        
+
         # Find recently modified empire files
         for file_path in self.empire_root.glob("**/*.py"):
             try:
@@ -359,9 +358,9 @@ FOCUS: Practical recommendations for legendary empire development
                     })
             except Exception:
                 continue
-        
+
         return recent_files[:5]  # Limit for performance
-    
+
     def _format_analysis_results(self, analysis_result: Dict[str, Any]) -> Dict[str, Any]:
         """📊 Format analysis results for empire use"""
         return {
@@ -381,48 +380,48 @@ FOCUS: Practical recommendations for legendary empire development
 async def main():
     """🚀 Main CLI interface for Gemini Empire workflows"""
     bridge = GeminiEmpireWorkflowBridge()
-    
+
     print("""
 🎊💎⚡ GEMINI EMPIRE WORKFLOW BRIDGE ⚡💎🎊
 
 Choose your legendary workflow:
 1. 🔍 Analyze Empire Codebase
-2. 🛠️ Create Development Workflow  
+2. 🛠️ Create Development Workflow
 3. 🎓 Generate Team Training
 4. 📊 Full Empire Integration Analysis
 
 Enter choice (1-4): """, end="")
-    
+
     choice = input().strip()
-    
+
     if choice == "1":
         print("🧠 Starting empire codebase analysis...")
         result = await bridge.analyze_empire_codebase()
         print(json.dumps(result, indent=2))
-        
+
     elif choice == "2":
         feature = input("🎯 Enter feature request: ").strip()
         print(f"🛠️ Creating development workflow for: {feature}")
         result = await bridge.create_development_workflow(feature)
         print(json.dumps(result, indent=2))
-        
+
     elif choice == "3":
         print("🎓 Generating team training modules...")
         result = await bridge.train_team_on_ai_workflows()
         print(json.dumps(result, indent=2))
-        
+
     elif choice == "4":
         print("📊 Running full empire integration analysis...")
         codebase = await bridge.analyze_empire_codebase("comprehensive")
         training = await bridge.train_team_on_ai_workflows("comprehensive")
-        
+
         full_analysis = {
             "empire_codebase_analysis": codebase,
             "team_training_plan": training,
             "integration_status": "🚀 LEGENDARY - Ready for maximum AI-assisted development!"
         }
         print(json.dumps(full_analysis, indent=2))
-    
+
     else:
         print("🤖 Invalid choice. Empire workflows require legendary precision!")
 

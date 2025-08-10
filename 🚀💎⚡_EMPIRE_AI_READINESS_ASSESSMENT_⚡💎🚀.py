@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 # 🚀💎⚡ EMPIRE AI READINESS ASSESSMENT ⚡💎🚀
 
-import os
-from pathlib import Path
 from datetime import datetime
-
+from pathlib import Path
 print("🎊💎⚡ EMPIRE AI TRANSFORMATION READINESS ASSESSMENT ⚡💎🎊")
 print("=" * 70)
 print("🧠 BROski♾️ with ARIA💫 analyzing your legendary empire...")
@@ -101,7 +99,7 @@ print("=" * 45)
 
 ai_directories = [
     "empire_ai",
-    "empire_ai/models", 
+    "empire_ai/models",
     "empire_ai/training_data",
     "empire_ai/integrations",
     "empire_ai/oracle",
@@ -122,7 +120,7 @@ config = {
         "integration_targets": [
             "grafana_dashboards",
             "discord_bot",
-            "smart_alerts", 
+            "smart_alerts",
             "predictive_analytics"
         ]
     }

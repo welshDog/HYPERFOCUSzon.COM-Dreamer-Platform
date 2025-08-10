@@ -1,6 +1,6 @@
 import os
-import requests
 
+import requests
 print("🚀💎⚡ QUICK GRAFANA ACCESS TEST ⚡💎🚀")
 print("=" * 50)
 

@@ -4,22 +4,22 @@
 Simplified, bulletproof deployment script
 """
 
-import os
-import requests
 import json
+import os
 
+import requests
 def test_grafana_api():
     """Test API authentication"""
     token = os.getenv('GRAFANA_SERVICE_ACCOUNT_TOKEN')
     if not token:
         print("❌ No token found!")
         return False
-    
+
     headers = {
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json'
     }
-    
+
     try:
         response = requests.get('https://welshdog.grafana.net/api/user', headers=headers)
         if response.status_code == 200:
@@ -43,7 +43,7 @@ def create_prometheus_source():
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json'
     }
-    
+
     datasource = {
         "name": "HyperFocus-Empire-Prometheus",
         "type": "prometheus",
@@ -54,14 +54,14 @@ def create_prometheus_source():
             "httpMethod": "POST"
         }
     }
-    
+
     try:
         response = requests.post(
             'https://welshdog.grafana.net/api/datasources',
             headers=headers,
             json=datasource
         )
-        
+
         if response.status_code in [200, 201]:
             print("✅ Prometheus data source created successfully!")
             return True
@@ -83,18 +83,18 @@ def import_dashboard():
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json'
     }
-    
+
     # Load the dashboard template
     try:
         with open('h:/grafana-config/empire-dashboard-template.json', 'r') as f:
             dashboard_data = json.load(f)
-        
+
         response = requests.post(
             'https://welshdog.grafana.net/api/dashboards/db',
             headers=headers,
             json=dashboard_data
         )
-        
+
         if response.status_code in [200, 201]:
             result = response.json()
             dashboard_url = f"https://welshdog.grafana.net/d/{result.get('uid', 'unknown')}"
@@ -113,25 +113,25 @@ def main():
     """Main deployment function"""
     print("🚀💎⚡ GRAFANA EMPIRE DEPLOYMENT STARTING ⚡💎🚀")
     print("=" * 60)
-    
+
     # Step 1: Test API
     print("\n🔐 Step 1: Testing API Authentication...")
     if not test_grafana_api():
         print("❌ API authentication failed. Stopping deployment.")
         return
-    
+
     # Step 2: Create Prometheus data source
     print("\n📊 Step 2: Creating Prometheus Data Source...")
     if not create_prometheus_source():
         print("❌ Failed to create Prometheus data source.")
         return
-    
+
     # Step 3: Import dashboard
     print("\n🎯 Step 3: Importing Empire Dashboard...")
     if not import_dashboard():
         print("❌ Failed to import dashboard.")
         return
-    
+
     print("\n🎊💎⚡ LEGENDARY DEPLOYMENT COMPLETE! ⚡💎🎊")
     print("=" * 60)
     print("🌟 Your HyperFocus Zone Empire monitoring is now LIVE!")

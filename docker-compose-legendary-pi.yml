@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  broskie-agent:
+    image: python:3.11-slim
+    container_name: legendary-broskie-agent
+    ports:
+    - 8080:8080
+    environment:
+    - BROSKIE_MODE=LEGENDARY
+    - PI_IP=192.168.137.100
+    - LAPTOP_IP=192.168.137.10
+    volumes:
+    - ./microcloud:/app/microcloud
+    - ./logs:/app/logs
+    working_dir: /app
+    command: "sh -c \"pip install requests flask prometheus-client && python -c \\\
+      \"\nimport flask, json, time\nfrom datetime import datetime\nfrom flask import\
+      \ Flask, jsonify, request\n\napp = Flask(__name__)\n\n@app.route('/health')\n\
+      def health():\n    return jsonify({\n        'status': 'LEGENDARY',\n      \
+      \  'service': 'BROski Pi Agent',\n        'timestamp': datetime.now().isoformat(),\n\
+      \        'pi_ip': '192.168.137.100'\n    })\n\n@app.route('/process', methods=['POST'])\
+      \  \ndef process_task():\n    task_data = request.get_json()\n    return jsonify({\n\
+      \        'task_id': task_data.get('task_id', 'unknown'),\n        'status':\
+      \ 'completed',\n        'result': 'LEGENDARY processing complete',\n       \
+      \ 'timestamp': datetime.now().isoformat()\n    })\n\n@app.route('/status')\n\
+      def status():\n    return jsonify({\n        'system': 'LEGENDARY Pi Micro-Cloud',\n\
+      \        'status': 'OPERATIONAL'\n    })\n\napp.run(host='0.0.0.0', port=8080)\n\
+      \\\"\n\""
+    restart: unless-stopped
+  pi-health-monitor:
+    image: python:3.11-slim
+    container_name: legendary-pi-health
+    ports:
+    - 80:80
+    command: "sh -c \"pip install flask && python -c \\\"\nimport flask\nfrom datetime\
+      \ import datetime\nfrom flask import Flask, jsonify\n\napp = Flask(__name__)\n\
+      \n@app.route('/')\n@app.route('/health')\ndef health():\n    return jsonify({\n\
+      \        'system': 'LEGENDARY Pi Micro-Cloud Health Monitor',\n        'status':\
+      \ 'OPERATIONAL',\n        'timestamp': datetime.now().isoformat(),\n       \
+      \ 'health_score': 95.8\n    })\n\n@app.route('/pi/status')\ndef pi_status():\n\
+      \    return jsonify({\n        'hostname': 'legendary-pi-microcloud',\n    \
+      \    'model': 'Raspberry Pi 4B',\n        'status': 'LEGENDARY'\n    })\n\n\
+      app.run(host='0.0.0.0', port=80)\n\\\"\n\""
+    restart: unless-stopped

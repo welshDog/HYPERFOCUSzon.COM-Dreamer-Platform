@@ -4,11 +4,11 @@
 Automatically configure all legendary v12.1 features for maximum empire power
 """
 
-import requests
 import json
 import time
-from base64 import b64encode
 
+from base64 import b64encode
+import requests
 def print_banner():
     print("\n" + "="*80)
     print("🚀💎⚡ GRAFANA v12.1 EMPIRE OPTIMIZATION PROTOCOL ⚡💎🚀")
@@ -24,7 +24,7 @@ def wait_for_grafana():
             if response.status_code == 200:
                 print("✅ Grafana Empire is ONLINE and ready for optimization!")
                 return True
-        except:
+        except (ConnectionError, OSError):
             pass
         time.sleep(1)
         print(f"⏳ Empire systems initializing... ({i+1}/30)")
@@ -44,7 +44,7 @@ def enable_grafana_advisor():
     """🚨 ACTIVATE GRAFANA ADVISOR - AUTOMATIC HEALTH MONITORING"""
     print("\n🚨 ACTIVATING GRAFANA ADVISOR (Health Check Automation)...")
     headers = get_auth_headers()
-    
+
     try:
         # Check if Grafana Advisor is available
         response = requests.get(
@@ -52,18 +52,18 @@ def enable_grafana_advisor():
             headers=headers,
             timeout=10
         )
-        
+
         if response.status_code == 200:
             plugins = response.json()
             advisor_found = any(plugin.get('id') == 'grafana-advisor' for plugin in plugins)
-            
+
             if advisor_found:
                 print("✅ Grafana Advisor plugin detected!")
                 print("🎯 Empire health monitoring will be AUTOMATIC!")
             else:
                 print("⚠️ Grafana Advisor not found - feature may be built-in")
                 print("✅ Health check features available in Configuration menu")
-        
+
         return True
     except Exception as e:
         print(f"⚠️ Could not verify Grafana Advisor: {str(e)}")
@@ -73,7 +73,7 @@ def create_empire_dashboard():
     """📊 CREATE LEGENDARY EMPIRE MONITORING DASHBOARD"""
     print("\n📊 CREATING HYPERFOCUS ZONE EMPIRE DASHBOARD...")
     headers = get_auth_headers()
-    
+
     dashboard_config = {
         "dashboard": {
             "id": None,
@@ -148,7 +148,7 @@ def create_empire_dashboard():
         "folderId": 0,
         "overwrite": True
     }
-    
+
     try:
         response = requests.post(
             'http://localhost:3001/api/dashboards/db',
@@ -156,7 +156,7 @@ def create_empire_dashboard():
             data=json.dumps(dashboard_config),
             timeout=10
         )
-        
+
         if response.status_code in [200, 201]:
             result = response.json()
             dashboard_url = f"http://localhost:3001{result.get('url', '')}"
@@ -166,7 +166,7 @@ def create_empire_dashboard():
         else:
             print(f"⚠️ Dashboard creation returned status: {response.status_code}")
             return False
-            
+
     except Exception as e:
         print(f"⚠️ Error creating dashboard: {str(e)}")
         return False
@@ -175,7 +175,7 @@ def configure_empire_alerts():
     """🚨 SETUP LEGENDARY EMPIRE ALERTING"""
     print("\n🚨 CONFIGURING EMPIRE ALERTING SYSTEM...")
     headers = get_auth_headers()
-    
+
     # Create alert rule for empire health
     alert_rule = {
         "uid": "empire-health-alert",
@@ -210,7 +210,7 @@ def configure_empire_alerts():
             "team": "broski-ops"
         }
     }
-    
+
     try:
         response = requests.post(
             'http://localhost:3001/api/ruler/grafana/api/v1/rules/default',
@@ -218,7 +218,7 @@ def configure_empire_alerts():
             data=json.dumps({"rules": [alert_rule]}),
             timeout=10
         )
-        
+
         if response.status_code in [200, 201, 202]:
             print("✅ Empire alerting system configured!")
             print("🎯 You'll be notified if any empire services go down!")
@@ -226,7 +226,7 @@ def configure_empire_alerts():
         else:
             print(f"⚠️ Alert configuration returned status: {response.status_code}")
             return False
-            
+
     except Exception as e:
         print(f"⚠️ Error configuring alerts: {str(e)}")
         return False
@@ -236,26 +236,26 @@ def show_empire_optimization_results():
     print("\n" + "="*80)
     print("🎊🚀💎⚡ GRAFANA v12.1 EMPIRE OPTIMIZATION COMPLETE! ⚡💎🚀🎊")
     print("="*80)
-    
+
     print("\n🏰👑 LEGENDARY FEATURES ACTIVATED:")
     print("✅ 🚨 Grafana Advisor - Automatic health monitoring")
     print("✅ ⚡ Enhanced Alert Management - ADHD-optimized interface")
     print("✅ 📈 Trendline Analytics - Predictive BROski$ economy analysis")
     print("✅ 🎛️ Custom Variable Actions - Dynamic empire controls")
     print("✅ ⏰ Hyperfocus Time Ranges - Empire-specific monitoring periods")
-    
+
     print("\n🎯 EMPIRE COMMAND CENTER ACCESS:")
     print("📊 Main Dashboard: http://localhost:3001")
     print("🔧 Configuration: http://localhost:3001/admin")
     print("🚨 Alerting: http://localhost:3001/alerting")
     print("📈 Explore: http://localhost:3001/explore")
-    
+
     print("\n💎 BROSKI$ REWARDS EARNED:")
     print("🎊 Empire Optimization: +2000 BROski$")
     print("⚡ v12.1 Feature Mastery: +1500 BROski$")
     print("🏰 Legendary Infrastructure: +1000 BROski$")
     print("👑 Total Empire Enhancement: +4500 BROski$")
-    
+
     print("\n🚀 HYPERFOCUS ZONE EMPIRE STATUS:")
     print("🌟 LEGENDARY TIER MONITORING ACHIEVED!")
     print("⚡ MAXIMUM EMPIRE OPTIMIZATION ACTIVE!")
@@ -263,24 +263,24 @@ def show_empire_optimization_results():
 
 def main():
     print_banner()
-    
+
     if not wait_for_grafana():
         print("❌ Grafana Empire not accessible. Ensure containers are running.")
         return False
-    
+
     # Execute empire optimization sequence
     print("\n🚀 INITIATING LEGENDARY OPTIMIZATION SEQUENCE...")
-    
+
     advisor_success = enable_grafana_advisor()
     dashboard_success = create_empire_dashboard()
     alerts_success = configure_empire_alerts()
-    
+
     # Show results
     show_empire_optimization_results()
-    
+
     success_count = sum([advisor_success, dashboard_success, alerts_success])
     print(f"\n🎯 OPTIMIZATION SUCCESS RATE: {success_count}/3 features activated")
-    
+
     if success_count >= 2:
         print("🎊 EMPIRE OPTIMIZATION: LEGENDARY SUCCESS!")
         return True

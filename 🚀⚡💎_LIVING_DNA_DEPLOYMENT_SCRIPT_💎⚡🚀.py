@@ -9,16 +9,13 @@ This script simulates the Discord !deploy-living-dna command for immediate testi
 📁 CATEGORY: 🚀 DEPLOYMENT SCRIPTS
 """
 
-import json
-import os
-import sys
 from datetime import datetime
 from pathlib import Path
-import importlib.util
-
+import json
+import sys
 class LivingDNADirectDeployment:
     """🧬 Direct deployment system for Living DNA Profile systems"""
-    
+
     def __init__(self):
         self.deployment_status = {
             "identity_card_system": False,
@@ -27,34 +24,34 @@ class LivingDNADirectDeployment:
             "dna_engine": False,
             "master_integration": False
         }
-        
+
         # System instances
         self.identity_system = None
         self.engagement_engine = None
         self.health_bot_enhanced = None
         self.dna_engine = None
-    
+
     def load_system_module(self, system_name: str, file_path: str):
         """🔧 Dynamically load a system module"""
         try:
             full_path = Path(file_path)
             if not full_path.exists():
                 return None, f"System file not found: {file_path}"
-            
+
             spec = importlib.util.spec_from_file_location(f"{system_name}_module", full_path)
             module = importlib.util.module_from_spec(spec)
             sys.modules[f"{system_name}_module"] = module
             spec.loader.exec_module(module)
-            
+
             return module, "success"
         except Exception as e:
             return None, f"Failed to load {system_name}: {str(e)}"
-    
+
     def deploy_living_dna_systems(self):
         """🚀 Deploy all Living DNA systems"""
         print("🏛️🚀⚡💎 INITIATING LIVING DNA DEPLOYMENT 💎⚡🚀🏛️")
         print("="*60)
-        
+
         deployment_log = {
             "start_time": datetime.now().isoformat(),
             "systems_deployed": [],
@@ -63,9 +60,9 @@ class LivingDNADirectDeployment:
             "success_count": 0,
             "deployment_status": "in_progress"
         }
-        
+
         base_path = "h:\\HYPERFOCUS ZONE DISCORD HUB"
-        
+
         # Phase 1: Identity Card System
         print("📡 Phase 1: Deploying Ultra Identity Card System...")
         try:
@@ -83,7 +80,7 @@ class LivingDNADirectDeployment:
         except Exception as e:
             deployment_log["deployment_errors"].append(f"❌ Identity System: {str(e)}")
             print(f"   ❌ Identity System: {str(e)}")
-        
+
         # Phase 2: Engagement Engine
         print("📡 Phase 2: Deploying Identity-Aware Engagement Engine...")
         try:
@@ -101,7 +98,7 @@ class LivingDNADirectDeployment:
         except Exception as e:
             deployment_log["deployment_errors"].append(f"❌ Engagement Engine: {str(e)}")
             print(f"   ❌ Engagement Engine: {str(e)}")
-        
+
         # Phase 3: Enhanced Health Bot
         print("📡 Phase 3: Deploying Identity-Aware Ultra Health Bot...")
         try:
@@ -119,7 +116,7 @@ class LivingDNADirectDeployment:
         except Exception as e:
             deployment_log["deployment_errors"].append(f"❌ Health Bot: {str(e)}")
             print(f"   ❌ Health Bot: {str(e)}")
-        
+
         # Phase 4: DNA Engine
         print("📡 Phase 4: Deploying Unified Living DNA Profile Engine...")
         try:
@@ -139,7 +136,7 @@ class LivingDNADirectDeployment:
         except Exception as e:
             deployment_log["deployment_errors"].append(f"❌ DNA Engine: {str(e)}")
             print(f"   ❌ DNA Engine: {str(e)}")
-        
+
         # Final Status
         print("="*60)
         if deployment_log["success_count"] == deployment_log["total_systems"]:
@@ -155,9 +152,9 @@ class LivingDNADirectDeployment:
             deployment_log["deployment_status"] = "failed"
             print("🏛️❌⚡ DEPLOYMENT FAILED ⚡❌🏛️")
             print("Integration deployment encountered critical errors")
-        
+
         deployment_log["end_time"] = datetime.now().isoformat()
-        
+
         # Display results
         print(f"\n📊 DEPLOYMENT SUMMARY:")
         print(f"   Systems Deployed: {deployment_log['success_count']}/{deployment_log['total_systems']}")
@@ -165,26 +162,26 @@ class LivingDNADirectDeployment:
             print(f"   Successfully Deployed:")
             for system in deployment_log["systems_deployed"]:
                 print(f"      {system}")
-        
+
         if deployment_log["deployment_errors"]:
             print(f"   Issues Encountered:")
             for error in deployment_log["deployment_errors"]:
                 print(f"      {error}")
-        
+
         if deployment_log["deployment_status"] == "complete_success":
             print(f"\n🎯 LIVING DNA EMPIRE STATUS: FULLY OPERATIONAL!")
             print(f"   Your unified profile systems are now connected and ready to evolve!")
-            
+
             # Test functionality
             print(f"\n🧪 TESTING FUNCTIONALITY:")
             self.test_deployed_systems()
-        
+
         return deployment_log
-    
+
     def test_deployed_systems(self):
         """🧪 Test deployed systems functionality"""
         test_user_id = 12345  # Test user ID
-        
+
         # Test Identity Card System
         if self.identity_system:
             try:
@@ -192,7 +189,7 @@ class LivingDNADirectDeployment:
                 print("   ✅ Identity Card System: Creating test card - SUCCESS")
             except Exception as e:
                 print(f"   ❌ Identity Card System: Test failed - {str(e)}")
-        
+
         # Test Engagement Engine
         if self.engagement_engine:
             try:
@@ -200,7 +197,7 @@ class LivingDNADirectDeployment:
                 print("   ✅ Engagement Engine: Generating personalized response - SUCCESS")
             except Exception as e:
                 print(f"   ❌ Engagement Engine: Test failed - {str(e)}")
-        
+
         # Test Health Bot
         if self.health_bot_enhanced:
             try:
@@ -208,7 +205,7 @@ class LivingDNADirectDeployment:
                 print("   ✅ Identity-Aware Health Bot: Generating health check - SUCCESS")
             except Exception as e:
                 print(f"   ❌ Identity-Aware Health Bot: Test failed - {str(e)}")
-        
+
         # Test DNA Engine
         if self.dna_engine:
             try:
@@ -216,7 +213,7 @@ class LivingDNADirectDeployment:
                 print("   ✅ Living DNA Engine: Creating DNA profile - SUCCESS")
             except Exception as e:
                 print(f"   ❌ Living DNA Engine: Test failed - {str(e)}")
-        
+
         print(f"\n🧬 SYSTEM INTEGRATION TEST COMPLETE!")
 
 def main():
@@ -224,22 +221,22 @@ def main():
     print("🚀⚡💎 HYPERFOCUS ZONE LIVING DNA DEPLOYMENT SCRIPT 💎⚡🚀")
     print("Direct deployment for immediate testing and validation")
     print("")
-    
+
     deployer = LivingDNADirectDeployment()
     deployment_log = deployer.deploy_living_dna_systems()
-    
+
     # Save deployment log
     log_file = f"deployment_log_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(log_file, 'w', encoding='utf-8') as f:
         json.dump(deployment_log, f, indent=2, ensure_ascii=False)
-    
+
     print(f"\n📝 Deployment log saved to: {log_file}")
-    
+
     if deployment_log["deployment_status"] == "complete_success":
         print(f"\n🎊 CONGRATULATIONS! Your HYPERFOCUS ZONE Living DNA Empire is OPERATIONAL! 🎊")
         print(f"   The systems are now unified and ready to provide personalized experiences.")
         print(f"   Your empire has evolved to the next level! 🚀")
-    
+
     input("\nPress Enter to exit...")
 
 if __name__ == "__main__":

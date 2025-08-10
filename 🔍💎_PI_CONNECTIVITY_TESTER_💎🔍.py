@@ -4,17 +4,17 @@
 Simple tool to test Pi micro-cloud connectivity and basic performance
 """
 
-import asyncio
-import aiohttp
-import time
+from datetime import datetime
 import socket
 import sys
-from datetime import datetime
+import time
 
+import aiohttp
+import asyncio
 async def test_pi_connectivity(pi_ip: str, timeout: int = 10):
     """Test basic connectivity to Pi"""
     print(f"🔍 Testing connectivity to Pi at {pi_ip}...")
-    
+
     # Test 1: TCP Socket connection
     print(f"📡 Testing TCP socket connection...")
     try:
@@ -22,10 +22,10 @@ async def test_pi_connectivity(pi_ip: str, timeout: int = 10):
         sock.close()
         print(f"✅ TCP connection to {pi_ip}:80 successful")
         tcp_success = True
-    except Exception as e:
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"❌ TCP connection failed: {e}")
         tcp_success = False
-    
+
     # Test 2: HTTP connectivity
     print(f"🌐 Testing HTTP connectivity...")
     try:
@@ -38,9 +38,9 @@ async def test_pi_connectivity(pi_ip: str, timeout: int = 10):
                 else:
                     print(f"⚠️ HTTP responded with status {response.status}")
                     return False
-    except Exception as e:
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"❌ HTTP connection failed: {e}")
-        
+
         # Try alternative endpoints
         for endpoint in ["/", "/pi/status", "/api/health"]:
             try:
@@ -49,25 +49,25 @@ async def test_pi_connectivity(pi_ip: str, timeout: int = 10):
                         print(f"📍 Alternative endpoint {endpoint}: HTTP {response.status}")
                         if response.status < 500:
                             return True
-            except:
+            except (ConnectionError, OSError):
                 continue
-    
+
     return tcp_success
 
 async def scan_network_for_pi():
     """Scan local network for active Pi devices"""
     print("🔍 Scanning local network for Pi devices...")
-    
+
     # Get local network range
     try:
         hostname = socket.gethostname()
         local_ip = socket.gethostbyname(hostname)
         network_base = '.'.join(local_ip.split('.')[:-1]) + '.'
         print(f"🌐 Local network base: {network_base}x")
-        
+
         # Test common Pi IPs
         common_ips = [f"{network_base}{i}" for i in [100, 101, 200, 201, 10, 20, 50]]
-        
+
         print("📡 Testing common Pi IP addresses...")
         for ip in common_ips:
             try:
@@ -75,7 +75,7 @@ async def scan_network_for_pi():
                 sock = socket.create_connection((ip, 80), 2)
                 sock.close()
                 print(f"✅ Found active device at {ip}:80")
-                
+
                 # Test if it's a Pi with our micro-cloud
                 try:
                     async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=3)) as session:
@@ -85,21 +85,21 @@ async def scan_network_for_pi():
                                 if "Pi" in data or "Micro-Cloud" in data:
                                     print(f"🥧 Found Pi micro-cloud at {ip}!")
                                     return ip
-                except:
+                except (ConnectionError, OSError):
                     pass
-                    
-            except:
+
+            except (ConnectionError, OSError):
                 continue
-                
-    except Exception as e:
+
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"⚠️ Network scan error: {e}")
-    
+
     return None
 
 async def quick_performance_test(pi_ip: str):
     """Quick performance test"""
     print(f"⚡ Running quick performance test on {pi_ip}...")
-    
+
     try:
         # Latency test
         start_time = time.time()
@@ -108,7 +108,7 @@ async def quick_performance_test(pi_ip: str):
                 await response.read()
                 latency = (time.time() - start_time) * 1000
                 print(f"📊 HTTP latency: {latency:.2f} ms")
-        
+
         # Simple throughput test
         test_data = b'0' * (1024 * 10)  # 10KB
         start_time = time.time()
@@ -118,28 +118,28 @@ async def quick_performance_test(pi_ip: str):
                 duration = time.time() - start_time
                 throughput = (len(test_data) * 8) / (duration * 1_000_000)  # Mbps
                 print(f"📊 Upload throughput: {throughput:.2f} Mbps")
-                
-    except Exception as e:
+
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"⚠️ Performance test failed: {e}")
 
 async def main():
     """Main function"""
     print("🚀💎⚡ PI CONNECTIVITY TESTER ⚡💎🚀")
     print("=" * 50)
-    
+
     # Get Pi IP from command line or use default
     pi_ip = sys.argv[1] if len(sys.argv) > 1 else "192.168.1.200"
     print(f"🎯 Target Pi IP: {pi_ip}")
     print(f"🕐 Test time: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
-    
+
     # Test connectivity
     connected = await test_pi_connectivity(pi_ip)
-    
+
     if not connected:
         print(f"\n❌ Could not connect to Pi at {pi_ip}")
         print("🔍 Attempting network scan...")
-        
+
         found_ip = await scan_network_for_pi()
         if found_ip:
             print(f"🎯 Found Pi at {found_ip}, testing performance...")
@@ -155,7 +155,7 @@ async def main():
     else:
         print(f"\n✅ Successfully connected to Pi at {pi_ip}")
         await quick_performance_test(pi_ip)
-        
+
         print(f"\n🎊 CONNECTIVITY TEST COMPLETE!")
         print(f"🌐 Pi micro-cloud is accessible at: http://{pi_ip}")
         print(f"📊 Status endpoint: http://{pi_ip}/pi/status")

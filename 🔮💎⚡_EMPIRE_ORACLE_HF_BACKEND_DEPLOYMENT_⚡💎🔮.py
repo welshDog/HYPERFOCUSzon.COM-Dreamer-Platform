@@ -8,18 +8,17 @@ Replace static Empire Oracle responses with dynamic HF intelligence!
 Integrates with existing localhost:7860 Gradio interface.
 """
 
-import gradio as gr
-import asyncio
-import os
 from datetime import datetime
 from pathlib import Path
+import os
 
+import gradio as gr
 print("🔮💎⚡ EMPIRE ORACLE HF BACKEND DEPLOYMENT ⚡💎🔮")
 print("=" * 60)
 
 try:
     from huggingface_hub import InferenceClient
-    
+
     # Load HF token from empire.env
     def load_hf_token():
         token_files = [
@@ -27,7 +26,7 @@ try:
             Path("h:/empire.env"),
             Path("empire.env")
         ]
-        
+
         for token_file in token_files:
             if token_file.exists():
                 try:
@@ -37,17 +36,17 @@ try:
                                 token = line.split('=', 1)[1].strip()
                                 print(f"🔑 HF Token loaded from {token_file.name}")
                                 return token
-                except:
+                except Exception:
                     continue
-        
+
         # Fallback to direct token
         return "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"
-    
+
     # Initialize HF client
     hf_token = load_hf_token()
     client = InferenceClient(token=hf_token)
     print(f"✅ HF Client initialized")
-    
+
     # Empire Oracle HF-powered response system
     class EmpireOracleHF:
         def __init__(self):
@@ -61,10 +60,10 @@ try:
                 "ai_readiness": "84.6% sovereignty achieved",
                 "hf_integration": "ACTIVE AND OPERATIONAL"
             }
-            
+
         def get_oracle_response(self, user_question):
             """Get HF-powered oracle response"""
-            
+
             empire_prompt = f"""You are the Empire Oracle, an ADHD-friendly AI assistant for a legendary monitoring empire.
 
 Empire Status Update:
@@ -79,7 +78,7 @@ Empire Status Update:
 User Question: {user_question}
 
 Respond with enthusiasm, emojis, and actionable empire insights. Keep it ADHD-friendly and energetic:"""
-            
+
             try:
                 # Get HF model response
                 response = self.client.text_generation(
@@ -89,15 +88,15 @@ Respond with enthusiasm, emojis, and actionable empire insights. Keep it ADHD-fr
                     temperature=0.7,
                     do_sample=True
                 )
-                
+
                 # Add empire signature
                 hf_response = f"🤖 **Empire Oracle (HF-Powered)**: {response}\n\n⚡ *Powered by Hugging Face Intelligence | Empire Status: LEGENDARY*"
-                
+
                 return hf_response
-                
+
             except Exception as e:
                 # Fallback response with error info
-                fallback_response = f"""🔧 **Empire Oracle (Maintenance Mode)**: 
+                fallback_response = f"""🔧 **Empire Oracle (Maintenance Mode)**:
 
 🎯 **Quick Empire Status Update:**
 • 🏛️ Infrastructure: LEGENDARY (30+ containers operational)
@@ -110,29 +109,29 @@ Respond with enthusiasm, emojis, and actionable empire insights. Keep it ADHD-fr
 
 🚀 **Next Actions:**
 1. Check Grafana dashboard for detailed metrics
-2. Review agent army coordination status  
+2. Review agent army coordination status
 3. Celebrate your legendary infrastructure success!
 
 *Empire Mode: LEGENDARY OPERATIONAL STATUS* 👑"""
-                
+
                 return fallback_response
-    
+
     # Initialize Oracle
     oracle = EmpireOracleHF()
     print("🔮 Empire Oracle HF system ready!")
-    
+
     # Gradio interface
     def oracle_interface(user_input):
         """Gradio interface for Empire Oracle"""
         if not user_input.strip():
             return "🔮 **Empire Oracle**: Ask me anything about your legendary empire! I'm powered by Hugging Face intelligence and ready to help. 🚀"
-        
+
         response = oracle.get_oracle_response(user_input)
         return response
-    
+
     # Create Gradio app
     print("🚀 Creating Gradio interface...")
-    
+
     demo = gr.Interface(
         fn=oracle_interface,
         inputs=gr.Textbox(
@@ -147,33 +146,33 @@ Respond with enthusiasm, emojis, and actionable empire insights. Keep it ADHD-fr
         title="🔮💎⚡ Empire Oracle HF Backend ⚡💎🔮",
         description="""
         **🚀 Legendary Empire Oracle - Now Powered by Hugging Face Intelligence! 🚀**
-        
+
         Ask about your empire's status, get AI-powered insights, and receive ADHD-friendly responses.
-        
+
         **Empire Status**: LEGENDARY | **HF Integration**: ACTIVE | **677+ Agents**: COORDINATED
         """,
         theme=gr.themes.Glass(),
         examples=[
             "How is my empire performing today?",
             "What's the status of my monitoring systems?",
-            "Any recommendations for my infrastructure?", 
+            "Any recommendations for my infrastructure?",
             "Celebrate our legendary uptime achievement!",
             "How are my 677+ agents doing?",
             "Show me Grafana dashboard insights"
         ]
     )
-    
+
     print("🎊 Empire Oracle HF Backend ready for deployment!")
     print("🌐 Launching on localhost:7860...")
     print("=" * 50)
     print("🔮 Empire Oracle Features:")
     print("   ✅ HF-Powered Intelligence")
-    print("   ✅ ADHD-Friendly Responses") 
+    print("   ✅ ADHD-Friendly Responses")
     print("   ✅ Real-time Empire Status")
     print("   ✅ 677+ Agent Coordination Info")
     print("   ✅ Grafana Integration Insights")
     print("=" * 50)
-    
+
     # Launch the interface
     if __name__ == "__main__":
         demo.launch(

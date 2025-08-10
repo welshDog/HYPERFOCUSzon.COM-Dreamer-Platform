@@ -1,0 +1,20 @@
+global:
+  evaluation_interval: 15s
+  scrape_interval: 15s
+rule_files:
+- pi_alerting_rules.yml
+scrape_configs:
+- job_name: legendary-pi-microcloud
+  metrics_path: /metrics
+  scrape_interval: 10s
+  static_configs:
+  - targets:
+    - 192.168.137.100:8080
+    - 192.168.137.100:80
+    - 192.168.137.100:9100
+- job_name: pi-health-monitoring
+  metrics_path: /health
+  scrape_interval: 30s
+  static_configs:
+  - targets:
+    - 192.168.137.100:80

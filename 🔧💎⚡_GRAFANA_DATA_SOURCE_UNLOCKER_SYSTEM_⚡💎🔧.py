@@ -6,11 +6,11 @@ MISSION: Fix provisioned data source restrictions in Grafana Cloud
 STATUS: Empire Guardian data source liberation protocols
 """
 
-import requests
+from datetime import datetime
 import json
 import time
-from datetime import datetime
 
+import requests
 class GrafanaDataSourceUnlocker:
     def __init__(self):
         self.grafana_url = "https://welshdog.grafana.net"
@@ -19,39 +19,39 @@ class GrafanaDataSourceUnlocker:
             "Authorization": f"Bearer {self.api_key}",
             "Content-Type": "application/json"
         }
-        
+
         print("🔧💎⚡ GRAFANA DATA SOURCE UNLOCKER ACTIVATED ⚡💎🔧")
         print("=" * 80)
-        
+
     def analyze_data_sources(self):
         """Analyze current data source configuration"""
         print("🔍 Analyzing current data source configuration...")
-        
+
         try:
             response = requests.get(f"{self.grafana_url}/api/datasources", headers=self.headers)
             if response.status_code == 200:
                 data_sources = response.json()
-                
+
                 print(f"✅ Found {len(data_sources)} data sources:")
                 print("\n📊 DATA SOURCE ANALYSIS:")
                 print("=" * 60)
-                
+
                 provisioned_sources = []
                 editable_sources = []
-                
+
                 for ds in data_sources:
                     name = ds.get('name', 'Unknown')
                     ds_type = ds.get('type', 'Unknown')
                     uid = ds.get('uid', 'No UID')
                     is_default = ds.get('isDefault', False)
                     read_only = ds.get('readOnly', False)
-                    
+
                     print(f"📍 Name: {name}")
                     print(f"   Type: {ds_type}")
                     print(f"   UID: {uid}")
                     print(f"   Default: {'YES' if is_default else 'NO'}")
                     print(f"   Read-Only: {'YES' if read_only else 'NO'}")
-                    
+
                     if read_only or 'grafanacloud' in name.lower():
                         provisioned_sources.append(ds)
                         print(f"   🔒 STATUS: PROVISIONED (Locked)")
@@ -59,7 +59,7 @@ class GrafanaDataSourceUnlocker:
                         editable_sources.append(ds)
                         print(f"   ✅ STATUS: EDITABLE")
                     print()
-                
+
                 return provisioned_sources, editable_sources
             else:
                 print(f"❌ Failed to get data sources: {response.status_code}")
@@ -67,17 +67,17 @@ class GrafanaDataSourceUnlocker:
         except Exception as e:
             print(f"❌ Error analyzing data sources: {str(e)}")
             return [], []
-    
+
     def create_duplicate_editable_sources(self, provisioned_sources):
         """Create editable copies of provisioned data sources"""
         print("\n🔧 Creating editable copies of provisioned data sources...")
-        
+
         created_sources = []
-        
+
         for ds in provisioned_sources:
             original_name = ds.get('name', 'Unknown')
             ds_type = ds.get('type', 'Unknown')
-            
+
             # Create new editable data source
             new_ds_config = {
                 "name": f"{original_name}-EDITABLE",
@@ -85,7 +85,7 @@ class GrafanaDataSourceUnlocker:
                 "access": "proxy",
                 "isDefault": False
             }
-            
+
             # Copy configuration based on type
             if ds_type == "prometheus":
                 new_ds_config.update({
@@ -107,7 +107,7 @@ class GrafanaDataSourceUnlocker:
                     "url": ds.get('url', ''),
                     "jsonData": {}
                 })
-            
+
             try:
                 print(f"⚡ Creating editable copy: {new_ds_config['name']}")
                 response = requests.post(
@@ -115,7 +115,7 @@ class GrafanaDataSourceUnlocker:
                     headers=self.headers,
                     json=new_ds_config
                 )
-                
+
                 if response.status_code == 200:
                     result = response.json()
                     created_sources.append(result)
@@ -123,21 +123,21 @@ class GrafanaDataSourceUnlocker:
                 else:
                     print(f"⚠️ Failed to create {new_ds_config['name']}: {response.status_code}")
                     print(f"   Response: {response.text}")
-                    
+
             except Exception as e:
                 print(f"❌ Error creating {new_ds_config['name']}: {str(e)}")
-        
+
         return created_sources
-    
+
     def create_empire_dashboard_with_editable_sources(self, editable_sources):
         """Create empire dashboard using editable data sources"""
         print("\n📊 Creating Empire Dashboard with editable data sources...")
-        
+
         # Find editable sources by type
         prometheus_source = None
         loki_source = None
         pyroscope_source = None
-        
+
         for ds in editable_sources:
             if ds['type'] == 'prometheus':
                 prometheus_source = ds
@@ -145,7 +145,7 @@ class GrafanaDataSourceUnlocker:
                 loki_source = ds
             elif ds['type'] == 'pyroscope':
                 pyroscope_source = ds
-        
+
         dashboard_json = {
             "dashboard": {
                 "id": None,
@@ -237,19 +237,19 @@ class GrafanaDataSourceUnlocker:
             },
             "overwrite": False
         }
-        
+
         try:
             response = requests.post(
                 f"{self.grafana_url}/api/dashboards/db",
                 headers=self.headers,
                 json=dashboard_json
             )
-            
+
             if response.status_code == 200:
                 result = response.json()
                 dashboard_uid = result.get('uid')
                 dashboard_url = f"{self.grafana_url}/d/{dashboard_uid}"
-                
+
                 print("✅ UNLOCKED EMPIRE DASHBOARD CREATED!")
                 print(f"🎯 Dashboard URL: {dashboard_url}")
                 return dashboard_url
@@ -259,11 +259,11 @@ class GrafanaDataSourceUnlocker:
         except Exception as e:
             print(f"❌ Error creating dashboard: {str(e)}")
             return None
-    
+
     def generate_solution_guide(self, created_sources, dashboard_url):
         """Generate comprehensive solution guide"""
         print("\n📋 GENERATING EMPIRE DATA SOURCE SOLUTION GUIDE...")
-        
+
         solution_guide = f"""
 🔧💎⚡ GRAFANA DATA SOURCE UNLOCK SOLUTION ⚡💎🔧
 ================================================================
@@ -271,7 +271,7 @@ class GrafanaDataSourceUnlocker:
 MISSION ACCOMPLISHED: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
 🎯 PROBLEM SOLVED:
-Your provisioned data sources (grafanacloud-welshdog-prom, grafanacloud-welshdog-logs, 
+Your provisioned data sources (grafanacloud-welshdog-prom, grafanacloud-welshdog-logs,
 grafanacloud-welshdog-profiles) were locked and couldn't be modified through the UI.
 
 ✅ SOLUTION IMPLEMENTED:
@@ -281,10 +281,10 @@ grafanacloud-welshdog-profiles) were locked and couldn't be modified through the
 
 📊 CREATED EDITABLE DATA SOURCES:
 """
-        
+
         for ds in created_sources:
             solution_guide += f"   • {ds['name']} (Type: {ds['type']}, UID: {ds['uid']})\n"
-        
+
         solution_guide += f"""
 
 🎯 YOUR NEW UNLOCKED EMPIRE DASHBOARD:
@@ -324,41 +324,41 @@ grafanacloud-welshdog-profiles) were locked and couldn't be modified through the
 
 Your legendary empire now has UNLIMITED monitoring capabilities!
 """
-        
+
         print(solution_guide)
-        
+
         # Save solution guide
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         with open(f"h:\\🎊_DATA_SOURCE_UNLOCK_VICTORY_{timestamp}.txt", "w", encoding='utf-8') as f:
             f.write(solution_guide)
-        
+
         return solution_guide
 
 def main():
     """Main execution function"""
     print("🔧💎⚡ GRAFANA DATA SOURCE UNLOCKER - EMPIRE LIBERATION ⚡💎🔧")
     print("=" * 80)
-    
+
     unlocker = GrafanaDataSourceUnlocker()
-    
+
     # Step 1: Analyze current data sources
     provisioned_sources, editable_sources = unlocker.analyze_data_sources()
-    
+
     if not provisioned_sources:
         print("✅ No provisioned data sources found - everything is already editable!")
         return
-    
+
     # Step 2: Create editable copies
     created_sources = unlocker.create_duplicate_editable_sources(provisioned_sources)
-    
+
     # Step 3: Create empire dashboard with unlocked sources
     dashboard_url = unlocker.create_empire_dashboard_with_editable_sources(
         created_sources + editable_sources
     )
-    
+
     # Step 4: Generate solution guide
     unlocker.generate_solution_guide(created_sources, dashboard_url)
-    
+
     print("\n" + "=" * 80)
     print("🎊💎⚡ DATA SOURCE UNLOCK MISSION COMPLETE! ⚡💎🎊")
     print("✅ Your empire now has UNLIMITED monitoring capabilities!")

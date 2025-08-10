@@ -4,11 +4,11 @@
 Generates realistic empire metrics for the AI dashboard
 """
 
-import time
-import random
-import json
 from datetime import datetime
+import json
+import time
 
+import random
 def generate_empire_metrics():
     """Generate realistic empire metrics"""
     return {
@@ -26,21 +26,21 @@ def generate_empire_metrics():
 def run_simulator():
     """Run the empire data simulator"""
     print("🎯💎⚡ EMPIRE DATA SIMULATOR STARTED ⚡💎🎯")
-    
+
     while True:
         metrics = generate_empire_metrics()
         print(f"📊 {datetime.now().strftime('%H:%M:%S')} - Empire Status: {metrics['empire_status']}")
         print(f"   🧠 Dopamine: {metrics['dopamine_level']}% | 🤖 Agents: {metrics['agent_army_size']}")
         print(f"   🎊 Celebrations: {metrics['active_celebrations']} | 💰 Economy: ${metrics['broski_economy']}")
         print(f"   🏛️ Health: {metrics['system_health']*100}% | 🤖 AI: {metrics['ai_confidence']}%")
-        
+
         # Save metrics to file for potential integration
         with open('h:/empire_metrics.json', 'w') as f:
             json.dump(metrics, f, indent=2)
-        
+
         print("   ✅ Metrics updated and saved")
         print("-" * 60)
-        
+
         # Wait 30 seconds before next update
         time.sleep(30)
 

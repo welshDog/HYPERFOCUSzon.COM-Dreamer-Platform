@@ -7,33 +7,32 @@ Quick deployment script for cost management dashboard.
 """
 
 import json
-import requests
-import sys
 import os
-from pathlib import Path
+import sys
 
+import requests
 def deploy_dashboard():
     """Deploy dashboard to Grafana Cloud"""
-    
+
     # Configuration
     grafana_url = "https://welshdog.grafana.net"
     dashboard_path = r"h:\grafana-by-example\cost-management\dashboard-final.json"
-    
+
     # Get token from environment or use default
     service_token = os.environ.get('GRAFANA_SERVICE_ACCOUNT_TOKEN', 'glsa_VYEsC8dyYed5K3xFJTQQ8sYOJBfJctLK_4ebbbed1')
-    
+
     print("🚀💎⚡ LEGENDARY DASHBOARD DEPLOYMENT STARTING ⚡💎🚀")
     print("=" * 60)
     print(f"Target: {grafana_url}")
     print(f"Dashboard: {dashboard_path}")
     print(f"Token: {service_token[:20]}...")
     print()
-    
+
     # Check if dashboard file exists
     if not os.path.exists(dashboard_path):
         print(f"❌ Dashboard file not found: {dashboard_path}")
         return False
-        
+
     # Load dashboard JSON
     try:
         with open(dashboard_path, 'r', encoding='utf-8') as f:
@@ -42,14 +41,14 @@ def deploy_dashboard():
     except Exception as e:
         print(f"❌ Failed to load dashboard: {e}")
         return False
-    
+
     # Prepare headers
     headers = {
         'Authorization': f'Bearer {service_token}',
         'Content-Type': 'application/json',
         'Accept': 'application/json'
     }
-    
+
     # Test connection
     try:
         print("🔍 Testing connection...")
@@ -64,20 +63,20 @@ def deploy_dashboard():
     except Exception as e:
         print(f"❌ Connection error: {e}")
         return False
-    
+
     # Prepare dashboard payload
     dashboard_payload = {
         "dashboard": dashboard_data,
         "overwrite": True,
         "message": "🎊 Legendary Cost Management Dashboard - Empire Deployment"
     }
-    
+
     # Remove id and uid to let Grafana assign new ones
     if 'id' in dashboard_payload['dashboard']:
         del dashboard_payload['dashboard']['id']
     if 'uid' in dashboard_payload['dashboard']:
         dashboard_payload['dashboard']['uid'] = None
-    
+
     # Deploy dashboard
     try:
         print("🚀 Deploying dashboard...")
@@ -87,7 +86,7 @@ def deploy_dashboard():
             json=dashboard_payload,
             timeout=60
         )
-        
+
         if deploy_response.status_code in [200, 201]:
             result = deploy_response.json()
             print("🎊💎⚡ LEGENDARY DEPLOYMENT SUCCESS! ⚡💎🎊")
@@ -102,7 +101,7 @@ def deploy_dashboard():
             print(f"❌ Deployment failed: {deploy_response.status_code}")
             print(f"Response: {deploy_response.text}")
             return False
-            
+
     except Exception as e:
         print(f"❌ Deployment error: {e}")
         return False

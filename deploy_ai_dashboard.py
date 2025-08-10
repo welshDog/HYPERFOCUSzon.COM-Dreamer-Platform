@@ -1,7 +1,7 @@
-import os
-import requests
 import json
+import os
 
+import requests
 print("🤖💎⚡ CREATING AI-POWERED DASHBOARD ⚡💎🤖")
 
 token = os.getenv('GRAFANA_SERVICE_ACCOUNT_TOKEN')
@@ -159,18 +159,18 @@ try:
         json=ml_dashboard,
         timeout=30
     )
-    
+
     if response.status_code in [200, 201]:
         result = response.json()
         uid = result.get('uid', 'unknown')
         dashboard_url = f"https://welshdog.grafana.net/d/{uid}"
-        
+
         print("🎊🤖💎 AI DASHBOARD DEPLOYED SUCCESSFULLY! 💎🤖🎊")
         print("=" * 60)
         print(f"🎯 AI Dashboard URL: {dashboard_url}")
         print(f"🆔 UID: {uid}")
         print("🤖 Your empire now has AI superpowers!")
-        
+
         # Create ML setup instructions
         ml_instructions = f"""
 # 🤖💎⚡ ML APP SETUP INSTRUCTIONS ⚡💎🤖
@@ -188,7 +188,7 @@ try:
 - Sensitivity: High
 
 ### 3. Configure Forecasting
-- Click "Forecasting" 
+- Click "Forecasting"
 - Create forecast: "Dopamine-Prediction"
 - Metric: dopamine_level_current
 - Horizon: 4 hours
@@ -210,16 +210,16 @@ try:
 
 Your empire is now AI-POWERED! 🤖💎⚡
 """
-        
+
         with open('h:/ml_setup_instructions.md', 'w') as f:
             f.write(ml_instructions)
-        
+
         print("\n📋 ML setup instructions saved to: ml_setup_instructions.md")
-        
+
     else:
         print(f"❌ Error: {response.status_code}")
         print(f"Response: {response.text}")
-        
+
 except Exception as e:
     print(f"❌ Error: {str(e)}")
 

@@ -12,24 +12,21 @@ Features:
 - ADHD-friendly deployment experience
 """
 
-import subprocess
-import json
-import os
-import sys
-import time
-import platform
-import shutil
 from datetime import datetime
 from typing import Dict, List, Optional
-from pathlib import Path
+import json
+import os
+import subprocess
+import sys
 
+import platform
 class TailscaleUltraDeployment:
     def __init__(self):
         self.config = {
             "target_domain": "hyperfocuszone.tail13f1ca.ts.net",
             "empire_ports": {
                 80: "HTTP Web Server",
-                443: "HTTPS Web Server", 
+                443: "HTTPS Web Server",
                 3000: "Grafana Dashboard",
                 8000: "Admin Dashboard",
                 5000: "Portal Dashboard",
@@ -44,22 +41,22 @@ class TailscaleUltraDeployment:
             "broskie_earned": 0,
             "status": "STARTING"
         }
-    
+
     def print_section(self, title: str, emoji: str = "🚀"):
         """ADHD-friendly section formatting"""
         print(f"\n{emoji} {'='*70}")
         print(f"{emoji} {title}")
         print(f"{emoji} {'='*70}")
-    
+
     def run_command(self, command: List[str], description: str = "", timeout: int = 60) -> bool:
         """Execute command with enhanced logging"""
         print(f"💻 Executing: {description or ' '.join(command)}")
-        
+
         try:
             if platform.system() == "Windows" and command[0] == "tailscale":
                 # Use full path or PowerShell for Windows
                 command = ["powershell", "-Command"] + command
-            
+
             result = subprocess.run(
                 command,
                 capture_output=True,
@@ -67,7 +64,7 @@ class TailscaleUltraDeployment:
                 timeout=timeout,
                 shell=platform.system() == "Windows"
             )
-            
+
             if result.returncode == 0:
                 print(f"✅ Success: {description}")
                 if result.stdout.strip():
@@ -79,30 +76,30 @@ class TailscaleUltraDeployment:
                 if result.stderr.strip():
                     print(f"🚨 Error: {result.stderr.strip()}")
                 return False
-                
+
         except subprocess.TimeoutExpired:
             print(f"⏰ Timeout: {description} (after {timeout}s)")
             return False
-        except Exception as e:
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"💥 Exception: {description} - {str(e)}")
             return False
-    
+
     def check_prerequisites(self) -> bool:
         """Check and install prerequisites"""
         self.print_section("🔍 CHECKING PREREQUISITES")
-        
+
         prerequisites = []
-        
+
         # Check Python
         try:
             python_version = sys.version
             print(f"✅ Python: {python_version.split()[0]}")
             prerequisites.append("Python: ✅")
-        except:
+        except (ConnectionError, OSError):
             print("❌ Python check failed")
             prerequisites.append("Python: ❌")
             return False
-        
+
         # Check network connectivity
         if self.run_command(["ping", "-n" if platform.system() == "Windows" else "-c", "1", "8.8.8.8"], "Test internet connectivity"):
             prerequisites.append("Internet: ✅")
@@ -110,7 +107,7 @@ class TailscaleUltraDeployment:
             prerequisites.append("Internet: ❌")
             print("🚨 No internet connectivity - required for Tailscale setup")
             return False
-        
+
         # Check if running as admin (Windows) or with sudo access
         if platform.system() == "Windows":
             try:
@@ -122,31 +119,31 @@ class TailscaleUltraDeployment:
                 else:
                     print("⚠️ Not running as administrator - may need elevation for some tasks")
                     prerequisites.append("Admin: ⚠️")
-            except:
+            except (ConnectionError, OSError):
                 prerequisites.append("Admin: ❓")
-        
+
         self.results["deployment_steps"].append({
             "step": "Prerequisites Check",
             "status": "COMPLETED",
             "details": prerequisites
         })
-        
+
         return True
-    
+
     def install_tailscale(self) -> bool:
         """Install Tailscale if not already installed"""
         self.print_section("📦 TAILSCALE INSTALLATION")
-        
+
         # Check if already installed
         if self.run_command(["tailscale", "version"], "Check existing Tailscale installation"):
             print("✅ Tailscale already installed!")
             self.results["broskie_earned"] += 50
             return True
-        
+
         print("🔧 Installing Tailscale...")
-        
+
         system = platform.system()
-        
+
         if system == "Windows":
             return self._install_tailscale_windows()
         elif system == "Linux":
@@ -156,24 +153,23 @@ class TailscaleUltraDeployment:
         else:
             print(f"❌ Unsupported system: {system}")
             return False
-    
+
     def _install_tailscale_windows(self) -> bool:
         """Install Tailscale on Windows"""
         print("🪟 Installing Tailscale for Windows...")
-        
+
         # Try winget first
         if self.run_command(["winget", "install", "tailscale.tailscale"], "Install via winget"):
             return True
-        
+
         # Fallback: download and run installer
         print("📥 Downloading Tailscale installer...")
         download_url = "https://pkgs.tailscale.com/stable/tailscale-setup-latest.exe"
-        
+
         try:
-            import urllib.request
             installer_path = "tailscale-setup.exe"
             urllib.request.urlretrieve(download_url, installer_path)
-            
+
             print("🚀 Running Tailscale installer...")
             if self.run_command([installer_path, "/S"], "Silent install"):
                 os.remove(installer_path)
@@ -182,27 +178,27 @@ class TailscaleUltraDeployment:
                 print("Manual installation may be required")
                 print(f"Download from: {download_url}")
                 return False
-                
-        except Exception as e:
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"❌ Download failed: {e}")
             print("🌐 Please manually download and install from: https://tailscale.com/download")
             return False
-    
+
     def _install_tailscale_linux(self) -> bool:
         """Install Tailscale on Linux"""
         print("🐧 Installing Tailscale for Linux...")
-        
+
         # Use official installation script
         install_command = [
             "curl", "-fsSL", "https://tailscale.com/install.sh", "|", "sh"
         ]
-        
+
         if self.run_command(["sh", "-c", "curl -fsSL https://tailscale.com/install.sh | sh"], "Install Tailscale"):
             return True
-        
+
         # Alternative: try package manager
         print("🔄 Trying package manager installation...")
-        
+
         # Try different package managers
         package_managers = [
             (["apt", "update", "&&", "apt", "install", "-y", "tailscale"], "APT"),
@@ -210,31 +206,31 @@ class TailscaleUltraDeployment:
             (["dnf", "install", "-y", "tailscale"], "DNF"),
             (["pacman", "-S", "--noconfirm", "tailscale"], "Pacman")
         ]
-        
+
         for cmd, name in package_managers:
             if self.run_command(cmd, f"Install via {name}"):
                 return True
-        
+
         print("❌ Automatic installation failed")
         print("🌐 Please manually install: https://tailscale.com/download/linux")
         return False
-    
+
     def _install_tailscale_macos(self) -> bool:
         """Install Tailscale on macOS"""
         print("🍎 Installing Tailscale for macOS...")
-        
+
         # Try Homebrew first
         if self.run_command(["brew", "install", "tailscale"], "Install via Homebrew"):
             return True
-        
+
         print("❌ Homebrew installation failed")
         print("🌐 Please manually install from: https://tailscale.com/download/mac")
         return False
-    
+
     def setup_tailscale_auth(self) -> bool:
         """Setup Tailscale authentication"""
         self.print_section("🔐 TAILSCALE AUTHENTICATION")
-        
+
         # Check if already logged in
         if self.run_command(["tailscale", "status"], "Check login status"):
             # Parse output to see if logged in
@@ -243,10 +239,10 @@ class TailscaleUltraDeployment:
                 print("✅ Already logged in to Tailscale!")
                 self.results["broskie_earned"] += 75
                 return True
-        
+
         print("🔑 Starting Tailscale login process...")
         print("🌐 This will open a browser window for authentication")
-        
+
         # Start login process
         if self.run_command(["tailscale", "login"], "Login to Tailscale", timeout=120):
             print("✅ Tailscale login successful!")
@@ -256,22 +252,22 @@ class TailscaleUltraDeployment:
             print("❌ Login failed or timed out")
             print("💡 Try running 'tailscale login' manually")
             return False
-    
+
     def configure_tailscale_settings(self) -> bool:
         """Configure Tailscale for optimal Empire operation"""
         self.print_section("⚙️ TAILSCALE CONFIGURATION")
-        
+
         configurations = [
             (["tailscale", "set", "--accept-routes"], "Accept subnet routes"),
             (["tailscale", "set", "--accept-dns"], "Accept DNS configuration"),
             (["tailscale", "set", "--operator=$USER"], "Set operator permissions")
         ]
-        
+
         success_count = 0
         for cmd, desc in configurations:
             if self.run_command(cmd, desc):
                 success_count += 1
-        
+
         if success_count >= 2:
             print(f"✅ Tailscale configured ({success_count}/{len(configurations)} settings applied)")
             self.results["broskie_earned"] += 50
@@ -279,25 +275,25 @@ class TailscaleUltraDeployment:
         else:
             print("⚠️ Some configuration steps failed - continuing anyway")
             return False
-    
+
     def deploy_web_service(self) -> bool:
         """Deploy web service accessible via Tailscale"""
         self.print_section("🌐 WEB SERVICE DEPLOYMENT")
-        
+
         # Create deployment directory
         os.makedirs(self.config["deployment_dir"], exist_ok=True)
-        
+
         # Create a simple status page
         html_content = self._generate_status_page()
-        
+
         with open(f"{self.config['deployment_dir']}/index.html", 'w', encoding='utf-8') as f:
             f.write(html_content)
-        
+
         print("📄 Status page created")
-        
+
         # Try to start a simple HTTP server
         return self._start_web_server()
-    
+
     def _generate_status_page(self) -> str:
         """Generate Empire status page HTML"""
         return f"""<!DOCTYPE html>
@@ -367,7 +363,7 @@ class TailscaleUltraDeployment:
             <p><strong>⏰ Deployed:</strong> {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</p>
             <p><strong>🎯 Status:</strong> <span style="color: #10b981;">LEGENDARY ONLINE</span></p>
         </div>
-        
+
         <div class="status-card">
             <h3>🏛️ EMPIRE SERVICES STATUS</h3>
             <div class="empire-grid">
@@ -403,7 +399,7 @@ class TailscaleUltraDeployment:
                 </div>
             </div>
         </div>
-        
+
         <div class="status-card">
             <h3>🎊 DEPLOYMENT SUCCESS</h3>
             <p>✅ Tailscale Network: Connected</p>
@@ -411,7 +407,7 @@ class TailscaleUltraDeployment:
             <p>✅ Web Services: Deployed</p>
             <p>✅ Monitoring: Active</p>
             <p>✅ BROski Economy: Boosted</p>
-            
+
             <div style="margin: 30px 0;">
                 <h4>🔗 Quick Access Links</h4>
                 <p><a href="http://{self.config["target_domain"]}:3000" style="color: #60a5fa;">📊 Grafana Dashboard</a></p>
@@ -420,7 +416,7 @@ class TailscaleUltraDeployment:
                 <p><a href="http://{self.config["target_domain"]}:8080" style="color: #60a5fa;">💎 Command Center</a></p>
             </div>
         </div>
-        
+
         <div class="status-card">
             <h3>💎 LEGENDARY ACHIEVEMENTS</h3>
             <p>🏆 Tailscale Network Master</p>
@@ -428,7 +424,7 @@ class TailscaleUltraDeployment:
             <p>⚡ ADHD-Optimized Deployment Specialist</p>
             <p>🎊 BROski Ultra Network Engineer</p>
         </div>
-        
+
         <footer style="margin-top: 40px; opacity: 0.8;">
             <p>🚀 Built with 💎 by the HyperFocus Zone Empire</p>
             <p>⚡ ADHD-Optimized • Neurodivergent-Friendly • Dopamine-Maximized ⚡</p>
@@ -449,7 +445,7 @@ class TailscaleUltraDeployment:
                     this.style.transform = 'scale(1)';
                 }});
             }});
-            
+
             // Add celebration animation
             const celebration = document.querySelector('.celebration');
             if (celebration) {{
@@ -464,87 +460,85 @@ class TailscaleUltraDeployment:
     </script>
 </body>
 </html>"""
-    
+
     def _start_web_server(self) -> bool:
         """Start web server for status page"""
         print("🌐 Starting web server...")
-        
+
         # Try to start Python HTTP server
         try:
             import threading
-            import http.server
             import socketserver
-            
+
             os.chdir(self.config["deployment_dir"])
-            
+
             class QuietHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 def log_message(self, format, *args):
                     pass  # Suppress log messages
-            
+
             with socketserver.TCPServer(("", 80), QuietHTTPRequestHandler) as httpd:
                 print("✅ Web server started on port 80")
                 print(f"🌐 Access at: http://{self.config['target_domain']}")
-                
+
                 # Start server in background thread
                 server_thread = threading.Thread(target=httpd.serve_forever)
                 server_thread.daemon = True
                 server_thread.start()
-                
+
                 self.results["broskie_earned"] += 100
                 return True
-                
+
         except PermissionError:
             print("⚠️ Cannot bind to port 80 (requires admin privileges)")
             print("🔄 Trying alternative port 8080...")
             return self._start_web_server_alt_port()
-        except Exception as e:
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"❌ Failed to start web server: {e}")
             return False
-    
+
     def _start_web_server_alt_port(self) -> bool:
         """Start web server on alternative port"""
         try:
             import threading
-            import http.server
             import socketserver
-            
+
             class QuietHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 def log_message(self, format, *args):
                     pass
-            
+
             with socketserver.TCPServer(("", 8090), QuietHTTPRequestHandler) as httpd:
                 print("✅ Web server started on port 8090")
                 print(f"🌐 Access at: http://{self.config['target_domain']}:8090")
-                
+
                 server_thread = threading.Thread(target=httpd.serve_forever)
                 server_thread.daemon = True
                 server_thread.start()
-                
+
                 self.results["broskie_earned"] += 75
                 return True
-                
-        except Exception as e:
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"❌ Failed to start alternative web server: {e}")
             return False
-    
+
     def verify_deployment(self) -> bool:
         """Verify deployment is working"""
         self.print_section("✅ DEPLOYMENT VERIFICATION")
-        
+
         verification_tests = [
             ("Tailscale Status", ["tailscale", "status"]),
             ("Network Connectivity", ["ping", "-n" if platform.system() == "Windows" else "-c", "1", "8.8.8.8"]),
             ("Domain Resolution", ["nslookup", self.config["target_domain"]])
         ]
-        
+
         passed_tests = 0
         for test_name, command in verification_tests:
             print(f"🔍 Testing: {test_name}")
             if self.run_command(command, f"Verify {test_name}"):
                 passed_tests += 1
-        
+
         success_rate = (passed_tests / len(verification_tests)) * 100
-        
+
         if success_rate >= 80:
             print(f"✅ Deployment verification: {success_rate:.1f}% passed")
             self.results["broskie_earned"] += 150
@@ -554,12 +548,12 @@ class TailscaleUltraDeployment:
             print(f"⚠️ Deployment verification: {success_rate:.1f}% passed")
             self.results["status"] = "PARTIAL"
             return False
-    
+
     def save_deployment_crystal(self) -> str:
         """Save deployment results as Memory Crystal"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         filename = f"h:/memory_crystals/tailscale_ultra_deployment_{timestamp}.json"
-        
+
         memory_crystal = {
             "crystal_type": "TAILSCALE_ULTRA_DEPLOYMENT",
             "timestamp": self.results["timestamp"],
@@ -582,7 +576,7 @@ class TailscaleUltraDeployment:
             },
             "deployment_achievements": [
                 f"📦 Tailscale installed and configured",
-                f"🔐 Network authentication established", 
+                f"🔐 Network authentication established",
                 f"🌐 Web services deployed and accessible",
                 f"✅ Verification tests passed",
                 f"💎 +{self.results['broskie_earned']} BROski$ earned"
@@ -610,26 +604,26 @@ class TailscaleUltraDeployment:
                 "🎊 LOOK-THEN-BUILD PROTOCOL PERFECTLY EXECUTED"
             ]
         }
-        
+
         try:
             os.makedirs(os.path.dirname(filename), exist_ok=True)
             with open(filename, 'w', encoding='utf-8') as f:
                 json.dump(memory_crystal, f, indent=2, ensure_ascii=False)
-            
+
             print(f"💎 Deployment Crystal saved: {filename}")
             return filename
-            
-        except Exception as e:
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"❌ Failed to save Memory Crystal: {e}")
             return ""
-    
+
     def run_full_deployment(self) -> Dict:
         """Execute complete Tailscale deployment"""
         self.print_section("🚀 TAILSCALE ULTRA DEPLOYMENT", "🌐")
         print("Enhanced Tailscale deployment for HyperFocus Zone Empire")
         print(f"Target Domain: {self.config['target_domain']}")
         print("=" * 80)
-        
+
         deployment_steps = [
             ("Prerequisites", self.check_prerequisites),
             ("Install Tailscale", self.install_tailscale),
@@ -638,11 +632,11 @@ class TailscaleUltraDeployment:
             ("Web Service", self.deploy_web_service),
             ("Verification", self.verify_deployment)
         ]
-        
+
         completed_steps = 0
         for step_name, step_function in deployment_steps:
             print(f"\n🎯 Starting: {step_name}")
-            
+
             if step_function():
                 print(f"✅ Completed: {step_name}")
                 completed_steps += 1
@@ -656,17 +650,17 @@ class TailscaleUltraDeployment:
                     "step": step_name,
                     "status": "FAILED"
                 })
-                
+
                 # Ask if user wants to continue
                 user_input = input(f"\n⚠️ {step_name} failed. Continue anyway? (y/N): ").strip().lower()
                 if user_input != 'y':
                     print("🛑 Deployment stopped by user")
                     self.results["status"] = "ABORTED"
                     break
-        
+
         # Save results
         crystal_file = self.save_deployment_crystal()
-        
+
         # Final summary
         self.print_section("🎊 DEPLOYMENT SUMMARY", "🏆")
         print(f"✅ Steps Completed: {completed_steps}/{len(deployment_steps)}")
@@ -674,12 +668,12 @@ class TailscaleUltraDeployment:
         print(f"🎯 Final Status: {self.results['status']}")
         print(f"🌐 Target Domain: {self.config['target_domain']}")
         print(f"📋 Memory Crystal: {crystal_file}")
-        
+
         if self.results["status"] in ["SUCCESS", "PARTIAL"]:
             print(f"\n🎊 LEGENDARY ACHIEVEMENT UNLOCKED!")
             print(f"🚀 Empire network accessible at: http://{self.config['target_domain']}")
             print(f"💎 Ready for world domination!")
-        
+
         return self.results
 
 def main():
@@ -687,10 +681,10 @@ def main():
     print("🚀💎⚡ TAILSCALE ULTRA DEPLOYMENT SYSTEM ⚡💎🚀")
     print("Enhanced network deployment for HyperFocus Zone Empire")
     print("=" * 80)
-    
+
     deployment = TailscaleUltraDeployment()
     results = deployment.run_full_deployment()
-    
+
     return results
 
 if __name__ == "__main__":

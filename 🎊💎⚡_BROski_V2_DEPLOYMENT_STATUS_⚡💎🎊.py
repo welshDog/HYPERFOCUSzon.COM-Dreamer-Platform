@@ -3,9 +3,7 @@
 🎊💎⚡ BROski V2.0 DEPLOYMENT STATUS CHECKER ⚡💎🎊
 """
 
-import time
 from datetime import datetime
-
 print(f"""
 🎊💎⚡ BROski♾️ V2.0 DEPLOYMENT STATUS ⚡💎🎊
 =================================================

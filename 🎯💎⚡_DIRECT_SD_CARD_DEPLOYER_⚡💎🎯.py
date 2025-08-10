@@ -4,25 +4,24 @@
 Simple deployment to E:\ drive
 """
 
-import os
-import socket
 from pathlib import Path
 import json
+import os
+import socket
 import time
-
 def get_laptop_ip():
     """🌐 Get laptop IP"""
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
             s.connect(("8.8.8.8", 80))
             return s.getsockname()[0]
-    except:
+    except (ConnectionError, OSError):
         return "192.168.1.100"
 
 def create_complete_pi_setup():
     """📜 Create the complete Pi setup script"""
     laptop_ip = get_laptop_ip()
-    
+
     setup_script = f'''#!/bin/bash
 # 🎯💎⚡ COMPLETE PI AUTO-SETUP WITH LAPTOP COMMUNICATION ⚡💎🎯
 
@@ -67,12 +66,12 @@ services:
     ports: ["80:80"]
     volumes: ["./nginx.conf:/etc/nginx/nginx.conf:ro", "./html:/usr/share/nginx/html:ro"]
     restart: unless-stopped
-  
+
   redis:
     image: redis:alpine
     ports: ["6379:6379"]
     restart: unless-stopped
-  
+
   broski:
     image: python:3.11-slim
     ports: ["5000:5000"]
@@ -111,7 +110,7 @@ cat > html/index.html << 'HTML_EOF'
 <p>Pi IP: $PI_IP</p>
 <p>Laptop: $LAPTOP_IP</p>
 <p>Status: ✅ All Services Running</p>
-<p><a href="/health" style="color:#00bfff;">Health Check</a> | 
+<p><a href="/health" style="color:#00bfff;">Health Check</a> |
    <a href="/api/" style="color:#00bfff;">API</a> |
    <a href="http://$LAPTOP_IP:8888" style="color:#00bfff;">Laptop Dashboard</a></p>
 </body></html>
@@ -126,13 +125,9 @@ sed -i "s/\\$LAPTOP_IP/$LAPTOP_IP/g" html/index.html
 mkdir -p broski
 cat > broski/agent.py << 'PYTHON_EOF'
 #!/usr/bin/env python3
-import asyncio
 import json
 import time
-from aiohttp import web, ClientSession
-import psutil
 import os
-from datetime import datetime
 
 class PiAgent:
     def __init__(self):
@@ -140,7 +135,7 @@ class PiAgent:
         self.laptop_ip = os.getenv('LAPTOP_IP', '192.168.1.100')
         self.pi_ip = os.getenv('PI_IP', '192.168.1.200')
         self.tasks = {{}}
-        
+
     async def register_with_laptop(self):
         try:
             data = {{
@@ -153,10 +148,10 @@ class PiAgent:
                     if resp.status == 200:
                         print(f"✅ Registered with laptop")
                         return True
-        except Exception as e:
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"❌ Registration failed: {{e}}")
         return False
-    
+
     async def send_heartbeat(self):
         while True:
             try:
@@ -173,13 +168,13 @@ class PiAgent:
                     ) as resp:
                         if resp.status == 200:
                             print("💓 Heartbeat sent")
-            except Exception as e:
+            except (socket.error, ConnectionError, requests.RequestException) as e:
                 print(f"💓 Heartbeat error: {{e}}")
             await asyncio.sleep(30)
-    
+
     async def health(self, request):
         return web.json_response({{'status': 'healthy', 'node_id': self.node_id}})
-    
+
     async def offload(self, request):
         task_data = await request.json()
         task_id = f"task_{{int(time.time())}}"
@@ -259,31 +254,31 @@ echo "🌐 Access: http://$PI_IP/"
 echo "📊 Dashboard: http://$LAPTOP_IP:8888/"
 echo "============================="
 '''
-    
+
     return setup_script
 
 def deploy_to_sd_card():
     """💾 Deploy to SD card"""
-    
+
     # Check for SD card
     sd_path = Path("E:\\")
     if not sd_path.exists():
         print("❌ SD card not found at E:\\")
         return False
-    
+
     print("✅ SD card found at E:\\")
     print("💾 Deploying Pi setup script...")
-    
+
     # Create setup script
     setup_script = create_complete_pi_setup()
-    
+
     # Write to SD card
     script_path = sd_path / "setup-pi.sh"
     script_path.write_text(setup_script, encoding='utf-8')
-    
+
     # Create SSH enabler
     (sd_path / "ssh").touch()
-    
+
     # Create firstrun script
     firstrun_content = '''#!/bin/bash
 systemctl enable ssh
@@ -291,7 +286,7 @@ bash /boot/setup-pi.sh
 rm -f /boot/firstrun.sh
 '''
     (sd_path / "firstrun.sh").write_text(firstrun_content)
-    
+
     # Create deployment info
     info = {{
         'deployment_time': time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -299,17 +294,17 @@ rm -f /boot/firstrun.sh
         'deployment_type': 'complete_auto_setup'
     }}
     (sd_path / "deployment-info.json").write_text(json.dumps(info, indent=2))
-    
+
     print("✅ Deployment complete!")
     print(f"💻 Laptop IP: {{get_laptop_ip()}}")
     print("🚀 Pi will auto-setup on boot!")
-    
+
     return True
 
 if __name__ == "__main__":
     print("🎯💎⚡ DIRECT SD CARD DEPLOYMENT ⚡💎🎯")
     print("=" * 50)
-    
+
     if deploy_to_sd_card():
         print("\\n🎊 SUCCESS! Insert SD card into Pi and power on! 🎊")
     else:

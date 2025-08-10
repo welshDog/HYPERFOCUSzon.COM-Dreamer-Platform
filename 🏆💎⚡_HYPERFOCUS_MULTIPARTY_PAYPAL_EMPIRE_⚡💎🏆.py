@@ -7,17 +7,17 @@
 **Target:** Scale your empire to handle multiple service providers & take cuts!
 """
 
-import os
-import json
-import requests
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, List
-from requests.auth import HTTPBasicAuth
-import uuid
+import json
+import os
 
+from requests.auth import HTTPBasicAuth
+import requests
+import uuid
 class HyperFocusPayPalMarketplace:
     """🏆 Advanced PayPal Multiparty Platform for HyperFocus Zone Empire"""
-    
+
     def __init__(self):
         # Load configuration from empire.env
         self.client_id = os.getenv("PAYPAL_CLIENT_ID", "YOUR_LIVE_CLIENT_ID_HERE")
@@ -25,16 +25,16 @@ class HyperFocusPayPalMarketplace:
         self.api_url = os.getenv("PAYPAL_API_URL", "https://api-m.sandbox.paypal.com")  # Start with sandbox
         self.environment = os.getenv("PAYPAL_ENVIRONMENT", "sandbox")
         self.partner_attribution_id = os.getenv("PAYPAL_PARTNER_ATTRIBUTION_ID", "HYPERFOCUS_ZONE_MP")
-        
+
         # Platform configuration
         self.platform_fee_percentage = float(os.getenv("PLATFORM_FEE_PERCENTAGE", "10.0"))  # 10% platform fee
         self.return_url = os.getenv("PAYPAL_RETURN_URL", "https://hyperfocuszone.com/paypal/return")
         self.cancel_url = os.getenv("PAYPAL_CANCEL_URL", "https://hyperfocuszone.com/paypal/cancel")
         self.webhook_url = os.getenv("PAYPAL_WEBHOOK_URL", "https://hyperfocuszone.com/webhooks/paypal")
-        
+
         self.access_token = None
         self.token_expires_at = None
-        
+
         # HyperFocus Zone service categories
         self.service_categories = {
             "discord_bots": {
@@ -43,7 +43,7 @@ class HyperFocusPayPalMarketplace:
                 "platform_fee": 15.0  # Higher fee for premium services
             },
             "adhd_coaching": {
-                "name": "ADHD Productivity Coaching", 
+                "name": "ADHD Productivity Coaching",
                 "base_price_range": [100, 500],
                 "platform_fee": 12.0
             },
@@ -63,7 +63,7 @@ class HyperFocusPayPalMarketplace:
                 "platform_fee": 20.0  # Premium consulting fee
             }
         }
-        
+
         print(f"""
 🏆💎⚡ HYPERFOCUS ZONE MULTIPARTY EMPIRE ACTIVATED ⚡💎🏆
 =======================================================
@@ -80,21 +80,21 @@ Attribution ID: {self.partner_attribution_id}
 
     def get_access_token(self) -> Optional[str]:
         """🔑 Get PayPal access token with partner attribution"""
-        
+
         if self.access_token and self.token_expires_at:
             if datetime.now().timestamp() < self.token_expires_at:
                 return self.access_token
-        
+
         url = f"{self.api_url}/v1/oauth2/token"
-        
+
         headers = {
             "Accept": "application/json",
             "Accept-Language": "en_US",
             "PayPal-Partner-Attribution-Id": self.partner_attribution_id
         }
-        
+
         data = "grant_type=client_credentials"
-        
+
         try:
             response = requests.post(
                 url,
@@ -102,34 +102,34 @@ Attribution ID: {self.partner_attribution_id}
                 data=data,
                 auth=HTTPBasicAuth(self.client_id, self.client_secret)
             )
-            
+
             if response.status_code == 200:
                 token_data = response.json()
                 self.access_token = token_data["access_token"]
                 expires_in = token_data.get("expires_in", 3600) - 60
                 self.token_expires_at = datetime.now().timestamp() + expires_in
-                
+
                 print("✅ PayPal multiparty access token obtained!")
                 return self.access_token
             else:
                 print(f"❌ Failed to get access token: {response.status_code}")
                 print(f"Response: {response.text}")
                 return None
-                
+
         except Exception as e:
             print(f"❌ Error getting access token: {e}")
             return None
 
-    def create_seller_onboarding_link(self, seller_email: str, seller_name: str, 
+    def create_seller_onboarding_link(self, seller_email: str, seller_name: str,
                                     service_category: str) -> Dict[str, Any]:
         """🤝 Create seller onboarding link for multiparty platform"""
-        
+
         token = self.get_access_token()
         if not token:
             return {"error": "Could not get access token"}
-        
+
         tracking_id = f"HFZ-{datetime.now().strftime('%Y%m%d%H%M%S')}-{uuid.uuid4().hex[:8]}"
-        
+
         # Enhanced onboarding payload for multiparty
         payload = {
             "tracking_id": tracking_id,
@@ -161,24 +161,24 @@ Attribution ID: {self.partner_attribution_id}
                 "brand_name": "HyperFocus Zone Marketplace"
             }
         }
-        
+
         url = f"{self.api_url}/v2/customer/partner-referrals"
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {token}",
             "PayPal-Partner-Attribution-Id": self.partner_attribution_id
         }
-        
+
         try:
             response = requests.post(url, headers=headers, json=payload)
-            
+
             if response.status_code == 201:
                 referral_data = response.json()
                 action_url = next(
                     (link["href"] for link in referral_data["links"] if link["rel"] == "action_url"),
                     None
                 )
-                
+
                 print(f"""
 ✅ SELLER ONBOARDING LINK CREATED!
 ================================
@@ -190,7 +190,7 @@ Onboarding URL: {action_url}
 
 🎯 Send this link to your seller to complete onboarding!
                 """)
-                
+
                 return {
                     "success": True,
                     "tracking_id": tracking_id,
@@ -204,36 +204,36 @@ Onboarding URL: {action_url}
                 print(f"❌ Failed to create onboarding link: {response.status_code}")
                 print(f"Response: {response.text}")
                 return {"error": f"Onboarding creation failed: {response.status_code}"}
-                
+
         except Exception as e:
             print(f"❌ Error creating onboarding link: {e}")
             return {"error": str(e)}
 
     def create_multiparty_order(self, purchase_units: List[Dict], buyer_info: Dict) -> Dict[str, Any]:
         """💳 Create multi-seller order with platform fees"""
-        
+
         token = self.get_access_token()
         if not token:
             return {"error": "Could not get access token"}
-        
+
         # Calculate platform fees for each unit
         enhanced_units = []
         total_platform_fees = 0.0
-        
+
         for unit in purchase_units:
             amount = float(unit["amount"]["value"])
             seller_id = unit["payee"]["merchant_id"]
             service_category = unit.get("service_category", "python_automation")
-            
+
             # Calculate platform fee based on category
             if service_category in self.service_categories:
                 fee_percentage = self.service_categories[service_category]["platform_fee"]
             else:
                 fee_percentage = self.platform_fee_percentage
-            
+
             platform_fee = round(amount * (fee_percentage / 100), 2)
             total_platform_fees += platform_fee
-            
+
             enhanced_unit = {
                 "reference_id": unit.get("reference_id", f"HFZ-{uuid.uuid4().hex[:8]}"),
                 "amount": {
@@ -255,7 +255,7 @@ Onboarding URL: {action_url}
                 "custom_id": unit.get("custom_id", f"HFZ-{service_category}")
             }
             enhanced_units.append(enhanced_unit)
-        
+
         # Create the order
         order_payload = {
             "intent": "CAPTURE",
@@ -276,7 +276,7 @@ Onboarding URL: {action_url}
                 "email_address": buyer_info.get("email", "")
             }
         }
-        
+
         url = f"{self.api_url}/v2/checkout/orders"
         headers = {
             "Content-Type": "application/json",
@@ -284,19 +284,19 @@ Onboarding URL: {action_url}
             "PayPal-Partner-Attribution-Id": self.partner_attribution_id,
             "PayPal-Request-Id": f"HFZ-{datetime.now().strftime('%Y%m%d%H%M%S')}"
         }
-        
+
         try:
             response = requests.post(url, headers=headers, json=order_payload)
-            
+
             if response.status_code == 201:
                 order_data = response.json()
                 order_id = order_data["id"]
-                
+
                 approve_url = next(
                     (link["href"] for link in order_data["links"] if link["rel"] == "approve"),
                     None
                 )
-                
+
                 print(f"""
 ✅ MULTIPARTY ORDER CREATED!
 ===========================
@@ -308,7 +308,7 @@ Approval URL: {approve_url}
 
 🎯 Send buyer to approval URL to complete payment!
                 """)
-                
+
                 return {
                     "success": True,
                     "order_id": order_id,
@@ -321,58 +321,58 @@ Approval URL: {approve_url}
                 print(f"❌ Failed to create order: {response.status_code}")
                 print(f"Response: {response.text}")
                 return {"error": f"Order creation failed: {response.status_code}"}
-                
+
         except Exception as e:
             print(f"❌ Error creating order: {e}")
             return {"error": str(e)}
 
     def capture_multiparty_order(self, order_id: str) -> Dict[str, Any]:
         """💰 Capture approved multiparty order"""
-        
+
         token = self.get_access_token()
         if not token:
             return {"error": "Could not get access token"}
-        
+
         url = f"{self.api_url}/v2/checkout/orders/{order_id}/capture"
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {token}",
             "PayPal-Partner-Attribution-Id": self.partner_attribution_id
         }
-        
+
         try:
             response = requests.post(url, headers=headers)
-            
+
             if response.status_code == 201:
                 capture_data = response.json()
-                
+
                 # Extract capture details
                 captures = []
                 total_captured = 0.0
                 total_fees = 0.0
-                
+
                 for unit in capture_data.get("purchase_units", []):
                     for capture in unit.get("payments", {}).get("captures", []):
                         amount = float(capture["amount"]["value"])
                         fee_amount = 0.0
-                        
+
                         # Extract platform fee if available
                         if "seller_receivable_breakdown" in capture:
                             breakdown = capture["seller_receivable_breakdown"]
                             if "platform_fees" in breakdown:
                                 for fee in breakdown["platform_fees"]:
                                     fee_amount += float(fee["amount"]["value"])
-                        
+
                         captures.append({
                             "capture_id": capture["id"],
                             "amount": amount,
                             "platform_fee": fee_amount,
                             "status": capture["status"]
                         })
-                        
+
                         total_captured += amount
                         total_fees += fee_amount
-                
+
                 print(f"""
 ✅ MULTIPARTY ORDER CAPTURED!
 ============================
@@ -384,7 +384,7 @@ Captures: {len(captures)}
 
 💰 Revenue secured for HyperFocus Zone Empire!
                 """)
-                
+
                 return {
                     "success": True,
                     "order_id": order_id,
@@ -397,20 +397,20 @@ Captures: {len(captures)}
                 print(f"❌ Failed to capture order: {response.status_code}")
                 print(f"Response: {response.text}")
                 return {"error": f"Order capture failed: {response.status_code}"}
-                
+
         except Exception as e:
             print(f"❌ Error capturing order: {e}")
             return {"error": str(e)}
 
     def create_seller_payout(self, payouts: List[Dict]) -> Dict[str, Any]:
         """💸 Create batch payout to sellers"""
-        
+
         token = self.get_access_token()
         if not token:
             return {"error": "Could not get access token"}
-        
+
         batch_id = f"HFZ-PAYOUT-{datetime.now().strftime('%Y%m%d%H%M%S')}"
-        
+
         payout_payload = {
             "sender_batch_header": {
                 "sender_batch_id": batch_id,
@@ -419,23 +419,23 @@ Captures: {len(captures)}
             },
             "items": payouts
         }
-        
+
         url = f"{self.api_url}/v1/payments/payouts"
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {token}",
             "PayPal-Partner-Attribution-Id": self.partner_attribution_id
         }
-        
+
         try:
             response = requests.post(url, headers=headers, json=payout_payload)
-            
+
             if response.status_code == 201:
                 payout_data = response.json()
                 payout_batch_id = payout_data["batch_header"]["payout_batch_id"]
-                
+
                 total_amount = sum(float(item["amount"]["value"]) for item in payouts)
-                
+
                 print(f"""
 ✅ SELLER PAYOUTS CREATED!
 =========================
@@ -446,7 +446,7 @@ Seller Count: {len(payouts)}
 
 💸 Payments processing to sellers!
                 """)
-                
+
                 return {
                     "success": True,
                     "batch_id": payout_batch_id,
@@ -458,19 +458,19 @@ Seller Count: {len(payouts)}
                 print(f"❌ Failed to create payouts: {response.status_code}")
                 print(f"Response: {response.text}")
                 return {"error": f"Payout creation failed: {response.status_code}"}
-                
+
         except Exception as e:
             print(f"❌ Error creating payouts: {e}")
             return {"error": str(e)}
 
     def generate_marketplace_dashboard_html(self) -> str:
         """🎨 Generate marketplace dashboard HTML"""
-        
+
         service_cards = []
         for category, details in self.service_categories.items():
             min_price, max_price = details["base_price_range"]
             fee = details["platform_fee"]
-            
+
             card_html = f"""
 <div class="service-category-card">
     <h3>{details['name']}</h3>
@@ -482,7 +482,7 @@ Seller Count: {len(payouts)}
 </div>
             """
             service_cards.append(card_html)
-        
+
         return f"""
 <!DOCTYPE html>
 <html>
@@ -505,18 +505,18 @@ Seller Count: {len(payouts)}
         <h1>🏆💎⚡ HyperFocus Zone Multiparty Marketplace ⚡💎🏆</h1>
         <p>ADHD-Optimized Services • Multiple Sellers • Platform Fees</p>
     </div>
-    
+
     <div class="stats-panel">
         <h2>📊 Platform Statistics</h2>
         <p>Environment: {self.environment.upper()}</p>
         <p>Platform Fee: {self.platform_fee_percentage}%</p>
         <p>Service Categories: {len(self.service_categories)}</p>
     </div>
-    
+
     <div class="service-categories">
         {"".join(service_cards)}
     </div>
-    
+
     <script>
         function selectCategory(category) {{
             alert(`Selected category: ${{category}}\\n\\nThis would redirect to seller listings for this category.`);
@@ -528,11 +528,11 @@ Seller Count: {len(payouts)}
 
 def demonstrate_multiparty_system():
     """🚀 Demonstrate the PayPal Multiparty system"""
-    
+
     print("🚀 DEMONSTRATING PAYPAL MULTIPARTY MARKETPLACE...")
-    
+
     marketplace = HyperFocusPayPalMarketplace()
-    
+
     # Test 1: Create seller onboarding link
     print("\n🤝 CREATING SELLER ONBOARDING LINK:")
     onboarding_result = marketplace.create_seller_onboarding_link(
@@ -540,7 +540,7 @@ def demonstrate_multiparty_system():
         seller_name="John Discord Bot Dev",
         service_category="discord_bots"
     )
-    
+
     # Test 2: Create sample multiparty order
     print("\n💳 CREATING MULTIPARTY ORDER:")
     sample_purchase_units = [
@@ -553,28 +553,28 @@ def demonstrate_multiparty_system():
         {
             "amount": {"currency_code": "USD", "value": "150.00"},
             "payee": {"merchant_id": "SELLER_2_MERCHANT_ID"},
-            "service_category": "adhd_coaching", 
+            "service_category": "adhd_coaching",
             "description": "ADHD Productivity Consultation"
         }
     ]
-    
+
     buyer_info = {
         "first_name": "Jane",
-        "last_name": "Customer", 
+        "last_name": "Customer",
         "email": "customer@example.com"
     }
-    
+
     order_result = marketplace.create_multiparty_order(sample_purchase_units, buyer_info)
-    
+
     # Test 3: Generate dashboard
     print("\n🎨 GENERATING MARKETPLACE DASHBOARD:")
     dashboard_html = marketplace.generate_marketplace_dashboard_html()
-    
+
     with open("hyperfocus_marketplace_dashboard.html", "w") as f:
         f.write(dashboard_html)
-    
+
     print("✅ Dashboard saved to 'hyperfocus_marketplace_dashboard.html'")
-    
+
     # Test 4: Show platform revenue potential
     print(f"""
 📊 HYPERFOCUS ZONE MULTIPARTY REVENUE ANALYSIS:
@@ -582,7 +582,7 @@ def demonstrate_multiparty_system():
 
 🎯 PLATFORM FEE STRUCTURE:
 • Discord Bots: 15% platform fee
-• ADHD Coaching: 12% platform fee  
+• ADHD Coaching: 12% platform fee
 • Python Automation: 10% platform fee
 • AI Content: 8% platform fee
 • System Optimization: 20% platform fee
@@ -594,7 +594,7 @@ def demonstrate_multiparty_system():
 
 🚀 SCALING POTENTIAL:
 • 10 orders/day = $292.50 platform revenue
-• 50 orders/day = $1,462.50 platform revenue  
+• 50 orders/day = $1,462.50 platform revenue
 • 100 orders/day = $2,925.00 platform revenue
 
 🏆 YOUR EMPIRE IS READY FOR MULTIPARTY DOMINATION!

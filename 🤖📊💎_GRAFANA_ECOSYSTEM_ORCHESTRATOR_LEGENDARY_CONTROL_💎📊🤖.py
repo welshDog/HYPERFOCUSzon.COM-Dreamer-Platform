@@ -20,23 +20,23 @@ DISCOVERED GRAFANA SERVICES:
 STATUS: MAXIMUM LEGENDARY - FULL GRAFANA ECOSYSTEM CONTROL!
 """
 
-import os
-import sys
-import json
-import subprocess
-import datetime
-import time
-import threading
 from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import datetime
+import json
+import os
+import subprocess
+import sys
+import threading
+import time
 
+from concurrent.futures import ThreadPoolExecutor, as_completed
 class GrafanaEcosystemOrchestrator:
     """🏆 LEGENDARY GRAFANA INFRASTRUCTURE ORCHESTRATION SYSTEM 🏆"""
-    
+
     def __init__(self):
         self.orchestration_status = "LEGENDARY_MAXIMUM_CONTROL"
         self.base_path = Path("h:/grafana-by-example")
-        
+
         # Discovered Grafana Services with their control scripts
         self.grafana_services = {
             "regional-services": {
@@ -124,10 +124,10 @@ class GrafanaEcosystemOrchestrator:
                 "health_endpoint": None
             }
         }
-        
+
         self.monitoring_active = True
         self.orchestration_results = {}
-    
+
     def execute_legendary_grafana_orchestration(self):
         """🚀 MAIN GRAFANA ECOSYSTEM ORCHESTRATION PROTOCOL 🚀"""
         print("🤖⚡💎 LEGENDARY GRAFANA ECOSYSTEM ORCHESTRATION ACTIVATED! 💎⚡🤖")
@@ -136,40 +136,40 @@ class GrafanaEcosystemOrchestrator:
         print(f"📊 DISCOVERED SERVICES: {len(self.grafana_services)} Grafana Components")
         print("=" * 80)
         print()
-        
+
         # Phase 1: Service Discovery & Assessment
         self.assess_grafana_infrastructure()
-        
+
         # Phase 2: Automated Service Deployment
         self.deploy_grafana_services()
-        
+
         # Phase 3: Health Check Automation
         self.execute_grafana_health_checks()
-        
+
         # Phase 4: Performance Optimization
         self.optimize_grafana_performance()
-        
+
         # Phase 5: Monitoring & Alerting Setup
         self.setup_grafana_monitoring()
-        
+
         return {
             "orchestration_status": "LEGENDARY_COMPLETE",
             "services_deployed": len(self.grafana_services),
             "infrastructure_health": "MAXIMUM_OPTIMIZED",
             "monitoring_systems": "FULLY_OPERATIONAL"
         }
-    
+
     def assess_grafana_infrastructure(self):
         """🔍 COMPREHENSIVE GRAFANA INFRASTRUCTURE ASSESSMENT 🔍"""
         print("🔍 PHASE 1: GRAFANA INFRASTRUCTURE DISCOVERY & ASSESSMENT")
         print("=" * 60)
-        
+
         for service_name, service_config in self.grafana_services.items():
             print(f"📊 {service_name.upper()}:")
             print(f"   📂 Path: {service_config['path']}")
             print(f"   📋 Description: {service_config['description']}")
             print(f"   🔌 Ports: {', '.join(map(str, service_config['ports']))}")
-            
+
             # Check if service directory exists and has ctl.sh
             if service_config['path'].exists():
                 ctl_script = service_config['path'] / "ctl.sh"
@@ -179,7 +179,7 @@ class GrafanaEcosystemOrchestrator:
                 else:
                     print(f"   ⚠️ Control Script: NOT FOUND")
                     service_config['control_available'] = False
-                    
+
                 # Check for Docker Compose files
                 docker_compose_files = list(service_config['path'].glob("docker-compose*.yml")) + \
                                      list(service_config['path'].glob("docker-compose*.yaml"))
@@ -192,19 +192,19 @@ class GrafanaEcosystemOrchestrator:
             else:
                 print(f"   ❌ Service Directory: NOT FOUND")
                 service_config['available'] = False
-            
+
             print()
-        
+
         print("✅ Grafana Infrastructure Assessment Complete!")
         print()
-    
+
     def deploy_grafana_services(self):
         """🚀 AUTOMATED GRAFANA SERVICE DEPLOYMENT 🚀"""
         print("🚀 PHASE 2: AUTOMATED GRAFANA SERVICE DEPLOYMENT")
         print("=" * 60)
-        
+
         deployment_tasks = []
-        
+
         # Prioritized deployment order for dependencies
         priority_services = [
             "postgres-db",           # Database first
@@ -220,48 +220,48 @@ class GrafanaEcosystemOrchestrator:
             "job-status",          # Log processing
             "private-data-source"  # Private data integration
         ]
-        
+
         for service_name in priority_services:
             if service_name in self.grafana_services:
                 service_config = self.grafana_services[service_name]
                 if service_config.get('control_available', False):
                     deployment_tasks.append((service_name, service_config))
-        
+
         # Execute deployment tasks
         for service_name, service_config in deployment_tasks:
             try:
                 print(f"🚀 Deploying {service_name.upper()}:")
                 result = self.deploy_single_service(service_name, service_config)
                 self.orchestration_results[service_name] = result
-                
+
                 if result['status'] == 'SUCCESS':
                     print(f"   ✅ {service_name}: DEPLOYED SUCCESSFULLY")
                 else:
                     print(f"   ⚠️ {service_name}: DEPLOYMENT ISSUES - {result.get('message', 'Unknown error')}")
-                    
+
             except Exception as e:
                 print(f"   ❌ {service_name}: DEPLOYMENT FAILED - {e}")
                 self.orchestration_results[service_name] = {'status': 'ERROR', 'message': str(e)}
-            
+
             # Wait between deployments to avoid resource conflicts
             time.sleep(2)
-        
+
         print("✅ Grafana Service Deployment Phase Complete!")
         print()
-    
+
     def deploy_single_service(self, service_name, service_config):
         """🔧 DEPLOY INDIVIDUAL GRAFANA SERVICE 🔧"""
         ctl_script = service_config['path'] / "ctl.sh"
-        
+
         try:
             # Change to service directory
             original_cwd = os.getcwd()
             os.chdir(service_config['path'])
-            
+
             # Try to configure the service first
             print(f"   🔧 Configuring {service_name}...")
             try:
-                result = subprocess.run(['bash', 'ctl.sh', 'configure'], 
+                result = subprocess.run(['bash', 'ctl.sh', 'configure'],
                                       capture_output=True, text=True, timeout=60)
                 if result.returncode == 0:
                     print(f"   ✅ Configuration: SUCCESS")
@@ -271,19 +271,19 @@ class GrafanaEcosystemOrchestrator:
                 print(f"   ⚠️ Configuration: TIMEOUT")
             except Exception as e:
                 print(f"   ⚠️ Configuration: {e}")
-            
+
             # Try to start/up the service
             print(f"   🚀 Starting {service_name}...")
-            
+
             # Try different common startup commands
             startup_commands = ['up', 'start', 'cloud-up', 'local up']
-            
+
             for cmd in startup_commands:
                 try:
                     cmd_parts = ['bash', 'ctl.sh'] + cmd.split()
-                    result = subprocess.run(cmd_parts, 
+                    result = subprocess.run(cmd_parts,
                                           capture_output=True, text=True, timeout=120)
-                    
+
                     if result.returncode == 0:
                         print(f"   ✅ Startup ({cmd}): SUCCESS")
                         return {
@@ -293,32 +293,32 @@ class GrafanaEcosystemOrchestrator:
                         }
                     else:
                         print(f"   ⚠️ Startup ({cmd}): {result.stderr.strip() if result.stderr else 'Command failed'}")
-                        
+
                 except subprocess.TimeoutExpired:
                     print(f"   ⚠️ Startup ({cmd}): TIMEOUT")
                 except Exception as e:
                     print(f"   ⚠️ Startup ({cmd}): {e}")
-            
+
             return {
                 'status': 'PARTIAL',
                 'message': 'Service configured but startup uncertain'
             }
-            
+
         finally:
             # Always return to original directory
             os.chdir(original_cwd)
-    
+
     def execute_grafana_health_checks(self):
         """💎 COMPREHENSIVE GRAFANA HEALTH CHECK SYSTEM 💎"""
         print("💎 PHASE 3: COMPREHENSIVE GRAFANA HEALTH CHECKS")
         print("=" * 60)
-        
+
         health_results = {}
-        
+
         # Execute health checks in parallel
         with ThreadPoolExecutor(max_workers=6) as executor:
             future_to_service = {}
-            
+
             for service_name, service_config in self.grafana_services.items():
                 if service_config.get('health_endpoint'):
                     future = executor.submit(self.check_service_health, service_name, service_config)
@@ -327,36 +327,36 @@ class GrafanaEcosystemOrchestrator:
                     # For services without HTTP health endpoints, check Docker containers
                     future = executor.submit(self.check_docker_service_health, service_name, service_config)
                     future_to_service[future] = service_name
-            
+
             for future in as_completed(future_to_service):
                 service_name = future_to_service[future]
                 try:
                     result = future.result()
                     health_results[service_name] = result
-                    
+
                     status_icon = "✅" if result['healthy'] else "🚨"
                     print(f"   {status_icon} {service_name.upper()}: {result['status']}")
-                    
+
                 except Exception as e:
                     health_results[service_name] = {'healthy': False, 'status': f'ERROR: {e}'}
                     print(f"   ❌ {service_name.upper()}: HEALTH CHECK ERROR - {e}")
-        
+
         # Save health check results
         self.save_health_report(health_results)
-        
+
         print("✅ Grafana Health Checks Complete!")
         print()
-        
+
         return health_results
-    
+
     def check_service_health(self, service_name, service_config):
         """🏥 HTTP HEALTH CHECK FOR GRAFANA SERVICE 🏥"""
         try:
             import requests
-            
+
             health_url = service_config['health_endpoint']
             response = requests.get(health_url, timeout=10)
-            
+
             if response.status_code == 200:
                 return {
                     'healthy': True,
@@ -370,7 +370,7 @@ class GrafanaEcosystemOrchestrator:
                     'status': f'HTTP_UNHEALTHY (Code: {response.status_code})',
                     'status_code': response.status_code
                 }
-                
+
         except requests.exceptions.ConnectionError:
             return {
                 'healthy': False,
@@ -389,7 +389,7 @@ class GrafanaEcosystemOrchestrator:
                 'status': 'HEALTH_CHECK_ERROR',
                 'message': str(e)
             }
-    
+
     def check_docker_service_health(self, service_name, service_config):
         """🐳 DOCKER CONTAINER HEALTH CHECK 🐳"""
         try:
@@ -398,16 +398,16 @@ class GrafanaEcosystemOrchestrator:
                 ['docker', 'ps', '--format', '{{.Names}}\t{{.Status}}', '--filter', f'name={service_name}'],
                 capture_output=True, text=True, timeout=10
             )
-            
+
             if result.returncode == 0 and result.stdout.strip():
                 containers = []
                 for line in result.stdout.strip().split('\n'):
                     if line:
                         name, status = line.split('\t', 1)
                         containers.append({'name': name, 'status': status})
-                
+
                 healthy_containers = [c for c in containers if 'Up' in c['status']]
-                
+
                 return {
                     'healthy': len(healthy_containers) > 0,
                     'status': f'DOCKER_CONTAINERS: {len(healthy_containers)}/{len(containers)} healthy',
@@ -419,7 +419,7 @@ class GrafanaEcosystemOrchestrator:
                     'status': 'NO_DOCKER_CONTAINERS_FOUND',
                     'message': 'Service may not be running or not containerized'
                 }
-                
+
         except subprocess.TimeoutExpired:
             return {
                 'healthy': False,
@@ -436,36 +436,36 @@ class GrafanaEcosystemOrchestrator:
                 'status': 'DOCKER_CHECK_ERROR',
                 'message': str(e)
             }
-    
+
     def optimize_grafana_performance(self):
         """🏎️ GRAFANA PERFORMANCE OPTIMIZATION 🏎️"""
         print("🏎️ PHASE 4: GRAFANA PERFORMANCE OPTIMIZATION")
         print("=" * 60)
-        
+
         optimization_tasks = [
             ("Memory Usage Optimization", self.optimize_memory_usage),
             ("Network Performance", self.optimize_network_performance),
             ("Storage Optimization", self.optimize_storage),
             ("Container Resource Limits", self.optimize_container_resources)
         ]
-        
+
         for task_name, task_func in optimization_tasks:
             try:
                 result = task_func()
                 print(f"   ✅ {task_name}: {result.get('status', 'OPTIMIZED')}")
             except Exception as e:
                 print(f"   ⚠️ {task_name}: ERROR - {e}")
-        
+
         print("✅ Grafana Performance Optimization Complete!")
         print()
-    
+
     def optimize_memory_usage(self):
         """💾 MEMORY USAGE OPTIMIZATION 💾"""
         # Check current memory usage
         try:
             import psutil
             memory_info = psutil.virtual_memory()
-            
+
             if memory_info.percent > 80:
                 print("      🚨 High memory usage detected - applying optimizations")
                 # In a real implementation, this would:
@@ -475,27 +475,27 @@ class GrafanaEcosystemOrchestrator:
                 return {"status": "HIGH_MEMORY_OPTIMIZATIONS_APPLIED"}
             else:
                 return {"status": "MEMORY_USAGE_OPTIMAL"}
-                
+
         except ImportError:
             return {"status": "PSUTIL_NOT_AVAILABLE"}
-    
+
     def optimize_network_performance(self):
         """🌐 NETWORK PERFORMANCE OPTIMIZATION 🌐"""
         # Check port conflicts and network optimization
         used_ports = set()
         conflicts = []
-        
+
         for service_name, service_config in self.grafana_services.items():
             for port in service_config['ports']:
                 if port in used_ports:
                     conflicts.append(f"Port {port} conflict between services")
                 used_ports.add(port)
-        
+
         if conflicts:
             return {"status": f"PORT_CONFLICTS_DETECTED: {len(conflicts)}", "conflicts": conflicts}
         else:
             return {"status": "NO_PORT_CONFLICTS"}
-    
+
     def optimize_storage(self):
         """💽 STORAGE OPTIMIZATION 💽"""
         # Check disk space and optimize storage
@@ -503,16 +503,16 @@ class GrafanaEcosystemOrchestrator:
             import psutil
             disk_usage = psutil.disk_usage('/')
             free_space_gb = disk_usage.free / (1024**3)
-            
+
             if free_space_gb < 10:  # Less than 10GB free
                 print("      🚨 Low disk space - enabling storage optimizations")
                 return {"status": "LOW_DISK_SPACE_OPTIMIZATIONS_APPLIED"}
             else:
                 return {"status": f"DISK_SPACE_ADEQUATE: {free_space_gb:.1f}GB free"}
-                
+
         except ImportError:
             return {"status": "STORAGE_CHECK_UNAVAILABLE"}
-    
+
     def optimize_container_resources(self):
         """🐳 CONTAINER RESOURCE OPTIMIZATION 🐳"""
         try:
@@ -521,11 +521,11 @@ class GrafanaEcosystemOrchestrator:
                 ['docker', 'stats', '--no-stream', '--format', 'table {{.Name}}\t{{.CPUPerc}}\t{{.MemUsage}}'],
                 capture_output=True, text=True, timeout=15
             )
-            
+
             if result.returncode == 0:
                 lines = result.stdout.strip().split('\n')[1:]  # Skip header
                 high_cpu_containers = []
-                
+
                 for line in lines:
                     if line:
                         parts = line.split('\t')
@@ -537,7 +537,7 @@ class GrafanaEcosystemOrchestrator:
                                     high_cpu_containers.append(name)
                             except ValueError:
                                 continue
-                
+
                 if high_cpu_containers:
                     return {
                         "status": f"HIGH_CPU_CONTAINERS_DETECTED: {len(high_cpu_containers)}",
@@ -547,45 +547,45 @@ class GrafanaEcosystemOrchestrator:
                     return {"status": "CONTAINER_RESOURCES_OPTIMAL"}
             else:
                 return {"status": "DOCKER_STATS_UNAVAILABLE"}
-                
+
         except subprocess.TimeoutExpired:
             return {"status": "CONTAINER_STATS_TIMEOUT"}
         except FileNotFoundError:
             return {"status": "DOCKER_NOT_AVAILABLE"}
-    
+
     def setup_grafana_monitoring(self):
         """📊 GRAFANA MONITORING & ALERTING SETUP 📊"""
         print("📊 PHASE 5: GRAFANA MONITORING & ALERTING SETUP")
         print("=" * 60)
-        
+
         # Start continuous monitoring
         monitoring_thread = threading.Thread(target=self.continuous_grafana_monitoring, daemon=True)
         monitoring_thread.start()
-        
+
         print("✅ Continuous Grafana Monitoring Active!")
         print("   📈 Service health monitoring: ENABLED")
         print("   🚨 Automated alerting: OPERATIONAL")
         print("   📊 Performance tracking: ACTIVE")
         print("   🔄 Auto-restart on failures: ENABLED")
         print()
-    
+
     def continuous_grafana_monitoring(self):
         """🔄 CONTINUOUS GRAFANA ECOSYSTEM MONITORING 🔄"""
         monitoring_interval = 60  # Check every minute
-        
+
         while self.monitoring_active:
             try:
                 timestamp = datetime.datetime.now().isoformat()
-                
+
                 # Quick health check of all services
                 unhealthy_services = []
-                
+
                 for service_name, service_config in self.grafana_services.items():
                     if service_config.get('health_endpoint'):
                         health_status = self.check_service_health(service_name, service_config)
                         if not health_status.get('healthy', False):
                             unhealthy_services.append(service_name)
-                
+
                 # Log monitoring status
                 monitoring_log = {
                     "timestamp": timestamp,
@@ -593,26 +593,26 @@ class GrafanaEcosystemOrchestrator:
                     "unhealthy_services": unhealthy_services,
                     "monitoring_status": "ACTIVE"
                 }
-                
+
                 # Save monitoring log
                 self.save_monitoring_log(monitoring_log)
-                
+
                 # Auto-restart unhealthy services
                 if unhealthy_services:
                     print(f"🚨 Unhealthy services detected: {', '.join(unhealthy_services)}")
                     # In production, this would trigger auto-restart procedures
-                
+
                 time.sleep(monitoring_interval)
-                
+
             except Exception as e:
                 print(f"⚠️ Monitoring error: {e}")
                 time.sleep(monitoring_interval * 2)  # Wait longer on error
-    
+
     def save_health_report(self, health_results):
         """💾 SAVE GRAFANA HEALTH REPORT 💾"""
         report_dir = Path("memory_crystals")
         report_dir.mkdir(exist_ok=True)
-        
+
         health_report = {
             "timestamp": datetime.datetime.now().isoformat(),
             "orchestration_system": "LEGENDARY_GRAFANA_ECOSYSTEM_ORCHESTRATOR",
@@ -621,32 +621,32 @@ class GrafanaEcosystemOrchestrator:
             "orchestration_results": self.orchestration_results,
             "overall_status": "GRAFANA_ECOSYSTEM_OPERATIONAL"
         }
-        
+
         report_file = report_dir / f"grafana_health_report_{datetime.date.today()}.json"
         with open(report_file, 'w') as f:
             json.dump(health_report, f, indent=4)
-        
+
         print(f"   💾 Grafana health report saved: {report_file}")
-    
+
     def save_monitoring_log(self, monitoring_data):
         """📝 SAVE CONTINUOUS MONITORING LOG 📝"""
         log_dir = Path("logs/grafana_monitoring")
         log_dir.mkdir(parents=True, exist_ok=True)
-        
+
         log_file = log_dir / f"monitoring_{datetime.date.today()}.json"
-        
+
         # Append to existing log or create new
         if log_file.exists():
             try:
                 with open(log_file, 'r') as f:
                     existing_logs = json.load(f)
-            except:
+            except (ConnectionError, OSError):
                 existing_logs = []
         else:
             existing_logs = []
-        
+
         existing_logs.append(monitoring_data)
-        
+
         with open(log_file, 'w') as f:
             json.dump(existing_logs, f, indent=4)
 
@@ -659,14 +659,14 @@ def main():
     print("🚀 CAPABILITY: Deploy, Monitor, Optimize, and Maintain Full Ecosystem")
     print("=" * 80)
     print()
-    
+
     # Initialize the legendary orchestration system
     orchestrator = GrafanaEcosystemOrchestrator()
-    
+
     try:
         # Execute comprehensive Grafana ecosystem orchestration
         results = orchestrator.execute_legendary_grafana_orchestration()
-        
+
         print()
         print("=" * 80)
         print("🎊 LEGENDARY GRAFANA ECOSYSTEM ORCHESTRATION COMPLETE! 🎊")
@@ -691,9 +691,9 @@ def main():
         print()
         print("🚀 LEGENDARY GRAFANA ORCHESTRATOR: FULLY OPERATIONAL!")
         print("💎 Ready to handle any Grafana infrastructure challenge!")
-        
+
         return results
-        
+
     except Exception as e:
         print(f"\n❌ Grafana Orchestration Error: {e}")
         print("🔄 Implementing emergency recovery protocols...")

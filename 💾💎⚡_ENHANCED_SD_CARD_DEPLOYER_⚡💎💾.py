@@ -4,42 +4,42 @@
 Deploys Pi micro-cloud setup with laptop auto-detection
 """
 
-import os
-import shutil
-import subprocess
-import json
-import socket
-import time
 from pathlib import Path
 from typing import List, Dict, Any, Optional
+import json
+import os
+import socket
+import subprocess
+import time
 
+import shutil
 class EnhancedSDCardDeployer:
     """💾 Enhanced SD card deployment with laptop detection"""
-    
+
     def __init__(self, sd_card_drive: str = "E:\\"):
         self.sd_card_drive = Path(sd_card_drive)
         self.laptop_ip = self.get_laptop_ip()
-        
+
         print("💾💎⚡ ENHANCED SD CARD DEPLOYER ⚡💎💾")
         print("=" * 60)
         print(f"💾 SD Card Drive: {self.sd_card_drive}")
         print(f"💻 Laptop IP: {self.laptop_ip}")
-        
+
     def get_laptop_ip(self) -> str:
         """🌐 Get laptop's IP address"""
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 s.connect(("8.8.8.8", 80))
                 return s.getsockname()[0]
-        except:
+        except (ConnectionError, OSError):
             return "192.168.1.100"  # Fallback
-    
+
     def verify_sd_card(self) -> bool:
         """✅ Verify SD card is accessible"""
         if not self.sd_card_drive.exists():
             print(f"❌ SD card not found at {self.sd_card_drive}")
             return False
-        
+
         try:
             # Test write access
             test_file = self.sd_card_drive / "test_write.tmp"
@@ -47,13 +47,13 @@ class EnhancedSDCardDeployer:
             test_file.unlink()
             print(f"✅ SD card verified at {self.sd_card_drive}")
             return True
-        except Exception as e:
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"❌ SD card write test failed: {e}")
             return False
-    
+
     def create_enhanced_setup_script(self) -> str:
         """📜 Create enhanced setup script with laptop detection"""
-        
+
         setup_script = f'''#!/bin/bash
 # 📱💎⚡ ENHANCED PI AUTO-SETUP SCRIPT ⚡💎📱
 # Auto-detects laptop and establishes communication
@@ -81,7 +81,7 @@ log_message() {{
 # Function to test laptop connectivity
 test_laptop_connectivity() {{
     log_message "🔍 Testing laptop connectivity..."
-    
+
     # Scan for laptop on network
     for ip in {{1..254}}; do
         test_ip="$(echo $LAPTOP_IP | cut -d. -f1-3).$ip"
@@ -94,7 +94,7 @@ test_laptop_connectivity() {{
             fi
         fi
     done
-    
+
     log_message "⚠️ Laptop not found, using configured IP: $LAPTOP_IP"
     return 1
 }}
@@ -300,18 +300,18 @@ events {{
 http {{
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
-    
+
     # Logging
     access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log warn;
-    
+
     # Performance
     sendfile on;
     tcp_nopush on;
     tcp_nodelay on;
     keepalive_timeout 65;
     keepalive_requests 1000;
-    
+
     # Buffers
     client_body_buffer_size 128k;
     client_max_body_size 100m;
@@ -319,7 +319,7 @@ http {{
     large_client_header_buffers 4 4k;
     output_buffers 1 32k;
     postpone_output 1460;
-    
+
     # Gzip
     gzip on;
     gzip_vary on;
@@ -334,26 +334,26 @@ http {{
         application/xml+rss
         application/atom+xml
         image/svg+xml;
-    
+
     # Upstream for load balancing
     upstream broski_backend {{
         server broski-agent:5000 max_fails=3 fail_timeout=30s;
         keepalive 32;
     }}
-    
+
     server {{
         listen 80 default_server;
         server_name _;
         root /usr/share/nginx/html;
         index index.html;
-        
+
         # Health check
         location /health {{
             access_log off;
             return 200 "Pi Micro-Cloud Healthy\\n";
             add_header Content-Type text/plain;
         }}
-        
+
         # API proxy to BROski agent
         location /api/ {{
             proxy_pass http://broski_backend/;
@@ -368,14 +368,14 @@ http {{
             proxy_send_timeout 30s;
             proxy_read_timeout 30s;
         }}
-        
+
         # Prometheus proxy
         location /metrics {{
             proxy_pass http://prometheus:9090/metrics;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
         }}
-        
+
         # Static content
         location / {{
             try_files $uri $uri/ =404;
@@ -411,31 +411,31 @@ from typing import Dict, List, Any, Optional
 
 class BROskiPiAgent:
     """🤖 BROski Pi Micro-Cloud Agent"""
-    
+
     def __init__(self):
         self.node_id = os.getenv('PI_NODE_ID', f'pi-{{socket.gethostname()}}-{{int(time.time())}}')
         self.laptop_ip = os.getenv('LAPTOP_IP', '192.168.1.100')
         self.pi_ip = os.getenv('PI_IP', self.get_pi_ip())
         self.tasks = {{}}
         self.task_counter = 0
-        
+
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
-        
+
         print(f"🤖💎⚡ BROSKI PI AGENT STARTING ⚡💎🤖")
         print(f"🥧 Node ID: {{self.node_id}}")
         print(f"💻 Laptop IP: {{self.laptop_ip}}")
         print(f"📍 Pi IP: {{self.pi_ip}}")
-    
+
     def get_pi_ip(self) -> str:
         """🌐 Get Pi IP address"""
         try:
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
                 s.connect(("8.8.8.8", 80))
                 return s.getsockname()[0]
-        except:
+        except (ConnectionError, OSError):
             return "192.168.1.200"
-    
+
     async def register_with_laptop(self):
         """📡 Register Pi with laptop"""
         registration_data = {{
@@ -454,7 +454,7 @@ class BROskiPiAgent:
                 'disk_free': psutil.disk_usage('/').free
             }}
         }}
-        
+
         try:
             async with aiohttp.ClientSession() as session:
                 async with session.post(
@@ -464,15 +464,15 @@ class BROskiPiAgent:
                 ) as response:
                     if response.status == 200:
                         result = await response.json()
-                        self.logger.info(f"✅ Registered with laptop: {{result}}")
+        logger.info("✅ Registered with laptop: {%s}", result)
                         return True
                     else:
-                        self.logger.error(f"❌ Registration failed: HTTP {{response.status}}")
+        logger.error("❌ Registration failed: HTTP {%s}", response.status)
                         return False
-        except Exception as e:
-            self.logger.error(f"❌ Registration error: {{e}}")
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("❌ Registration error: {%s}", e)
             return False
-    
+
     async def send_heartbeat(self):
         """💓 Send heartbeat to laptop"""
         while True:
@@ -490,7 +490,7 @@ class BROskiPiAgent:
                         'total_completed': self.task_counter
                     }}
                 }}
-                
+
                 async with aiohttp.ClientSession() as session:
                     async with session.post(
                         f'http://{{self.laptop_ip}}:8888/api/pi-heartbeat',
@@ -504,13 +504,13 @@ class BROskiPiAgent:
                         if response.status == 200:
                             self.logger.debug("💓 Heartbeat sent successfully")
                         else:
-                            self.logger.warning(f"⚠️ Heartbeat failed: HTTP {{response.status}}")
-            
-            except Exception as e:
-                self.logger.error(f"💓 Heartbeat error: {{e}}")
-            
+        logger.warning("⚠️ Heartbeat failed: HTTP {%s}", response.status)
+
+            except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("💓 Heartbeat error: {%s}", e)
+
             await asyncio.sleep(30)  # Send heartbeat every 30 seconds
-    
+
     async def health_check(self, request):
         """🔍 Health check endpoint"""
         return web.json_response({{
@@ -522,14 +522,14 @@ class BROskiPiAgent:
             'active_tasks': len(self.tasks),
             'uptime': time.time() - psutil.boot_time()
         }})
-    
+
     async def offload_task(self, request):
         """⚡ Handle task offloading"""
         try:
             task_data = await request.json()
             task_id = f"task_{{self.task_counter}}_{{int(time.time())}}"
             self.task_counter += 1
-            
+
             # Store task
             self.tasks[task_id] = {{
                 'task_id': task_id,
@@ -538,30 +538,30 @@ class BROskiPiAgent:
                 'status': 'processing',
                 'started_at': datetime.now().isoformat()
             }}
-            
+
             # Process task asynchronously
             asyncio.create_task(self.process_task(task_id, task_data))
-            
+
             return web.json_response({{
                 'status': 'accepted',
                 'task_id': task_id,
                 'message': 'Task accepted for processing'
             }})
-            
-        except Exception as e:
-            self.logger.error(f"Task offloading error: {{e}}")
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Task offloading error: {%s}", e)
             return web.json_response({{
                 'error': str(e)
             }}, status=500)
-    
+
     async def process_task(self, task_id: str, task_data: Dict[str, Any]):
         """🔄 Process offloaded task"""
         try:
             task_type = task_data.get('task_type', 'default')
             payload = task_data.get('payload', {{}})
-            
-            self.logger.info(f"⚡ Processing task {{task_id}} of type {{task_type}}")
-            
+
+        logger.info("⚡ Processing task {{task_id}} of type {%s}", task_type)
+
             # Simulate task processing
             if task_type == 'compute':
                 result = await self.handle_compute_task(payload)
@@ -571,25 +571,25 @@ class BROskiPiAgent:
                 result = await self.handle_file_operation(payload)
             else:
                 result = await self.handle_default_task(payload)
-            
+
             # Update task status
             self.tasks[task_id].update({{
                 'status': 'completed',
                 'result': result,
                 'completed_at': datetime.now().isoformat()
             }})
-            
+
             # Send result to laptop
             await self.send_task_result(task_id)
-            
-        except Exception as e:
-            self.logger.error(f"Task processing error: {{e}}")
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("Task processing error: {%s}", e)
             self.tasks[task_id].update({{
                 'status': 'failed',
                 'error': str(e),
                 'completed_at': datetime.now().isoformat()
             }})
-    
+
     async def handle_compute_task(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """💻 Handle compute-intensive task"""
         await asyncio.sleep(2)  # Simulate computation
@@ -599,7 +599,7 @@ class BROskiPiAgent:
             'result': 'Computation completed successfully',
             'pi_node': self.node_id
         }}
-    
+
     async def handle_data_processing(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """📊 Handle data processing task"""
         await asyncio.sleep(1)  # Simulate processing
@@ -609,7 +609,7 @@ class BROskiPiAgent:
             'result': 'Data processing completed',
             'pi_node': self.node_id
         }}
-    
+
     async def handle_file_operation(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """📁 Handle file operation task"""
         await asyncio.sleep(0.5)  # Simulate file operation
@@ -619,7 +619,7 @@ class BROskiPiAgent:
             'result': 'File operations completed',
             'pi_node': self.node_id
         }}
-    
+
     async def handle_default_task(self, payload: Dict[str, Any]) -> Dict[str, Any]:
         """🔧 Handle default task"""
         await asyncio.sleep(1)
@@ -629,12 +629,12 @@ class BROskiPiAgent:
             'result': 'Default task completed',
             'pi_node': self.node_id
         }}
-    
+
     async def send_task_result(self, task_id: str):
         """📤 Send task result to laptop"""
         try:
             task_data = self.tasks[task_id]
-            
+
             async with aiohttp.ClientSession() as session:
                 async with session.post(
                     f'http://{{self.laptop_ip}}:8888/api/task-completion',
@@ -647,24 +647,24 @@ class BROskiPiAgent:
                     timeout=10
                 ) as response:
                     if response.status == 200:
-                        self.logger.info(f"📤 Task result sent: {{task_id}}")
+        logger.info("📤 Task result sent: {%s}", task_id)
                     else:
-                        self.logger.error(f"❌ Failed to send result: HTTP {{response.status}}")
-        
-        except Exception as e:
-            self.logger.error(f"📤 Result sending error: {{e}}")
-    
+        logger.error("❌ Failed to send result: HTTP {%s}", response.status)
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
+        logger.error("📤 Result sending error: {%s}", e)
+
     async def get_task_status(self, request):
         """📋 Get task status"""
         task_id = request.match_info['task_id']
-        
+
         if task_id in self.tasks:
             return web.json_response(self.tasks[task_id])
         else:
             return web.json_response({{
                 'error': 'Task not found'
             }}, status=404)
-    
+
     async def list_tasks(self, request):
         """📋 List all tasks"""
         return web.json_response({{
@@ -677,28 +677,28 @@ def create_app():
     """🏗️ Create BROski agent web application"""
     agent = BROskiPiAgent()
     app = web.Application()
-    
+
     # Routes
     app.router.add_get('/health', agent.health_check)
     app.router.add_post('/api/offload', agent.offload_task)
     app.router.add_get('/api/task/{{task_id}}', agent.get_task_status)
     app.router.add_get('/api/tasks', agent.list_tasks)
-    
+
     # Start background tasks
     async def init_background_tasks(app):
         # Register with laptop
         await agent.register_with_laptop()
-        
+
         # Start heartbeat task
         app['heartbeat_task'] = asyncio.create_task(agent.send_heartbeat())
-    
+
     async def cleanup_background_tasks(app):
         app['heartbeat_task'].cancel()
         await app['heartbeat_task']
-    
+
     app.on_startup.append(init_background_tasks)
     app.on_cleanup.append(cleanup_background_tasks)
-    
+
     return app
 
 if __name__ == "__main__":
@@ -721,7 +721,7 @@ scrape_configs:
       - targets: ['localhost:80', 'broski-agent:5000']
     scrape_interval: 10s
     metrics_path: /metrics
-    
+
   - job_name: 'node-exporter'
     static_configs:
       - targets: ['localhost:9100']
@@ -759,7 +759,7 @@ cat > html/index.html << 'HTML_EOF'
         <p>Node ID: __PI_NODE_ID__ | Pi IP: __PI_IP__ | Laptop: __LAPTOP_IP__</p>
         <p>🕐 Last Updated: <span id="timestamp"></span></p>
     </div>
-    
+
     <div class="status-grid">
         <div class="status-card status-ok">
             <h3>🐳 Docker Services</h3>
@@ -768,7 +768,7 @@ cat > html/index.html << 'HTML_EOF'
             <p>✅ BROski Agent Running</p>
             <p>✅ Prometheus Monitoring</p>
         </div>
-        
+
         <div class="status-card status-ok">
             <h3>🌐 Network Status</h3>
             <p>✅ Gigabit Ethernet Optimized</p>
@@ -776,7 +776,7 @@ cat > html/index.html << 'HTML_EOF'
             <p>✅ Port 80/443/5000 Open</p>
             <p>✅ Redis Port 6379 Ready</p>
         </div>
-        
+
         <div class="status-card status-ok">
             <h3>⚡ Performance</h3>
             <p>🚀 CPU: Multi-core Ready</p>
@@ -784,7 +784,7 @@ cat > html/index.html << 'HTML_EOF'
             <p>📊 Monitoring: Real-time</p>
             <p>🔄 Auto-healing: Enabled</p>
         </div>
-        
+
         <div class="status-card status-ok">
             <h3>📡 Communication</h3>
             <p>💻 Laptop Registration: Active</p>
@@ -793,7 +793,7 @@ cat > html/index.html << 'HTML_EOF'
             <p>📊 Metrics: Real-time</p>
         </div>
     </div>
-    
+
     <div class="links">
         <h3>🔗 Quick Links</h3>
         <a href="/health">Health Check</a>
@@ -801,7 +801,7 @@ cat > html/index.html << 'HTML_EOF'
         <a href="/metrics">Metrics</a>
         <a href="http://__LAPTOP_IP__:8888">Laptop Dashboard</a>
     </div>
-    
+
     <script>
         document.getElementById('timestamp').textContent = new Date().toLocaleString();
     </script>
@@ -912,7 +912,7 @@ echo ""
 echo "🌐 NETWORK STATUS:"
 echo "=================="
 echo "Pi IP: $PI_IP"
-echo "Laptop IP: $LAPTOP_IP" 
+echo "Laptop IP: $LAPTOP_IP"
 echo ""
 echo "🔗 ACCESS POINTS:"
 echo "================="
@@ -942,57 +942,57 @@ echo "📡 Laptop Dashboard: http://$LAPTOP_IP:8888/"
 echo "🚀 Ready for task offloading!"
 echo "======================================================="
 '''
-        
+
         return setup_script
-    
+
     def deploy_to_sd_card(self) -> bool:
         """💾 Deploy enhanced setup to SD card"""
         if not self.verify_sd_card():
             return False
-        
+
         try:
             # Create setup script
             print("📜 Creating enhanced setup script...")
             setup_script = self.create_enhanced_setup_script()
-            
+
             # Write setup script to SD card
             setup_script_path = self.sd_card_drive / "setup-pi-enhanced.sh"
             setup_script_path.write_text(setup_script, encoding='utf-8')
-            
+
             # Make executable (if on Linux/Mac)
             try:
                 import stat
                 setup_script_path.chmod(setup_script_path.stat().st_mode | stat.S_IEXEC)
-            except:
+            except (ConnectionError, OSError):
                 pass  # Windows doesn't support chmod
-            
+
             # Create auto-run configuration
             print("🔄 Creating auto-run configuration...")
-            
+
             # For Raspberry Pi OS, create cmdline.txt modification
             cmdline_path = self.sd_card_drive / "cmdline.txt"
             if cmdline_path.exists():
                 # Backup original
                 shutil.copy2(cmdline_path, self.sd_card_drive / "cmdline.txt.backup")
-                
+
                 # Read current cmdline
                 cmdline_content = cmdline_path.read_text().strip()
-                
+
                 # Add init script parameter if not already present
                 if "init=/usr/lib/raspi-config/init_resize.sh" not in cmdline_content:
                     cmdline_content += " init=/usr/lib/raspi-config/init_resize.sh"
-                
+
                 cmdline_path.write_text(cmdline_content)
-            
+
             # Create SSH enabler
             ssh_file = self.sd_card_drive / "ssh"
             ssh_file.touch()
-            
+
             # Create config.txt modifications for performance
             config_path = self.sd_card_drive / "config.txt"
             if config_path.exists():
                 config_content = config_path.read_text()
-                
+
                 # Add performance optimizations
                 perf_config = '''
 
@@ -1020,11 +1020,11 @@ force_turbo=1
 arm_freq=1800
 over_voltage=6
 '''
-                
+
                 if "Pi Micro-Cloud Performance" not in config_content:
                     config_content += perf_config
                     config_path.write_text(config_content)
-            
+
             # Create firstrun.sh for automatic execution
             firstrun_path = self.sd_card_drive / "firstrun.sh"
             firstrun_content = f'''#!/bin/bash
@@ -1040,9 +1040,9 @@ bash /boot/setup-pi-enhanced.sh
 # Remove this script after execution
 rm -f /boot/firstrun.sh
 '''
-            
+
             firstrun_path.write_text(firstrun_content, encoding='utf-8')
-            
+
             # Create deployment info file
             deployment_info = {
                 'deployment_time': time.strftime('%Y-%m-%d %H:%M:%S'),
@@ -1056,21 +1056,21 @@ rm -f /boot/firstrun.sh
                     'Communication protocols'
                 ]
             }
-            
+
             info_path = self.sd_card_drive / "pi-deployment-info.json"
             info_path.write_text(json.dumps(deployment_info, indent=2))
-            
+
             print("✅ Enhanced SD card deployment completed!")
             print(f"📍 Files deployed to: {self.sd_card_drive}")
             print(f"💻 Laptop IP configured: {self.laptop_ip}")
             print("🚀 Pi will auto-setup on first boot!")
-            
+
             return True
-            
-        except Exception as e:
+
+        except (socket.error, ConnectionError, requests.RequestException) as e:
             print(f"❌ Deployment failed: {e}")
             return False
-    
+
     def create_laptop_startup_instructions(self):
         """📋 Create instructions for laptop setup"""
         instructions = f'''
@@ -1102,31 +1102,31 @@ rm -f /boot/firstrun.sh
 
 🎊 READY FOR LEGENDARY TASK OFFLOADING! 🎊
 '''
-        
+
         instructions_path = Path("📋💎⚡_LAPTOP_SETUP_INSTRUCTIONS_⚡💎📋.txt")
         instructions_path.write_text(instructions)
         print(f"📋 Instructions saved to: {instructions_path}")
 
 def main():
     """🚀 Main deployment function"""
-    
+
     print("💾💎⚡ ENHANCED SD CARD DEPLOYER ⚡💎💾")
     print("=" * 60)
-    
+
     # Get SD card path
     sd_card_drive = input("💾 Enter SD card drive letter (default: E:\\): ").strip()
     if not sd_card_drive:
         sd_card_drive = "E:\\"
-    
+
     if not sd_card_drive.endswith("\\"):
         sd_card_drive += "\\"
-    
+
     # Create deployer
     deployer = EnhancedSDCardDeployer(sd_card_drive)
-    
+
     # Create laptop instructions
     deployer.create_laptop_startup_instructions()
-    
+
     # Deploy to SD card
     if deployer.deploy_to_sd_card():
         print("\n🎊💎⚡ DEPLOYMENT SUCCESSFUL ⚡💎🎊")

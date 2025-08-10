@@ -11,7 +11,7 @@ legendary monitoring empire infrastructure.
 Features:
 ✅ Hardware requirements assessment
 ✅ Model deployment options
-✅ Empire data preparation 
+✅ Empire data preparation
 ✅ Integration with existing dashboards
 ✅ Custom ADHD-friendly fine-tuning
 ✅ Sovereign AI bot deployment
@@ -20,17 +20,15 @@ Usage:
     python gpt_oss_empire_launcher.py --mode [assess|deploy|integrate|finetune]
 """
 
-import os
-import sys
-import json
-import asyncio
-import argparse
 from datetime import datetime
 from pathlib import Path
+import json
 
+import argparse
+import asyncio
 class GPTOSSEmpireIntegrator:
     """🧠 Master class for GPT-OSS integration with your empire"""
-    
+
     def __init__(self):
         self.empire_config = self.load_empire_config()
         self.integration_status = {
@@ -40,7 +38,7 @@ class GPTOSSEmpireIntegrator:
             "fine_tuned": False,
             "bot_integrated": False
         }
-        
+
     def load_empire_config(self):
         """📋 Load existing empire configuration"""
         try:
@@ -55,27 +53,27 @@ class GPTOSSEmpireIntegrator:
         except Exception as e:
             print(f"❌ Error loading empire config: {e}")
             return {"status": "error", "error": str(e)}
-    
+
     def assess_hardware_requirements(self):
         """🖥️ Assess hardware for GPT-OSS deployment"""
         print("\n🔍 ASSESSING HARDWARE REQUIREMENTS...")
         print("=" * 60)
-        
+
         # Check system specs
         import psutil
         import platform
-        
+
         system_info = {
             "cpu_count": psutil.cpu_count(),
             "memory_gb": round(psutil.virtual_memory().total / (1024**3), 2),
             "platform": platform.system(),
             "architecture": platform.architecture()[0]
         }
-        
+
         print(f"🖥️ System: {system_info['platform']} {system_info['architecture']}")
         print(f"🧠 CPU Cores: {system_info['cpu_count']}")
         print(f"💾 RAM: {system_info['memory_gb']} GB")
-        
+
         # GPU Assessment
         print("\n🎮 GPU ASSESSMENT:")
         try:
@@ -86,7 +84,7 @@ class GPTOSSEmpireIntegrator:
                     print(f"  GPU {i}: {gpu.name}")
                     print(f"    Memory: {gpu.memoryTotal} MB")
                     print(f"    Memory Free: {gpu.memoryFree} MB")
-                    
+
                     # Recommendations based on GPU memory
                     if gpu.memoryTotal >= 80000:  # 80GB+
                         print("    ✅ PERFECT for GPT-OSS-120B full model!")
@@ -101,57 +99,57 @@ class GPTOSSEmpireIntegrator:
                 print("  💡 Recommendation: Cloud deployment or CPU-only inference")
         except ImportError:
             print("  ⚠️ GPUtil not installed - manual GPU check needed")
-        
+
         # Deployment recommendations
         print(f"\n🎯 DEPLOYMENT RECOMMENDATIONS:")
         print("=" * 40)
-        
+
         recommendations = []
-        
+
         if system_info['memory_gb'] >= 32:
             recommendations.append("✅ Sufficient RAM for model loading")
         else:
             recommendations.append("⚠️ Consider adding more RAM (32GB+ recommended)")
-            
+
         recommendations.extend([
             "🌟 Start with GPT-OSS-20B for testing and development",
             "🚀 Upgrade to GPT-OSS-120B once proven successful",
             "🛡️ Keep existing OpenAI integration as fallback",
             "📊 Monitor performance impact on existing empire services"
         ])
-        
+
         for rec in recommendations:
             print(f"  {rec}")
-            
+
         self.integration_status["hardware_assessed"] = True
         return system_info, recommendations
-    
+
     def prepare_empire_training_data(self):
         """📚 Prepare empire-specific training data"""
         print("\n📚 PREPARING EMPIRE TRAINING DATA...")
         print("=" * 50)
-        
+
         training_sources = {
             "discord_logs": "Extract communication patterns and ADHD-friendly responses",
-            "monitoring_data": "System metrics and alert patterns", 
+            "monitoring_data": "System metrics and alert patterns",
             "empire_docs": "Command documentation and system knowledge",
             "user_interactions": "Hyperfocus patterns and dopamine triggers",
             "celebration_messages": "Victory announcements and positive reinforcement"
         }
-        
+
         prepared_data = []
-        
+
         for source, description in training_sources.items():
             print(f"\n🎯 {source.upper()}:")
             print(f"   Purpose: {description}")
-            
+
             # Check if data exists
             potential_paths = [
                 f"training_data/{source}.jsonl",
-                f"data/{source}.json", 
+                f"data/{source}.json",
                 f"{source}_export.txt"
             ]
-            
+
             found = False
             for path in potential_paths:
                 if Path(path).exists():
@@ -159,15 +157,15 @@ class GPTOSSEmpireIntegrator:
                     prepared_data.append({"source": source, "path": path, "status": "ready"})
                     found = True
                     break
-            
+
             if not found:
                 print(f"   ❌ Not found - will need manual export")
                 prepared_data.append({"source": source, "path": None, "status": "needed"})
-        
+
         # Create training data directory
         training_dir = Path("empire_training_data")
         training_dir.mkdir(exist_ok=True)
-        
+
         # Generate sample training format
         sample_training = {
             "conversations": [
@@ -181,27 +179,27 @@ class GPTOSSEmpireIntegrator:
             ],
             "empire_knowledge": [
                 "Empire monitoring uses Grafana V12.1 with custom dashboards",
-                "BROski♾️ agents coordinate 677+ AI processes", 
+                "BROski♾️ agents coordinate 677+ AI processes",
                 "ADHD-optimized alerts prevent hyperfocus disruption",
                 "Dopamine celebrations trigger on system victories"
             ]
         }
-        
+
         # Save sample format
         with open(training_dir / "sample_training_format.json", "w") as f:
             json.dump(sample_training, f, indent=2)
-        
+
         print(f"\n✅ Training preparation complete!")
         print(f"📁 Data directory: {training_dir}")
         print(f"📋 Sample format saved for reference")
-        
+
         return prepared_data
-    
+
     def create_integration_config(self):
         """⚙️ Create GPT-OSS integration configuration"""
         print("\n⚙️ CREATING INTEGRATION CONFIGURATION...")
         print("=" * 50)
-        
+
         config = {
             "gpt_oss_config": {
                 "model_variant": "gpt-oss-20b",  # Start with smaller model
@@ -231,20 +229,20 @@ class GPTOSSEmpireIntegrator:
                 "error_handling": "graceful_degradation"
             }
         }
-        
+
         # Save configuration
         config_path = Path("gpt_oss_empire_config.json")
         with open(config_path, "w") as f:
             json.dump(config, f, indent=2)
-        
+
         print(f"✅ Configuration saved: {config_path}")
         return config
-    
+
     def generate_deployment_script(self):
         """🚀 Generate deployment script for GPT-OSS"""
         print("\n🚀 GENERATING DEPLOYMENT SCRIPT...")
         print("=" * 45)
-        
+
         deployment_script = '''#!/bin/bash
 # 🚀💎⚡ GPT-OSS EMPIRE DEPLOYMENT SCRIPT ⚡💎🚀
 
@@ -266,8 +264,6 @@ pip install huggingface_hub datasets peft
 # Step 3: Download Model
 echo "📥 Downloading GPT-OSS model..."
 python -c "
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
 
 print('Loading GPT-OSS-20B model...')
 tokenizer = AutoTokenizer.from_pretrained('openai/gpt-oss-20b')
@@ -285,32 +281,31 @@ python gpt_oss_empire_launcher.py --mode deploy
 
 echo "🎊 GPT-OSS Empire Integration Complete! 🎊"
 '''
-        
+
         script_path = Path("deploy_gpt_oss_empire.sh")
         with open(script_path, "w") as f:
             f.write(deployment_script)
-        
+
         # Make executable
         script_path.chmod(0o755)
-        
+
         print(f"✅ Deployment script created: {script_path}")
         return script_path
-    
+
     def create_empire_oracle_interface(self):
         """🔮 Create dashboard oracle interface"""
         print("\n🔮 CREATING EMPIRE ORACLE INTERFACE...")
         print("=" * 45)
-        
+
         oracle_code = '''# 🔮💎⚡ EMPIRE ORACLE INTERFACE ⚡💎🔮
 
 import asyncio
-from transformers import pipeline
 import json
 from datetime import datetime
 
 class EmpireOracle:
     """🔮 Ask your empire anything - get AI-powered answers"""
-    
+
     def __init__(self):
         print("🧠 Loading GPT-OSS Empire Brain...")
         self.gpt_pipeline = pipeline(
@@ -321,7 +316,7 @@ class EmpireOracle:
         )
         self.empire_context = self.load_empire_context()
         print("✅ Empire Oracle ready!")
-    
+
     def load_empire_context(self):
         """📋 Load current empire status"""
         return {
@@ -331,10 +326,10 @@ class EmpireOracle:
             "uptime": "2+ days stable operation",
             "status": "LEGENDARY"
         }
-    
+
     async def ask_oracle(self, question: str):
         """🔮 Ask the empire oracle any question"""
-        
+
         # Create context-rich prompt
         prompt = f"""
 You are the Empire Oracle, an AI assistant with deep knowledge of a legendary monitoring infrastructure.
@@ -350,7 +345,7 @@ User Question: {question}
 
 Provide a detailed, ADHD-friendly answer with emojis and actionable insights:
 """
-        
+
         # Generate response
         response = self.gpt_pipeline(
             prompt,
@@ -358,10 +353,10 @@ Provide a detailed, ADHD-friendly answer with emojis and actionable insights:
             temperature=0.7,
             do_sample=True
         )[0]['generated_text']
-        
+
         # Extract just the oracle response
         oracle_response = response.split("Provide a detailed")[1] if "Provide a detailed" in response else response
-        
+
         return {
             "question": question,
             "oracle_response": oracle_response.strip(),
@@ -372,35 +367,35 @@ Provide a detailed, ADHD-friendly answer with emojis and actionable insights:
 # Example usage
 if __name__ == "__main__":
     oracle = EmpireOracle()
-    
+
     # Test questions
     test_questions = [
         "Why are my containers running so smoothly?",
-        "How can I optimize my monitoring dashboard?", 
+        "How can I optimize my monitoring dashboard?",
         "What's the secret to maintaining 99% uptime?",
         "How do I celebrate my empire's success?"
     ]
-    
+
     for question in test_questions:
         print(f"\\n🔮 Oracle Question: {question}")
         response = asyncio.run(oracle.ask_oracle(question))
         print(f"✨ Oracle Response: {response['oracle_response']}")
 '''
-        
+
         oracle_path = Path("empire_oracle.py")
         with open(oracle_path, "w") as f:
             f.write(oracle_code)
-        
+
         print(f"✅ Empire Oracle created: {oracle_path}")
         return oracle_path
-    
+
     def generate_status_report(self):
         """📊 Generate integration status report"""
         print("\n📊 EMPIRE INTEGRATION STATUS REPORT")
         print("=" * 50)
         print(f"🕐 Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print()
-        
+
         # Current empire status
         print("🏛️ CURRENT EMPIRE STATUS:")
         print("✅ Legendary monitoring infrastructure operational")
@@ -409,8 +404,8 @@ if __name__ == "__main__":
         print("✅ Emergency recovery systems proven")
         print("✅ 677+ AI agent army coordinated")
         print()
-        
-        # Integration opportunities  
+
+        # Integration opportunities
         print("🚀 GPT-OSS INTEGRATION OPPORTUNITIES:")
         print("🧠 Replace OpenAI API with sovereign AI")
         print("🔮 Add natural language dashboard queries")
@@ -418,7 +413,7 @@ if __name__ == "__main__":
         print("🤖 Enhance Discord bot with unlimited AI")
         print("💎 Custom ADHD-friendly fine-tuning")
         print()
-        
+
         # Next steps
         print("🎯 IMMEDIATE NEXT STEPS:")
         print("1. 🖥️ Assess hardware for GPT-OSS deployment")
@@ -427,21 +422,21 @@ if __name__ == "__main__":
         print("4. 🔗 Integrate with existing dashboards")
         print("5. 🚀 Scale up to GPT-OSS-120B")
         print()
-        
+
         print("🎊💎⚡ EMPIRE AI SOVEREIGNTY AWAITS! ⚡💎🎊")
 
 def main():
     """🚀 Main launcher function"""
     parser = argparse.ArgumentParser(description="GPT-OSS Empire Integration Launcher")
-    parser.add_argument("--mode", choices=["assess", "prepare", "deploy", "oracle", "status"], 
+    parser.add_argument("--mode", choices=["assess", "prepare", "deploy", "oracle", "status"],
                        default="assess", help="Integration mode")
     args = parser.parse_args()
-    
+
     print("🧠💎⚡ GPT-OSS EMPIRE INTEGRATION LAUNCHER ⚡💎🧠")
     print("=" * 60)
-    
+
     integrator = GPTOSSEmpireIntegrator()
-    
+
     if args.mode == "assess":
         integrator.assess_hardware_requirements()
     elif args.mode == "prepare":
@@ -453,7 +448,7 @@ def main():
         integrator.create_empire_oracle_interface()
     elif args.mode == "status":
         integrator.generate_status_report()
-    
+
     print(f"\n🎊 Mode '{args.mode}' completed successfully! 🎊")
     print("💡 Run with --mode status for full integration roadmap")
 

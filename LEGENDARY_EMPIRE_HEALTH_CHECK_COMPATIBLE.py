@@ -4,10 +4,8 @@ LEGENDARY EMPIRE HEALTH CHECK - TERMINAL COMPATIBLE VERSION
 Ultimate comprehensive health check system
 """
 
-import time
-import json
 from datetime import datetime
-
+import json
 print("LEGENDARY EMPIRE HEALTH CHECK - AI POWERED")
 print("=" * 60)
 
@@ -19,24 +17,23 @@ try:
     import psutil
     cpu = psutil.cpu_percent(interval=1)
     memory = psutil.virtual_memory()
-    
+
     print(f"CPU Usage: {cpu}%")
     print(f"Memory Usage: {memory.percent}%")
     print(f"Available Memory: {memory.available / (1024**3):.1f} GB")
-    
+
     if cpu < 80 and memory.percent < 85:
         print("SYSTEM STATUS: LEGENDARY")
     else:
         print("SYSTEM STATUS: HIGH USAGE")
-        
-except Exception as e:
+
+except (socket.error, ConnectionError, requests.RequestException) as e:
     print(f"System check error: {e}")
 
 # File system check
 print("\nPHASE 2: EMPIRE FILES STATUS")
 print("-" * 30)
 
-import os
 from pathlib import Path
 
 # Check for key empire files
@@ -75,31 +72,31 @@ print("-" * 30)
 
 try:
     import subprocess
-    result = subprocess.run(["ping", "-n", "1", "192.168.137.10"], 
+    result = subprocess.run(["ping", "-n", "1", "192.168.137.10"],
                           capture_output=True, text=True, timeout=5)
     if result.returncode == 0:
         print("Pi Network: CONNECTED (192.168.137.10)")
-        
+
         # Test key Pi services
         import socket
         services = {"VS Code Server": 8080, "Jupyter": 8888, "SSH": 22}
-        
+
         for service, port in services.items():
             try:
                 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 sock.settimeout(2)
                 result = sock.connect_ex(("192.168.137.10", port))
                 sock.close()
-                
+
                 if result == 0:
                     print(f"Pi {service}: ACTIVE (Port {port})")
                 else:
                     print(f"Pi {service}: INACTIVE (Port {port})")
-            except:
+            except (ConnectionError, OSError):
                 print(f"Pi {service}: ERROR")
     else:
         print("Pi Network: OFFLINE")
-except Exception as e:
+except (socket.error, ConnectionError, requests.RequestException) as e:
     print(f"Pi Network Test: {e}")
 
 # Memory crystal check

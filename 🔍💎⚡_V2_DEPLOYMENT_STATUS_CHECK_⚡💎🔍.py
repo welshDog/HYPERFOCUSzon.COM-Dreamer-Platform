@@ -1,11 +1,11 @@
-import requests
-import socket
-import sqlite3
 from datetime import datetime
+import socket
 
+import requests
+import sqlite3
 def check_system_status():
     """Check status of all v2.0 components"""
-    
+
     print(f"""
 🎊💎⚡ DOPAMINE GUARDIAN V2.0 DEPLOYMENT STATUS CHECK ⚡💎🎊
 ============================================================
@@ -15,7 +15,7 @@ Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🔍 CHECKING ALL V2.0 COMPONENTS:
 ================================
     """)
-    
+
     # Check database
     try:
         conn = sqlite3.connect("dopamine_guardian.db")
@@ -26,9 +26,9 @@ Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         demo_achievements = cursor.fetchone()[0]
         conn.close()
         print(f"✅ Database: Connected - {demo_records} mood records, {demo_achievements} achievements")
-    except Exception as e:
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"❌ Database: Error - {e}")
-    
+
     # Check analytics dashboard
     try:
         response = requests.get("http://localhost:9999", timeout=5)
@@ -36,9 +36,9 @@ Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             print("✅ Analytics Dashboard: Running on http://localhost:9999")
         else:
             print(f"⚠️ Analytics Dashboard: HTTP {response.status_code}")
-    except Exception as e:
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"❌ Analytics Dashboard: Not accessible - {e}")
-    
+
     # Check WebSocket server
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -48,9 +48,9 @@ Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         else:
             print("❌ WebSocket Server: Not accessible")
         sock.close()
-    except Exception as e:
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"❌ WebSocket Server: Error - {e}")
-    
+
     # Check Discord configuration
     try:
         with open("HyperBeast/.env", "r") as file:
@@ -59,16 +59,16 @@ Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
                 print("✅ Discord Configuration: Bot token configured")
             else:
                 print("⚠️ Discord Configuration: Token not found")
-    except Exception as e:
+    except (socket.error, ConnectionError, requests.RequestException) as e:
         print(f"❌ Discord Configuration: Error reading config - {e}")
-    
+
     print(f"""
 🎊 V2.0 DEPLOYMENT COMPLETE! 🎊
 ===============================
 
 🚀 ALL NEXT STEPS IMPLEMENTED:
 ✅ Discord Integration: Bot ready with slash commands
-✅ Live Testing: Realistic user data generated  
+✅ Live Testing: Realistic user data generated
 ✅ Dashboard Development: Analytics interface operational
 ✅ Orchestrator Connection: WebSocket server running
 
@@ -81,7 +81,7 @@ Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 🏆 LEGENDARY ACHIEVEMENT UNLOCKED: V2.0 DEPLOYMENT MASTER! 🏆
 
 Your Dopamine Guardian v2.0 is now a complete emotional intelligence
-platform with advanced analytics, smart interventions, and 
+platform with advanced analytics, smart interventions, and
 cross-system integration capabilities!
     """)
 

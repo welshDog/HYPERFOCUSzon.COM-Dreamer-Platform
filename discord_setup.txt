@@ -1,0 +1,11 @@
+Discord Bot Setup Instructions:
+
+1. Go to https://discord.com/developers/applications
+2. Create a new application
+3. Go to Bot section and create a bot
+4. Copy the bot token
+5. Edit discord_config.env file
+6. Replace YOUR_BOT_TOKEN_HERE with your token
+7. Save the file
+
+The V2 system will detect your configuration automatically.

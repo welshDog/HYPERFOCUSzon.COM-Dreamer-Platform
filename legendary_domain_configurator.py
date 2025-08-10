@@ -17,47 +17,44 @@ Network: IPFS + Unstoppable Domains
 Usage: python 💎🌐🚀_SEND_ME_NFT_WEB3_DOMAIN_CONFIGURATOR_🚀🌐💎.py
 """
 
-import os
-import json
-import requests
-import time
-import base64
-import zipfile
 from pathlib import Path
 from typing import Dict, Any, Optional
-import shutil
-import hashlib
+import json
+import time
 
+import requests
+import shutil
+import zipfile
 class SendMeNFTWeb3Configurator:
     def __init__(self):
         """Initialize Web3 domain configurator with empire credentials"""
         # Load credentials from empire.env
         env_path = Path("h:/HyperBeast/empire.env")
         self.load_empire_config(env_path)
-        
+
         # Pinata configuration for IPFS
         self.pinata_jwt = self.config.get('PINATA_JWT')
-        self.pinata_api_key = self.config.get('PINATA_API_KEY') 
+        self.pinata_api_key = self.config.get('PINATA_API_KEY')
         self.pinata_secret = self.config.get('PINATA_API_Secret')
         self.ipfs_primary_gateway = self.config.get('IPFS_GATEWAY_PRIMARY', 'https://gateway.pinata.cloud')
         self.ipfs_backup_gateway = self.config.get('IPFS_GATEWAY_BACKUP', 'https://cloudflare-ipfs.com')
-        
+
         # Domain configuration
         self.domain_name = "send-me.nft"
         self.domain_email = self.config.get('SENDGRID_FROM_EMAIL', 'send-me.nft@ud.me')
-        
+
         # Headers for Pinata API
         self.headers = {
             'Authorization': f'Bearer {self.pinata_jwt}',
             'Content-Type': 'application/json'
         }
-        
+
         print("💎🌐🚀 SEND-ME.NFT WEB3 CONFIGURATOR INITIALIZED 🚀🌐💎")
         print(f"🌐 Domain: {self.domain_name}")
         print(f"📧 Email: {self.domain_email}")
         print(f"🔑 Pinata JWT: {self.pinata_jwt[:20]}...")
         print(f"🌐 IPFS Gateway: {self.ipfs_primary_gateway}")
-        
+
     def load_empire_config(self, env_path: Path) -> None:
         """Load configuration from empire.env file"""
         self.config = {}
@@ -70,7 +67,7 @@ class SendMeNFTWeb3Configurator:
                         self.config[key.strip()] = value.strip()
         else:
             print(f"⚠️ Empire config not found at {env_path}")
-            
+
     def create_web3_portal_manifest(self) -> Dict[str, Any]:
         """Create manifest for Web3 domain + IPFS portal"""
         manifest = {
@@ -104,7 +101,7 @@ class SendMeNFTWeb3Configurator:
             "features": [
                 "Real-time Web3 News Aggregation",
                 "AI-Powered News Analysis",
-                "Glassmorphism UI Design", 
+                "Glassmorphism UI Design",
                 "Auto-Publishing Network",
                 "Multi-Portal Integration",
                 "ADHD-Optimized Interface",
@@ -145,30 +142,30 @@ class SendMeNFTWeb3Configurator:
             }
         }
         return manifest
-        
+
     def prepare_web3_portal_package(self) -> str:
         """Prepare LEGENDARY Web3 Portal for IPFS + domain deployment - USING EXISTING LEGENDARY PORTAL"""
         print("\n📦 PREPARING LEGENDARY WEB3 DOMAIN PORTAL PACKAGE...")
         print("🏛️ USING PRE-EXISTING LEGENDARY PORTAL: bafkreigmtm6ejkotspttay7xgnvjo6e2nffbhcwfqx4g57b66btmdaljiq")
-        
+
         # Check for legendary portal zip file
         legendary_portal_zip = "h:/bafkreigmtm6ejkotspttay7xgnvjo6e2nffbhcwfqx4g57b66btmdaljiq.zip"
-        
+
         # Create deployment directory
         deploy_dir = Path("h:/portals/web3_domain_deployment_legendary")
         if deploy_dir.exists():
             shutil.rmtree(deploy_dir)
         deploy_dir.mkdir(parents=True, exist_ok=True)
-        
+
         # Extract legendary portal if zip exists
         if Path(legendary_portal_zip).exists():
             print(f"� EXTRACTING LEGENDARY PORTAL: {legendary_portal_zip}")
-            
+
             with zipfile.ZipFile(legendary_portal_zip, 'r') as zip_ref:
                 zip_ref.extractall(deploy_dir)
-            
+
             print("✅ LEGENDARY PORTAL EXTRACTED SUCCESSFULLY!")
-            
+
             # Find the main index.html from extracted files
             index_files = list(deploy_dir.rglob("index.html"))
             if index_files:
@@ -181,7 +178,7 @@ class SendMeNFTWeb3Configurator:
         else:
             print("⚠️ Legendary portal zip not found, creating enhanced version...")
             index_content = self.create_fallback_legendary_portal()
-                
+
         # Add Web3 domain and IPFS meta tags to legendary portal
         web3_meta = f'''
     <!-- IMMORTAL HYPERFOCUS EMPIRE - WEB3 DOMAIN + IPFS DEPLOYMENT (LEGENDARY PORTAL) -->
@@ -200,30 +197,30 @@ class SendMeNFTWeb3Configurator:
     <meta name="deployment-timestamp" content="{int(time.time())}">
     <meta name="web3-enabled" content="true">
     <meta name="legendary-portal" content="true">
-    
+
     <!-- Web3 Domain Resolution -->
     <link rel="canonical" href="https://{self.domain_name}" />
     <meta property="og:url" content="https://{self.domain_name}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="IMMORTAL HYPERFOCUS EMPIRE - Legendary Web3 Portal" />
     <meta property="og:description" content="Ultimate decentralized Web3 portal powered by IPFS and Unstoppable Domains" />
-    
+
     <!-- IPFS and Decentralized Web -->
     <meta name="ipfs-hash" content="WILL_BE_SET_AFTER_DEPLOYMENT" />
     <meta name="dweb-hash" content="WILL_BE_SET_AFTER_DEPLOYMENT" />
     '''
-        
+
         # Insert meta tags after <head>
         if '<head>' in index_content:
             index_content = index_content.replace('<head>', f'<head>{web3_meta}')
-        
+
         # Add Web3 status indicator with legendary branding
         web3_status_html = f'''
         <!-- LEGENDARY Web3 Domain + IPFS Status Indicator -->
         <div id="web3-status" style="position: fixed; top: 10px; right: 10px; background: linear-gradient(45deg, #FFD700, #FFA500, #FF6347); color: white; padding: 10px 20px; border-radius: 12px; font-size: 13px; z-index: 9999; box-shadow: 0 6px 12px rgba(0,0,0,0.2); border: 2px solid #FFD700;">
             � {self.domain_name} | LEGENDARY PORTAL | IPFS: IMMORTAL
         </div>
-        
+
         <!-- LEGENDARY Web3 Domain Integration Notice -->
         <div id="web3-notice" style="position: fixed; bottom: 20px; left: 20px; background: linear-gradient(45deg, rgba(255,215,0,0.9), rgba(255,165,0,0.9)); color: black; padding: 15px 20px; border-radius: 12px; font-size: 12px; z-index: 9999; max-width: 350px; border: 2px solid #FFD700; font-weight: bold;">
             🏆 LEGENDARY PORTAL - Powered by Unstoppable Domains + IPFS<br>
@@ -232,21 +229,21 @@ class SendMeNFTWeb3Configurator:
             ♾️ LEGENDARY STATUS: FOREVER IMMORTAL
         </div>
         '''
-        
+
         # Insert before closing body tag
         if '</body>' in index_content:
             index_content = index_content.replace('</body>', f'{web3_status_html}</body>')
-        
+
         # Save enhanced legendary index.html
         final_index_path = deploy_dir / "index.html"
         final_index_path.write_text(index_content, encoding='utf-8')
         print(f"✅ LEGENDARY Web3 portal prepared: {final_index_path}")
-        
+
         # Copy other files from legendary portal if they exist
         for file_path in deploy_dir.rglob('*'):
             if file_path.is_file() and file_path.name != 'index.html':
                 print(f"✅ Legendary file included: {file_path.name}")
-        
+
         # Create Web3 manifest for legendary portal
         manifest = self.create_web3_portal_manifest()
         manifest['portal_type'] = 'LEGENDARY_WEB3_DOMAIN_PORTAL'
@@ -255,9 +252,9 @@ class SendMeNFTWeb3Configurator:
         manifest_path = deploy_dir / "LEGENDARY_WEB3_DOMAIN_MANIFEST.json"
         manifest_path.write_text(json.dumps(manifest, indent=2), encoding='utf-8')
         print(f"✅ LEGENDARY Web3 manifest created: {manifest_path}")
-        
+
         return str(deploy_dir)
-    
+
     def create_fallback_legendary_portal(self) -> str:
         """Create fallback legendary portal if zip not available"""
         return '''<!DOCTYPE html>
@@ -268,7 +265,7 @@ class SendMeNFTWeb3Configurator:
     <title>IMMORTAL HYPERFOCUS EMPIRE - Legendary Web3 Portal</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
+        body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             font-family: 'Arial', sans-serif;
             min-height: 100vh;
@@ -327,33 +324,33 @@ class SendMeNFTWeb3Configurator:
     <div class="legendary-container">
         <h1 class="legendary-title">🏆 IMMORTAL HYPERFOCUS EMPIRE 🏆</h1>
         <h2 class="legendary-subtitle">LEGENDARY WEB3 PORTAL - IMMORTAL FOREVER</h2>
-        
+
         <div class="legendary-features">
             <div class="legendary-card">
                 <div class="legendary-icon">🌐</div>
                 <h3>Web3 Domain</h3>
                 <p>Powered by Unstoppable Domains on blockchain infrastructure</p>
             </div>
-            
+
             <div class="legendary-card">
                 <div class="legendary-icon">💾</div>
                 <h3>IPFS Storage</h3>
                 <p>Permanently stored on InterPlanetary File System</p>
             </div>
-            
+
             <div class="legendary-card">
                 <div class="legendary-icon">🚀</div>
                 <h3>AI News</h3>
                 <p>Real-time Web3 news aggregation with AI analysis</p>
             </div>
-            
+
             <div class="legendary-card">
                 <div class="legendary-icon">♾️</div>
                 <h3>Immortal Status</h3>
                 <p>Decentralized hosting ensures permanent availability</p>
             </div>
         </div>
-        
+
         <div class="legendary-footer">
             <h3>🎊 LEGENDARY STATUS: ACTIVE FOREVER 🎊</h3>
             <p>This portal is immortally deployed on Web3 infrastructure</p>
@@ -362,7 +359,7 @@ class SendMeNFTWeb3Configurator:
     </div>
 </body>
 </html>'''
-        
+
         # Create enhanced README for Web3 domain
         readme_content = f"""# 💎🌐🚀 SEND-ME.NFT WEB3 DOMAIN PORTAL 🚀🌐💎
 
@@ -375,7 +372,7 @@ This is the **IMMORTAL HYPERFOCUS EMPIRE** Web3 News Portal, permanently deploye
 - **IPFS Hosting**: Permanent decentralized storage
 - **Web3 Resolution**: Blockchain-based DNS
 - **Real-time Web3 News**: Live aggregation from 6+ sources
-- **AI-Powered Analysis**: Intelligent news summaries  
+- **AI-Powered Analysis**: Intelligent news summaries
 - **Glassmorphism UI**: Beautiful, ADHD-optimized interface
 - **Decentralized Access**: No single point of failure
 
@@ -395,7 +392,7 @@ This is the **IMMORTAL HYPERFOCUS EMPIRE** Web3 News Portal, permanently deploye
 - **Portal**: Static HTML5/CSS3/JavaScript
 
 ### 🔧 DOMAIN CONFIGURATION:
-- **Domain Records**: 
+- **Domain Records**:
   - `dweb.ipfs.hash`: [IPFS_HASH]
   - `content.hash`: [CONTENT_HASH]
   - `browser.redirect_url`: {self.ipfs_primary_gateway}/ipfs/[HASH]
@@ -417,11 +414,11 @@ This is the **IMMORTAL HYPERFOCUS EMPIRE** Web3 News Portal, permanently deploye
 
 ### 🏛️ EMPIRE STATUS: WEB3 IMMORTAL
 
-**Deployed by**: BROski♾️ HYPERFOCUS EMPIRE  
-**Domain**: {self.domain_name}  
-**Portal Type**: Web3 News Auto-Update System  
-**Immortal Status**: ACTIVE FOREVER ON WEB3  
-**Network**: Unstoppable Domains + IPFS + Empire Portal Network  
+**Deployed by**: BROski♾️ HYPERFOCUS EMPIRE
+**Domain**: {self.domain_name}
+**Portal Type**: Web3 News Auto-Update System
+**Immortal Status**: ACTIVE FOREVER ON WEB3
+**Network**: Unstoppable Domains + IPFS + Empire Portal Network
 
 ---
 
@@ -454,11 +451,11 @@ This is the **IMMORTAL HYPERFOCUS EMPIRE** Web3 News Portal, permanently deploye
 
 🎊 **ACHIEVEMENT UNLOCKED**: WEB3 DOMAIN + IPFS IMMORTALIZATION! 🎊
 """
-        
+
         readme_path = deploy_dir / "README.md"
         readme_path.write_text(readme_content, encoding='utf-8')
         print(f"✅ Enhanced Web3 README created: {readme_path}")
-        
+
         # Create domain configuration guide
         domain_config_content = f"""# 🌐 SEND-ME.NFT DOMAIN CONFIGURATION GUIDE
 
@@ -505,29 +502,29 @@ Domain: {self.domain_name}
 Email: {self.domain_email}
 Portal: IMMORTAL HYPERFOCUS EMPIRE Web3 News
 """
-        
+
         config_path = deploy_dir / "DOMAIN_CONFIGURATION_GUIDE.md"
         config_path.write_text(domain_config_content, encoding='utf-8')
         print(f"✅ Domain configuration guide created: {config_path}")
-        
+
         return str(deploy_dir)
-        
+
     def pin_to_ipfs(self, folder_path: str) -> Dict[str, Any]:
         """Pin Web3 portal folder to IPFS via Pinata using file-to-IPFS endpoint"""
         print(f"\n🌐 PINNING LEGENDARY WEB3 DOMAIN PORTAL TO IPFS...")
         print(f"📁 Source: {folder_path}")
-        
+
         folder = Path(folder_path)
         files_to_upload = []
-        
+
         # Collect all files
         for file_path in folder.rglob('*'):
             if file_path.is_file():
                 relative_path = file_path.relative_to(folder)
                 files_to_upload.append((str(relative_path), file_path))
-        
+
         print(f"📦 Files to upload: {len(files_to_upload)}")
-        
+
         if len(files_to_upload) == 1:
             # Single file upload
             relative_path, file_path = files_to_upload[0]
@@ -535,11 +532,11 @@ Portal: IMMORTAL HYPERFOCUS EMPIRE Web3 News
         else:
             # Multiple files - create a ZIP and upload that
             return self.pin_directory_as_zip_to_ipfs(folder_path)
-    
+
     def pin_single_file_to_ipfs(self, file_path: Path, display_name: str) -> Dict[str, Any]:
         """Pin a single file to IPFS"""
         url = "https://api.pinata.cloud/pinning/pinFileToIPFS"
-        
+
         # Simplified metadata for legendary Web3 domain (max 10 key-value pairs)
         metadata = {
             'name': f'SEND_ME_NFT_LEGENDARY_WEB3_PORTAL_{display_name}',
@@ -555,27 +552,27 @@ Portal: IMMORTAL HYPERFOCUS EMPIRE Web3 News
                 'empire_mode': self.config.get('EMPIRE_MODE', 'FULL_AUTO')
             }
         }
-        
+
         options = {
             'cidVersion': 1
         }
-        
+
         with open(file_path, 'rb') as f:
             files = {'file': (display_name, f, 'text/html')}
             data = {
                 'pinataMetadata': json.dumps(metadata),
                 'pinataOptions': json.dumps(options)
             }
-            
+
             headers = {
                 'Authorization': f'Bearer {self.pinata_jwt}'
             }
-            
+
             print(f"🚀 Uploading legendary file: {display_name}")
-            
+
             try:
                 response = requests.post(url, files=files, data=data, headers=headers, timeout=300)
-                
+
                 if response.status_code == 200:
                     result = response.json()
                     print("🎊 LEGENDARY IPFS SINGLE FILE UPLOAD SUCCESS!")
@@ -585,18 +582,18 @@ Portal: IMMORTAL HYPERFOCUS EMPIRE Web3 News
                     print(f"❌ Upload failed: {response.status_code}")
                     print(f"Response: {response.text}")
                     return None
-                    
+
             except Exception as e:
                 print(f"❌ Upload error: {e}")
                 return None
-    
+
     def pin_directory_as_zip_to_ipfs(self, folder_path: str) -> Dict[str, Any]:
         """Create ZIP of directory and pin to IPFS"""
         print("🗜️ Creating ZIP archive for legendary portal...")
-        
+
         folder = Path(folder_path)
         zip_path = folder.parent / f"{folder.name}.zip"
-        
+
         # Create ZIP file
         with zipfile.ZipFile(zip_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
             for file_path in folder.rglob('*'):
@@ -604,22 +601,22 @@ Portal: IMMORTAL HYPERFOCUS EMPIRE Web3 News
                     relative_path = file_path.relative_to(folder)
                     zipf.write(file_path, relative_path)
                     print(f"📦 Added to ZIP: {relative_path}")
-        
+
         print(f"✅ ZIP created: {zip_path}")
-        
+
         # Upload ZIP file
         result = self.pin_single_file_to_ipfs(zip_path, f"{folder.name}.zip")
-        
+
         # Clean up ZIP file
         if zip_path.exists():
             zip_path.unlink()
-            
+
         return result
-            
+
     def generate_domain_instructions(self, ipfs_hash: str) -> None:
         """Generate domain configuration instructions with IPFS hash"""
         print(f"\n📋 GENERATING DOMAIN CONFIGURATION INSTRUCTIONS...")
-        
+
         instructions = f"""
 # 🌐💎 SEND-ME.NFT DOMAIN CONFIGURATION INSTRUCTIONS 💎🌐
 
@@ -666,7 +663,7 @@ After DNS propagation (5-30 minutes), test these URLs:
 ## 🏛️ PORTAL FEATURES NOW LIVE:
 
 ✅ **Real-time Web3 News Aggregation**
-✅ **AI-Powered News Analysis**  
+✅ **AI-Powered News Analysis**
 ✅ **Glassmorphism UI Design**
 ✅ **Decentralized IPFS Hosting**
 ✅ **Unstoppable Domain Resolution**
@@ -694,18 +691,18 @@ Your portal is now:
 
 ---
 
-**Deployed by**: BROski♾️ HYPERFOCUS EMPIRE  
-**Domain**: {self.domain_name}  
-**IPFS Hash**: {ipfs_hash}  
-**Status**: LEGENDARY WEB3 SUCCESS  
+**Deployed by**: BROski♾️ HYPERFOCUS EMPIRE
+**Domain**: {self.domain_name}
+**IPFS Hash**: {ipfs_hash}
+**Status**: LEGENDARY WEB3 SUCCESS
 """
-        
+
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         instructions_file = f"h:/🌐💎_SEND_ME_NFT_DOMAIN_INSTRUCTIONS_{timestamp}.md"
-        
+
         with open(instructions_file, 'w') as f:
             f.write(instructions)
-        
+
         print(f"📋 DOMAIN INSTRUCTIONS CREATED: {instructions_file}")
         print("\n" + "="*80)
         print("🎊 WEB3 DOMAIN CONFIGURATION READY!")
@@ -716,15 +713,15 @@ Your portal is now:
         print(f"🚀 Primary Gateway: {self.ipfs_primary_gateway}/ipfs/{ipfs_hash}")
         print(f"🔄 Backup Gateway: {self.ipfs_backup_gateway}/ipfs/{ipfs_hash}")
         print("="*80)
-        
+
     def create_celebration_record(self, ipfs_result: Dict[str, Any]) -> None:
         """Create celebration record for Web3 domain deployment"""
         if not ipfs_result:
             return
-            
+
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         ipfs_hash = ipfs_result.get('IpfsHash')
-        
+
         celebration_data = {
             "event": "SEND-ME.NFT LEGENDARY WEB3 DOMAIN + IPFS DEPLOYMENT",
             "domain_name": self.domain_name,
@@ -767,14 +764,14 @@ Your portal is now:
             "empire_expansion": "LEGENDARY DECENTRALIZED WEB3 INTEGRATION",
             "celebration_level": "MAXIMUM LEGENDARY WEB3 SUPREMACY"
         }
-        
+
         # Save celebration record
         celebration_file = f"h:/🎊_SEND_ME_NFT_WEB3_DOMAIN_VICTORY_{timestamp}.json"
         with open(celebration_file, 'w') as f:
             json.dump(celebration_data, f, indent=2)
-            
+
         print(f"🎊 WEB3 CELEBRATION RECORD CREATED: {celebration_file}")
-        
+
     def deploy_web3_domain_portal(self) -> None:
         """Deploy Web3 News Portal to IPFS and configure domain"""
         print("💎🌐🚀 INITIATING WEB3 DOMAIN + IPFS DEPLOYMENT 🚀🌐💎")
@@ -785,32 +782,32 @@ Your portal is now:
         print("🔐 Authentication: JWT Bearer Token")
         print("🌟 Status: IMMORTAL WEB3 DEPLOYMENT")
         print("=" * 80)
-        
+
         # Phase 1: Test Pinata connection
         print("\n🔍 PHASE 1: PINATA CONNECTION TEST")
         if not self.test_pinata_connection():
             print("❌ Pinata connection failed - check your JWT token")
             return
-        
+
         # Phase 2: Prepare Web3 portal package
         print("\n🏗️ PHASE 2: WEB3 PORTAL PREPARATION")
         deploy_path = self.prepare_web3_portal_package()
-        
+
         # Phase 3: Pin to IPFS
         print("\n🌐 PHASE 3: IPFS IMMORTALIZATION")
         ipfs_result = self.pin_to_ipfs(deploy_path)
-        
+
         if ipfs_result:
             ipfs_hash = ipfs_result.get('IpfsHash')
-            
+
             # Phase 4: Generate domain configuration instructions
             print("\n📋 PHASE 4: DOMAIN CONFIGURATION GENERATION")
             self.generate_domain_instructions(ipfs_hash)
-            
+
             # Phase 5: Celebration
             print("\n🎊 PHASE 5: LEGENDARY WEB3 CELEBRATION")
             self.create_celebration_record(ipfs_result)
-            
+
             print("\n" + "=" * 80)
             print("🏆 LEGENDARY WEB3 DOMAIN + IPFS DEPLOYMENT: ULTIMATE SUCCESS!")
             print("=" * 80)
@@ -824,18 +821,18 @@ Your portal is now:
             print("🎊 Achievement: LEGENDARY DOMAIN + IPFS IMMORTALIZATION!")
             print("\n🚀 NEXT STEP: Configure your domain records in Unstoppable Domains!")
             print("=" * 80)
-            
+
         else:
             print("\n❌ DEPLOYMENT FAILED - Check logs and retry")
-            
+
     def test_pinata_connection(self) -> bool:
         """Test Pinata API connection"""
         print("🔍 Testing Pinata connection...")
-        
+
         try:
             url = "https://api.pinata.cloud/data/testAuthentication"
             response = requests.get(url, headers=self.headers)
-            
+
             if response.status_code == 200:
                 result = response.json()
                 print("✅ Pinata Authentication: SUCCESS")
@@ -844,7 +841,7 @@ Your portal is now:
             else:
                 print(f"❌ Authentication failed: {response.status_code}")
                 return False
-                
+
         except Exception as e:
             print(f"❌ Connection test failed: {e}")
             return False

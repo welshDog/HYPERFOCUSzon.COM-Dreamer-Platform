@@ -6,11 +6,11 @@ GRAFANA ML LEGENDARY ACTIVATOR - FIXED ENCODING VERSION
 IMMEDIATE ACTIVATION OF ALL AI SUPERPOWERS FOR THE EMPIRE!
 """
 
-import os
-import requests
-import json
 from datetime import datetime
+import json
+import os
 
+import requests
 print("🤖💎⚡ LEGENDARY ML ACTIVATOR - ENCODING FIXED ⚡💎🤖")
 print("🚀 ACTIVATING ALL AI SUPERPOWERS FOR YOUR EMPIRE!")
 print("=" * 70)
@@ -33,7 +33,7 @@ grafana_url = "https://welshdog.grafana.net"
 def create_legendary_ai_dashboard():
     """Create the ultimate AI-powered dashboard"""
     print("\n🎯 CREATING LEGENDARY AI DASHBOARD...")
-    
+
     ai_dashboard = {
         "dashboard": {
             "id": None,
@@ -173,7 +173,7 @@ def create_legendary_ai_dashboard():
         },
         "overwrite": True
     }
-    
+
     try:
         response = requests.post(
             f'{grafana_url}/api/dashboards/db',
@@ -181,12 +181,12 @@ def create_legendary_ai_dashboard():
             json=ai_dashboard,
             timeout=30
         )
-        
+
         if response.status_code in [200, 201]:
             result = response.json()
             dashboard_uid = result.get('uid', 'unknown')
             dashboard_url = f"{grafana_url}/d/{dashboard_uid}"
-            
+
             print("✅ LEGENDARY AI DASHBOARD DEPLOYED!")
             print(f"🎯 Dashboard URL: {dashboard_url}")
             return dashboard_url
@@ -200,7 +200,7 @@ def create_legendary_ai_dashboard():
 def create_ml_configurations():
     """Create ML configuration files"""
     print("\n🤖 CREATING ML CONFIGURATION FILES...")
-    
+
     # Anomaly Detection Configuration
     anomaly_config = {
         "empire_system_anomalies": {
@@ -211,7 +211,7 @@ def create_ml_configurations():
             "training_window": "7d"
         },
         "dopamine_anomalies": {
-            "name": "dopamine-guardian-anomalies", 
+            "name": "dopamine-guardian-anomalies",
             "description": "AI-powered dopamine crash prevention",
             "metric": "dopamine_level_current",
             "sensitivity": "medium",
@@ -225,7 +225,7 @@ def create_ml_configurations():
             "training_window": "7d"
         }
     }
-    
+
     # Forecasting Configuration
     forecasting_config = {
         "dopamine_prediction": {
@@ -253,7 +253,7 @@ def create_ml_configurations():
             "update_frequency": "6h"
         }
     }
-    
+
     # Celebration Configuration
     celebration_config = {
         "ai_celebration_system": {
@@ -266,34 +266,34 @@ def create_ml_configurations():
             "adhd_optimization": True
         }
     }
-    
+
     # Save configurations
     try:
         with open('h:/ml_anomaly_detection_config.json', 'w', encoding='utf-8') as f:
             json.dump(anomaly_config, f, indent=2)
         print("✅ Anomaly detection config saved")
-        
+
         with open('h:/ml_forecasting_models_config.json', 'w', encoding='utf-8') as f:
             json.dump(forecasting_config, f, indent=2)
         print("✅ Forecasting models config saved")
-        
+
         with open('h:/ai_celebration_system_config.json', 'w', encoding='utf-8') as f:
             json.dump(celebration_config, f, indent=2)
         print("✅ AI celebration system config saved")
-        
+
     except Exception as e:
         print(f"❌ Config save error: {str(e)}")
 
 def generate_activation_summary(dashboard_url):
     """Generate the legendary activation summary"""
     print("\n📋 GENERATING LEGENDARY ACTIVATION SUMMARY...")
-    
+
     summary = {
         "legendary_activation_timestamp": datetime.now().isoformat(),
         "ai_deployment_status": "LEGENDARY SUCCESS",
         "empire_ai_superpowers": {
             "anomaly_detection": "CONFIGURED",
-            "predictive_forecasting": "CONFIGURED", 
+            "predictive_forecasting": "CONFIGURED",
             "intelligent_celebrations": "CONFIGURED",
             "ai_dashboard": "DEPLOYED",
             "adhd_optimization": "ENABLED"
@@ -316,7 +316,7 @@ def generate_activation_summary(dashboard_url):
         ],
         "empire_status": "AI-POWERED AND LEGENDARY"
     }
-    
+
     try:
         with open('h:/legendary_ai_activation_summary.json', 'w', encoding='utf-8') as f:
             json.dump(summary, f, indent=2)
@@ -327,16 +327,16 @@ def generate_activation_summary(dashboard_url):
 def main():
     """Main activation function"""
     print("\n🚀🤖💎 ACTIVATING ALL LEGENDARY AI FEATURES! 💎🤖🚀")
-    
+
     # Step 1: Create AI Dashboard
     dashboard_url = create_legendary_ai_dashboard()
-    
+
     # Step 2: Create ML Configurations
     create_ml_configurations()
-    
+
     # Step 3: Generate Summary
     generate_activation_summary(dashboard_url)
-    
+
     print("\n🎊🤖💎 LEGENDARY AI ACTIVATION COMPLETE! 💎🤖🎊")
     print("=" * 80)
     print("🌟 Your HyperFocus Zone Empire now has LEGENDARY AI SUPERPOWERS!")
