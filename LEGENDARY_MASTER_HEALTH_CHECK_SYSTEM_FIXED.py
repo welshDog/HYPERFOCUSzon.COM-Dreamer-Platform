@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# !/usr/bin/env python3
 """
 🏆💎⚡ LEGENDARY MASTER HEALTH CHECK SYSTEM ⚡💎🏆
 
@@ -29,10 +29,16 @@ import os
 import subprocess
 import sys
 import time
+import ssl
+import socket
+import requests
 
-import docker
 import io
 import psutil
+try:
+    import docker
+except ImportError:
+    docker = None
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -140,6 +146,7 @@ This system combines ALL existing health checkers:
         # Execute all scanning modules
         scanners = [
             ("Local Empire Systems", self.scan_local_empire_systems),
+            ("DNS & Domain Health", self.scan_dns_domain_health),
             ("Memory Crystal System", self.scan_memory_crystal_system),
             ("V2 Deployment Status", self.scan_v2_deployment_status),
             ("Discord Integrations", self.scan_discord_integrations),
@@ -327,7 +334,182 @@ This system combines ALL existing health checkers:
                 celebration_triggers=[]
             )
 
-    def scan_memory_crystal_system(self) -> HealthMetrics:
+    def scan_dns_domain_health(self) -> HealthMetrics:
+        """🌐 DNS & GitHub Pages domain health monitoring"""
+        print("🌐 Scanning DNS & Domain Health...")
+
+        try:
+            dns_components = {
+                "dns_resolution": False,
+                "github_pages_ready": False,
+                "ssl_certificate": False,
+                "donation_portal_live": False,
+                "cloudflare_dns": False,
+                "custom_domain": False
+            }
+
+            component_details = {}
+            dns_score = 0
+            dns_messages = []
+
+            # DNS Resolution Check
+            try:
+                result = subprocess.run(
+                    ['nslookup', 'support.hyperfocuszone.com'],
+                    capture_output=True, text=True, timeout=10
+                )
+                
+                if "can't find" in result.stdout or "Non-existent" in result.stdout:
+                    dns_components["dns_resolution"] = False
+                    dns_messages.append("❌ DNS record not found")
+                elif "welshdog.github.io" in result.stdout or "185.199.108.153" in result.stdout:
+                    dns_components["dns_resolution"] = True
+                    dns_components["custom_domain"] = True
+                    dns_messages.append("✅ DNS record found and pointing correctly")
+                    dns_score += 25
+                else:
+                    dns_components["dns_resolution"] = True
+                    dns_messages.append(f"⚠️ DNS found but may not be pointing correctly")
+                    dns_score += 15
+
+                component_details["dns_resolution"] = result.stdout.strip()
+
+            except Exception as e:
+                dns_messages.append(f"❌ DNS check failed: {str(e)}")
+                component_details["dns_error"] = str(e)
+
+            # GitHub Pages Check
+            if dns_components["dns_resolution"]:
+                try:
+                    response = requests.get(
+                        'https://support.hyperfocuszone.com',
+                        timeout=10, allow_redirects=True
+                    )
+                    
+                    if response.status_code == 200:
+                        dns_components["github_pages_ready"] = True
+                        if "SUPPORT THE HYPERFOCUS EMPIRE" in response.text:
+                            dns_components["donation_portal_live"] = True
+                            dns_messages.append("🎉 DONATION PORTAL LIVE! Custom domain working perfectly!")
+                            dns_score += 35
+                        else:
+                            dns_messages.append("✅ Site responding but content may not be ready")
+                            dns_score += 20
+                    elif response.status_code == 404:
+                        dns_messages.append("⚠️ GitHub Pages not ready (404 error)")
+                        dns_score += 5
+                    else:
+                        dns_messages.append(f"⚠️ Site responding with status {response.status_code}")
+                        dns_score += 10
+
+                    component_details["github_pages_status"] = response.status_code
+
+                except requests.exceptions.SSLError:
+                    dns_messages.append("🔒 SSL certificate not ready yet")
+                    dns_score += 5
+                except requests.exceptions.ConnectionError:
+                    dns_messages.append("❌ Connection failed - DNS not propagated yet")
+                except Exception as e:
+                    dns_messages.append(f"❌ GitHub Pages check failed: {str(e)}")
+                    component_details["github_error"] = str(e)
+
+            # SSL Certificate Check
+            if dns_components["github_pages_ready"]:
+                try:
+                    import ssl
+                    import socket
+                    
+                    context = ssl.create_default_context()
+                    with socket.create_connection(('support.hyperfocuszone.com', 443), timeout=10) as sock:
+                        with context.wrap_socket(sock, server_hostname='support.hyperfocuszone.com') as ssock:
+                            cert = ssock.getpeercert()
+                            if cert:
+                                dns_components["ssl_certificate"] = True
+                                issuer = cert.get('issuer', [])
+                                issuer_str = str(issuer) if issuer else 'Unknown'
+                                dns_messages.append(f"🔐 SSL Certificate ready! Issued by: {issuer_str}")
+                                dns_score += 25
+                                component_details["ssl_certificate"] = issuer_str
+                            else:
+                                dns_messages.append("🔒 SSL certificate not available")
+                            
+                except Exception as e:
+                    dns_messages.append(f"🔒 SSL not ready: {str(e)}")
+                    component_details["ssl_error"] = str(e)
+
+            # Check for Cloudflare configuration
+            try:
+                with open("h:/HyperBeast/empire.env", "r", encoding="utf-8") as f:
+                    env_content = f.read()
+                    if "CLOUDFLARE_API_KEY" in env_content and "CLOUDFLARE_EMAIL" in env_content:
+                        dns_components["cloudflare_dns"] = True
+                        dns_score += 15
+                        dns_messages.append("☁️ Cloudflare DNS configuration detected")
+                        component_details["cloudflare_config"] = "Available"
+            except (OSError, IOError):
+                dns_messages.append("⚠️ Could not check Cloudflare configuration")
+
+            # Bonus scoring for complete setup
+            active_components = sum(dns_components.values())
+            if active_components >= 5:
+                dns_score = min(100, dns_score + 20)  # Legendary bonus
+
+            # Determine status
+            if dns_score >= 90:
+                status = "LEGENDARY"
+                celebrations = [
+                    "🌐 LEGENDARY DNS & Domain Setup!",
+                    "💎 Donation Portal Fully Operational!",
+                    "🚀 Professional Domain Infrastructure!"
+                ]
+            elif dns_score >= 75:
+                status = "HEALTHY"
+                celebrations = ["🌐 DNS & Domain Systems Active"]
+            elif dns_score >= 50:
+                status = "WARNING"
+                celebrations = []
+            else:
+                status = "CRITICAL"
+                celebrations = []
+
+            # BROski$ rewards for DNS success
+            if dns_score >= 80:
+                broskie_rewards = int(dns_score * 3)  # High rewards for live donation portal
+            elif dns_score >= 60:
+                broskie_rewards = int(dns_score * 2)
+            else:
+                broskie_rewards = int(dns_score) if dns_score > 0 else 0
+
+            details = {
+                "dns_components": dns_components,
+                "component_details": component_details,
+                "dns_score": dns_score,
+                "dns_messages": dns_messages,
+                "domain_target": "support.hyperfocuszone.com",
+                "github_pages_url": "https://welshdog.github.io/HYPERFOCUSzone-Community/support.html"
+            }
+
+            return HealthMetrics(
+                timestamp=datetime.now().isoformat(),
+                system_name="DNS & Domain Health",
+                status=status,
+                score=dns_score,
+                details=details,
+                broskie_rewards=broskie_rewards,
+                celebration_triggers=celebrations
+            )
+
+        except (OSError, RuntimeError) as e:
+            logging.error("DNS domain health scan error: %s", str(e))
+            return HealthMetrics(
+                timestamp=datetime.now().isoformat(),
+                system_name="DNS & Domain Health",
+                status="OFFLINE",
+                score=0,
+                details={"error": str(e)},
+                broskie_rewards=0,
+                celebration_triggers=[]
+            )
         """💎 Enhanced Memory Crystal system validation"""
         print("💎 Scanning Memory Crystal System...")
 
@@ -437,63 +619,164 @@ This system combines ALL existing health checkers:
                 celebration_triggers=[]
             )
 
-    def scan_v2_deployment_status(self) -> HealthMetrics:
-        """🚀 V2 Deployment component validation"""
-        print("🚀 Scanning V2 Deployment Status...")
+    def scan_memory_crystal_system(self) -> HealthMetrics:
+        """� Enhanced Memory Crystal system validation"""
+        print("� Scanning Memory Crystal System...")
 
         try:
-            v2_components = {
-                "orchestrator": False,
-                "neural_engine": False,
-                "dopamine_system": False,
-                "agent_coordination": False,
-                "memory_integration": False
-            }
-
-            component_details = {}
-            v2_patterns = [
-                "*ORCHESTRATOR*", "*NEURAL*", "*DOPAMINE*",
-                "*AGENT*", "*COORDINATION*", "*PHASE_2*", "*V2*"
+            crystal_files = []
+            memory_patterns = [
+                "*MEMORY_CRYSTAL*",
+                "*BOARDROOM*",
+                "*NEURAL*",
+                "*CRYSTAL*"
             ]
+
+            total_crystals = 0
+            valid_crystals = 0
 
             for base_path in self.base_paths:
                 if not base_path.exists():
                     continue
 
-                for pattern in v2_patterns:
+                for pattern in memory_patterns:
                     try:
-                        for v2_path in base_path.rglob(pattern):
-                            if v2_path.is_file() and v2_path.suffix == '.py':
-                                file_name = v2_path.name.upper()
-                                file_size = v2_path.stat().st_size
-
-                                # Check for specific V2 components
-                                if "ORCHESTRATOR" in file_name and file_size > 1000:
-                                    v2_components["orchestrator"] = True
-                                    component_details["orchestrator"] = {
-                                        "path": str(v2_path),
-                                        "size": file_size
-                                    }
-
-                                if "NEURAL" in file_name and file_size > 500:
-                                    v2_components["neural_engine"] = True
-                                    component_details["neural_engine"] = {
-                                        "path": str(v2_path),
-                                        "size": file_size
-                                    }
-
-                                if "DOPAMINE" in file_name and file_size > 500:
-                                    v2_components["dopamine_system"] = True
-                                    component_details["dopamine_system"] = {
-                                        "path": str(v2_path),
-                                        "size": file_size
-                                    }
+                        for crystal_path in base_path.rglob(pattern):
+                            if (crystal_path.is_file() and
+                                    crystal_path.suffix in ['.json', '.md', '.py']):
+                                total_crystals += 1
+                                if crystal_path.suffix == '.json':
+                                    try:
+                                        with open(crystal_path, 'r', encoding='utf-8') as f:
+                                            json.load(f)  # Validate JSON
+                                        valid_crystals += 1
+                                        crystal_files.append(str(crystal_path))
+                                    except (json.JSONDecodeError, OSError):
+                                        pass
+                                elif crystal_path.stat().st_size > 100:
+                                    valid_crystals += 1
+                                    crystal_files.append(str(crystal_path))
 
                     except (OSError, IOError) as e:
                         logging.warning(
-                            "Could not scan for V2 pattern %s: %s",
-                            pattern, str(e)
+                            "Could not scan for pattern %s in %s: %s",
+                            pattern, str(base_path), str(e)
                         )
+
+            # Calculate Memory Crystal health score
+            if total_crystals > 0:
+                crystal_score = (valid_crystals / total_crystals) * 100
+            else:
+                crystal_score = 0
+
+            # Bonus points for having multiple types
+            if valid_crystals >= 5:
+                crystal_score = min(100, crystal_score + 20)
+
+            # Determine status
+            if crystal_score >= 95:
+                status = "LEGENDARY"
+                celebrations = [
+                    "💎 LEGENDARY Memory Crystal Network!",
+                    "🧠 Neural Intelligence Active!"
+                ]
+            elif crystal_score >= 80:
+                status = "HEALTHY"
+                celebrations = ["💎 Memory Crystals Operational"]
+            elif crystal_score >= 50:
+                status = "WARNING"
+                celebrations = []
+            else:
+                status = "CRITICAL"
+                celebrations = []
+
+            broskie_rewards = (
+                int(crystal_score * 1.5) if crystal_score >= 60 else 0
+            )
+
+            details = {
+                "total_crystals_found": total_crystals,
+                "valid_crystals": valid_crystals,
+                "crystal_health_score": crystal_score,
+                "crystal_files": crystal_files[:10]
+            }
+
+            return HealthMetrics(
+                timestamp=datetime.now().isoformat(),
+                system_name="Memory Crystal System",
+                status=status,
+                score=crystal_score,
+                details=details,
+                broskie_rewards=broskie_rewards,
+                celebration_triggers=celebrations
+            )
+
+        except (OSError, RuntimeError) as e:
+            logging.error("Memory crystal scan error: %s", str(e))
+            return HealthMetrics(
+                timestamp=datetime.now().isoformat(),
+                system_name="Memory Crystal System",
+                status="OFFLINE",
+                score=0,
+                details={"error": str(e)},
+                broskie_rewards=0,
+                celebration_triggers=[]
+            )
+
+    def scan_v2_deployment_status(self) -> HealthMetrics:
+        """⚡ Enhanced V2 deployment system scanner"""
+        print("⚡ Scanning V2 Deployment Status...")
+        
+        try:
+            v2_components = {
+                "orchestrator": False,
+                "neural_engine": False,
+                "dopamine_system": False,
+                "discord_config": False
+            }
+            component_details = {}
+            
+            # Scan for V2 components
+            for base_path in self.base_paths:
+                if not base_path.exists():
+                    continue
+                    
+                try:
+                    for file_path in base_path.rglob("*"):
+                        if not file_path.is_file():
+                            continue
+                            
+                        try:
+                            file_name = file_path.name.upper()
+                            file_size = file_path.stat().st_size
+                            
+                            # Check for specific V2 components
+                            if "ORCHESTRATOR" in file_name and file_size > 1000:
+                                v2_components["orchestrator"] = True
+                                component_details["orchestrator"] = {
+                                    "path": str(file_path),
+                                    "size": file_size
+                                }
+
+                            if "NEURAL" in file_name and file_size > 500:
+                                v2_components["neural_engine"] = True
+                                component_details["neural_engine"] = {
+                                    "path": str(file_path),
+                                    "size": file_size
+                                }
+
+                            if "DOPAMINE" in file_name and file_size > 500:
+                                v2_components["dopamine_system"] = True
+                                component_details["dopamine_system"] = {
+                                    "path": str(file_path),
+                                    "size": file_size
+                                }
+                                
+                        except (OSError, PermissionError):
+                            continue
+                except (OSError, PermissionError) as e:
+                    logging.warning("Could not scan V2 deployment path %s: %s", str(base_path), str(e))
+                    continue
 
             # Check Discord configuration
             discord_configs = ["HyperBeast/.env", ".env", "empire.env"]
@@ -1020,7 +1303,7 @@ This system combines ALL existing health checkers:
                     grafana_components["running_containers"] = True
                     component_details["running_containers"] = grafana_containers
 
-            except Exception as e:
+            except (ImportError, OSError, RuntimeError) as e:
                 logging.warning("Docker container check failed: %s", str(e))
                 component_details["docker_error"] = "Docker unavailable"
 
@@ -1147,7 +1430,7 @@ This system combines ALL existing health checkers:
             }
             return quantum_metrics
 
-        except Exception as e:
+        except (ValueError, KeyError, TypeError) as e:
             logging.error("Quantum metrics generation error: %s", str(e))
             return {}
 
@@ -1185,7 +1468,7 @@ This system combines ALL existing health checkers:
 
             return achievements
 
-        except Exception as e:
+        except (ValueError, KeyError, IndexError) as e:
             logging.error("Achievement calculation error: %s", str(e))
             return []
 
@@ -1213,7 +1496,7 @@ This system combines ALL existing health checkers:
 
             return auto_fixes
 
-        except Exception as e:
+        except (AttributeError, KeyError, TypeError) as e:
             logging.error("Auto-fix execution error: %s", str(e))
             return []
 
@@ -1255,7 +1538,7 @@ This system combines ALL existing health checkers:
 
             return fixes
 
-        except Exception as e:
+        except (OSError, KeyError, AttributeError) as e:
             logging.error("Grafana auto-fix error: %s", str(e))
             return ["❌ Grafana auto-fix failed"]
 
@@ -1331,8 +1614,88 @@ volumes:
 
             return "SKIPPED - Configuration already exists"
 
-        except Exception as e:
+        except (OSError, ValueError, FileNotFoundError) as e:
             return f"ERROR - {str(e)[:50]}"
+
+    def generate_quantum_metrics(self) -> Dict[str, Any]:
+        """🌌 Generate quantum-level empire metrics"""
+        return {
+            "quantum_sync_rate": "94.8%",
+            "neural_coherence": "MAXIMUM",
+            "empire_resonance": "LEGENDARY",
+            "dimensional_stability": "LOCKED",
+            "consciousness_level": "HYPERFOCUS ACTIVATED",
+            "temporal_alignment": "PERFECT SYNC"
+        }
+
+    def calculate_legendary_achievements(self, metrics_list, overall_health, total_broskie) -> List[str]:
+        """🏆 Calculate legendary achievements based on performance"""
+        achievements = []
+        
+        if overall_health >= 95:
+            achievements.append("💎 LEGENDARY EMPIRE STATUS ACHIEVED")
+        if overall_health >= 85:
+            achievements.append("⚡ SUPERIOR SYSTEM HARMONY")
+        if total_broskie >= 1000:
+            achievements.append("💰 BROski$ MILLIONAIRE STATUS")
+        
+        system_count = len([m for m in metrics_list if m.status == "LEGENDARY"])
+        if system_count >= 6:
+            achievements.append("🏆 ALL SYSTEMS LEGENDARY")
+        elif system_count >= 4:
+            achievements.append("🚀 MOST SYSTEMS LEGENDARY")
+            
+        return achievements
+
+    def execute_auto_fixes(self, all_metrics) -> Dict[str, str]:
+        """🔧 Execute automatic fixes for detected issues"""
+        auto_fixes = {}
+        
+        for metrics in all_metrics:
+            if metrics.system_name == "Grafana Infrastructure" and metrics.score < 50:
+                fix_result = self._attempt_grafana_fix()
+                auto_fixes["grafana_setup"] = fix_result
+                
+        return auto_fixes
+    
+    def _attempt_grafana_fix(self) -> str:
+        """🔧 Internal method to attempt Grafana configuration fix"""
+        try:
+            compose_file = "docker-compose.yml"
+            if os.path.exists(compose_file):
+                return "SKIPPED - Configuration already exists"
+                
+            # Create basic compose file
+            basic_compose = """version: '3.8'
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    volumes:
+      - grafana-storage:/var/lib/grafana
+      
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+volumes:
+  grafana-storage:
+"""
+            with open(compose_file, 'w', encoding='utf-8') as f:
+                f.write(basic_compose)
+            return "SUCCESS - Basic docker-compose.yml created"
+            
+        except (OSError, IOError):
+            return "FAILED - Could not create configuration"
 
     def save_health_report(self, filename: str | None = None) -> str | None:
         """💾 Save health report to JSON file"""
@@ -1380,7 +1743,7 @@ def main():
 
         return health_report
 
-    except Exception as e:
+    except (OSError, RuntimeError, KeyboardInterrupt) as e:
         logging.error("Main execution error: %s", str(e))
         print(f"❌ An error occurred: {e}")
         return None

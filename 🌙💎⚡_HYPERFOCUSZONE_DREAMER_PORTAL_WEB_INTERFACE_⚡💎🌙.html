@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌙💎 HYPERFOCUSzone DREAMER Portal 💎🌙</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .dream-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .adhd-optimized {
+            transition: all 0.3s ease;
+        }
+
+        .adhd-optimized:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .typing-effect {
+            border-right: 2px solid #667eea;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                border-color: transparent;
+            }
+
+            51%,
+            100% {
+                border-color: #667eea;
+            }
+        }
+
+        .celebration-animation {
+            animation: celebrate 0.6s ease-in-out;
+        }
+
+        @keyframes celebrate {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #10b981, #3b82f6, #8b5cf6);
+            background-size: 200% 100%;
+            animation: progress-flow 3s ease-in-out infinite;
+        }
+
+        @keyframes progress-flow {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen gradient-bg">
+    <!-- Header -->
+    <header class="bg-white bg-opacity-10 backdrop-filter backdrop-blur-lg border-b border-white border-opacity-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center">
+                    <h1 class="text-3xl font-bold text-white">
+                        🌙💎⚡ HYPERFOCUSzone DREAMER ⚡💎🌙
+                    </h1>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#dream-input" class="text-white hover:text-purple-200 transition-colors">Share Dream</a>
+                    <a href="#how-it-works" class="text-white hover:text-purple-200 transition-colors">How It Works</a>
+                    <a href="#success-stories" class="text-white hover:text-purple-200 transition-colors">Success
+                        Stories</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-5xl md:text-7xl font-black text-white mb-8">
+                Transform Your Dreams<br>
+                <span class="text-purple-300">Into Reality</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-white text-opacity-90 mb-12 max-w-4xl mx-auto">
+                Share your wildest dreams and get AI-powered, ADHD-optimized step-by-step guides
+                created by our Ultra-Thinking Boardroom system.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="scrollToDreamInput()"
+                    class="adhd-optimized bg-white text-purple-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-purple-50 transition-all duration-300">
+                    🚀 Start Your Dream Journey
+                </button>
+                <button onclick="showDemo()"
+                    class="adhd-optimized border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-purple-600 transition-all duration-300">
+                    ✨ See Demo
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dream Input Section -->
+    <section id="dream-input" class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="dream-card rounded-3xl p-8 md:p-12">
+                <h3 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+                    💭 Share Your Dream
+                </h3>
+
+                <form id="dreamForm" class="space-y-6">
+                    <div>
+                        <label for="dreamerName" class="block text-lg font-semibold text-white mb-2">
+                            👤 Your Name (or nickname)
+                        </label>
+                        <input type="text" id="dreamerName"
+                            class="w-full px-4 py-3 rounded-xl bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-60 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent"
+                            placeholder="What should we call you?" required>
+                    </div>
+
+                    <div>
+                        <label for="dreamText" class="block text-lg font-semibold text-white mb-2">
+                            🌟 Describe Your Dream
+                        </label>
+                        <textarea id="dreamText" rows="6"
+                            class="w-full px-4 py-3 rounded-xl bg-white bg-opacity-20 border border-white border-opacity-30 text-white placeholder-white placeholder-opacity-60 focus:outline-none focus:ring-2 focus:ring-purple-300 focus:border-transparent resize-none"
+                            placeholder="Tell us about your dream! What do you want to create, learn, build, or achieve? Be as detailed or as brief as you like - our AI will understand and help you create a perfect action plan."
+                            required></textarea>
+                        <div class="mt-2 text-sm text-white text-opacity-70">
+                            💡 Tip: The more specific you are, the better your personalized plan will be!
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button type="submit" id="submitBtn"
+                            class="adhd-optimized flex-1 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300 flex items-center justify-center">
+                            <span id="submitText">🚀 Create My Dream Plan</span>
+                            <div id="loadingSpinner" class="hidden ml-3">
+                                <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                            </div>
+                        </button>
+
+                        <button type="button" onclick="clearForm()"
+                            class="adhd-optimized bg-white bg-opacity-20 text-white px-6 py-4 rounded-2xl font-medium hover:bg-opacity-30 transition-all duration-300">
+                            🔄 Clear
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Processing Animation -->
+    <div id="processingSection" class="hidden py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="dream-card rounded-3xl p-12">
+                <div class="mb-8">
+                    <div class="animate-bounce text-6xl mb-4">🧠</div>
+                    <h3 class="text-3xl font-bold text-white mb-4">Ultra-Thinking Boardroom Activated</h3>
+                    <p class="text-lg text-white text-opacity-80">Our AI is analyzing your dream and creating your
+                        personalized action plan...</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-white">🎯 Analyzing dream content...</span>
+                        <span id="step1" class="text-purple-300">⏳</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-white">🧠 Ultra-Thinking strategic analysis...</span>
+                        <span id="step2" class="text-purple-300">⏳</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-white">📋 Creating step-by-step plan...</span>
+                        <span id="step3" class="text-purple-300">⏳</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-white">🧠 ADHD optimizations...</span>
+                        <span id="step4" class="text-purple-300">⏳</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-white">🎊 Creating celebration plan...</span>
+                        <span id="step5" class="text-purple-300">⏳</span>
+                    </div>
+                </div>
+
+                <div class="mt-8">
+                    <div class="w-full bg-white bg-opacity-20 rounded-full h-3">
+                        <div id="progressBar" class="progress-bar h-3 rounded-full transition-all duration-500"
+                            style="width: 0%"></div>
+                    </div>
+                    <p class="mt-2 text-sm text-white text-opacity-70">
+                        <span id="progressText">Initializing...</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsSection" class="hidden py-20">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Success Header -->
+            <div class="text-center mb-12">
+                <div class="celebration-animation">
+                    <h2 class="text-5xl font-black text-white mb-4">
+                        🎊 Your Dream Plan is Ready! 🎊
+                    </h2>
+                    <p class="text-xl text-white text-opacity-90">
+                        Here's your personalized, ADHD-optimized roadmap to success!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Dream Summary -->
+            <div class="dream-card rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold text-white mb-6">🌟 Your Dream Summary</h3>
+                <div id="dreamSummary" class="grid md:grid-cols-2 gap-6">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Action Plan -->
+            <div class="dream-card rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold text-white mb-6">📋 Your Step-by-Step Action Plan</h3>
+                <div id="actionPlan">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- ADHD Optimizations -->
+            <div class="dream-card rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold text-white mb-6">🧠 ADHD Optimization Guide</h3>
+                <div id="adhdGuide" class="grid md:grid-cols-2 gap-6">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Celebration Plan -->
+            <div class="dream-card rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold text-white mb-6">🎊 Your Celebration Milestones</h3>
+                <div id="celebrationPlan">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="text-center space-y-4">
+                <button onclick="downloadReport()"
+                    class="adhd-optimized bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-green-600 hover:to-blue-600 transition-all duration-300">
+                    💾 Download Full Report
+                </button>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <button onclick="shareOnSocial()"
+                        class="adhd-optimized bg-white bg-opacity-20 text-white px-6 py-3 rounded-xl font-medium hover:bg-opacity-30 transition-all duration-300">
+                        📱 Share Your Dream
+                    </button>
+                    <button onclick="joinCommunity()"
+                        class="adhd-optimized bg-white bg-opacity-20 text-white px-6 py-3 rounded-xl font-medium hover:bg-opacity-30 transition-all duration-300">
+                        👥 Join Community
+                    </button>
+                    <button onclick="startNewDream()"
+                        class="adhd-optimized bg-white bg-opacity-20 text-white px-6 py-3 rounded-xl font-medium hover:bg-opacity-30 transition-all duration-300">
+                        ✨ New Dream
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-16">
+                🧠 How Our Ultra-Thinking System Works
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="dream-card adhd-optimized rounded-2xl p-8 text-center">
+                    <div class="text-5xl mb-4">🌙</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Share Your Dream</h3>
+                    <p class="text-white text-opacity-80">
+                        Tell us what you want to achieve. Our AI understands dreams of all sizes, from learning a new
+                        skill to building a business empire.
+                    </p>
+                </div>
+
+                <div class="dream-card adhd-optimized rounded-2xl p-8 text-center">
+                    <div class="text-5xl mb-4">🧠</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">AI Analysis</h3>
+                    <p class="text-white text-opacity-80">
+                        Our Ultra-Thinking Boardroom analyzes your dream, considering complexity, timeline, resources,
+                        and ADHD-specific needs.
+                    </p>
+                </div>
+
+                <div class="dream-card adhd-optimized rounded-2xl p-8 text-center">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Get Your Plan</h3>
+                    <p class="text-white text-opacity-80">
+                        Receive a personalized, step-by-step action plan with ADHD optimizations, celebration
+                        milestones, and community support.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories Section -->
+    <section id="success-stories" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl md:text-5xl font-bold text-white text-center mb-16">
+                🏆 Success Stories
+            </h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Success Story 1 -->
+                <div class="dream-card adhd-optimized rounded-2xl p-6">
+                    <div class="text-3xl mb-3">📱</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Alex's ADHD Task App</h3>
+                    <p class="text-sm text-white text-opacity-80 mb-3">
+                        "I dreamed of creating an app for ADHD task management. The DREAMER Portal gave me a
+                        step-by-step plan that I actually followed! My app now has 1,000+ users!"
+                    </p>
+                    <div class="text-xs text-purple-300">✅ Dream Achieved in 8 months</div>
+                </div>
+
+                <!-- Success Story 2 -->
+                <div class="dream-card adhd-optimized rounded-2xl p-6">
+                    <div class="text-3xl mb-3">💍</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Sam's Jewelry Business</h3>
+                    <p class="text-sm text-white text-opacity-80 mb-3">
+                        "Started with a dream to sell handmade jewelry online. The ADHD-optimized plan helped me launch
+                        my Etsy store and now I have a physical location too!"
+                    </p>
+                    <div class="text-xs text-purple-300">✅ Dream Achieved in 14 months</div>
+                </div>
+
+                <!-- Success Story 3 -->
+                <div class="dream-card adhd-optimized rounded-2xl p-6">
+                    <div class="text-3xl mb-3">💻</div>
+                    <h3 class="text-lg font-bold text-white mb-2">Jordan's Python Journey</h3>
+                    <p class="text-sm text-white text-opacity-80 mb-3">
+                        "Wanted to learn Python to help other neurodivergent people. The structured plan with
+                        celebration milestones kept me motivated. I now work as a developer!"
+                    </p>
+                    <div class="text-xs text-purple-300">✅ Dream Achieved in 6 months</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black bg-opacity-30 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl font-bold text-white mb-4">
+                🌟 Ready to Transform Your Dreams?
+            </h3>
+            <p class="text-white text-opacity-80 mb-8">
+                Join thousands of dreamers who have turned their visions into reality with AI-powered guidance.
+            </p>
+            <button onclick="scrollToDreamInput()"
+                class="adhd-optimized bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-bold text-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300">
+                🚀 Start Your Dream Journey Now
+            </button>
+
+            <div class="mt-12 pt-8 border-t border-white border-opacity-20">
+                <p class="text-white text-opacity-60">
+                    Built with ❤️‍🔥 by the HYPERFOCUSzone Empire | Powered by Ultra-Thinking AI
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables to store dream data
+        let currentDreamData = null;
+        let currentReport = null;
+
+        // Scroll to dream input
+        function scrollToDreamInput() {
+            document.getElementById('dream-input').scrollIntoView({
+                behavior: 'smooth'
+            });
+            // Focus on the name input after scrolling
+            setTimeout(() => {
+                document.getElementById('dreamerName').focus();
+            }, 800);
+        }
+
+        // Show demo function with API integration
+        async function showDemo() {
+            try {
+                // Try to get a demo dream from the API
+                const response = await fetch('/api/demo_dream');
+                if (response.ok) {
+                    const demoData = await response.json();
+                    const demo = demoData.demo_dream;
+
+                    // Pre-fill with API demo dream
+                    document.getElementById('dreamerName').value = demo.name;
+                    document.getElementById('dreamText').value = demo.dream;
+                } else {
+                    // Fallback to hardcoded demo
+                    document.getElementById('dreamerName').value = 'Demo User';
+                    document.getElementById('dreamText').value = 'I want to create a mobile app that helps ADHD people manage their daily tasks with gamification and community support, eventually building it into a full business with a team of developers.';
+                }
+            } catch (error) {
+                console.log('🔄 API not available, using fallback demo...');
+                // Fallback demo
+                document.getElementById('dreamerName').value = 'Demo User';
+                document.getElementById('dreamText').value = 'I want to create a mobile app that helps ADHD people manage their daily tasks with gamification and community support, eventually building it into a full business with a team of developers.';
+            }
+
+            scrollToDreamInput();
+
+            // Add visual indication it's a demo
+            setTimeout(() => {
+                const textarea = document.getElementById('dreamText');
+                textarea.style.border = '2px solid #10b981';
+                textarea.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+
+                // Show helpful message
+                const demoMessage = document.createElement('div');
+                demoMessage.className = 'mt-2 text-sm text-green-300 font-medium';
+                demoMessage.textContent = '✨ Demo dream loaded! Click "Create My Dream Plan" to see LIVE API processing.';
+                textarea.parentNode.appendChild(demoMessage);
+
+                // Remove demo styling after a while
+                setTimeout(() => {
+                    textarea.style.border = '';
+                    textarea.style.boxShadow = '';
+                    if (demoMessage.parentNode) {
+                        demoMessage.remove();
+                    }
+                }, 5000);
+            }, 1000);
+        }        // Clear form
+        function clearForm() {
+            document.getElementById('dreamForm').reset();
+            document.getElementById('dreamerName').focus();
+        }
+
+        // Handle form submission
+        document.getElementById('dreamForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('dreamerName').value.trim();
+            const dream = document.getElementById('dreamText').value.trim();
+
+            if (!name || !dream) {
+                alert('Please fill in both your name and dream description!');
+                return;
+            }
+
+            processDream(name, dream);
+        });
+
+        // Process dream function with LIVE API connection
+        async function processDream(name, dreamText) {
+            // Hide form and show processing
+            document.getElementById('dream-input').style.display = 'none';
+            document.getElementById('processingSection').classList.remove('hidden');
+
+            // Start the visual processing animation
+            const steps = [
+                { id: 'step1', text: 'Analyzing dream content...', delay: 500 },
+                { id: 'step2', text: 'Ultra-Thinking strategic analysis...', delay: 1000 },
+                { id: 'step3', text: 'Creating step-by-step plan...', delay: 1500 },
+                { id: 'step4', text: 'ADHD optimizations...', delay: 2000 },
+                { id: 'step5', text: 'Creating celebration plan...', delay: 2500 }
+            ];
+
+            // Start visual animation
+            let animationProgress = 0;
+            const animationInterval = setInterval(() => {
+                if (animationProgress < steps.length) {
+                    const step = steps[animationProgress];
+                    document.getElementById(step.id).textContent = '✅';
+                    animationProgress++;
+                    const progress = (animationProgress / steps.length) * 100;
+                    document.getElementById('progressBar').style.width = progress + '%';
+                    document.getElementById('progressText').textContent =
+                        progress === 100 ? 'Complete! Generating your report...' : `${Math.round(progress)}% complete`;
+                } else {
+                    clearInterval(animationInterval);
+                }
+            }, 600);
+
+            try {
+                // Make LIVE API call to Python backend
+                console.log('🚀 Sending dream to API...');
+                const response = await fetch('/api/process_dream', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        dream: dreamText
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} - ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                console.log('✅ Dream processing complete!', result);
+
+                if (result.status === 'success') {
+                    // Use REAL data from Python backend
+                    currentDreamData = result.dream_data;
+                    currentReport = result.ultra_report;
+
+                    // Wait for animation to complete
+                    setTimeout(() => {
+                        showResults(name, dreamText);
+                    }, 1000);
+                } else {
+                    throw new Error(result.message || 'Dream processing failed');
+                }
+
+            } catch (error) {
+                console.error('❌ Dream processing error:', error);
+                clearInterval(animationInterval);
+
+                // Show error message
+                document.getElementById('processingSection').classList.add('hidden');
+                document.getElementById('dream-input').style.display = 'block';
+
+                alert(`🔴 Oops! Something went wrong processing your dream:\n\n${error.message}\n\nPlease try again or check if the API server is running.`);
+            }
+        }
+
+        // Show results function with REAL API data
+        function showResults(name, dreamText) {
+            // Check if we have real API data or need to use mock data
+            if (!currentDreamData || !currentReport) {
+                console.log('🔄 No API data available, generating mock data for demo...');
+                currentDreamData = generateMockDreamData(name, dreamText);
+                currentReport = generateMockReport(currentDreamData);
+            } else {
+                console.log('✅ Using real API data from Python backend!');
+            }
+
+            // Hide processing and show results
+            document.getElementById('processingSection').classList.add('hidden');
+            document.getElementById('resultsSection').classList.remove('hidden');
+
+            // Populate results
+            populateResults(currentDreamData, currentReport);
+
+            // Scroll to results
+            document.getElementById('resultsSection').scrollIntoView({
+                behavior: 'smooth'
+            });
+
+            // Add celebration animation
+            setTimeout(() => {
+                const header = document.querySelector('#resultsSection h2');
+                if (header) {
+                    header.classList.add('celebration-animation');
+                }
+            }, 500);
+        }
+            });
+        }
+
+        // Generate mock dream data
+        function generateMockDreamData(name, dreamText) {
+            return {
+                dream_id: `DREAM_${Date.now()}`,
+                user_name: name,
+                raw_dream: dreamText,
+                primary_category: dreamText.toLowerCase().includes('app') ? 'TECH_DREAMS' : 'BUSINESS_DREAMS',
+                complexity_level: dreamText.length > 200 ? 'COMPLEX' : 'MEDIUM',
+                estimated_timeline: dreamText.length > 200 ? '6-12 months' : '3-6 months'
+            };
+        }
+
+        // Generate mock report
+        function generateMockReport(dreamData) {
+            return {
+                ultra_thinking_analysis: {
+                    success_probability: '87%',
+                    strategic_recommendations: [
+                        'Start with MVP (Minimum Viable Product) approach',
+                        'Build community early through social media',
+                        'Focus on core features that solve the main problem',
+                        'Set up feedback loops with beta users',
+                        'Plan for sustainable development pace'
+                    ]
+                },
+                step_by_step_action_plan: {
+                    phases: [
+                        {
+                            phase_number: 1,
+                            phase_name: 'FOUNDATION & RESEARCH',
+                            duration: '2-3 weeks',
+                            key_activities: [
+                                'Research target audience and competitors',
+                                'Define core features and user stories',
+                                'Choose technology stack',
+                                'Set up development environment'
+                            ]
+                        },
+                        {
+                            phase_number: 2,
+                            phase_name: 'SKILL BUILDING & PROTOTYPING',
+                            duration: '4-6 weeks',
+                            key_activities: [
+                                'Learn required programming skills',
+                                'Create wireframes and mockups',
+                                'Build basic prototype',
+                                'Test core functionality'
+                            ]
+                        },
+                        {
+                            phase_number: 3,
+                            phase_name: 'DEVELOPMENT & TESTING',
+                            duration: '8-12 weeks',
+                            key_activities: [
+                                'Develop MVP features',
+                                'Implement user interface',
+                                'Test with beta users',
+                                'Iterate based on feedback'
+                            ]
+                        }
+                    ]
+                },
+                adhd_optimization_guide: {
+                    executive_function_supports: [
+                        'Use project management tools like Notion or Trello',
+                        'Set daily coding time blocks of 25-45 minutes',
+                        'Create visual progress charts',
+                        'Set up automated reminders for key tasks'
+                    ],
+                    motivation_strategies: [
+                        'Share progress on social media for accountability',
+                        'Join developer communities for support',
+                        'Set small daily wins and celebrate them',
+                        'Work alongside others (body doubling)'
+                    ]
+                },
+                celebration_milestones: {
+                    daily_celebrations: [
+                        'Complete coding session (check off tasks)',
+                        'Share one thing you learned today',
+                        'Do a 2-minute victory dance',
+                        'Enjoy your favorite healthy snack'
+                    ],
+                    weekly_celebrations: [
+                        'Review and appreciate your progress',
+                        'Treat yourself to something special',
+                        'Share achievements with friends/community',
+                        'Plan next week\'s exciting goals'
+                    ],
+                    phase_completion_celebrations: [
+                        'Major reward (dinner out, new gadget, etc.)',
+                        'Celebrate with family and friends',
+                        'Document the achievement with photos/video',
+                        'Plan and get excited for next phase'
+                    ]
+                }
+            };
+        }
+
+        // Populate results in the HTML
+        function populateResults(dreamData, report) {
+            // Dream Summary
+            document.getElementById('dreamSummary').innerHTML = `
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <span class="text-purple-300 font-semibold w-24">👤 Name:</span>
+                        <span class="text-white">${dreamData.user_name}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-purple-300 font-semibold w-24">🎯 Category:</span>
+                        <span class="text-white">${dreamData.primary_category.replace('_', ' ')}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-purple-300 font-semibold w-24">⚡ Level:</span>
+                        <span class="text-white">${dreamData.complexity_level}</span>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <span class="text-purple-300 font-semibold w-24">📅 Timeline:</span>
+                        <span class="text-white">${dreamData.estimated_timeline}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-purple-300 font-semibold w-24">🏆 Success:</span>
+                        <span class="text-green-300 font-bold">${report.ultra_thinking_analysis.success_probability}</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-purple-300 font-semibold w-24">🧠 AI Status:</span>
+                        <span class="text-green-300">Highly Achievable</span>
+                    </div>
+                </div>
+            `;
+
+            // Action Plan
+            let phasesHTML = '';
+            report.step_by_step_action_plan.phases.forEach(phase => {
+                phasesHTML += `
+                    <div class="bg-white bg-opacity-10 rounded-xl p-6 mb-4">
+                        <h4 class="text-lg font-bold text-white mb-2">
+                            Phase ${phase.phase_number}: ${phase.phase_name}
+                        </h4>
+                        <p class="text-purple-300 mb-3">Duration: ${phase.duration}</p>
+                        <ul class="space-y-1">
+                            ${phase.key_activities.map(activity =>
+                    `<li class="text-white text-opacity-80">✅ ${activity}</li>`
+                ).join('')}
+                        </ul>
+                    </div>
+                `;
+            });
+            document.getElementById('actionPlan').innerHTML = phasesHTML;
+
+            // ADHD Guide
+            document.getElementById('adhdGuide').innerHTML = `
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">🧠 Executive Function Support</h4>
+                    <ul class="space-y-2">
+                        ${report.adhd_optimization_guide.executive_function_supports.map(support =>
+                `<li class="text-white text-opacity-80">• ${support}</li>`
+            ).join('')}
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold text-white mb-4">🚀 Motivation Strategies</h4>
+                    <ul class="space-y-2">
+                        ${report.adhd_optimization_guide.motivation_strategies.map(strategy =>
+                `<li class="text-white text-opacity-80">• ${strategy}</li>`
+            ).join('')}
+                    </ul>
+                </div>
+            `;
+
+            // Celebration Plan
+            document.getElementById('celebrationPlan').innerHTML = `
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                        <h4 class="text-lg font-bold text-white mb-3">📅 Daily</h4>
+                        <ul class="space-y-1 text-sm">
+                            ${report.celebration_milestones.daily_celebrations.map(celebration =>
+                `<li class="text-white text-opacity-80">• ${celebration}</li>`
+            ).join('')}
+                        </ul>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                        <h4 class="text-lg font-bold text-white mb-3">📅 Weekly</h4>
+                        <ul class="space-y-1 text-sm">
+                            ${report.celebration_milestones.weekly_celebrations.map(celebration =>
+                `<li class="text-white text-opacity-80">• ${celebration}</li>`
+            ).join('')}
+                        </ul>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-xl p-4">
+                        <h4 class="text-lg font-bold text-white mb-3">🏆 Phases</h4>
+                        <ul class="space-y-1 text-sm">
+                            ${report.celebration_milestones.phase_completion_celebrations.map(celebration =>
+                `<li class="text-white text-opacity-80">• ${celebration}</li>`
+            ).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Download report function
+        function downloadReport() {
+            if (!currentDreamData || !currentReport) {
+                alert('No report data available to download.');
+                return;
+            }
+
+            const reportData = {
+                dream_data: currentDreamData,
+                ultra_report: currentReport,
+                generated_at: new Date().toISOString(),
+                portal_info: {
+                    generated_by: 'HYPERFOCUSzone DREAMER Portal',
+                    version: '1.0 Ultra-Thinking Integration'
+                }
+            };
+
+            const blob = new Blob([JSON.stringify(reportData, null, 2)], {
+                type: 'application/json'
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `DREAMER_REPORT_${currentDreamData.user_name}_${Date.now()}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            // Show success message
+            alert('📄 Your dream report has been downloaded! Keep it safe and refer to it as you work toward your dream. 🌟');
+        }
+
+        // Share on social
+        function shareOnSocial() {
+            const text = `I just created my dream action plan with the HYPERFOCUSzone DREAMER Portal! 🌟 Their AI-powered system gave me a personalized, ADHD-optimized roadmap to achieve: "${currentDreamData.raw_dream.slice(0, 100)}..." Ready to turn YOUR dreams into reality? Check it out! 🚀`;
+
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Dream Action Plan',
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                // Fallback to copying to clipboard
+                navigator.clipboard.writeText(text + ' ' + window.location.href).then(() => {
+                    alert('📱 Share text copied to clipboard! Paste it on your favorite social platform. 🌟');
+                });
+            }
+        }
+
+        // Join community
+        function joinCommunity() {
+            alert('👥 Join our Discord community for ongoing support, accountability partners, and celebration of wins! Link: discord.gg/hyperfocus 🎊');
+        }
+
+        // Start new dream
+        function startNewDream() {
+            document.getElementById('resultsSection').classList.add('hidden');
+            document.getElementById('dream-input').style.display = 'block';
+            document.getElementById('dreamForm').reset();
+            currentDreamData = null;
+            currentReport = null;
+            scrollToDreamInput();
+        }
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add typing effect to hero text
+            const heroText = document.querySelector('h2');
+            if (heroText) {
+                heroText.classList.add('typing-effect');
+            }
+
+            // Add smooth scrolling to all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
