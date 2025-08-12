@@ -1,0 +1,76 @@
+Must-read / Bookmark (start here)
+Docker (Engine & Desktop) — install, debug daemon/socket, and learn best practices.
+Docker Documentation
++1
+
+Prometheus — the go-to open-source metrics/alerting toolkit (scrape exporters, write rules, alertmanager).
+prometheus.io
+
+Grafana + Loki — Grafana for dashboards; Loki for low-cost, label-driven logging (works great with Prometheus). Quickstarts and LogQL are gold.
+Grafana Labs
++1
+
+GitHub Actions docs — automate CI/CD (build, test, publish Docker images, run health checks).
+GitHub Docs
+
+OpenTelemetry — vendor-neutral tracing/metrics/logs standard so you can correlate traces + metrics. Great for distributed AI systems.
+OpenTelemetry
++1
+
+Why these first?
+Docker is the foundation of your container checks — if the daemon is flaky, everything else alerts. See Docker Quickstart and Desktop pages to diagnose and fix local issues.
+Docker Documentation
++1
+
+Prometheus + Grafana + Loki = a full observability stack you can run locally with docker-compose, then scale to k8s later.
+prometheus.io
+Grafana Labs
+
+OpenTelemetry lets you connect traces from model-serving endpoints to Prometheus metrics for real root-cause analysis.
+OpenTelemetry
++1
+
+Secondary but very useful resources (practical & tactical)
+Grafana tutorials / quickstarts — step-by-step dashboards and Loki quickstart (docker-compose example).
+Grafana Labs
+
+Real Python / docs.python.org — best practices for Python logging, encoding, packaging, and services.
+
+GitHub Learning Lab — learn Actions and automation with guided exercises.
+
+MLflow / BentoML — model packaging & serving (if you want to productionize models).
+
+Sentry — error/exception monitoring (complements logs and traces).
+
+Netdata / Portainer / Lens — lightweight operational UIs for quick runtime visibility and container management.
+
+k3s / k3d — lightweight k8s for testing locally before full Kubernetes.
+
+OWASP / Bandit — quick security checks and Python static scanning.
+
+Certbot / Let’s Encrypt & Cloudflare Docs — TLS, DNS and secure public endpoints.
+
+Quick actions you can do in the next 20–60 minutes
+docker info — confirm Docker daemon is alive (if this errors, fix Docker first).
+
+Spin up a local observability quickstart: follow Grafana Loki quickstart (docker-compose) to get Loki + Grafana running and see logs in minutes.
+Grafana Labs
+
+Add Prometheus node_exporter + a simple Prometheus config to scrape your health-check endpoint and view it in Grafana. (Prometheus docs show exporters & examples).
+prometheus.io
+
+Add a GitHub Actions workflow to run your health-check script every hour and fail the run when critical checks fail (use Docker/container step to validate docker connectivity).
+GitHub Docs
+
+Instrument a key service with OpenTelemetry (traces + metrics) so you can tie a slow prediction request to a spike in CPU or a failed container.
+OpenTelemetry
++1
+
+Suggested “next-step” projects I can do for you right now
+generate a docker-compose that brings up: Prometheus + Grafana + Loki + a demo healthcheck service (so your logs, metrics and dashboards are live locally) — ready to copy/paste.
+
+create a GitHub Actions workflow that runs your health check, archives the logs, and posts a status to your repo or Discord.
+
+produce a short runbook (one page) listing the commands to recover Docker on Windows / Linux / macOS, plus the UTF-8 logging snippet you can drop in.
+
+Want me to build the docker-compose + Grafana dashboard JSON + GitHub Action workflow now? I’ll make it copy/paste-ready for your stack — no faff. Which do you want first: (A) docker-compose observability stack, (B) GitHub Actions health-check CI, or (C) the one-page runbook + recovery commands?

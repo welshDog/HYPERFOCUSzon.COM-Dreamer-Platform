@@ -1,0 +1,231 @@
+1) Fix the UTF-8 logging error (the charmap emoji crash)
+Cause: your logger or file handler is using a non-UTF-8 encoding (common on Windows). The diamond emoji 💎 (U+1F48E) can’t be encoded with the default code page.
+
+Quick fixes (pick what's relevant):
+
+A — Python (recommended): explicit UTF-8 logging
+
+python
+Copy
+Edit
+import logging
+import sys
+
+logger = logging.getLogger("healthcheck")
+logger.setLevel(logging.INFO)
+
+# Console (stdout)
+console = logging.StreamHandler(sys.stdout)
+console.setLevel(logging.INFO)
+console.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+logger.addHandler(console)
+
+# File (force UTF-8)
+file_handler = logging.FileHandler("legendary_health_check.log", encoding="utf-8")
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+logger.addHandler(file_handler)
+
+# test
+logger.info("Health check started 💎")
+B — If you run the script as a service (systemd)
+Add environment variables to ensure UTF-8 is used:
+
+/etc/systemd/system/your-health.service (snippet)
+
+ini
+Copy
+Edit
+[Service]
+Environment="LANG=en_GB.UTF-8"
+Environment="LC_ALL=en_GB.UTF-8"
+ExecStart=/usr/bin/python3 /path/to/health_check.py
+Restart=on-failure
+Then sudo systemctl daemon-reload && sudo systemctl restart your-health.service.
+
+C — Windows console quirks
+If you run it from cmd/PowerShell, ensure UTF-8 console encoding:
+
+cmd: chcp 65001
+
+PowerShell (temporary): [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+
+Also set PYTHONIOENCODING (temp):
+set PYTHONIOENCODING=utf-8 (cmd) or $env:PYTHONIOENCODING='utf-8' (PowerShell)
+
+2) Fix the Docker daemon / “CreateFile … cannot find the file specified” error
+What the log means: your health check tried to contact Docker but couldn’t reach the Docker daemon/socket. On Windows that Common error is because the Docker Engine (or Docker Desktop) isn’t running or the socket path is wrong.
+
+Checks & fixes by OS
+
+Linux (Ubuntu/Debian)
+bash
+Copy
+Edit
+# is docker installed?
+which docker || sudo apt update && sudo apt install -y docker.io
+
+# start & enable
+sudo systemctl start docker
+sudo systemctl enable docker
+
+# check status
+sudo systemctl status docker
+docker info   # should show info (no errors)
+docker ps     # should list containers (or be empty)
+If permission denied on docker commands:
+
+bash
+Copy
+Edit
+sudo usermod -aG docker $USER
+# then log out/in or run:
+newgrp docker
+macOS
+Open Docker Desktop and ensure it’s running (icon in menu bar).
+
+In terminal: docker info and docker ps should work.
+
+Windows (Docker Desktop / WSL2)
+Most likely cause for your exact error on Windows: Docker Desktop not running or using the wrong socket.
+
+Do this:
+
+Open Docker Desktop app — wait until it says Docker is running.
+
+If you use WSL2 backend, ensure your WSL distro is running: wsl -l -v
+
+In PowerShell:
+
+powershell
+Copy
+Edit
+docker version
+docker info
+docker ps
+If you get CreateFile ... cannot find the file specified, try:
+
+Restart Docker Desktop.
+
+Make sure the Windows Service com.docker.service is running:
+Get-Service com.docker.service (PowerShell)
+
+Ensure Docker is using the default named pipe: npipe:////./pipe/docker_engine
+
+If you're using DOCKER_HOST, either unset it or set correctly:
+setx DOCKER_HOST npipe:////./pipe/docker_engine (restart terminal)
+
+General helpful Docker commands
+
+bash
+Copy
+Edit
+docker context ls
+docker info
+docker version
+docker ps -a
+If docker is not installed or Docker Desktop is not appropriate for your environment, consider installing Docker Engine (Linux) or enabling WSL2 on Windows.
+
+3) Hardened health-check Python snippet (handles Docker missing + UTF-8 logging)
+Drop this into your health check script — it: sets UTF-8 logging, checks Docker safely, retries with backoff, and logs friendly errors instead of repeated warnings.
+
+python
+Copy
+Edit
+#!/usr/bin/env python3
+import logging
+import sys
+import time
+
+# ---------- Logging (UTF-8) ----------
+logger = logging.getLogger("legendary-health")
+logger.setLevel(logging.INFO)
+
+ch = logging.StreamHandler(sys.stdout)
+ch.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+logger.addHandler(ch)
+
+fh = logging.FileHandler("legendary_health_check.log", encoding="utf-8")
+fh.setFormatter(logging.Formatter("%(asctime)s - %(levelname)s - %(message)s"))
+logger.addHandler(fh)
+
+# ---------- Docker check (safe) ----------
+def check_docker():
+    try:
+        import docker
+    except Exception:
+        logger.warning("docker SDK not installed. Skipping docker checks.")
+        return False
+
+    try:
+        client = docker.from_env(timeout=3)
+        # quick ping
+        client.ping()
+        logger.info("Docker daemon reachable ✅")
+        return True
+    except Exception as e:
+        # single clear warning, with exception details
+        logger.warning("Docker check failed: %s", str(e))
+        return False
+
+# ---------- Retry wrapper (avoid spam) ----------
+def retry_check(fn, tries=3, initial_delay=2):
+    delay = initial_delay
+    for attempt in range(1, tries+1):
+        ok = fn()
+        if ok:
+            return True
+        if attempt < tries:
+            logger.info("Retrying in %s seconds (attempt %d/%d)...", delay, attempt+1, tries)
+            time.sleep(delay)
+            delay *= 2
+    return False
+
+if __name__ == "__main__":
+    logger.info("Starting legendary health check 💎")
+    docker_ok = retry_check(check_docker, tries=3, initial_delay=2)
+    if not docker_ok:
+        logger.warning("Docker unavailable after retries. Ensure Docker daemon is installed and running.")
+    else:
+        logger.info("All docker checks passed.")
+
+    logger.info("Health check finished.")
+Install Docker SDK for Python (if you use the snippet):
+
+bash
+Copy
+Edit
+pip install docker
+4) Quick checklist (BROski Fix Pack) — follow these steps now
+Add UTF-8 logging lines to your health script (copy the top of the code above).
+
+Restart your health check service / run the script manually to confirm logging works:
+
+bash
+Copy
+Edit
+python3 path/to/health_check.py
+tail -n 40 legendary_health_check.log
+Confirm 💎 appears without charmap error.
+
+Check Docker:
+
+Run docker info / docker ps.
+
+If it errors, start Docker (Linux: sudo systemctl start docker, Windows: open Docker Desktop).
+
+Re-run the script — verify the Docker warning is either resolved or logged once (with the new friendly message).
+
+If you're on Windows and using scheduled tasks or services, set PYTHONIOENCODING=utf-8 or ensure the service environment uses UTF-8.
+
+5) If it’s still broken — what I’ll need from you
+If after all that you’re still hitting the Docker error, drop me:
+
+The output of docker info (or the exact error)
+
+The OS you’re running it on (Windows / WSL2 / Linux / macOS)
+
+The command you use to run the health check (systemd service? cron? scheduled task?)
+
+I’ll craft the exact commands for your OS and, if you want, patch your existing script with the logger + Docker-safe check ready to commit.
+

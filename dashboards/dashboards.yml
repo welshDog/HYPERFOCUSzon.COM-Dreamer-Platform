@@ -1,0 +1,16 @@
+# 🚀💎⚡ LEGENDARY DASHBOARD PROVISIONING ⚡💎🚀
+# Generated: 20250811_230658
+
+apiVersion: 1
+
+providers:
+  - name: 'default'
+    orgId: 1
+    folder: ''
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: h:\dashboards
+      foldersFromFilesStructure: true
