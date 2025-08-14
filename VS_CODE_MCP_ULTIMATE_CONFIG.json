@@ -1,0 +1,92 @@
+{
+  "mcp.servers": {
+    "microsoft-docs": {
+      "command": "node",
+      "args": [
+        "-e",
+        "const http = require('http'); const mcp = { search: async (query) => { const response = await fetch(`https://learn.microsoft.com/api/search?query=${encodeURIComponent(query)}`); return response.json(); }, fetch: async (url) => { const response = await fetch(url); return response.text(); } }; const server = http.createServer((req, res) => { res.setHeader('Access-Control-Allow-Origin', '*'); if (req.url.includes('/search')) { const query = new URL(req.url, 'http://localhost').searchParams.get('q'); mcp.search(query).then(data => { res.writeHead(200, {'Content-Type': 'application/json'}); res.end(JSON.stringify(data)); }); } }); server.listen(8932, () => console.log('Microsoft Docs MCP active on port 8932'));"
+      ],
+      "env": {
+        "MCP_SERVER_NAME": "microsoft-docs",
+        "MCP_DESCRIPTION": "FREE Microsoft Learn documentation access"
+      }
+    },
+    "huggingface-mcp": {
+      "command": "npx",
+      "args": [
+        "create-mcp-server",
+        "--name",
+        "huggingface",
+        "--port",
+        "8933"
+      ],
+      "env": {
+        "MCP_SERVER_NAME": "huggingface",
+        "MCP_DESCRIPTION": "FREE Hugging Face models and datasets"
+      }
+    },
+    "github-mcp": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-github",
+        "--port",
+        "8934"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}",
+        "MCP_SERVER_NAME": "github",
+        "MCP_DESCRIPTION": "FREE GitHub integration and automation"
+      }
+    },
+    "playwright-empire": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser",
+        "chrome",
+        "--headless",
+        "--allowed-origins",
+        "hyperfocuszone.com;localhost;*.ai;github.com;learn.microsoft.com",
+        "--blocked-origins",
+        "ads.google.com;facebook.com/tr",
+        "--save-session",
+        "--save-trace",
+        "--output-dir",
+        "./empire-automation-logs",
+        "--user-agent",
+        "HyperFocus-Empire-Agent/1.0",
+        "--viewport-size",
+        "1920,1080",
+        "--port",
+        "8935"
+      ],
+      "env": {
+        "MCP_SERVER_NAME": "playwright-empire",
+        "MCP_DESCRIPTION": "Browser automation for web intelligence"
+      }
+    }
+  },
+  "mcp.enabled": true,
+  "mcp.autostart": true,
+  "mcp.debug": false,
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": true,
+    "markdown": true,
+    "json": true,
+    "python": true
+  },
+  "github.copilot.advanced": {
+    "length": 500,
+    "temperature": 0.1,
+    "top_p": 1,
+    "inlineSuggestCount": 3
+  },
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "workbench.colorTheme": "GitHub Dark",
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+}
