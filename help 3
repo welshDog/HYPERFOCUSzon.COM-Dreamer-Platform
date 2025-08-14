@@ -1,0 +1,133 @@
+# North star and success criteria
+
+- **Single promise:** A stable, delightful, ADHD‑friendly focus OS that coordinates agents, surfaces wins in real time, and is demo‑ready.
+- **Must‑have outcomes:**
+  - **Reliability:** 99.5% uptime for core services; self‑healing on crash.
+  - **Clarity:** A guided first‑run that gets a new user to a successful focus session in under 5 minutes.
+  - **Signal:** Live dashboards for health, agent decisions, and dopamine metrics visible at a glance.
+  - **Demoability:** One 5‑minute click‑through demo that tells a cohesive story end‑to‑end.
+
+---
+
+# Architecture consolidation and resilience
+
+- **Unified event model:**
+  - **Spec:** Define a single schema for all events (e.g., FocusStart, ModuleSwitch, TaskBid, HealthBeat) with required fields and versioning.
+  - **Registry:** Central “event dictionary” with JSON schemas, examples, and backward‑compat notes.
+
+- **Protocol orchestrator service:**
+  - **Role:** Translate events into actions, enforce guardrails (rate limits, retries, idempotency), and route to agents.
+  - **Contracts:** Input/output interfaces per agent; capability discovery (“I can do X with cost Y”).
+
+- **Health and auto‑healing:**
+  - **Health grid:** Heartbeats, dependency checks, and synthetic “can‑we‑do-a-focus-sprint-now?” probes.
+  - **Auto‑heal:** Restart on failure, rollback on degraded behavior, and circuit breakers around flaky integrations.
+
+- **Configuration clarity:**
+  - **Profiles:** dev, demo, prod with sane defaults; one env var file per profile.
+  - **Secrets:** Clean separation of secrets from config; rotation playbook.
+
+- **Observability baseline:**
+  - **Traces/logs/metrics:** Correlate a user’s focus session across services; error budgets and SLOs for core flows.
+
+---
+
+# Agent parliament and protocols
+
+- **Unified Agent Messaging Standard (UAMS):**
+  - **Envelope:** {agentId, role, intent, priority, context, ttl, signature}.
+  - **Semantics:** Shared ontology for actions/resources; schema‑validated.
+
+- **Decision patterns (choose per task type):**
+  - **Contract Net:** Task announcements → bids (cost/ETA/expected dopamine gain) → award.
+  - **Blackboard:** Proposal posts with commentary/veto windows for complex, multi‑step work.
+  - **Voting:** Weighted by expertise, recent reliability, and context fit.
+
+- **Arbitration and timeouts:**
+  - **Escalation:** If consensus fails by deadline, escalate to a strategist agent; fallback to highest‑trust executor.
+  - **Idempotent commits:** A single “commit” message marks a decision and claims responsibility.
+
+- **Collaboration Quality Index (CQI):**
+  - **Signals:** Time‑to‑decision, number of participants, conflict rate, outcome success.
+  - **Feedback:** Agents earn “collab XP”; low CQI triggers protocol tweaks or role reassignment.
+
+- **Simulation mode:**
+  - **Replay:** Run recorded scenarios with different strategies; publish learnings and auto‑tune weights.
+
+---
+
+# Experience and engagement
+
+- **Guided first‑run:**
+  - **Mission flow:** Name your goal → pick a focus mode (Zen/Sprint) → 25‑min run → celebration + insights.
+  - **Progressive reveal:** Advanced modules unlock as achievements (reduces overwhelm).
+
+- **Discord presence that invites action:**
+  - **Rich Presence:** Show module, elapsed, next break; button to “Sync My Sprint.”
+  - **Social focus:** One‑click to join a coordinated sprint room with aligned timers.
+
+- **BCI‑aware but optional:**
+  - **Soft gating:** If attention dips, suggest a micro‑reset; if it spikes, extend sprint by 5 minutes with consent.
+  - **Privacy mode:** Local‑only processing option; no external streaming by default.
+
+- **Celebrations with purpose:**
+  - **Dopamine loops:** Meaningful rewards (themes, shortcuts) tied to consistent habits, not just streaks.
+  - **Identity cards:** Auto‑generated “wins” panels for demo and personal motivation.
+
+- **Accessibility and neurodivergent support:**
+  - **Controls:** Reduced motion, color‑safe palettes, text‑first mode; quick mode‑switch hotkeys.
+
+---
+
+# Delivery, quality, and security
+
+- **Environments and releases:**
+  - **Three lanes:** dev (fast), demo (stable showcase), prod (durable).
+  - **Release cadence:** Weekly demo build; monthly prod release with changelog and rollback plan.
+
+- **Testing strategy:**
+  - **Contract tests:** Event and message schemas enforced between services.
+  - **Golden paths:** E2E tests for “start focus,” “switch module,” “complete sprint,” and “Discord sync.”
+  - **Resilience drills:** Chaos toggles to simulate agent crash and network blips.
+
+- **Observability and ops:**
+  - **Dashboards:** System health, CQI, focus outcomes, and agent trust.
+  - **Alerts:** User‑impacting errors first; noisy alerts auto‑suppressed with backoff.
+
+- **Security and data governance:**
+  - **Least privilege:** Service tokens scoped to minimal rights.
+  - **User control:** Data export/delete; clear consent UI for BCI and social features.
+
+---
+
+# 90‑day execution plan
+
+- **Weeks 1–2 — Baseline and story:**
+  - **Inventory:** Map services, owners, and dependencies.
+  - **North‑star demo:** Script the 5‑minute story; define the golden path and success metrics.
+
+- **Weeks 3–4 — Backbone hardening:**
+  - **UAMS + event schema:** Ship v1 and migrate critical services.
+  - **Health grid + auto‑heal:** Heartbeats, restarts, and circuit breakers live.
+
+- **Weeks 5–6 — Agent parliament:**
+  - **Contract Net:** Implement task bidding for two workflows (e.g., planning and Discord control).
+  - **CQI v1:** Capture decision metrics and surface them on a simple dashboard.
+
+- **Weeks 7–8 — Experience polish:**
+  - **Guided first‑run:** Ship mission flow with progressive reveal.
+  - **Discord sync:** Presence + “Join my sprint” button end‑to‑end.
+
+- **Weeks 9–10 — Resilience and scale:**
+  - **Chaos drills:** Fail an agent; ensure graceful degradation.
+  - **Perf:** Tune hot paths; reduce cold‑start, memory spikes, and event lag.
+
+- **Weeks 11–12 — Ship and pitch:**
+  - **Demo lane:** Lock the showcase build; publish a one‑pager and a 2‑minute video walkthrough.
+  - **Feedback loop:** Run 5–10 user sessions; prioritize fixes for the next release.
+
+---
+
+If you want me to start today, I’ll begin with the event schema/UAMS spec and the 5‑minute demo script. Two quick questions to tailor it:
+- What’s the single use case you want to wow investors and collaborators with first?
+- Any hard constraints on hosting, cost, or data locality I should design around?

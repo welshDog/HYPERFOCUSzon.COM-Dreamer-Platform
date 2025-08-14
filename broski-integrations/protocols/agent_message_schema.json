@@ -1,0 +1,357 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Unified Agent Messaging Standard (UAMS) for BROski♾️ HyperFocus Zone",
+    "description": "Standardized message schema for agent communication in the BROski♾️ ecosystem",
+    "version": "1.0.0",
+    "type": "object",
+    "required": [
+        "agent_id",
+        "role",
+        "intent",
+        "priority",
+        "context",
+        "ttl",
+        "signature",
+        "timestamp"
+    ],
+    "properties": {
+        "agent_id": {
+            "type": "string",
+            "description": "Unique identifier for the sending agent",
+            "pattern": "^[A-Z][A-Z0-9_]*[0-9]{2}$",
+            "examples": [
+                "BOARDROOM_STRATEGIST_01",
+                "SYSTEM_COORDINATOR_01",
+                "HEALTH_MONITOR_01"
+            ]
+        },
+        "role": {
+            "type": "string",
+            "description": "Agent role classification",
+            "enum": [
+                "BOARDROOM_STRATEGY_AGENT",
+                "SYSTEM_COORDINATION_AGENT",
+                "HEALTH_MONITORING_AGENT",
+                "TASK_EXECUTION_AGENT",
+                "PARLIAMENT_NEGOTIATION_AGENT",
+                "PERFORMANCE_OPTIMIZATION_AGENT",
+                "BCI_INTEGRATION_AGENT",
+                "DOPAMINE_ANALYTICS_AGENT",
+                "FOCUS_MANAGEMENT_AGENT"
+            ]
+        },
+        "intent": {
+            "type": "string",
+            "description": "The specific action or purpose of the message",
+            "minLength": 1,
+            "maxLength": 200,
+            "examples": [
+                "request_task_assignment",
+                "report_system_health",
+                "initiate_focus_session",
+                "negotiate_resource_allocation",
+                "broadcast_attention_alert"
+            ]
+        },
+        "priority": {
+            "type": "integer",
+            "description": "Message priority level (1=CRITICAL, 2=HIGH, 3=MEDIUM, 4=LOW)",
+            "minimum": 1,
+            "maximum": 4,
+            "default": 3
+        },
+        "context": {
+            "type": "object",
+            "description": "Contextual information and payload data",
+            "properties": {
+                "agent_state": {
+                    "type": "object",
+                    "description": "Current state snapshot of the sending agent",
+                    "properties": {
+                        "cpu_usage": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "memory_usage": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "current_tasks": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "dopamine_score": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "trust_score": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                        },
+                        "collaboration_xp": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "environmental_context": {
+                    "type": "object",
+                    "description": "Environmental and system context",
+                    "properties": {
+                        "focus_zone_active": {
+                            "type": "boolean"
+                        },
+                        "attention_level": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "system_load": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "active_portals": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "bci_signal_strength": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        }
+                    }
+                },
+                "task_data": {
+                    "type": "object",
+                    "description": "Task-specific data and parameters",
+                    "properties": {
+                        "task_id": {
+                            "type": "string"
+                        },
+                        "task_type": {
+                            "type": "string"
+                        },
+                        "estimated_duration": {
+                            "type": "integer"
+                        },
+                        "required_capabilities": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "success_criteria": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "dopamine_reward": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "negotiation_data": {
+                    "type": "object",
+                    "description": "Data for parliament negotiation processes",
+                    "properties": {
+                        "session_id": {
+                            "type": "string"
+                        },
+                        "proposal": {
+                            "type": "string"
+                        },
+                        "vote": {
+                            "type": "string",
+                            "enum": [
+                                "APPROVE",
+                                "REJECT",
+                                "ABSTAIN"
+                            ]
+                        },
+                        "confidence": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                        },
+                        "alternative_suggestions": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "performance_metrics": {
+                    "type": "object",
+                    "description": "Performance and quality metrics",
+                    "properties": {
+                        "response_time_ms": {
+                            "type": "number",
+                            "minimum": 0
+                        },
+                        "success_rate": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                        },
+                        "error_count": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "uptime_percentage": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 100
+                        },
+                        "cqi_contribution": {
+                            "type": "number",
+                            "minimum": 0,
+                            "maximum": 1
+                        }
+                    }
+                }
+            },
+            "additionalProperties": true
+        },
+        "ttl": {
+            "type": "integer",
+            "description": "Time to live in seconds",
+            "minimum": 1,
+            "maximum": 86400,
+            "default": 300
+        },
+        "signature": {
+            "type": "string",
+            "description": "Message authentication signature",
+            "pattern": "^[A-Z_]+_[0-9]{8}_[0-9]{6}$",
+            "examples": [
+                "BROSKI_COO_SIGNED_20250814_141852"
+            ]
+        },
+        "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp of message creation"
+        }
+    },
+    "additionalProperties": false,
+    "examples": [
+        {
+            "agent_id": "BOARDROOM_STRATEGIST_01",
+            "role": "BOARDROOM_STRATEGY_AGENT",
+            "intent": "request_strategic_decision",
+            "priority": 2,
+            "context": {
+                "agent_state": {
+                    "cpu_usage": 45.2,
+                    "memory_usage": 67.8,
+                    "current_tasks": [
+                        "analyze_system_performance",
+                        "evaluate_agent_proposals"
+                    ],
+                    "dopamine_score": 78,
+                    "trust_score": 0.95,
+                    "collaboration_xp": 1250
+                },
+                "environmental_context": {
+                    "focus_zone_active": true,
+                    "attention_level": 85,
+                    "system_load": 34.5,
+                    "active_portals": [
+                        "HYPERFOCUS_PORTAL",
+                        "EMPIRE_MANAGEMENT"
+                    ],
+                    "bci_signal_strength": 92
+                },
+                "negotiation_data": {
+                    "session_id": "STRATEGIC_DECISION_20250814_001",
+                    "proposal": "Implement predictive attention models for proactive focus optimization",
+                    "confidence": 0.87
+                }
+            },
+            "ttl": 600,
+            "signature": "BROSKI_COO_SIGNED_20250814_141852",
+            "timestamp": "2025-08-14T14:18:52.915Z"
+        },
+        {
+            "agent_id": "HEALTH_MONITOR_01",
+            "role": "HEALTH_MONITORING_AGENT",
+            "intent": "report_system_health",
+            "priority": 3,
+            "context": {
+                "agent_state": {
+                    "cpu_usage": 23.1,
+                    "memory_usage": 45.6,
+                    "current_tasks": [
+                        "monitor_system_vitals",
+                        "track_performance_metrics"
+                    ],
+                    "dopamine_score": 65,
+                    "trust_score": 0.88,
+                    "collaboration_xp": 890
+                },
+                "performance_metrics": {
+                    "response_time_ms": 87,
+                    "success_rate": 0.994,
+                    "error_count": 2,
+                    "uptime_percentage": 99.7,
+                    "cqi_contribution": 0.91
+                }
+            },
+            "ttl": 300,
+            "signature": "BROSKI_COO_SIGNED_20250814_141852",
+            "timestamp": "2025-08-14T14:18:52.915Z"
+        }
+    ],
+    "definitions": {
+        "message_patterns": {
+            "task_assignment": {
+                "required_context": [
+                    "task_data"
+                ],
+                "typical_priority": 2,
+                "expected_response_time": 30
+            },
+            "health_report": {
+                "required_context": [
+                    "performance_metrics"
+                ],
+                "typical_priority": 3,
+                "expected_response_time": 60
+            },
+            "parliament_vote": {
+                "required_context": [
+                    "negotiation_data"
+                ],
+                "typical_priority": 2,
+                "expected_response_time": 120
+            },
+            "focus_alert": {
+                "required_context": [
+                    "environmental_context"
+                ],
+                "typical_priority": 1,
+                "expected_response_time": 5
+            }
+        },
+        "compatibility": {
+            "version": "1.0.0",
+            "backward_compatible": [],
+            "forward_compatible": [
+                "1.1.0"
+            ],
+            "breaking_changes": []
+        }
+    }
+}
