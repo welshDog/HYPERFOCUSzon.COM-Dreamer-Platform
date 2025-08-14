@@ -1,0 +1,460 @@
+Major models / “sets” of intelligence
+1) Gardner’s Multiple Intelligences
+
+(very popular for thinking beyond “school smarts”)
+
+Linguistic — words, storytelling, writing (poet, lawyer).
+
+Logical-mathematical — math, logic, puzzles (scientist).
+
+Spatial — visualizing space, maps, design (architect).
+
+Musical — rhythm, melody, composition (musician).
+
+Bodily-kinesthetic — fine motor, sports, crafts (dancer, craftsperson).
+
+Interpersonal — reading others, teamwork (therapist, leader).
+
+Intrapersonal — self-awareness, introspection (philosopher).
+
+Naturalistic — noticing nature patterns (ecologist).
+
+Existential (proposed) — big-picture meaning questions.
+
+2) Sternberg’s Triarchic Theory
+
+Analytical (problem solving, tests)
+
+Creative (novel thinking, innovation)
+
+Practical (“street smarts”, applying ideas in real life)
+
+3) Fluid vs Crystallized (Cattell)
+
+Fluid intelligence = reasoning, solving new problems (peaks younger).
+
+Crystallized intelligence = knowledge & skills from experience (grows with learning).
+
+4) Emotional Intelligence (EQ)
+
+Recognizing/handling your emotions and others’ — important for leadership, relationships.
+
+5) Social / Practical / Adaptive Intelligence
+
+Reading groups, negotiating, surviving & thriving in messy real-world settings.
+
+6) Creative / Divergent Thinking
+
+Generating many novel ideas, making unusual connections.
+
+7) General intelligence (g) & IQ
+
+A statistical factor that shows up across tests. IQ tests try to measure it — useful but limited and culturally biased.
+
+8) Domain-specific & Expertise-based intelligence
+
+Deep skills in a field (e.g., chess, coding, carpentry). Practice + feedback produce this.
+
+9) Collective / Group Intelligence
+
+How smart a team/community is together (coordination, shared knowledge).
+
+10) Embodied & Sensorimotor intelligence
+
+Intelligence in movement, perception and interacting physically with the world (important for makers, athletes).
+
+What “genius” means (types & markers)
+
+Genius isn’t a single scientific category — it’s usually used when someone shows exceptional ability that’s original, deep, productive, and/or has big impact. Common ways people talk about genius:
+
+Intellectual/Analytical genius — extreme problem-solving (e.g., deep math/physics breakthroughs).
+
+Creative/artistic genius — originality + emotional depth that changes an art form.
+
+Technical/engineering genius — inventing practical, transformative tech.
+
+Practical/strategic genius — leaders who navigate complex systems brilliantly.
+
+Prodigy vs Late Bloomer — some show genius early; others produce greatest work later.
+
+Savant & neurodivergent genius — extreme ability in a narrow domain (memory, music) sometimes alongside other differences.
+
+Typical markers people use: consistently novel ideas, high productivity/skill, deep domain knowledge, and influence on others/field. IQ scores sometimes used (e.g., 140+), but IQ is only one piece and doesn’t guarantee creative impact.
+
+How to spot & develop strengths (practical)
+
+Observe patterns — what do you learn fast? what feels effortless? (that’s often a strength).
+
+Deliberate practice — expertise comes from focused practice + feedback.
+
+Mix types — combine a strength (e.g., craft skill) with creativity to get unique results.
+
+Environment — supportive peers, time to tinker, low judgement helps creative genius.
+
+For neurodivergent folks (ADHD, dyslexia, etc.): your brain may favour big-picture, visual, hands-on or creative thinking — lean into those and use tools (checklists, dictation, timers) to manage administrative friction. Your differences can be powerful strengths in pattern recognition, creative problem framing, and rapid idea generation.
+
+Quick cheat-summary
+
+Think broad: there’s verbal, logical, spatial, musical, bodily, social, self, naturalistic, practical, creative, emotional.
+
+“Genius” = exceptional impact + originality — comes in many flavors (not just IQ).
+
+Develop it: focused practice, the right environment, feedback, and using your natural cognitive style.
+
+1 — High-level goal (one line)
+
+BROski♾️ = a friendly, neurodivergent-aware assistant that models many intelligences, detects & nurtures “genius” strengths, and routes tasks/learning to the best skill modules while staying chill and helpful.
+
+2 — System architecture (components)
+
+Core LM (chat model): the main conversational engine (few-shot tuned personality: “BROski♾️”).
+
+Skill Vector DB: stores per-user intelligence vectors (scores for linguistic, logical, spatial, musical, kinesthetic, interpersonal, intrapersonal, naturalistic, creative, emotional, practical, domain-expertise).
+
+Assessment Engine: micro-quizzes, interactive tasks, and behavior analysis to update skill vectors.
+
+Expert Modules: small fine-tuned specialists or tool chains for domains (coding helper, design helper, music helper, motor-skill coach, counselling-aware module).
+
+Planner / Router: decides which expert or combo to call and composes multi-step plans.
+
+Memory Layer: short-term (session) + long-term (profile, achievements, badges, examples) — tuned for ADHD-friendly retrieval.
+
+UI & Integrations: web dashboard, Discord bot (BROski♾️), mobile reminders, project boards, printable cheat-sheet generator.
+
+Safety & Ethics: content filters, mental-health escalation rules, consent & privacy settings.
+
+3 — Representing “intelligences” (the data model)
+
+Use a normalized vector of floats (0–1) with metadata (confidence, last_assessed).
+
+Example JSON schema (simple):
+
+{
+  "user_id":"u_123",
+  "skill_vector": {
+    "linguistic": 0.72,
+    "logical_math": 0.65,
+    "spatial": 0.40,
+    "musical": 0.10,
+    "bodily_kinesthetic": 0.78,
+    "interpersonal": 0.85,
+    "intrapersonal": 0.60,
+    "naturalistic": 0.30,
+    "creative": 0.92,
+    "emotional": 0.75,
+    "practical": 0.81
+  },
+  "domain_expertise": {
+    "coding": {"level":0.83, "years":3},
+    "woodwork": {"level":0.40, "years":8}
+  },
+  "genius_flags": ["creative_outlier","hands-on-prodigy"],
+  "last_assessed":"2025-08-14T02:30:00Z"
+}
+
+
+genius_flags are inferred tags when a skill has extremely high scores + consistent original output.
+
+4 — Assessment & updating pipeline
+
+Active assessments: quick tasks (2–5 mins) per intelligence: micro-coding quiz, short design sketch prompt, rhythm tapping game, interpersonal scenario choices, 1-minute reflective prompts.
+
+Passive inference: mining interactions (speed of solving, novelty in responses, pattern recognition) to update vector with confidence intervals.
+
+Deliberate practice tracking: track attempts, improvements, and use spaced repetition for skill growth.
+
+5 — How BROski detects “genius”
+
+Heuristics (combine for a score):
+
+Skill vector > 0.9 in a domain OR z-score > 2 relative to population.
+
+Novelty metric: model detects unusually novel/cross-domain solutions (using embedding distance from corpus).
+
+Productivity: high-quality output repeatedly over time.
+
+Impact signal: user/peers upvotes, external sharing, or real-world outcomes (project success).
+When thresholds met → set genius_flags and recommend mentorship/portfolio-building tools.
+
+6 — Personality & prompts (BROski♾️ persona)
+
+Warm, casual, concise. Neurodivergent-friendly: chunked steps, clear checklists, optional visuals, affectionate nicknames (“Bro”, “BROski”).
+
+Few-shot system prompt example (for fine-tuning or instruction tuning):
+
+You are BROski♾️: calm, encouraging, concise. Always start with "hey Bro —". When giving steps, break into small chunks (1–3 items). Provide a one-line summary at the top, a 3-step action plan, and accessibility tips (reminders, timers). If user is neurodivergent, offer alternative formats (visual checklist, audio cue).
+
+7 — Example assistant behaviours (how it uses skill vector)
+
+User wants to learn guitar. BROski checks musical and bodily_kinesthetic. If musical=0.1 but bodily_kinesthetic=0.78 → recommend rhythmic, physical exercises first, short practice bursts, and use tactile cues.
+
+User seeks coding help and creative + logical_math are high → propose creative algorithmic problems and challenge-based learning.
+
+8 — UX features (neurodivergent-first)
+
+Micro-steps UI: tasks split into 5–15 minute chunks with timers & snooze options.
+
+Visual scaffolds: cards, flowcharts, and checklist export for printing.
+
+Energy-aware planner: schedule heavy work in high-energy windows and breakup low-energy days.
+
+Adaptive reminders: voice, vibration, or pop-up depending on user preference.
+
+Gamified rewards: badges, BROski$ tokens, treasure-hunt integration with your existing economy.
+
+Safe mode: if mental-health keywords appear, the assistant switches to supportive scripts and suggests professional resources.
+
+9 — APIs / endpoints (example)
+
+POST /api/v1/assessments/run — run a micro-assessment, returns updates to skill_vector.
+
+GET /api/v1/profile/{user_id} — returns skill_vector + genius_flags.
+
+POST /api/v1/plan — give a plan given a goal + user profile.
+
+POST /api/v1/expert/<name>/call — call an expert module (e.g., design-helper) with task payload.
+
+Example request to create a plan:
+
+POST /api/v1/plan
+{
+  "user_id":"u_123",
+  "goal":"build a 3D-printed planter",
+  "constraints":{"time_per_day":45, "tools":"Prusa MK3"},
+  "urgency":"medium"
+}
+
+
+Example response: (shortened)
+
+{
+ "summary":"3-step plan to build planter",
+ "steps":["sketch (20m)","model in Fusion 360 (45m)","print & iterate (45m)"],
+ "why":["leverages spatial + bodily_kinesthetic strengths"],
+ "resources":["Fusion 360 tutorial (15m)","parametric planter template"]
+}
+
+10 — Training & data
+
+Seed data: curated tasks per intelligence, educational datasets, creative writing corpora, coding problems, chess/open-source datasets, music patterns, motor-skill tutorials.
+
+Fine-tuning: specialized prompts, persona reinforcement, and safety data.
+
+On-device learning: store skill vectors locally-encrypted and send only opt-in aggregated signals for global model improvements.
+
+Prompting + retrieval: use retrieval-augmented generation (RAG) to bring user memory, past projects, code snippets.
+
+11 — Evaluation & metrics
+
+Skill calibration: A/B test micro-assessments vs human-rated performance.
+
+Genius precision: %genius_flags that match user-perceived exceptional outcomes.
+
+User success: task completion, retention, self-reported confidence.
+
+Accessibility scores: how often neurodivergent users complete tasks vs baseline.
+
+12 — Example prompts (ready to paste)
+
+Assessment prompt (linguistic):
+
+“Write a short (3-sentence) persuasive blurb for a sticker shop. Use a casual voice. Then summarize the main persuasion technique used.”
+
+Creative-stretch prompt:
+
+“Give me 6 wild uses for a paperclip. For each, give a 1-sentence sketch and one tiny experiment I can try in 10 mins.”
+
+Genius-detection prompt (internally used):
+
+“User submission: <content>. Rate novelty (0–1), technical depth (0–1), practical impact (0–1). Explain metrics briefly.”
+
+13 — Example output — how BROski might answer
+
+User: “I’m stuck with a 3D planter design.”
+BROski♾️:
+
+hey Bro — short plan to get you printing in 2 sessions.
+
+Quick sketch & dimensions (15m).
+
+Parametric model in Fusion 360 using this template (45m).
+
+Print small test (30–60m), note fit/overhangs, iterate.
+Accessibility tip: set a 25-minute timer, then a 10-minute walk. Want me to send a Fusion 360 starter file to your Discord DM?
+
+14 — Privacy, safety, & ethics
+
+Always ask before storing sensitive info.
+
+Mental-health responses: support + signpost to human help, never replace professionals.
+
+Allow users to export or delete profile vectors.
+
+Avoid claiming absolute diagnoses or labels; use “signals” or “flags” language.
+
+15 — Roadmap / next steps (practical)
+
+Implement skill-vector schema and memory store (1–2 dev days).
+
+Build 6 micro-assessments (one per day) and an update pipeline.
+
+Create BROski system prompt + few-shot examples and test conversation flows.
+
+Integrate into Discord bot (BROski♾️) with simple /assess and /plan commands.
+
+Iterate using real users, measure signals, and tune thresholds for genius_flags.
+
+Key upgrades
+
+Multimodal checks — allow text, short audio (rhythm), and image prompts (spatial/visual).
+
+Timed micro-tasks + alt formats — each task has a 60–180s version and a 30s micro-version for low-energy sessions.
+
+Confidence & provenance — each score = value (0–1) + confidence (0–1) + source (active/passive).
+
+Novelty detection — compare submission embeddings to corpus; high distance → novelty score.
+
+Consistency metric — track performance across runs to detect reliable talent vs one-off.
+
+Composite Genius Algorithm — weighted composite from skill, novelty, consistency, impact. (example below).
+
+Neurodivergent-friendly options — alternative task wording, visual/audio-only assessment, breaks built-in.
+
+Anti-cheat & calibration — randomize prompts, include control checks, and calibrate per population.
+
+Gamification + export — badge suggestions, exportable PDF/PNG card, and Discord embed already built.
+
+Privacy-first — local-first storage with opt-in aggregated telemetry.
+
+Starter Assessment Hyper Pack v2 (summary)
+
+18 tasks (12 core + 6 multimodal/enhancers). Each returns {score, confidence, source, notes}.
+
+Tasks include: linguistic, logical, spatial (image sketch), musical (short audio tap or 4-line verse), kinesthetic (video or description), interpersonal, intrapersonal, naturalistic, creative, emotional, practical, domain expertise, plus:
+
+Microburst (30s rapid idea dump)
+
+Timed puzzle (90s logic)
+
+Visual rotation (image-based spatial)
+
+Rhythm tap (audio 10s)
+
+Design iterate (upload quick photo + list 2 changes)
+
+Reflection streak (3-run repeat to compute consistency)
+
+Accessibility: every task has a text-only, audio-only or visual-only variant and an option low_energy: true.
+
+Scoring & Genius detection (concrete)
+
+Each assessment returns:
+
+{
+  "value": 0.0-1.0,
+  "confidence": 0.0-1.0,
+  "source": "active"|"passive",
+  "last_run":"2025-08-14T02:30:00Z",
+  "notes":"..."
+}
+
+
+Composite Genius Score formula (example weights)
+Composite = 0.40 * Skill + 0.30 * Novelty + 0.20 * Consistency + 0.10 * Impact
+
+Example calculation (digit-by-digit so numbers are exact):
+
+Skill = 0.95, Novelty = 0.90, Consistency = 0.80, Impact = 0.70
+Step 1: Skill × 0.40 → 0.95 × 0.40
+
+0.95 × 0.4 = (95 × 4) / 1000 = 380 / 1000 = 0.38
+Step 2: Novelty × 0.30 → 0.90 × 0.30
+
+0.90 × 0.3 = (90 × 3) / 1000 = 270 / 1000 = 0.27
+Step 3: Consistency × 0.20 → 0.80 × 0.20
+
+0.80 × 0.2 = (80 × 2) / 1000 = 160 / 1000 = 0.16
+Step 4: Impact × 0.10 → 0.70 × 0.10
+
+0.70 × 0.1 = (70 × 1) / 1000 = 70 / 1000 = 0.07
+Step 5: Sum parts → 0.38 + 0.27 + 0.16 + 0.07 = 0.88
+
+So Composite Genius Score = 0.88 → triggers genius_flag if ≥ 0.85 (configurable).
+
+Novelty detection idea: compute embedding distance to a curated corpus; map cosine distance into 0–1 novelty (higher = more novel). High novelty + high skill → strong creative_outlier signal.
+
+Consistency: measure rolling average and standard deviation across last N runs; reward reliability (low variance).
+
+Metrics & telemetry to track
+
+Per-user: skill_vector, composite_score, genius_flags, last_assessed, streaks.
+
+System: detection precision (human-verified), retention uplift, task completion rate, average confidence.
+
+Privacy: only store aggregated metrics unless the user opts in.
+
+Ready-to-use: Genius Map Card JSON (example)
+
+Drop this into your Profile service or memory store — it's the canonical payload the UI or Discord uses.
+
+{
+  "user_id": "u_123",
+  "display_name": "Lyndz Williams",
+  "skill_vector": {
+    "linguistic": {"value":0.72,"confidence":0.88,"source":"active"},
+    "logical_math": {"value":0.95,"confidence":0.92,"source":"active"},
+    "spatial": {"value":0.40,"confidence":0.70,"source":"active"},
+    "musical": {"value":0.10,"confidence":0.60,"source":"active"},
+    "bodily_kinesthetic": {"value":0.78,"confidence":0.85,"source":"passive"},
+    "interpersonal": {"value":0.85,"confidence":0.90,"source":"active"},
+    "intrapersonal": {"value":0.60,"confidence":0.80,"source":"active"},
+    "naturalistic": {"value":0.30,"confidence":0.65,"source":"active"},
+    "creative": {"value":0.92,"confidence":0.95,"source":"active"},
+    "emotional": {"value":0.75,"confidence":0.82,"source":"active"},
+    "practical": {"value":0.81,"confidence":0.87,"source":"passive"}
+  },
+  "domain_expertise": {
+    "3D_printing": {"value":0.83,"years":2,"confidence":0.88}
+  },
+  "composite_genius_score": 0.88,
+  "genius_flags": ["creative_outlier","problem_solver_pro"],
+  "badges": ["BROski Genius Badge - Creative Outlier","Maker: 3D Printer Pro"],
+  "last_assessed": "2025-08-14T02:30:00Z"
+}
+
+Ready-to-use: Discord Embed template (payload for a webhook or bot message)
+
+This embed shows the top strengths and the genius badge. You can drop it into your bot as the /assess result.
+
+{
+  "username": "BROski♾️",
+  "avatar_url": "https://example.com/broski-avatar.png",
+  "embeds": [
+    {
+      "title": "Genius Map — Lyndz Williams",
+      "description": "hey Bro — fresh snapshot of your intelligence map. Top strengths & first steps below.",
+      "color": 5814783,
+      "fields": [
+        {"name":"Top 3 Strengths","value":"1) Creative — 0.92\n2) Logical/Math — 0.95\n3) Interpersonal — 0.85","inline":false},
+        {"name":"Composite Genius Score","value":"0.88 — 🎉 BROski Genius Badge unlocked: *Creative Outlier*","inline":false},
+        {"name":"First Action","value":"Try a 25-minute creative sprint: pick a small project that mixes coding + craft. I’ll make a prompt.", "inline":false},
+        {"name":"Export","value":"Use `/export profile` to get a printable card or shareable PDF.", "inline":false}
+      ],
+      "footer": {"text":"Last assessed: 2025-08-14T02:30:00Z"}
+    }
+  ]
+}
+
+Practical extras I built into this reply
+
+v2 task set (multimodal + low-energy options).
+
+Composite scoring + digit-by-digit example.
+
+Genius Map Card JSON + Discord embed payload ready to drop in.
+
+If you want, I’ll now:
+
+generate the full 18-task JSON file (with prompts, time limits, and alternate formats) and a server-side scoring function (Node/Python) you can paste straight into your bot; and
+
+create a radar-chart PNG of the skill_vector (ready for Discord) using python_user_visible so you can preview the card.
