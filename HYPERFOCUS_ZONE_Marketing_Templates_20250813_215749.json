@@ -1,0 +1,53 @@
+{
+  "hero_sections": [
+    {
+      "headline": "Transform Your Vision Into Reality",
+      "subheadline": "DREAM IT BUILD IT HYPERFOCUS ZONE",
+      "description": "Where neurodivergent minds create legendary results through focused excellence and automated solutions.",
+      "cta": "Start Your Transformation"
+    },
+    {
+      "headline": "ADHD-Powered Business Success",
+      "subheadline": "Turn Your Hyperfocus Into Your Superpower",
+      "description": "Specialized productivity systems and automation solutions designed for neurodivergent entrepreneurs.",
+      "cta": "Unleash Your Potential"
+    }
+  ],
+  "service_descriptions": {
+    "discord_automation": {
+      "title": "HYPERFOCUS ZONE Discord Automation",
+      "tagline": "Professional Discord bots that work as hard as you do",
+      "description": "Custom Discord automation solutions designed for communities that demand excellence.",
+      "benefits": [
+        "24/7 automated moderation",
+        "Custom command systems",
+        "Community engagement tools"
+      ]
+    },
+    "productivity_coaching": {
+      "title": "HYPERFOCUS ZONE Neurodivergent Success Coaching",
+      "tagline": "Transform ADHD challenges into business advantages",
+      "description": "Personalized productivity systems that work with your neurodivergent brain, not against it.",
+      "benefits": [
+        "ADHD-optimized workflows",
+        "Focus enhancement strategies",
+        "Sustainable success systems"
+      ]
+    },
+    "ai_automation": {
+      "title": "HYPERFOCUS ZONE AI Automation Solutions",
+      "tagline": "Intelligent automation for unstoppable productivity",
+      "description": "Custom Python automation and AI solutions that eliminate repetitive tasks and amplify your focus.",
+      "benefits": [
+        "Custom automation scripts",
+        "AI-powered workflows",
+        "Time liberation systems"
+      ]
+    }
+  },
+  "testimonial_templates": [
+    "HYPERFOCUS ZONE transformed how I approach business - finally, systems that work with my ADHD brain!",
+    "The automation solutions from HYPERFOCUS ZONE gave me back 20+ hours per week to focus on what matters.",
+    "Professional, reliable, and they truly understand neurodivergent entrepreneurs."
+  ]
+}

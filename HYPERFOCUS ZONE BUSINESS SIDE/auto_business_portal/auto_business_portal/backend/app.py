@@ -29,11 +29,28 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import List, Dict, Any
 
-from .portal_scanner import scan_portals
-from .agents import RevenueAgent, CustomerSuccessAgent, AnalyticsAgent, SecurityAgent, MarketingAgent
+from portal_scanner import scan_portals
+from agents import RevenueAgent, CustomerSuccessAgent, AnalyticsAgent, SecurityAgent, MarketingAgent
 
 
 app = FastAPI(title="BROski Auto–Business Backend")
+
+
+@app.get("/")
+async def root():
+    """Welcome message for the BROski Auto-Business Backend API."""
+    return {
+        "message": "🤖⚡ BROski Auto-Business Backend ⚡🤖",
+        "status": "LEGENDARY_OPERATIONAL",
+        "version": "0.1.0",
+        "endpoints": {
+            "portals": "/api/portals",
+            "payment": "/api/pay",
+            "support": "/api/ask",
+            "docs": "/docs"
+        },
+        "celebration": "WOW WOW LUSH API ready! ❤️‍🔥💚🩵"
+    }
 
 
 class PaymentRequest(BaseModel):
@@ -50,7 +67,8 @@ class AskRequest(BaseModel):
 @app.get("/api/portals", response_model=List[Dict[str, Any]])
 async def get_portals() -> List[Dict[str, Any]]:
     """Return a list of discovered portal descriptors."""
-    portals = scan_portals()
+    # Look in the portals directory one level up from backend
+    portals = scan_portals("../portals")
     return portals
 
 

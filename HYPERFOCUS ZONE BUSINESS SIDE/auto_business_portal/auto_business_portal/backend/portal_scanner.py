@@ -78,9 +78,17 @@ def scan_portals(base_dir: str = 'portals') -> List[Dict[str, str]]:
         # Only consider HTML files at the top level.  For a real system
         # you might recursively search or apply further filtering.
         if item.is_file() and item.suffix.lower() == '.html':
+            # Convert to absolute path then get relative path from project root
+            abs_path = item.resolve()
+            try:
+                rel_path = abs_path.relative_to(Path.cwd())
+            except ValueError:
+                # If we can't get relative path from cwd, use the path from base_dir
+                rel_path = Path(base_dir) / item.name
+
             portals.append({
                 'name': humanize_portal_name(item.name),
-                'path': str(item.relative_to(Path.cwd())),
+                'path': str(rel_path),
             })
 
     return portals
