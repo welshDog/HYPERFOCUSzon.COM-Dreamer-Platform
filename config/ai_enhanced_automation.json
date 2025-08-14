@@ -1,8 +1,10 @@
 {
   "ai_enhanced_automation": {
-    "intelligent_decision_making": true,
-    "predictive_maintenance": true,
-    "docker_management": true,
-    "system_monitoring": true
+    "smollm2_integration": {
+      "intelligent_decision_making": true,
+      "natural_language_commands": true,
+      "predictive_automation": true,
+      "self_optimization": true
+    }
   }
 }

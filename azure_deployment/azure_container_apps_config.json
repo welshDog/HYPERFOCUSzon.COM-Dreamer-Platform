@@ -5,9 +5,7 @@
     "environment_name": "hyperfocus-env",
     "location": "eastus",
     "container_image": "huggingface/smollm2:latest",
-    "scaling": {
-      "min_replicas": 1,
-      "max_replicas": 5
-    }
+    "container_port": 11435,
+    "web_port": 7862
   }
 }

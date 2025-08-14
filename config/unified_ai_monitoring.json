@@ -2,26 +2,17 @@
   "unified_ai_monitoring": {
     "services": {
       "smollm2": {
+        "name": "SmolLM2 Compact Engine",
         "port": 11435,
-        "health_endpoint": "http://localhost:11435/health"
+        "health_endpoint": "http://localhost:11435/health",
+        "container": "smollm2-ai-engine"
       },
-      "ollama": {
-        "port": 11434,
-        "health_endpoint": "http://localhost:11434/api/tags"
-      },
-      "chromadb": {
-        "port": 8002,
-        "health_endpoint": "http://localhost:8002/api/v1/heartbeat"
-      },
-      "gradio_web": {
-        "port": 7860,
-        "health_endpoint": "http://localhost:7860"
+      "smollm2_web": {
+        "name": "SmolLM2 Web Interface",
+        "port": 7862,
+        "health_endpoint": "http://localhost:7862",
+        "container": "smollm2-web-interface"
       }
-    },
-    "dashboard_features": [
-      "real_time_updates",
-      "ai_insights",
-      "automated_alerting"
-    ]
+    }
   }
 }

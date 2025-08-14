@@ -1148,7 +1148,7 @@ az group delete --name {azure_config['azure_container_apps']['resource_group']} 
             print(f"\n📈 Updated team status with {len(new_wins)} new legendary achievements!")
 
         except Exception as e:
-            logger.error(f"Team status update error: {e}")
+            print(f"Team status update error: {e}")
 
 def main():
     """🌟 Main execution function"""
@@ -1160,8 +1160,9 @@ def main():
         return True
 
     except Exception as e:
-        logger.error(f"Master integrator error: {e}")
         print(f"🔧 Master integration error: {e}")
+        import traceback
+        traceback.print_exc()
         return False
 
 if __name__ == "__main__":
