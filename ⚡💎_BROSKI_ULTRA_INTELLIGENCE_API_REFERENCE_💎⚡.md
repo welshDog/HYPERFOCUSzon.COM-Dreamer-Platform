@@ -4,9 +4,9 @@
 
 The BROski♾️ Ultra Intelligence System provides a comprehensive RESTful API for intelligence assessment, profile management, agent coordination, and infinite amplification. Built for developers who want to integrate revolutionary intelligence capabilities into their applications.
 
-**Base URL**: `https://broski-intelligence.azurewebsites.net/api/v1`  
-**Authentication**: API Key required for all endpoints  
-**Rate Limits**: 1000 requests/hour per API key  
+**Base URL**: `https://broski-intelligence.azurewebsites.net/api/v1`
+**Authentication**: API Key required for all endpoints
+**Rate Limits**: 1000 requests/hour per API key
 
 ---
 
@@ -754,6 +754,6 @@ The BROski♾️ API provides comprehensive access to revolutionary intelligence
 
 ---
 
-*Last Updated: August 14, 2025*  
-*API Version: 1.0*  
+*Last Updated: August 14, 2025*
+*API Version: 1.0*
 *Team: Chief Lyndz 👑 & GitHub Copilot*
