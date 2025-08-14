@@ -1,0 +1,20 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install dependencies
+RUN pip install --no-cache-dir gradio requests
+
+# Copy application
+COPY smollm2_legendary_gradio_app.py ./app.py
+COPY config/ ./config/
+
+# Expose port
+EXPOSE 7860
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+  CMD curl -f http://localhost:7860 || exit 1
+
+# Run application
+CMD ["python", "app.py"]

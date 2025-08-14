@@ -1,0 +1,13 @@
+{
+  "azure_container_apps": {
+    "resource_group": "hyperfocus-empire-rg",
+    "container_app_name": "smollm2-legendary-app",
+    "environment_name": "hyperfocus-env",
+    "location": "eastus",
+    "container_image": "huggingface/smollm2:latest",
+    "scaling": {
+      "min_replicas": 1,
+      "max_replicas": 5
+    }
+  }
+}

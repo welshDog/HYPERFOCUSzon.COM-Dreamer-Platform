@@ -1,29 +1,27 @@
 {
-  "ai_service_monitoring": {
-    "ollama": {
-      "name": "Ollama AI Engine",
-      "port": 11434,
-      "health_endpoint": "http://localhost:11434/api/tags",
-      "container": "ollama-ai-engine"
+  "unified_ai_monitoring": {
+    "services": {
+      "smollm2": {
+        "port": 11435,
+        "health_endpoint": "http://localhost:11435/health"
+      },
+      "ollama": {
+        "port": 11434,
+        "health_endpoint": "http://localhost:11434/api/tags"
+      },
+      "chromadb": {
+        "port": 8002,
+        "health_endpoint": "http://localhost:8002/api/v1/heartbeat"
+      },
+      "gradio_web": {
+        "port": 7860,
+        "health_endpoint": "http://localhost:7860"
+      }
     },
-    "chromadb": {
-      "name": "ChromaDB Vector Database",
-      "port": 8002,
-      "health_endpoint": "http://localhost:8002/api/v1/heartbeat",
-      "container": "chroma-vector-db"
-    },
-    "smollm2": {
-      "name": "SmolLM2 Compact AI Engine",
-      "port": 11435,
-      "health_endpoint": "http://localhost:11435/health",
-      "container": "smollm2-ai-engine"
-    }
-  },
-  "monitoring_config": {
-    "check_interval": 30,
-    "alert_threshold": 3,
-    "auto_restart": true,
-    "performance_metrics": true,
-    "integration_with_grafana": true
+    "dashboard_features": [
+      "real_time_updates",
+      "ai_insights",
+      "automated_alerting"
+    ]
   }
 }
