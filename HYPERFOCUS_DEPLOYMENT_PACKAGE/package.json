@@ -1,0 +1,21 @@
+{
+  "name": "hyperfocus-zone",
+  "version": "1.0.0",
+  "description": "HYPERFOCUS ZONE - Ultimate ADHD Productivity Empire",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Static site - no build required'",
+    "start": "echo 'Static site deployed'"
+  },
+  "keywords": [
+    "ADHD",
+    "productivity",
+    "hyperfocus",
+    "neurodivergent",
+    "AI",
+    "automation"
+  ],
+  "author": "HYPERFOCUS ZONE <SEND-ME.NFT@UD.ME>",
+  "license": "MIT",
+  "homepage": "https://hyperfocuszone.com"
+}
