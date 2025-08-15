@@ -21,13 +21,13 @@ Write-Host "📁 Deployment platform: $Platform" -ForegroundColor Yellow
 switch ($Platform.ToLower()) {
     "vercel" {
         Write-Host "🚀 Deploying to Vercel..." -ForegroundColor Cyan
-        
+
         # Check if Vercel CLI is installed
         if (!(Get-Command "vercel" -ErrorAction SilentlyContinue)) {
             Write-Host "📦 Installing Vercel CLI..." -ForegroundColor Yellow
             npm install -g vercel
         }
-        
+
         if ($Production) {
             Write-Host "🌟 Deploying to PRODUCTION..." -ForegroundColor Magenta
             vercel --prod
@@ -36,16 +36,16 @@ switch ($Platform.ToLower()) {
             vercel
         }
     }
-    
+
     "netlify" {
         Write-Host "🌐 Deploying to Netlify..." -ForegroundColor Cyan
-        
+
         # Check if Netlify CLI is installed
         if (!(Get-Command "netlify" -ErrorAction SilentlyContinue)) {
             Write-Host "📦 Installing Netlify CLI..." -ForegroundColor Yellow
             npm install -g netlify-cli
         }
-        
+
         if ($Production) {
             Write-Host "🌟 Deploying to PRODUCTION..." -ForegroundColor Magenta
             netlify deploy --prod --dir=.
@@ -54,21 +54,21 @@ switch ($Platform.ToLower()) {
             netlify deploy --dir=.
         }
     }
-    
+
     "github" {
         Write-Host "📄 Preparing GitHub Pages deployment..." -ForegroundColor Cyan
-        
+
         # Check if we're in a git repository
         if (!(Test-Path ".git")) {
             Write-Host "📝 Initializing Git repository..." -ForegroundColor Yellow
             git init
             git branch -M main
         }
-        
+
         Write-Host "📤 Pushing to GitHub..." -ForegroundColor Yellow
         git add .
         git commit -m "🚀 HYPERFOCUS ZONE EMPIRE - Live Deployment $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
-        
+
         if ($Production) {
             git push origin main
             Write-Host "✅ Pushed to main branch! Configure GitHub Pages in repository settings." -ForegroundColor Green
@@ -76,20 +76,20 @@ switch ($Platform.ToLower()) {
             Write-Host "🧪 Ready to push! Use 'git push origin main' to deploy." -ForegroundColor Yellow
         }
     }
-    
+
     "all" {
         Write-Host "🏆 LEGENDARY DEPLOYMENT - ALL PLATFORMS!" -ForegroundColor Magenta
-        
+
         Write-Host "`n🚀 Deploying to Vercel..." -ForegroundColor Cyan
         & $PSScriptRoot\deploy.ps1 -Platform "vercel" -Production:$Production
-        
-        Write-Host "`n🌐 Deploying to Netlify..." -ForegroundColor Cyan  
+
+        Write-Host "`n🌐 Deploying to Netlify..." -ForegroundColor Cyan
         & $PSScriptRoot\deploy.ps1 -Platform "netlify" -Production:$Production
-        
+
         Write-Host "`n📄 Preparing GitHub..." -ForegroundColor Cyan
         & $PSScriptRoot\deploy.ps1 -Platform "github" -Production:$Production
     }
-    
+
     default {
         Write-Host "❌ Unknown platform: $Platform" -ForegroundColor Red
         Write-Host "Available platforms: vercel, netlify, github, all" -ForegroundColor Yellow
