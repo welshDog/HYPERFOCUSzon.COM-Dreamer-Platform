@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/description=
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/enabled=true
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/isSystem=false
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/name=module-metadata-repository@C\:\\cygwin64\\tmp\\ojdkbuild\\upstream\\jmc\\target
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/provider=
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/suffix=p2content.xml
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/type=org.eclipse.tycho.repository.module.ModuleMetadataRepository
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/uri=file\:/C\:/cygwin64/tmp/ojdkbuild/upstream/jmc/target/
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target/version=1.0.0
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target_targetPlatformRepository/enabled=true
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target_targetPlatformRepository/isSystem=false
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target_targetPlatformRepository/name=TychoTargetPlatform
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target_targetPlatformRepository/suffix=content.xml
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target_targetPlatformRepository/type=org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target_targetPlatformRepository/uri=file\:/C\:/cygwin64/tmp/ojdkbuild/upstream/jmc/target/targetPlatformRepository/
+repositories/file\:_C\:_cygwin64_tmp_ojdkbuild_upstream_jmc_target_targetPlatformRepository/version=0.0.1
