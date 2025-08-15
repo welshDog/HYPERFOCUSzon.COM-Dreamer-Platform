@@ -13,18 +13,19 @@ Created: August 6, 2025
 Status: HYPER LEGENDARY DEPLOYMENT READY
 """
 
-from datetime import datetime
-from pathlib import Path
-from typing import Dict, List, Any
+import asyncio
 import json
 import logging
+import sqlite3
 import subprocess
 import time
+from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict
 
-import asyncio
 import psutil
 import requests
-import sqlite3
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -127,7 +128,7 @@ class LegendaryEmpireHealthCheck:
             print(f"🏆 Core System Status: {core_health['status']}")
 
         except (socket.error, ConnectionError, requests.RequestException) as e:
-        logger.error("Core system health check error: %s", e)
+            logger.error("Core system health check error: %s", e)
             self.health_report["systems"]["core_system"] = {"status": "ERROR", "error": str(e)}
 
     async def check_ai_integration_health(self):

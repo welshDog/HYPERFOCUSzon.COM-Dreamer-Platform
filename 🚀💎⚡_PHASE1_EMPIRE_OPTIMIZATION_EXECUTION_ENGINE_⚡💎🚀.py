@@ -38,12 +38,12 @@ class Phase1EmpireOptimizer:
         }
         self.legendary_milestones = []
 
-        # Setup logging
+        # Setup logging with UTF-8 encoding
         logging.basicConfig(
             level=logging.INFO,
-            format='🚀 %(asctime)s - PHASE1 - %(levelname)s - %(message)s',
+            format='%(asctime)s - PHASE1 - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler('phase1_empire_optimization.log'),
+                logging.FileHandler('phase1_empire_optimization.log', encoding='utf-8'),
                 logging.StreamHandler()
             ]
         )
