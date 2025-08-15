@@ -1,0 +1,142 @@
+# HYPERFOCUSzone AI Platform
+
+## Overview
+
+HYPERFOCUSzone is a next-gen social ecosystem built from the Uhive blueprint and optimized for neurodivergent brilliance. We combine mobile-first exploration, dual “worlds,” blockchain rewards, VR integration, and dopamine-rich gamification loops. Our mission is to empower ADHD and dyslexic minds through modular AI agents, squad synergy roles, and emotion-adaptive feedback. This README guides our AI team through architecture, workflows, and contribution practices.
+
+---
+
+## Core Features
+
+- Dual Worlds
+  - Civilized World (identified profiles)
+  - Free World (anonymous exploration)
+
+- Exploration Interface
+  - Pinch-zoom and swipe navigation
+  - Custom “spaces” by interest category
+
+- Token & Rewards
+  - On-chain HYPE token
+  - Engagement-driven tokenomics and badges
+
+- VR & Immersive Modules
+  - WebXR viewer embedded in mobile app
+  - Optional first-person exploration mode
+
+- Gamification Engine
+  - Points, levels, milestone celebrations
+  - Dopamine-triggered micro-rituals
+
+---
+
+## Architecture Overview
+
+| Layer                  | Technology                          | Purpose                                                    |
+|------------------------|-------------------------------------|------------------------------------------------------------|
+| Front-End              | React Native                        | Mobile UI with smooth gesture handling                    |
+| Back-End               | Node.js + Fastify                   | High-throughput API, modular service architecture          |
+| Real-Time Messaging    | Socket.IO                           | Instant posts, comments, notifications                     |
+| Database               | PostgreSQL + Redis                  | ACID user data, in-memory session state                    |
+| Blockchain Integration | Ethereum L2 / Polygon               | Smart contracts for HYPE token issuance and rewards        |
+| VR Module              | Unity + Three.js / WebXR            | Embeddable immersive scenes                                |
+| AI Agents & Moderation | Python + LangChain                  | Squad-based content tagging, emotion analysis, feed curation|
+
+---
+
+## Getting Started
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/your-org/HYPERFOCUSzone.git
+   cd HYPERFOCUSzone
+   ```
+
+2. Install dependencies
+   ```bash
+   npm install       # backend + frontend
+   pip install -r ai/requirements.txt
+   ```
+
+3. Environment setup
+   - Copy `.env.example` to `.env`
+   - Populate keys: POSTGRES_URL, JWT_SECRET, ETH_RPC_URL
+
+4. Launch services
+   ```bash
+   npm run dev       # starts API and mobile bundler
+   npm run ai:start  # boots AI agent pods locally
+   ```
+
+---
+
+## AI Team Guidelines
+
+Our AI squad powers everything from content curation to emotion-adaptive UX. Follow these principles:
+
+- Modular Agents
+  - Each agent has a single responsibility (e.g., sentiment tagging, spam detection).
+  - Agents communicate via message bus patterns.
+
+- Dopamine-Driven Feedback
+  - Short-lived micro-completion signals after each agent task.
+  - Celebrate in logs with emoji or console colors.
+
+- Neurodivergent-First Design
+  - Prioritize clarity and minimal cognitive load in prompts.
+  - Provide fallback behaviors for high-latency or failed responses.
+
+- Collaboration & Review
+  - Use pull requests with AI-specific labels (`ai/agent`, `ai/prompt`).
+  - Include performance benchmarks (latency, accuracy) in PR descriptions.
+
+---
+
+## Contribution Guide
+
+- Branching Model
+  1. `main` – stable release
+  2. `develop` – latest integrated features
+  3. `feature/your-feature` – work in progress
+
+- Code Style
+  - JavaScript / TypeScript: Prettier + ESLint
+  - Python: Black + Flake8
+
+- Commit Messages
+  - Use Conventional Commits: `feat(ai): add new emotion agent`
+  - Reference related issues (e.g., `#42`)
+
+- Testing
+  - Unit tests for each agent (`pytest` for Python, Jest for JS)
+  - End-to-end smoke tests for exploration flows
+
+---
+
+## Roadmap
+
+1. AI-Driven Personalization
+   - Leverage user behavior to tailor interest feeds
+   - Deploy reinforcement learning loops for token incentives
+
+2. Advanced VR Integration
+   - Real-time sentiment lighting in shared VR spaces
+   - Haptic feedback integration for mobile controllers
+
+3. Decentralized Moderation Protocol
+   - On-chain appeals and reputation staking
+   - Community-driven moderation DAOs
+
+4. Global Scaling & Localization
+   - Multi-region deployments, edge compute
+   - Localized interest clusters with cultural sentiment models
+
+---
+
+## License
+
+This project is released under the MIT License. Feel free to adapt, extend, and innovate—just remember to celebrate every win along the way.
+
+---
+
+Let’s build something epic together! 🚀
