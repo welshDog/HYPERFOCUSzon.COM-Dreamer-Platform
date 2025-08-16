@@ -1,0 +1,32 @@
+# Default: repo owner
+* @welshDog
+
+# Docs owners
+/docs/ @welshDog
+/documentation/ @welshDog
+
+# Infra owners
+/infra/ @welshDog
+/.github/ @welshDog
+/azure_deployment/ @welshDog
+/azure_scripts/ @welshDog
+
+# Core empire systems
+/empire_ai/ @welshDog
+/broski-integrations/ @welshDog
+/ACTIVEPIECES_EMPIRE_FUSION/ @welshDog
+
+# Community and Discord
+/DISCORD_EXTERNAL_CONTROL/ @welshDog
+/HYPERFOCUSzone-Community/ @welshDog
+/HYPERFOCUSzone-DEV-Community/ @welshDog
+
+# Critical empire files
+/*EMPIRE* @welshDog
+/*GOD_TIER* @welshDog
+/*LEGENDARY* @welshDog
+/*ULTIMATE* @welshDog
+
+# BROski systems
+/*BROSKI* @welshDog
+/*COO* @welshDog
