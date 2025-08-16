@@ -1,0 +1,12 @@
+{
+    "trigger": "Project inactivity for 24 hours",
+    "actions": [
+        "Send motivational project reminder",
+        "Show recent project achievements",
+        "Suggest next smallest actionable step",
+        "Offer to schedule project work time",
+        "Connect with project accountability buddy",
+        "Trigger memory crystal review"
+    ],
+    "dopamine_rating": "HIGH"
+}
