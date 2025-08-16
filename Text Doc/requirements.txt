@@ -31,4 +31,4 @@ aiofiles==23.2.1
 
 # Security and performance
 cryptography==41.0.7
-gunicorn==21.2.0
+gunicorn==23.0.0
