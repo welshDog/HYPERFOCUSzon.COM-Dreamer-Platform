@@ -36,7 +36,7 @@ class BROskiCOOCriticalActionsOrchestrator:
                 "priority": "CRITICAL",
                 "timeline": "24 hours",
                 "reward": 500,
-                "file": "h:/discord_integration_activator.py",
+                "file": "h:/🔥💎⚡_DISCORD_INTEGRATION_ACTIVATOR_⚡💎🔥.py",
                 "status": "READY",
             },
             {
@@ -45,7 +45,7 @@ class BROskiCOOCriticalActionsOrchestrator:
                 "priority": "HIGH",
                 "timeline": "48 hours",
                 "reward": 400,
-                "file": "h:/agent_coordination_scaler.py",
+                "file": "h:/🎯💎⚡_AGENT_COORDINATION_SCALER_⚡💎🎯.py",
                 "status": "READY",
             },
             {
@@ -54,7 +54,7 @@ class BROskiCOOCriticalActionsOrchestrator:
                 "priority": "HIGH",
                 "timeline": "72 hours",
                 "reward": 350,
-                "file": "h:/v2_deployment_completer.py",
+                "file": "h:/🚀💎⚡_V2_DEPLOYMENT_COMPLETER_⚡💎🚀.py",
                 "status": "READY",
             },
         ]
