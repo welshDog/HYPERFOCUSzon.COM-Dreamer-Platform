@@ -1,0 +1,23 @@
+{
+  "timestamp": "2025-08-10T14:46:16.251629",
+  "empire_status": "NEEDS_ATTENTION",
+  "overall_score": 65.68801996792463,
+  "total_broskie": 297,
+  "systems": {
+    "System Health": {
+      "status": "WARNING",
+      "score": 47.064059903773874,
+      "broskie": 47
+    },
+    "Memory Crystal System": {
+      "status": "LEGENDARY",
+      "score": 100,
+      "broskie": 150
+    },
+    "V2 Deployment": {
+      "status": "WARNING",
+      "score": 50.0,
+      "broskie": 100
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "crystal_type": "instant_laptop_restart_alert",
+  "timestamp": "2025-08-09T03:50:10.626273",
+  "restart_time": "2025-08-09T04:05:10.626273",
+  "alert_message": "INSTANT laptop restart warning activated",
+  "priority": "HIGH",
+  "systems_notified": [
+    "Discord",
+    "Mobile",
+    "Boardroom",
+    "Health"
+  ],
+  "impact": "Temporary service interruption expected"
+}

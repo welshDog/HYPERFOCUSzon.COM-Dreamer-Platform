@@ -1,0 +1,8 @@
+{
+  "source": {
+    "branch": "main",
+    "path": "/HYPERFOCUSzone-Community"
+  },
+  "custom_domain": "support.hyperfocuszone.com",
+  "enforce_https": true
+}

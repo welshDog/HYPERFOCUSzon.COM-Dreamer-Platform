@@ -1,0 +1,25 @@
+🔥💎⚡ VS CODE SERVER TERMINAL COMMANDS ⚡💎🔥
+====================================================
+
+📋 RUN THESE IN VS CODE SERVER TERMINAL:
+
+# First, enable SSH service
+sudo systemctl enable ssh
+sudo systemctl start ssh
+
+# Check if SSH is now running
+sudo systemctl status ssh
+
+# Navigate to development workspace
+cd ~/legendary-development
+
+# Start Jupyter Notebook
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+
+🎊 COPY THE TOKEN FROM OUTPUT!
+
+🌐 THEN ACCESS FROM LAPTOP:
+📓 Jupyter: http://192.168.137.10:8888
+💻 VS Code: http://192.168.137.10:8080 (current window!)
+
+✅ LEGENDARY HEADLESS DEVELOPMENT ACTIVATED!

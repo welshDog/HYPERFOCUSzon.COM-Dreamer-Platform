@@ -1,0 +1,48 @@
+# 🎯💎⚡ HYPERFOCUS ZONE EMPIRE PROMETHEUS CONFIGURATION ⚡💎🎯
+# Custom Prometheus config for legendary empire monitoring
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    empire: 'hyperfocus-zone'
+    mode: 'legendary'
+    broski_level: 'maximum'
+
+# Empire-specific scrape configurations
+scrape_configs:
+  # Prometheus monitoring itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 5s
+    metrics_path: /metrics
+
+  # Ultra dOoK Portal monitoring (your Next.js app)
+  - job_name: 'ultra-dook-portal'
+    static_configs:
+      - targets: ['host.docker.internal:3000']
+    scrape_interval: 10s
+    metrics_path: /api/metrics
+    scrape_timeout: 5s
+
+  # Grafana monitoring
+  - job_name: 'grafana'
+    static_configs:
+      - targets: ['host.docker.internal:3001']
+    scrape_interval: 15s
+    metrics_path: /metrics
+
+  # Windows system metrics (if node_exporter is running)
+  - job_name: 'windows-node'
+    static_configs:
+      - targets: ['host.docker.internal:9182']
+    scrape_interval: 15s
+    scrape_timeout: 10s
+
+  # Docker engine metrics (if enabled)
+  - job_name: 'docker'
+    static_configs:
+      - targets: ['host.docker.internal:9323']
+    scrape_interval: 15s
+    scrape_timeout: 10s

@@ -1,0 +1,20 @@
+{
+    "webhooks": {
+        "achievements": "YOUR_DISCORD_ACHIEVEMENT_WEBHOOK_URL",
+        "focus_sessions": "YOUR_DISCORD_FOCUS_WEBHOOK_URL",
+        "crystal_discoveries": "YOUR_DISCORD_CRYSTAL_WEBHOOK_URL",
+        "agent_updates": "YOUR_DISCORD_AGENT_WEBHOOK_URL"
+    },
+    "channels": {
+        "hyperfocus_zone": "#hyperfocus-zone-updates",
+        "agent_army": "#agent-army-coordination",
+        "memory_crystals": "#crystal-discoveries",
+        "celebrations": "#dopamine-celebrations"
+    },
+    "adhd_optimizations": {
+        "gentle_notifications": true,
+        "celebration_cascades": true,
+        "momentum_tracking": true,
+        "break_reminders": true
+    }
+}

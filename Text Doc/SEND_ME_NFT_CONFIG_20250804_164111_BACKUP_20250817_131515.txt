@@ -1,0 +1,30 @@
+
+# SEND-ME.NFT DOMAIN CONFIGURATION
+
+IPFS Hash: Qmei5MbucqkA9b74sDu8J5Kuym1ZNF9Ki6Cg1B8Z7qcscv
+Domain: send-me.nft
+
+## REQUIRED DOMAIN RECORDS:
+
+Set these records in your Unstoppable Domains dashboard:
+
+dweb.ipfs.hash = Qmei5MbucqkA9b74sDu8J5Kuym1ZNF9Ki6Cg1B8Z7qcscv
+content.hash = Qmei5MbucqkA9b74sDu8J5Kuym1ZNF9Ki6Cg1B8Z7qcscv
+browser.redirect_url = https://gateway.pinata.cloud/ipfs/Qmei5MbucqkA9b74sDu8J5Kuym1ZNF9Ki6Cg1B8Z7qcscv
+
+## ACCESS URLs:
+
+Primary Domain: https://send-me.nft
+Crypto Extension: https://send-me.nft.crypto
+IPFS Gateway: https://gateway.pinata.cloud/ipfs/Qmei5MbucqkA9b74sDu8J5Kuym1ZNF9Ki6Cg1B8Z7qcscv
+Backup Gateway: https://cloudflare-ipfs.com/ipfs/Qmei5MbucqkA9b74sDu8J5Kuym1ZNF9Ki6Cg1B8Z7qcscv
+
+## NEXT STEPS:
+
+1. Go to Unstoppable Domains dashboard
+2. Find your send-me.nft domain
+3. Add the domain records listed above
+4. Wait 5-30 minutes for DNS propagation
+5. Test your Web3 portal!
+
+ACHIEVEMENT: WEB3 DOMAIN + IPFS IMMORTALIZATION COMPLETE!

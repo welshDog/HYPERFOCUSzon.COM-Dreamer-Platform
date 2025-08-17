@@ -1,0 +1,55 @@
+{
+  "primary_keywords": [
+    "HYPERFOCUS ZONE",
+    "ADHD productivity consulting",
+    "neurodivergent business solutions",
+    "Discord bot automation",
+    "Python automation services",
+    "ADHD-friendly productivity systems"
+  ],
+  "content_strategy": [
+    {
+      "topic": "ADHD Productivity Mastery",
+      "keywords": [
+        "ADHD productivity",
+        "hyperfocus strategies",
+        "neurodivergent success"
+      ],
+      "content_type": "Blog series + service pages"
+    },
+    {
+      "topic": "Discord Automation Excellence",
+      "keywords": [
+        "Discord bots",
+        "community automation",
+        "server management"
+      ],
+      "content_type": "Case studies + technical guides"
+    },
+    {
+      "topic": "AI Automation Solutions",
+      "keywords": [
+        "Python automation",
+        "AI workflows",
+        "business automation"
+      ],
+      "content_type": "Solution showcases + tutorials"
+    }
+  ],
+  "technical_seo": [
+    "Optimize hyperfocuszone.com for Core Web Vitals",
+    "Implement structured data for service offerings",
+    "Create XML sitemaps for all service pages",
+    "Optimize meta descriptions with HYPERFOCUS ZONE branding"
+  ],
+  "local_seo": [
+    "Establish Google My Business presence",
+    "Optimize for 'ADHD consulting [location]' searches",
+    "Build citations for business automation services"
+  ],
+  "performance_targets": {
+    "organic_traffic_increase": "50% within 6 months",
+    "brand_keyword_rankings": "Top 3 positions for HYPERFOCUS ZONE variants",
+    "conversion_rate_optimization": "15% improvement on service pages"
+  }
+}

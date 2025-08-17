@@ -1,0 +1,73 @@
+{
+  "timestamp": "2025-08-17T18:14:44.016487",
+  "optimizations_applied": [
+    "Windows service review recommended",
+    "Temporary file cleanup",
+    "Startup optimization recommendations provided"
+  ],
+  "system_improvements": {
+    "memory": {
+      "usage_percent": 94.9,
+      "recommendations": [
+        "\ud83d\udea8 CRITICAL: Memory usage extremely high",
+        "\ud83d\udca1 Close unnecessary applications immediately",
+        "\ud83d\udca1 Consider restarting high-memory processes",
+        "\ud83d\udca1 Add more RAM if this is persistent"
+      ],
+      "top_processes": [
+        {
+          "memory_percent": 10.409345353020433,
+          "pid": 15188,
+          "name": "vmmemWSL"
+        },
+        {
+          "memory_percent": 8.728130314256743,
+          "pid": 24476,
+          "name": "Code.exe"
+        },
+        {
+          "memory_percent": 7.004103573561715,
+          "pid": 15200,
+          "name": "Code.exe"
+        },
+        {
+          "memory_percent": 6.1860180850916064,
+          "pid": 9792,
+          "name": "Code.exe"
+        },
+        {
+          "memory_percent": 2.449444489642842,
+          "pid": 2768,
+          "name": "MemCompression"
+        }
+      ]
+    },
+    "cpu": {
+      "usage_percent": 90.0,
+      "core_count": 8,
+      "recommendations": [
+        "\u26a0\ufe0f WARNING: CPU usage high",
+        "\ud83d\udca1 Close resource-intensive applications",
+        "\ud83d\udca1 Consider process scheduling optimization"
+      ],
+      "top_processes": []
+    },
+    "disk": {
+      "usage_percent": 47.49889768109533,
+      "free_gb": 228.1475372314453,
+      "total_gb": 434.55761337280273,
+      "recommendations": [
+        "\u2705 Disk usage is healthy"
+      ]
+    },
+    "network": {
+      "error_rate": 0.004795296369506357,
+      "drop_rate": 0.004795296369506357,
+      "recommendations": [
+        "\u2705 Network performance is healthy"
+      ]
+    }
+  },
+  "performance_gains": {},
+  "performance_score": 22.53370077296822
+}

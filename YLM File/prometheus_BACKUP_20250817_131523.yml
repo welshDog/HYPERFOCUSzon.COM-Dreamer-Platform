@@ -1,0 +1,9 @@
+global:
+  scrape_interval: 15s
+scrape_configs:
+- job_name: legendary-pi-microcloud
+  static_configs:
+  - targets:
+    - broskie-agent:8080
+    - pi-health-monitor:80
+    - node-exporter:9100

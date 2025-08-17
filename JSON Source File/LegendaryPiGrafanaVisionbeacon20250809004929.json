@@ -1,0 +1,174 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "\ud83c\udfe5\ud83d\udc8e\u26a1 LEGENDARY Pi Micro-Cloud Monitor \u26a1\ud83d\udc8e\ud83c\udfe5",
+    "description": "Comprehensive monitoring for Pi micro-cloud task offloading",
+    "tags": [
+      "pi",
+      "microcloud",
+      "legendary",
+      "broskie"
+    ],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "\ud83c\udfaf Pi Health Score",
+        "type": "stat",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 0,
+          "y": 0
+        },
+        "targets": [
+          {
+            "expr": "pi_health_score",
+            "legendFormat": "Health Score"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {
+                  "color": "red",
+                  "value": 0
+                },
+                {
+                  "color": "yellow",
+                  "value": 50
+                },
+                {
+                  "color": "green",
+                  "value": 90
+                }
+              ]
+            },
+            "min": 0,
+            "max": 100,
+            "unit": "percent"
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "\u26a1 Response Time",
+        "type": "stat",
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 0
+        },
+        "targets": [
+          {
+            "expr": "pi_response_time_ms",
+            "legendFormat": "Response Time"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {
+                  "color": "green",
+                  "value": 0
+                },
+                {
+                  "color": "yellow",
+                  "value": 50
+                },
+                {
+                  "color": "red",
+                  "value": 100
+                }
+              ]
+            },
+            "unit": "ms"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "\ud83e\udd16 BROski Task Processing",
+        "type": "timeseries",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "targets": [
+          {
+            "expr": "pi_task_processing_time_ms",
+            "legendFormat": "Task Processing Time"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "\ud83c\udf10 Pi Service Status",
+        "type": "table",
+        "gridPos": {
+          "h": 8,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "targets": [
+          {
+            "expr": "pi_service_status",
+            "format": "table"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "\ud83d\udcca Network Performance",
+        "type": "timeseries",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 16
+        },
+        "targets": [
+          {
+            "expr": "pi_network_latency_ms",
+            "legendFormat": "Network Latency"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "\ud83c\udfe5 System Health Timeline",
+        "type": "timeseries",
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 16
+        },
+        "targets": [
+          {
+            "expr": "pi_overall_health_score",
+            "legendFormat": "Overall Health"
+          }
+        ]
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "refresh": "10s"
+  },
+  "overwrite": true
+}

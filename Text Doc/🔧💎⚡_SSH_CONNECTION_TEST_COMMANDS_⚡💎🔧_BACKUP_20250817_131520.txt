@@ -1,0 +1,33 @@
+🔥💎⚡ SSH CONNECTION TEST COMMANDS ⚡💎🔥
+===============================================
+
+📋 AFTER PI BOOTS (WAIT 2-3 MINUTES):
+
+# Test SSH connection from laptop PowerShell:
+ssh pi@192.168.137.10
+
+# If prompted for password, common defaults are:
+# - raspberry
+# - pi
+# - (blank/empty)
+# - Or whatever you set during Pi setup
+
+📋 FIRST TIME SSH SETUP:
+# You may see a security prompt - type 'yes' to continue
+# You'll be asked to accept the host key - type 'yes'
+
+📋 ONCE CONNECTED VIA SSH:
+# Update system first
+sudo apt update && sudo apt upgrade -y
+
+# Navigate to development workspace
+cd ~/legendary-development
+
+# Start Jupyter Notebook
+jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser --allow-root
+
+🌐 THEN ACCESS FROM LAPTOP:
+📓 Jupyter: http://192.168.137.10:8888
+💻 VS Code: http://192.168.137.10:8080
+
+🎊 LEGENDARY HEADLESS DEVELOPMENT ACTIVATED!

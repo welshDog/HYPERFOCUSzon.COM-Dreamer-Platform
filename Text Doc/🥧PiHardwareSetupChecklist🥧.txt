@@ -1,0 +1,52 @@
+🥧💎⚡ LEGENDARY PI HARDWARE SETUP CHECKLIST ⚡💎🥧
+=======================================================
+
+📋 PRE-DEPLOYMENT CHECKLIST:
+
+✅ HARDWARE PREPARATION:
+[ ] Flash Raspberry Pi OS (64-bit recommended) to SD card
+[ ] Enable SSH on Pi (create empty 'ssh' file in boot partition)
+[ ] Connect Pi to ethernet cable (Gigabit network)
+[ ] Insert SD card and power on Pi
+[ ] Wait 2-3 minutes for initial boot
+
+✅ NETWORK VERIFICATION:
+[ ] Pi should get DHCP IP (check router admin or use network scanner)
+[ ] Test SSH connection: ssh pi@[PI_IP]
+[ ] Configure static IP 192.168.137.100 (recommended)
+
+✅ SSH ENABLE METHODS:
+
+METHOD 1 - Boot Partition File:
+1. After flashing Pi OS, while SD card is still in computer
+2. Create empty file named "ssh" (no extension) in boot partition
+3. This enables SSH on first boot
+
+METHOD 2 - Pi Imager Built-in:
+1. Use Raspberry Pi Imager
+2. Click gear icon for advanced options
+3. Enable SSH and set username/password
+4. Enable wireless LAN if needed (though ethernet recommended)
+
+METHOD 3 - Manual Enable (if Pi has display):
+1. Boot Pi with monitor/keyboard
+2. Run: sudo systemctl enable ssh
+3. Run: sudo systemctl start ssh
+
+🌐 TARGET CONFIGURATION:
+- Pi IP: 192.168.137.100 (static)
+- Your Laptop: 192.168.137.10
+- Gateway: 192.168.137.1
+- Connection: Gigabit Ethernet (1000 Mbps)
+
+💡 QUICK TEST COMMANDS:
+# Find Pi IP
+nmap -sn 192.168.137.0/24
+
+# Test SSH (default: pi/raspberry)
+ssh pi@192.168.137.100
+
+# Test network speed
+ping -c 5 192.168.137.100
+
+🎯 Once SSH is working, proceed to Step 2: legendary_pi_deploy.sh

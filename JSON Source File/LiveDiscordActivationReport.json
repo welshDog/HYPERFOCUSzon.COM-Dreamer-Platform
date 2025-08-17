@@ -1,0 +1,29 @@
+{
+  "activation_timestamp": "2025-08-08T16:00:23.046990",
+  "total_bots_found": 28,
+  "successful_activations": 2,
+  "active_bots": [
+    {
+      "name": "\ud83c\udf8a\ud83d\udc8e\u26a1_BROski_V2_ENHANCED_DISCORD_BOT_\u26a1\ud83d\udc8e\ud83c\udf8a.py",
+      "path": ".\\\ud83c\udf8a\ud83d\udc8e\u26a1_BROski_V2_ENHANCED_DISCORD_BOT_\u26a1\ud83d\udc8e\ud83c\udf8a.py",
+      "process_id": 24084,
+      "status": "ACTIVE",
+      "activated_at": "2025-08-08T16:00:17.000414"
+    },
+    {
+      "name": "\ud83c\udf8a\ud83e\udd16\ud83d\udc8e_AUTONOMOUS_DISCORD_BOT_SYSTEM_PHASE_1_\ud83d\udc8e\ud83e\udd16\ud83c\udf8a.py",
+      "path": ".\\\ud83c\udf8a\ud83e\udd16\ud83d\udc8e_AUTONOMOUS_DISCORD_BOT_SYSTEM_PHASE_1_\ud83d\udc8e\ud83e\udd16\ud83c\udf8a.py",
+      "process_id": 12212,
+      "status": "ACTIVE",
+      "activated_at": "2025-08-08T16:00:22.045909"
+    }
+  ],
+  "deployment_log": [
+    {
+      "bot": "\ud83c\udf8a\ud83d\udd25\ud83d\udc8e_ULTIMATE_DISCORD_EMPIRE_SHOWCASE_BOT_\ud83d\udc8e\ud83d\udd25\ud83c\udf8a.py",
+      "status": "FAILED",
+      "error": "Traceback (most recent call last):\r\n  File \"H:\\\\U0001f38a\\U0001f525\\U0001f48e_ULTIMATE_DISCORD_EMPIRE_SHOWCASE_BOT_\\U0001f48e\\U0001f525\\U0001f38a.py\", line 394, in <module>\r\n    @bot.tree.command(name",
+      "timestamp": "2025-08-08T16:00:20.015244"
+    }
+  ]
+}

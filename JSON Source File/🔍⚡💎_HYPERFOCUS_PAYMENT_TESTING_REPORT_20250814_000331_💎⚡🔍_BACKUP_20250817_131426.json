@@ -1,0 +1,212 @@
+{
+    "test_metadata": {
+        "timestamp": "2025-08-14T00:03:31.883488",
+        "test_type": "PAYMENT_BUTTON_VALIDATION",
+        "brand": "HYPERFOCUS ZONE",
+        "mission": "DREAM IT BUILD IT"
+    },
+    "test_summary": {
+        "total_buttons_tested": 12,
+        "working_buttons": 12,
+        "failed_buttons": 0,
+        "format_valid": 12,
+        "accessible": 12
+    },
+    "detailed_results": {
+        "Empire Starter ($25)": {
+            "url": "https://paypal.me/WelshDog/25",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/25"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Elite Agent ($50)": {
+            "url": "https://paypal.me/WelshDog/50",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/50"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Empire Builder ($75)": {
+            "url": "https://paypal.me/WelshDog/75",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/75"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Master License ($150)": {
+            "url": "https://paypal.me/WelshDog/150",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/150"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Ultra Empire ($250)": {
+            "url": "https://paypal.me/WelshDog/250",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/250"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Custom Amount": {
+            "url": "https://paypal.me/WelshDog",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": false,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Coffee ($10)": {
+            "url": "https://paypal.me/WelshDog/10",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/10"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Lunch ($20)": {
+            "url": "https://paypal.me/WelshDog/20",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/20"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Boost ($40)": {
+            "url": "https://paypal.me/WelshDog/40",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/40"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Rocket ($100)": {
+            "url": "https://paypal.me/WelshDog/100",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/100"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Diamond ($500)": {
+            "url": "https://paypal.me/WelshDog/500",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/500"
+            },
+            "overall_status": "✅ WORKING"
+        },
+        "Crown ($1000)": {
+            "url": "https://paypal.me/WelshDog/1000",
+            "format_validation": {
+                "domain_valid": true,
+                "https_secure": true,
+                "path_format": true,
+                "amount_specified": true,
+                "overall_valid": true
+            },
+            "accessibility": {
+                "status": "✅ ACCESSIBLE",
+                "status_code": 200,
+                "redirect_url": "https://www.paypal.com/paypalme/WelshDog/1000"
+            },
+            "overall_status": "✅ WORKING"
+        }
+    },
+    "recommendations": [
+        "🎉 All payment buttons working perfectly!"
+    ]
+}

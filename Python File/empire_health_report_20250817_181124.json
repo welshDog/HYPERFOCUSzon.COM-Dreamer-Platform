@@ -1,0 +1,302 @@
+{
+  "scan_timestamp": "2025-08-17T18:09:35.662197",
+  "network_status": {
+    "internet_connectivity": {
+      "https://google.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 11350.43
+      },
+      "https://github.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 132.83
+      },
+      "https://azure.microsoft.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 396.83
+      },
+      "https://aws.amazon.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 481.32
+      },
+      "https://cloudflare.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 589.78
+      }
+    },
+    "performance": {
+      "bytes_sent": 1911656374,
+      "bytes_recv": 1530380086,
+      "packets_sent": 4180672,
+      "packets_recv": 1752572,
+      "errin": 285,
+      "errout": 0,
+      "dropin": 285,
+      "dropout": 0,
+      "error_rate_percent": 0.0048,
+      "drop_rate_percent": 0.0048,
+      "network_health_score": 100
+    }
+  },
+  "server_status": {
+    "main_dive": {
+      "name": "main_dive",
+      "ip": "100.114.5.118",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 2.23,
+      "health_score": 100,
+      "open_ports": {
+        "443": "HTTPS"
+      }
+    },
+    "raspberry_pi": {
+      "name": "raspberry_pi",
+      "ip": "192.168.137.10",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 2.0,
+      "health_score": 100,
+      "open_ports": {}
+    },
+    "main_server": {
+      "name": "main_server",
+      "ip": "100.68.37.27",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 72.98,
+      "health_score": 75,
+      "open_ports": {
+        "22": "SSH",
+        "80": "HTTP",
+        "443": "HTTPS"
+      }
+    },
+    "mini_server": {
+      "name": "mini_server",
+      "ip": "100.71.69.16",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 113.66,
+      "health_score": 50,
+      "open_ports": {
+        "22": "SSH",
+        "80": "HTTP",
+        "6379": "Redis"
+      }
+    }
+  },
+  "local_system_status": {
+    "hostname": "HYPERFOCUSzone",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 23 Model 24 Stepping 1, AuthenticAMD",
+    "architecture": [
+      "64bit",
+      "WindowsPE"
+    ],
+    "python_version": "3.13.5",
+    "cpu_count": 8,
+    "cpu_usage": 20.7,
+    "memory": {
+      "total_gb": 7.69,
+      "available_gb": 0.76,
+      "used_percent": 90.2
+    },
+    "disk": {
+      "total_gb": 434.56,
+      "free_gb": 228.15,
+      "used_percent": 47.5
+    },
+    "network_interfaces": {
+      "raz Pi": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "04-D4-C4-E3-C3-0C",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "192.168.137.10",
+            "netmask": "255.255.255.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::d334:d2dd:724f:9574",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 1000,
+          "mtu": 1500
+        }
+      },
+      "Local Area Connection* 1": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "82-91-33-B6-F3-9F",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "169.254.227.212",
+            "netmask": "255.255.0.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::6f9c:8c23:7356:4e17",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": false,
+          "duplex": "2",
+          "speed": 0,
+          "mtu": 1500
+        }
+      },
+      "Local Area Connection* 10": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "C2-91-33-B6-F3-9F",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "169.254.200.188",
+            "netmask": "255.255.0.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::8985:1ef8:3550:43da",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": false,
+          "duplex": "2",
+          "speed": 0,
+          "mtu": 1500
+        }
+      },
+      "WiFi": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "80-91-33-B6-F3-9F",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "192.168.50.144",
+            "netmask": "255.255.255.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::a793:24dd:bcaf:7b4d",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 72,
+          "mtu": 1500
+        }
+      },
+      "Tailscale": {
+        "addresses": [
+          {
+            "family": "2",
+            "address": "100.114.5.118",
+            "netmask": "255.255.255.255",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fd7a:115c:a1e0::e401:580",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::788f:7c8a:88df:4cc8",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 4294,
+          "mtu": 65535
+        }
+      },
+      "Loopback Pseudo-Interface 1": {
+        "addresses": [
+          {
+            "family": "2",
+            "address": "127.0.0.1",
+            "netmask": "255.0.0.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "::1",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 1073,
+          "mtu": 1500
+        }
+      }
+    },
+    "boot_time": "2025-08-15T22:50:53.009211"
+  },
+  "recommendations": [
+    {
+      "category": "\u26a0\ufe0f Performance",
+      "issue": "High memory usage: 90.2%",
+      "recommendation": "Close unnecessary applications or upgrade RAM",
+      "priority": "MEDIUM"
+    },
+    {
+      "category": "\ud83d\ude80 Optimization",
+      "issue": "Regular maintenance",
+      "recommendation": "Schedule weekly automated health scans",
+      "priority": "LOW"
+    },
+    {
+      "category": "\ud83d\udcca Monitoring",
+      "issue": "Enhanced monitoring needed",
+      "recommendation": "Set up continuous monitoring with alerts for critical metrics",
+      "priority": "MEDIUM"
+    },
+    {
+      "category": "\ud83d\udd04 Backup",
+      "issue": "Backup verification",
+      "recommendation": "Verify all servers have recent backups and test restore procedures",
+      "priority": "MEDIUM"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+# GitHub Pages Configuration for HYPERFOCUSzone-Community
+url: "https://welshdog.github.io/HYPERFOCUSzone-Community"
+baseurl: "/HYPERFOCUSzone-Community"
+
+# Site settings
+title: Hyperfocuszone Community
+description: Professional showcase powered by HYPERFOCUS Zone
+author: welshDog
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# GitHub Pages specific settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:name/
+
+# Default settings
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "page"

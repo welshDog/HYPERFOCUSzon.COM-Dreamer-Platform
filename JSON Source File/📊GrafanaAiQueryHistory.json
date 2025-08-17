@@ -1,0 +1,264 @@
+{
+  "grafana_ai_version": "1.0",
+  "empire_integration": "LEGENDARY",
+  "total_queries": 8,
+  "queries": [
+    {
+      "original_request": "Show me container status",
+      "query_data": {
+        "prometheus_query": "docker_containers_running",
+        "time_range": "5m",
+        "description": "Fallback query for: Show me container status",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "docker_containers_running",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "__name__": "docker_containers_running"
+              },
+              "value": [
+                1754445613.600129,
+                "32"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:13.600150",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:13.704112"
+    },
+    {
+      "original_request": "How many agents are running?",
+      "query_data": {
+        "prometheus_query": "empire_agents_total",
+        "time_range": "5m",
+        "description": "Fallback query for: How many agents are running?",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "empire_agents_total",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "__name__": "empire_agents_total"
+              },
+              "value": [
+                1754445618.374029,
+                "677"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:18.374040",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:18.374695"
+    },
+    {
+      "original_request": "What's our uptime?",
+      "query_data": {
+        "prometheus_query": "up",
+        "time_range": "5m",
+        "description": "Fallback query for: What's our uptime?",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "up",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "__name__": "up"
+              },
+              "value": [
+                1754445618.399494,
+                "1"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:18.399512",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:18.400179"
+    },
+    {
+      "original_request": "CPU usage trending",
+      "query_data": {
+        "prometheus_query": "rate(node_cpu_seconds_total[5m])",
+        "time_range": "5m",
+        "description": "Fallback query for: CPU usage trending",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "rate(node_cpu_seconds_total[5m])",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "__name__": "node_cpu_seconds_total"
+              },
+              "value": [
+                1754445618.445971,
+                "0.15"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:18.445980",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:18.446576"
+    },
+    {
+      "original_request": "HuggingFace API calls today",
+      "query_data": {
+        "prometheus_query": "up",
+        "time_range": "5m",
+        "description": "Fallback query for: HuggingFace API calls today",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "up",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "__name__": "up"
+              },
+              "value": [
+                1754445618.490628,
+                "1"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:18.490650",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:18.491484"
+    },
+    {
+      "original_request": "Oracle query performance",
+      "query_data": {
+        "prometheus_query": "oracle_queries_total",
+        "time_range": "5m",
+        "description": "Fallback query for: Oracle query performance",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "oracle_queries_total",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "__name__": "oracle_queries_total"
+              },
+              "value": [
+                1754445618.528649,
+                "89"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:18.528654",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:18.529076"
+    },
+    {
+      "original_request": "Network traffic analysis",
+      "query_data": {
+        "prometheus_query": "rate(node_network_receive_bytes_total[5m])",
+        "time_range": "5m",
+        "description": "Fallback query for: Network traffic analysis",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "rate(node_network_receive_bytes_total[5m])",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "empire": "legendary"
+              },
+              "value": [
+                1754445618.553202,
+                "99.9"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:18.553205",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:18.553642"
+    },
+    {
+      "original_request": "Error rate monitoring",
+      "query_data": {
+        "prometheus_query": "rate(http_requests_total{status=~\"4..|5..\"}[5m])",
+        "time_range": "5m",
+        "description": "Fallback query for: Error rate monitoring",
+        "visualization": "graph",
+        "empire_context": "Auto-generated empire monitoring"
+      },
+      "execution_result": {
+        "status": "MOCK_DATA",
+        "query": "rate(http_requests_total{status=~\"4..|5..\"}[5m])",
+        "data": {
+          "resultType": "vector",
+          "result": [
+            {
+              "metric": {
+                "empire": "legendary"
+              },
+              "value": [
+                1754445618.571241,
+                "99.9"
+              ]
+            }
+          ]
+        },
+        "timestamp": "2025-08-06T03:00:18.571244",
+        "source": "empire_simulation"
+      },
+      "natural_summary": "\ud83c\udfaf Empire metric query completed successfully! Your legendary infrastructure is being monitored. \ud83d\udcca\u2728",
+      "timestamp": "2025-08-06T03:00:18.572086"
+    }
+  ],
+  "last_updated": "2025-08-06T03:00:18.574075"
+}

@@ -1,0 +1,166 @@
+version: '3.8'
+
+# ⚡💎🐳 HYPERFOCUS ZONE EMPIRE DOCKER COMPOSE 🐳💎⚡
+# Optimized for performance and resource efficiency
+
+services:
+  # 🗄️ PostgreSQL Database (Essential)
+  postgres:
+    image: postgres:15-alpine
+    container_name: empire_postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: chaosgenius
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ONI7GIv6Uym0mAGofs99hbcIMOL8tKVHwfi9Zs3cA8U=
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/docker-entrypoint-initdb.d
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - empire_network
+
+  # 🔴 Redis Cache (Essential)
+  redis:
+    image: redis:7-alpine
+    container_name: empire_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+          cpus: '0.25'
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - empire_network
+
+  # 🚀 HyperFocus API (Essential)
+  hyperfocus_api:
+    image: python:3.11-slim
+    container_name: empire_api
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+      - "5100:5100"
+    environment:
+      FLASK_ENV: production
+      DATABASE_URL: postgresql://postgres:ONI7GIv6Uym0mAGofs99hbcIMOL8tKVHwfi9Zs3cA8U=@postgres:5432/chaosgenius
+      REDIS_URL: redis://redis:6379/0
+      HYPERFOCUS_MODE: "True"
+      LEGENDARY_MODE: "true"
+    volumes:
+      - ./app:/app
+      - ./empire.env:/app/.env
+    working_dir: /app
+    command: python app.py
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - empire_network
+
+  # 📊 Grafana Monitoring (Optional)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: empire_grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: legendary_admin_2025
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: '0.5'
+        reservations:
+          memory: 128M
+          cpus: '0.25'
+    networks:
+      - empire_network
+    profiles:
+      - monitoring
+
+  # 🌐 Nginx Reverse Proxy (Essential)
+  nginx:
+    image: nginx:alpine
+    container_name: empire_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - hyperfocus_api
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: '0.25'
+        reservations:
+          memory: 64M
+          cpus: '0.1'
+    networks:
+      - empire_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  empire_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

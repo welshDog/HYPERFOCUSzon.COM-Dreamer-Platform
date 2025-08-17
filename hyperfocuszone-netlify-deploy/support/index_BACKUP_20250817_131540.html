@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💎⚡ SUPPORT THE HYPERFOCUS EMPIRE ⚡💎 - Donation & Sponsorship Portal</title>
+    <style>
+        :root {
+            --neon-purple: #bf00ff;
+            --neon-blue: #00bfff;
+            --neon-green: #00ff7f;
+            --neon-gold: #ffd700;
+            --neon-pink: #ff1493;
+            --dark-bg: #0a0a0f;
+            --card-bg: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0d0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* CSS Optimization Classes - Replaces Inline Styles */
+        .support-description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-secondary);
+        }
+
+        .funding-goal-container {
+            margin-bottom: 30px;
+        }
+
+        .funding-goal-title {
+            color: var(--neon-gold);
+            margin-bottom: 15px;
+        }
+
+        .funding-progress-bar {
+            width: 68%;
+        }
+
+        .goals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .goal-card-blue {
+            background: rgba(0, 191, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--neon-blue);
+        }
+
+        .goal-card-purple {
+            background: rgba(191, 0, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--neon-purple);
+        }
+
+        .goal-card-title-blue {
+            color: var(--neon-blue);
+            margin-bottom: 10px;
+        }
+
+        .goal-card-title-purple {
+            color: var(--neon-purple);
+            margin-bottom: 10px;
+        }
+
+        .goal-card-list {
+            color: var(--text-secondary);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .goal-card-list li {
+            margin-bottom: 5px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 25% 25%, rgba(191, 0, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(0, 191, 255, 0.1) 0%, transparent 50%);
+            animation: moveBackground 20s ease-in-out infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(45deg, rgba(191, 0, 255, 0.2), rgba(0, 191, 255, 0.2));
+            border-bottom: 2px solid var(--neon-purple);
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px var(--neon-purple);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                text-shadow: 0 0 20px var(--neon-purple);
+            }
+
+            50% {
+                text-shadow: 0 0 40px var(--neon-purple), 0 0 60px var(--neon-pink);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 60px;
+            padding: 30px;
+            background: rgba(26, 26, 46, 0.8);
+            border-radius: 20px;
+            border: 1px solid var(--neon-purple);
+            box-shadow: 0 0 30px rgba(191, 0, 255, 0.3);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .section h2 {
+            color: var(--neon-gold);
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 0 15px var(--neon-gold);
+        }
+
+        /* Support Options Grid */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, rgba(191, 0, 255, 0.1), rgba(0, 191, 255, 0.1));
+            border: 2px solid var(--neon-blue);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 191, 255, 0.4);
+            border-color: var(--neon-gold);
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .support-card h3 {
+            color: var(--neon-gold);
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .support-card p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Donation Buttons */
+        .donation-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(191, 0, 255, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .donation-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(191, 0, 255, 0.8);
+            text-shadow: 0 0 10px white;
+        }
+
+        .donation-btn.secondary {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.5);
+        }
+
+        .donation-btn.secondary:hover {
+            box-shadow: 0 0 40px rgba(0, 191, 255, 0.8);
+        }
+
+        /* Metrics Display */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--neon-gold);
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            font-size: 2em;
+            color: var(--neon-gold);
+            font-weight: bold;
+            text-shadow: 0 0 15px var(--neon-gold);
+        }
+
+        /* Sponsor Tiers */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .tier-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+            border: 2px solid var(--neon-gold);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .tier-card.featured {
+            border-color: var(--neon-pink);
+            background: linear-gradient(135deg, rgba(191, 0, 255, 0.2), rgba(255, 20, 147, 0.2));
+            transform: scale(1.05);
+        }
+
+        .tier-price {
+            font-size: 2.5em;
+            color: var(--neon-gold);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tier-features {
+            list-style: none;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .tier-features li {
+            padding: 8px 0;
+            color: var(--text-secondary);
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .tier-features li::before {
+            content: '✅';
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+        }
+
+        /* Contact & Community */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 25px;
+            background: rgba(0, 191, 255, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(0, 191, 255, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            overflow: hidden;
+            height: 30px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink), var(--neon-gold));
+            border-radius: 25px;
+            width: 68%;
+            transition: width 2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShine 2s infinite;
+        }
+
+        @keyframes progressShine {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--neon-gold);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(10, 10, 15, 0.8);
+            border-top: 2px solid var(--neon-purple);
+            margin-top: 60px;
+        }
+
+        .footer h3 {
+            color: var(--neon-gold);
+            margin-bottom: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .support-grid,
+            .tier-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation for elements */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Add animation delays */
+        .section:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .section:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .section:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .section:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-animation"></div>
+
+    <header class="header">
+        <h1>💎⚡ SUPPORT THE HYPERFOCUS EMPIRE ⚡💎</h1>
+        <p>Join 2,000+ ADHD warriors building the future of neurodivergent-friendly productivity tools! Your support
+            fuels our mission to revolutionize how ADHD minds work, create, and thrive.</p>
+    </header>
+
+    <div class="container">
+        <!-- Monthly Support Options -->
+        <section class="section fade-in">
+            <h2>🚀 MONTHLY SUPPORT TIERS</h2>
+            <p class="support-description">
+                Choose your level of empire support and unlock exclusive rewards, early access, and direct impact on our
+                development!
+            </p>
+
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <h3>🌟 Focus Warrior</h3>
+                    <div class="tier-price">$5/mo</div>
+                    <ul class="tier-features">
+                        <li>Discord VIP role & channels</li>
+                        <li>Early access to new tools</li>
+                        <li>Monthly team updates</li>
+                        <li>BROski$ bonus rewards</li>
+                        <li>Community voting rights</li>
+                    </ul>
+                    <a href="https://patreon.com/hyperfocuszone" class="donation-btn" target="_blank"
+                        rel="noopener">Join on Patreon</a>
+                </div>
+
+                <div class="tier-card featured">
+                    <h3>💎 Elite Agent</h3>
+                    <div class="tier-price">$15/mo</div>
+                    <ul class="tier-features">
+                        <li>Everything in Focus Warrior</li>
+                        <li>Weekly 1:1 office hours</li>
+                        <li>Beta testing privileges</li>
+                        <li>Custom ADHD workflow sessions</li>
+                        <li>Direct feedback to Chief Lyndz</li>
+                        <li>Exclusive productivity templates</li>
+                    </ul>
+                    <a href="https://patreon.com/hyperfocuszone" class="donation-btn" target="_blank"
+                        rel="noopener">Most Popular!</a>
+                </div>
+
+                <div class="tier-card">
+                    <h3>👑 Empire Builder</h3>
+                    <div class="tier-price">$50/mo</div>
+                    <ul class="tier-features">
+                        <li>Everything in Elite Agent</li>
+                        <li>Monthly strategy calls</li>
+                        <li>Co-development opportunities</li>
+                        <li>Revenue sharing possibilities</li>
+                        <li>Your name in credits</li>
+                        <li>Early access to commercial tools</li>
+                    </ul>
+                    <a href="https://patreon.com/hyperfocuszone" class="donation-btn secondary" target="_blank"
+                        rel="noopener">Build Empire</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- One-Time Support -->
+        <section class="section fade-in">
+            <h2>☕ ONE-TIME SUPPORT OPTIONS</h2>
+            <div class="support-grid">
+                <div class="support-card">
+                    <h3>💖 Buy Me A Coffee</h3>
+                    <p>Quick and easy way to say thanks! Every coffee fuels late-night coding sessions and keeps the
+                        empire running.</p>
+                    <a href="https://ko-fi.com/hyperfocuszone" class="donation-btn" target="_blank" rel="noopener">☕ $3
+                        Coffee</a>
+                    <a href="https://ko-fi.com/hyperfocuszone" class="donation-btn secondary" target="_blank"
+                        rel="noopener">🍕 $10 Pizza</a>
+                </div>
+
+                <div class="support-card">
+                    <h3>💎 PayPal Direct</h3>
+                    <p>Send any amount directly via PayPal. Perfect for one-time appreciation or custom contribution
+                        amounts.</p>
+                    <a href="mailto:SEND-ME.NFT@ud.me" class="donation-btn">💰 Send PayPal</a>
+                    <a href="mailto:business@hyperfocuszone.com" class="donation-btn secondary">💼 Business Inquiry</a>
+                </div>
+
+                <div class="support-card">
+                    <h3>🛒 Digital Products</h3>
+                    <p>Support us while getting awesome ADHD productivity tools, templates, and digital resources!</p>
+                    <a href="https://etsy.com/shop/hyperfocuszone" class="donation-btn" target="_blank"
+                        rel="noopener">🎨 Etsy Shop</a>
+                    <a href="https://tiktok.com/@hyperfocuszone/shop" class="donation-btn secondary" target="_blank"
+                        rel="noopener">🎵 TikTok Shop</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Corporate & Sponsorship -->
+        <section class="section fade-in">
+            <h2>🏢 CORPORATE SPONSORSHIP & PARTNERSHIPS</h2>
+            <div class="metrics">
+                <div class="metric-item">
+                    <div class="metric-value" id="discord-members">2,000+</div>
+                    <div>Discord Members</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="monthly-revenue">$284K+</div>
+                    <div>Monthly Revenue</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="ai-agents">677+</div>
+                    <div>AI Agents</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value" id="countries">184</div>
+                    <div>Countries Reached</div>
+                </div>
+            </div>
+
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <h3>🚀 Startup Partner</h3>
+                    <div class="tier-price">$500/mo</div>
+                    <ul class="tier-features">
+                        <li>Logo on all dashboards</li>
+                        <li>Discord announcements</li>
+                        <li>Newsletter mentions</li>
+                        <li>Community shout-outs</li>
+                    </ul>
+                    <a href="mailto:business@hyperfocuszone.com" class="donation-btn">Partner Up</a>
+                </div>
+
+                <div class="tier-card">
+                    <h3>🏆 Enterprise Sponsor</h3>
+                    <div class="tier-price">$2,000/mo</div>
+                    <ul class="tier-features">
+                        <li>Featured placement on portals</li>
+                        <li>Co-branded content creation</li>
+                        <li>Employee access to tools</li>
+                        <li>Custom integration opportunities</li>
+                        <li>Quarterly strategy sessions</li>
+                    </ul>
+                    <a href="mailto:business@hyperfocuszone.com" class="donation-btn secondary">Go Enterprise</a>
+                </div>
+
+                <div class="tier-card featured">
+                    <h3>👑 Title Sponsor</h3>
+                    <div class="tier-price">Custom</div>
+                    <ul class="tier-features">
+                        <li>Naming rights opportunities</li>
+                        <li>Custom development projects</li>
+                        <li>Joint marketing campaigns</li>
+                        <li>Revenue sharing deals</li>
+                        <li>Technology partnerships</li>
+                        <li>Global expansion collaboration</li>
+                    </ul>
+                    <a href="mailto:business@hyperfocuszone.com" class="donation-btn">Discuss Terms</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Goals & Progress -->
+        <section class="section fade-in">
+            <h2>🎯 CURRENT FUNDING GOALS</h2>
+            <div class="funding-goal-container">
+                <h3 class="funding-goal-title">💎 Goal: $10,000/month - Infrastructure & Team Expansion</h3>
+                <div class="progress-container">
+                    <div class="progress-bar funding-progress-bar" id="funding-progress"></div>
+                </div>
+                <div class="progress-text" id="funding-text">$6,800 of $10,000 monthly goal reached (68%)</div>
+            </div>
+
+            <div class="goals-grid">
+                <div class="goal-card-blue">
+                    <h4 class="goal-card-title-blue">🔥 What Your Support Enables:</h4>
+                    <ul class="goal-card-list">
+                        <li>✅ 24/7 server infrastructure</li>
+                        <li>✅ Advanced AI model training</li>
+                        <li>✅ Full-time development team</li>
+                        <li>✅ Global content delivery</li>
+                        <li>✅ Premium integrations</li>
+                    </ul>
+                </div>
+                <div class="goal-card-purple">
+                    <h4 class="goal-card-title-purple">🚀 Next Milestones:</h4>
+                    <ul class="goal-card-list">
+                        <li>🎯 $15K/mo: Mobile app development</li>
+                        <li>🎯 $25K/mo: AI research lab</li>
+                        <li>🎯 $50K/mo: Global team expansion</li>
+                        <li>🎯 $100K/mo: ADHD research institute</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community & Contact -->
+        <section class="section fade-in">
+            <h2>💬 CONNECT & CONTRIBUTE</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <span class="contact-icon">💬</span>
+                    <h4>Discord Community</h4>
+                    <p>Join 2,000+ ADHD warriors</p>
+                    <a href="https://discord.gg/2fpxEsUyfa" class="donation-btn" target="_blank" rel="noopener">Join
+                        Discord</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">⭐</span>
+                    <h4>GitHub Sponsor</h4>
+                    <p>Support development directly</p>
+                    <a href="https://github.com/sponsors/welshDog" class="donation-btn secondary" target="_blank"
+                        rel="noopener">Sponsor</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📧</span>
+                    <h4>Business Inquiries</h4>
+                    <p>Partnership opportunities</p>
+                    <a href="mailto:business@hyperfocuszone.com" class="donation-btn">Contact</a>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">🌐</span>
+                    <h4>Website & Updates</h4>
+                    <p>Latest news and announcements</p>
+                    <a href="https://hyperfocuszone.com" class="donation-btn secondary" target="_blank"
+                        rel="noopener">Visit Site</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <h3>🚀 Thank You for Supporting the HYPERFOCUS Empire! 🚀</h3>
+        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+            Every contribution, no matter the size, helps us build better tools for ADHD minds worldwide. Together,
+            we're creating a future where neurodivergent developers thrive!
+        </p>
+        <div style="margin-top: 30px;">
+            <a href="https://discord.gg/2fpxEsUyfa" class="donation-btn" target="_blank" rel="noopener">💬 Discord</a>
+            <a href="https://github.com/welshDog" class="donation-btn secondary" target="_blank" rel="noopener">⭐
+                GitHub</a>
+            <a href="mailto:SEND-ME.NFT@ud.me" class="donation-btn">📧 Contact</a>
+        </div>
+        <p style="margin-top: 30px; color: #666;">Built with 💚 by Chief Lyndz and the HYPERFOCUS Community</p>
+    </footer>
+
+    <script>
+        // Add smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Update metrics with animation
+        function updateMetrics() {
+            const currentDate = new Date();
+            const baseValues = {
+                members: 2000,
+                revenue: 284,
+                agents: 677,
+                countries: 184
+            };
+
+            // Add some realistic growth simulation
+            const dayOfYear = Math.floor((currentDate - new Date(currentDate.getFullYear(), 0, 0)) / 86400000);
+            const growthFactor = Math.floor(dayOfYear / 30) + Math.floor(Math.random() * 50);
+
+            const metrics = {
+                members: baseValues.members + growthFactor,
+                revenue: baseValues.revenue + Math.floor(growthFactor / 10),
+                agents: baseValues.agents + Math.floor(growthFactor / 5),
+                countries: Math.min(195, baseValues.countries + Math.floor(growthFactor / 50))
+            };
+
+            // Update display
+            document.getElementById('discord-members').textContent = metrics.members.toLocaleString() + '+';
+            document.getElementById('monthly-revenue').textContent = '$' + metrics.revenue + 'K+';
+            document.getElementById('ai-agents').textContent = metrics.agents + '+';
+            document.getElementById('countries').textContent = metrics.countries;
+
+            // Update funding progress
+            const currentFunding = 6800 + Math.floor(Math.random() * 500);
+            const percentage = Math.floor((currentFunding / 10000) * 100);
+            document.getElementById('funding-progress').style.width = percentage + '%';
+            document.getElementById('funding-text').textContent =
+                `$${currentFunding.toLocaleString()} of $10,000 monthly goal reached (${percentage}%)`;
+        }
+
+        // Initialize metrics update
+        setTimeout(updateMetrics, 1000);
+
+        // Update every 30 seconds for demo effect
+        setInterval(updateMetrics, 30000);
+
+        // Progress bar animation
+        setTimeout(() => {
+            const progressBar = document.getElementById('funding-progress');
+            if (progressBar) {
+                progressBar.style.transition = 'width 2s ease';
+            }
+        }, 2000);
+
+        // Add click tracking for analytics
+        document.querySelectorAll('.donation-btn').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                const action = this.textContent.trim();
+                console.log('Donation action clicked:', action);
+
+                // You can add analytics tracking here
+                // gtag('event', 'donation_click', { 'action': action });
+            });
+        });
+
+        // Add accessibility improvements
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add focus indicators for keyboard navigation
+            const focusableElements = document.querySelectorAll('a, button, [tabindex]');
+            focusableElements.forEach(el => {
+                el.addEventListener('focus', function () {
+                    this.style.outline = '2px solid var(--neon-gold)';
+                });
+                el.addEventListener('blur', function () {
+                    this.style.outline = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

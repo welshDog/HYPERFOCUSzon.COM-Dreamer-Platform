@@ -1,0 +1,183 @@
+{
+  "security_steps": [
+    {
+      "step": "1\ufe0f\u20e3 Navigate to Repository Settings",
+      "action": "Go to: https://github.com/welshDog/HYPERFOCUSzone-Community/settings",
+      "details": "Click the 'Settings' tab in your repository"
+    },
+    {
+      "step": "2\ufe0f\u20e3 Security & Analysis Section",
+      "action": "Go to: https://github.com/welshDog/HYPERFOCUSzone-Community/settings/security_analysis",
+      "details": "Find 'Security & analysis' in the left sidebar"
+    },
+    {
+      "step": "3\ufe0f\u20e3 Enable Dependabot Alerts",
+      "action": "Click 'Enable' for Dependabot alerts",
+      "details": "Automatically detect vulnerable dependencies"
+    },
+    {
+      "step": "4\ufe0f\u20e3 Enable Dependabot Security Updates",
+      "action": "Click 'Enable' for Dependabot security updates",
+      "details": "Auto-create PRs to fix vulnerabilities"
+    },
+    {
+      "step": "5\ufe0f\u20e3 Enable Dependabot Version Updates",
+      "action": "Click 'Enable' for Dependabot version updates",
+      "details": "Keep dependencies up to date"
+    },
+    {
+      "step": "6\ufe0f\u20e3 Enable Secret Scanning",
+      "action": "Click 'Enable' for Secret scanning",
+      "details": "Detect secrets in your repository"
+    },
+    {
+      "step": "7\ufe0f\u20e3 Enable Push Protection",
+      "action": "Enable 'Push protection for secrets'",
+      "details": "Block commits containing secrets"
+    },
+    {
+      "step": "8\ufe0f\u20e3 Setup Code Scanning",
+      "action": "Click 'Set up' for Code scanning",
+      "details": "Choose 'Set up this workflow' for CodeQL"
+    }
+  ],
+  "labels": [
+    [
+      "good first issue",
+      "#7057ff",
+      "Great for newcomers"
+    ],
+    [
+      "help wanted",
+      "#008672",
+      "Extra attention needed"
+    ],
+    [
+      "documentation",
+      "#0075ca",
+      "Improvements needed"
+    ],
+    [
+      "enhancement",
+      "#a2eeef",
+      "New feature request"
+    ],
+    [
+      "bug",
+      "#d73a4a",
+      "Something isn't working"
+    ],
+    [
+      "question",
+      "#d876e3",
+      "Further information needed"
+    ],
+    [
+      "duplicate",
+      "#cfd3d7",
+      "Exists already"
+    ],
+    [
+      "invalid",
+      "#e4e669",
+      "Doesn't seem right"
+    ],
+    [
+      "wontfix",
+      "#ffffff",
+      "Won't be fixed"
+    ],
+    [
+      "empire-core",
+      "#ff6b6b",
+      "Core empire functionality"
+    ],
+    [
+      "ai-parliament",
+      "#4ecdc4",
+      "AI coordination system"
+    ],
+    [
+      "hyperfocus",
+      "#45b7d1",
+      "ADHD/focus optimization"
+    ],
+    [
+      "neurodivergent",
+      "#96ceb4",
+      "Accessibility features"
+    ],
+    [
+      "performance",
+      "#feca57",
+      "Speed optimization"
+    ],
+    [
+      "security",
+      "#ff9ff3",
+      "Security improvements"
+    ],
+    [
+      "devops",
+      "#54a0ff",
+      "Infrastructure changes"
+    ],
+    [
+      "community",
+      "#5f27cd",
+      "Community building"
+    ]
+  ],
+  "protection_steps": [
+    {
+      "step": "1\ufe0f\u20e3 Navigate to Branches",
+      "action": "Go to: https://github.com/welshDog/HYPERFOCUSzone-Community/settings/branches",
+      "details": "Find 'Branches' in repository settings"
+    },
+    {
+      "step": "2\ufe0f\u20e3 Add Protection Rule",
+      "action": "Click 'Add rule' next to main branch",
+      "details": "Create protection for main/master branch"
+    },
+    {
+      "step": "3\ufe0f\u20e3 Require Pull Request Reviews",
+      "action": "Check 'Require pull request reviews before merging'",
+      "details": "Set required reviewers to 1"
+    },
+    {
+      "step": "4\ufe0f\u20e3 Require Status Checks",
+      "action": "Check 'Require status checks to pass'",
+      "details": "Ensure CI passes before merge"
+    },
+    {
+      "step": "5\ufe0f\u20e3 Require Up-to-Date Branches",
+      "action": "Check 'Require branches to be up to date'",
+      "details": "Force fresh merges"
+    },
+    {
+      "step": "6\ufe0f\u20e3 Include Administrators",
+      "action": "Check 'Include administrators'",
+      "details": "Apply rules to all users"
+    }
+  ],
+  "links": {
+    "Repository Settings": "https://github.com/welshDog/HYPERFOCUSzone-Community/settings",
+    "Security & Analysis": "https://github.com/welshDog/HYPERFOCUSzone-Community/settings/security_analysis",
+    "Branches": "https://github.com/welshDog/HYPERFOCUSzone-Community/settings/branches",
+    "Labels": "https://github.com/welshDog/HYPERFOCUSzone-Community/labels",
+    "Issues": "https://github.com/welshDog/HYPERFOCUSzone-Community/issues",
+    "Actions": "https://github.com/welshDog/HYPERFOCUSzone-Community/actions"
+  },
+  "checklist": [
+    "\ud83d\udd12 Dependabot alerts enabled",
+    "\ud83d\udd27 Dependabot security updates enabled",
+    "\ud83d\udce6 Dependabot version updates enabled",
+    "\ud83d\udd75\ufe0f Secret scanning enabled",
+    "\ud83d\udee1\ufe0f Push protection for secrets enabled",
+    "\ud83d\udd0d CodeQL code scanning setup",
+    "\ud83c\udff7\ufe0f All 17 contributor labels created",
+    "\ud83c\udf3f Main branch protection enabled",
+    "\ud83d\udc65 Pull request reviews required",
+    "\u2705 Status checks required before merge"
+  ]
+}

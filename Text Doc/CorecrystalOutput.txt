@@ -1,0 +1,60 @@
+--- Logging error ---
+Traceback (most recent call last):
+  File "H:\\U0001f3af\U0001f48e\u26a1_HYPERFOCUS_ZONE_ULTIMATE_ORCHESTRATOR_\u26a1\U0001f48e\U0001f3af.py", line 1135, in main
+    logger.info("🌌 \U0001f3af\U0001f48e\u26a1 INITIALIZING HYPERFOCUS ZONE ULTIMATE ORCHESTRATOR \u26a1\U0001f48e\U0001f3af")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-2: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python313\Lib\logging\__init__.py", line 1154, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-1: character maps to <undefined>
+Call stack:
+  File "H:\\U0001f3af\U0001f48e\u26a1_HYPERFOCUS_ZONE_ULTIMATE_ORCHESTRATOR_\u26a1\U0001f48e\U0001f3af.py", line 1151, in <module>
+    asyncio.run(main())
+  File "C:\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+  File "C:\Python313\Lib\asyncio\base_events.py", line 712, in run_until_complete
+    self.run_forever()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 683, in run_forever
+    self._run_once()
+  File "C:\Python313\Lib\asyncio\base_events.py", line 2042, in _run_once
+    handle._run()
+  File "C:\Python313\Lib\asyncio\events.py", line 89, in _run
+    self._context.run(self._callback, *self._args)
+  File "H:\\U0001f3af\U0001f48e\u26a1_HYPERFOCUS_ZONE_ULTIMATE_ORCHESTRATOR_\u26a1\U0001f48e\U0001f3af.py", line 1146, in main
+    logger.error(f"\u274c Main execution error: {e}")
+Message: "\u274c Main execution error: 'charmap' codec can't encode characters in position 0-2: character maps to <undefined>"
+Arguments: ()
+\U0001f3af\u26a1 2025-08-01 20:41:29,988 - UltimateOrchestrator[18712] - ERROR - \u274c Main execution error: 'charmap' codec can't encode characters in position 0-2: character maps to <undefined>
+Traceback (most recent call last):
+  File "H:\\U0001f3af\U0001f48e\u26a1_HYPERFOCUS_ZONE_ULTIMATE_ORCHESTRATOR_\u26a1\U0001f48e\U0001f3af.py", line 1151, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "C:\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "H:\\U0001f3af\U0001f48e\u26a1_HYPERFOCUS_ZONE_ULTIMATE_ORCHESTRATOR_\u26a1\U0001f48e\U0001f3af.py", line 1135, in main
+    logger.info("🌌 \U0001f3af\U0001f48e\u26a1 INITIALIZING HYPERFOCUS ZONE ULTIMATE ORCHESTRATOR \u26a1\U0001f48e\U0001f3af")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-2: character maps to <undefined>

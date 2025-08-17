@@ -1,0 +1,236 @@
+{
+  "timestamp": "2025-08-06T18:20:35.269510",
+  "runtime_seconds": 25.952952,
+  "memory_history": [
+    {
+      "timestamp": "2025-08-06T18:20:09.349693",
+      "percent": 87.2,
+      "used_gb": 6.71,
+      "available_gb": 0.98
+    },
+    {
+      "timestamp": "2025-08-06T18:20:10.415468",
+      "percent": 86.7,
+      "used_gb": 6.67,
+      "available_gb": 1.02
+    },
+    {
+      "timestamp": "2025-08-06T18:20:11.460580",
+      "percent": 86.8,
+      "used_gb": 6.68,
+      "available_gb": 1.01
+    },
+    {
+      "timestamp": "2025-08-06T18:20:12.499732",
+      "percent": 87.5,
+      "used_gb": 6.73,
+      "available_gb": 0.96
+    },
+    {
+      "timestamp": "2025-08-06T18:20:13.544503",
+      "percent": 87.5,
+      "used_gb": 6.73,
+      "available_gb": 0.96
+    },
+    {
+      "timestamp": "2025-08-06T18:20:14.593875",
+      "percent": 87.3,
+      "used_gb": 6.72,
+      "available_gb": 0.97
+    },
+    {
+      "timestamp": "2025-08-06T18:20:15.636125",
+      "percent": 87.3,
+      "used_gb": 6.71,
+      "available_gb": 0.97
+    },
+    {
+      "timestamp": "2025-08-06T18:20:16.679419",
+      "percent": 87.3,
+      "used_gb": 6.71,
+      "available_gb": 0.98
+    },
+    {
+      "timestamp": "2025-08-06T18:20:17.716393",
+      "percent": 86.7,
+      "used_gb": 6.67,
+      "available_gb": 1.02
+    },
+    {
+      "timestamp": "2025-08-06T18:20:18.755792",
+      "percent": 86.4,
+      "used_gb": 6.65,
+      "available_gb": 1.04
+    },
+    {
+      "timestamp": "2025-08-06T18:20:19.809432",
+      "percent": 85.5,
+      "used_gb": 6.58,
+      "available_gb": 1.11
+    },
+    {
+      "timestamp": "2025-08-06T18:20:20.870091",
+      "percent": 85.6,
+      "used_gb": 6.58,
+      "available_gb": 1.11
+    },
+    {
+      "timestamp": "2025-08-06T18:20:21.916860",
+      "percent": 85.5,
+      "used_gb": 6.58,
+      "available_gb": 1.11
+    },
+    {
+      "timestamp": "2025-08-06T18:20:22.968756",
+      "percent": 85.7,
+      "used_gb": 6.59,
+      "available_gb": 1.1
+    },
+    {
+      "timestamp": "2025-08-06T18:20:24.030564",
+      "percent": 86.1,
+      "used_gb": 6.62,
+      "available_gb": 1.07
+    },
+    {
+      "timestamp": "2025-08-06T18:20:25.091684",
+      "percent": 86.4,
+      "used_gb": 6.65,
+      "available_gb": 1.04
+    },
+    {
+      "timestamp": "2025-08-06T18:20:26.145745",
+      "percent": 85.9,
+      "used_gb": 6.61,
+      "available_gb": 1.08
+    },
+    {
+      "timestamp": "2025-08-06T18:20:27.204044",
+      "percent": 85.8,
+      "used_gb": 6.59,
+      "available_gb": 1.09
+    },
+    {
+      "timestamp": "2025-08-06T18:20:28.253559",
+      "percent": 85.6,
+      "used_gb": 6.58,
+      "available_gb": 1.11
+    },
+    {
+      "timestamp": "2025-08-06T18:20:29.308112",
+      "percent": 85.6,
+      "used_gb": 6.58,
+      "available_gb": 1.11
+    },
+    {
+      "timestamp": "2025-08-06T18:20:30.365977",
+      "percent": 85.7,
+      "used_gb": 6.59,
+      "available_gb": 1.1
+    },
+    {
+      "timestamp": "2025-08-06T18:20:31.429462",
+      "percent": 85.4,
+      "used_gb": 6.57,
+      "available_gb": 1.12
+    },
+    {
+      "timestamp": "2025-08-06T18:20:32.487836",
+      "percent": 85.7,
+      "used_gb": 6.59,
+      "available_gb": 1.1
+    },
+    {
+      "timestamp": "2025-08-06T18:20:33.557749",
+      "percent": 86.1,
+      "used_gb": 6.62,
+      "available_gb": 1.07
+    },
+    {
+      "timestamp": "2025-08-06T18:20:34.627802",
+      "percent": 85.8,
+      "used_gb": 6.6,
+      "available_gb": 1.09
+    }
+  ],
+  "current_status": {
+    "memory": {
+      "timestamp": "2025-08-06T18:20:35.269914",
+      "total_gb": 7.69,
+      "available_gb": 1.08,
+      "used_gb": 6.61,
+      "percent": 85.9,
+      "free_gb": 1.08,
+      "cached_gb": 0,
+      "buffers_gb": 0
+    },
+    "cpu": {
+      "timestamp": "2025-08-06T18:20:35.270193",
+      "percent": 38.7,
+      "count": 8,
+      "frequency": {
+        "current": 2100.0,
+        "min": 0.0,
+        "max": 2100.0
+      },
+      "load_avg": [
+        0,
+        0,
+        0
+      ]
+    },
+    "top_processes": [
+      {
+        "pid": 18532,
+        "name": "vmmemWSL",
+        "memory_percent": 21.0,
+        "memory_mb": 1649.9,
+        "cpu_percent": 123.9,
+        "is_empire": false,
+        "status_symbol": ""
+      },
+      {
+        "pid": 14168,
+        "name": "Code.exe",
+        "memory_percent": 6.1,
+        "memory_mb": 478.0,
+        "cpu_percent": 0.0,
+        "is_empire": false,
+        "status_symbol": ""
+      },
+      {
+        "pid": 11652,
+        "name": "Code.exe",
+        "memory_percent": 5.0,
+        "memory_mb": 393.6,
+        "cpu_percent": 27.7,
+        "is_empire": false,
+        "status_symbol": ""
+      },
+      {
+        "pid": 3272,
+        "name": "com.docker.backend.e",
+        "memory_percent": 2.5,
+        "memory_mb": 195.9,
+        "cpu_percent": 32.7,
+        "is_empire": false,
+        "status_symbol": ""
+      },
+      {
+        "pid": 4940,
+        "name": "MsMpEng.exe",
+        "memory_percent": 2.4,
+        "memory_mb": 186.0,
+        "cpu_percent": 0.0,
+        "is_empire": false,
+        "status_symbol": ""
+      }
+    ]
+  },
+  "celebrations_triggered": {
+    "memory_improved": false,
+    "target_achieved": false,
+    "empire_stable": true,
+    "performance_excellent": false
+  }
+}

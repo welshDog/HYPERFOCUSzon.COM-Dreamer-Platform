@@ -1,0 +1,165 @@
+{
+  "empire_version": "POWERSHELL_7.6_BLITZ",
+  "last_updated": "2025-08-07T12:00:00Z",
+  "description": "Dynamic portal configuration for PowerShell 7.6 Empire Portal Launcher",
+  "portals": {
+    "1": {
+      "Name": "🤖 Agent Army Coordination Hub",
+      "Path": "H:\\AGENT_ARMY_COORDINATION_HUB.html",
+      "Description": "1,050+ Agent coordination system",
+      "Priority": 1,
+      "HealthCheck": true,
+      "Category": "Management",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "2": {
+      "Name": "💰 Money Empire Dashboard",
+      "Path": "H:\\💰🚀_HYPERFOCUS_MONEY_EMPIRE_DASHBOARD_🚀💰.html",
+      "Description": "Automated revenue tracking",
+      "Priority": 1,
+      "HealthCheck": true,
+      "Category": "Finance",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "3": {
+      "Name": "📊 Performance Dashboard",
+      "Path": "H:\\HYPERFOCUS_PERFORMANCE_DASHBOARD.html",
+      "Description": "Live metrics & benchmarking",
+      "Priority": 2,
+      "HealthCheck": true,
+      "Category": "Analytics",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "4": {
+      "Name": "🌐 Portal Master Dashboard",
+      "Path": "H:\\🌐👑💎⚡_PORTAL_MASTER_DASHBOARD_⚡💎👑🌐.html",
+      "Description": "Multi-portal management system",
+      "Priority": 1,
+      "HealthCheck": true,
+      "Category": "Management",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "5": {
+      "Name": "💎 Ultra dOoK Portal (Running)",
+      "Path": "http://localhost:3456",
+      "Description": "8-tab quantum interface (LIVE)",
+      "Priority": 3,
+      "HealthCheck": false,
+      "Category": "Development",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "6": {
+      "Name": "🌍 Global Expansion Dashboard",
+      "Path": "H:\\GLOBAL_EXPANSION_DASHBOARD.html",
+      "Description": "Worldwide empire management",
+      "Priority": 1,
+      "HealthCheck": true,
+      "Category": "Management",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "7": {
+      "Name": "💎 Dopamine Guardian Creative Fusion Lab",
+      "Path": "H:\\DOPAMINE_GUARDIAN_ZEN_MODE_CREATIVE_FUSION_LAB.html",
+      "Description": "ADHD wellness and creative fusion interface",
+      "Priority": 2,
+      "HealthCheck": true,
+      "Category": "Wellness",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "8": {
+      "Name": "🧠 BCI Fusion Forge Neural Development",
+      "Path": "H:\\BCI_FUSION_FORGE_NEURAL_DEVELOPMENT.html",
+      "Description": "Neural development environment with BCI interface",
+      "Priority": 2,
+      "HealthCheck": true,
+      "Category": "Development",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "9": {
+      "Name": "🔮 Quantum Memory Timeline Navigator",
+      "Path": "H:\\QUANTUM_MEMORY_TIMELINE_NAVIGATOR.html",
+      "Description": "Hyperdimensional memory crystal navigation system",
+      "Priority": 3,
+      "HealthCheck": true,
+      "Category": "Analytics",
+      "LastAccessed": null,
+      "AccessCount": 0
+    },
+    "10": {
+      "Name": "📱 Mobile PWA Command Center",
+      "Path": "H:\\MOBILE_PWA_COMMAND_CENTER.html",
+      "Description": "Mobile Progressive Web App command center",
+      "Priority": 2,
+      "HealthCheck": true,
+      "Category": "Mobile",
+      "LastAccessed": null,
+      "AccessCount": 0
+    }
+  },
+  "settings": {
+    "parallel_launch": {
+      "enabled": true,
+      "throttle_limit": 4,
+      "delay_between_launches_ms": 500
+    },
+    "health_monitoring": {
+      "enabled": true,
+      "check_file_existence": true,
+      "check_file_size": true,
+      "minimum_file_size_kb": 1
+    },
+    "error_handling": {
+      "continue_on_error": true,
+      "log_errors": true,
+      "show_detailed_errors": true
+    },
+    "ui_preferences": {
+      "show_progress_bars": true,
+      "color_output": true,
+      "show_process_ids": true,
+      "sort_by_priority": true
+    }
+  },
+  "categories": {
+    "Management": {
+      "color": "Green",
+      "description": "Empire coordination and management portals"
+    },
+    "Finance": {
+      "color": "Yellow",
+      "description": "Revenue tracking and financial dashboards"
+    },
+    "Analytics": {
+      "color": "Cyan",
+      "description": "Performance metrics and data analysis"
+    },
+    "Development": {
+      "color": "Magenta",
+      "description": "Development tools and environments"
+    },
+    "Wellness": {
+      "color": "Blue",
+      "description": "ADHD support and wellness tools"
+    },
+    "Mobile": {
+      "color": "DarkGreen",
+      "description": "Mobile and PWA applications"
+    }
+  },
+  "powershell_features": {
+    "required_version": "7.6",
+    "fallback_version": "5.1",
+    "parallel_processing": true,
+    "json_hashtable_support": true,
+    "modern_error_handling": true,
+    "progress_indicators": true
+  }
+}

@@ -1,0 +1,106 @@
+{
+    "dashboard": {
+        "id": null,
+        "title": "HyperFocus Zone Empire - Ultimate Dashboard",
+        "tags": [
+            "empire",
+            "hyperfocus",
+            "legendary"
+        ],
+        "style": "dark",
+        "timezone": "browser",
+        "editable": true,
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "refresh": "10s",
+        "panels": [
+            {
+                "id": 1,
+                "title": "Empire System Status",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "up",
+                        "legendFormat": "{{job}} - {{instance}}",
+                        "refId": "A"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "thresholds": {
+                            "steps": [
+                                {
+                                    "color": "red",
+                                    "value": 0
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 0.8
+                                },
+                                {
+                                    "color": "green",
+                                    "value": 1
+                                }
+                            ]
+                        }
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            {
+                "id": 2,
+                "title": "Request Rate",
+                "type": "timeseries",
+                "targets": [
+                    {
+                        "expr": "rate(http_requests_total[5m])",
+                        "legendFormat": "Requests/sec",
+                        "refId": "A"
+                    }
+                ],
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 0
+                }
+            },
+            {
+                "id": 3,
+                "title": "CPU Usage",
+                "type": "gauge",
+                "targets": [
+                    {
+                        "expr": "cpu_usage_percent",
+                        "legendFormat": "CPU %",
+                        "refId": "A"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "min": 0,
+                        "max": 100,
+                        "unit": "percent"
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 8,
+                    "x": 0,
+                    "y": 8
+                }
+            }
+        ]
+    },
+    "overwrite": true
+}

@@ -1,0 +1,87 @@
+{
+    "name": "HyperFocus Empire Playwright Configuration",
+    "version": "1.0.0",
+    "description": "Legendary browser automation configuration for the AI Empire",
+    "browser": "chrome",
+    "headless": true,
+    "viewport": {
+        "width": 1920,
+        "height": 1080
+    },
+    "userAgent": "HyperFocus-Empire-Agent/1.0 (Playwright MCP; AI-Powered)",
+    "security": {
+        "allowedOrigins": [
+            "hyperfocuszone.com",
+            "*.hyperfocuszone.com",
+            "localhost",
+            "127.0.0.1",
+            "github.com",
+            "*.github.com",
+            "npmjs.com",
+            "*.npmjs.com",
+            "stackoverflow.com",
+            "*.stackoverflow.com",
+            "openai.com",
+            "*.openai.com",
+            "claude.ai",
+            "*.claude.ai"
+        ],
+        "blockedOrigins": [
+            "ads.google.com",
+            "googleadservices.com",
+            "googlesyndication.com",
+            "facebook.com/tr",
+            "analytics.google.com",
+            "googletagmanager.com",
+            "hotjar.com",
+            "fullstory.com"
+        ],
+        "ignoreHttpsErrors": true,
+        "noSandbox": true
+    },
+    "session": {
+        "saveSession": true,
+        "saveTrace": true,
+        "isolated": false,
+        "outputDir": "./empire-automation-logs"
+    },
+    "performance": {
+        "timeout": 30000,
+        "navigationTimeout": 60000,
+        "actionTimeout": 10000
+    },
+    "contextOptions": {
+        "locale": "en-US",
+        "timezone": "America/New_York",
+        "permissions": [
+            "geolocation",
+            "notifications"
+        ],
+        "colorScheme": "dark",
+        "reducedMotion": "reduce"
+    },
+    "capabilities": {
+        "vision": false,
+        "pdf": true,
+        "screenshots": true,
+        "accessibility": true
+    },
+    "empire": {
+        "agentIntegration": true,
+        "broskieOrchestrator": true,
+        "ariaIntelligence": true,
+        "memoryCreatels": true,
+        "auditLogging": true
+    },
+    "monitoring": {
+        "grafanaIntegration": true,
+        "lokiLogging": true,
+        "prometheusMetrics": true,
+        "customMetrics": [
+            "web_automation_success_rate",
+            "page_load_times",
+            "element_interaction_latency",
+            "screenshot_generation_time"
+        ]
+    }
+}

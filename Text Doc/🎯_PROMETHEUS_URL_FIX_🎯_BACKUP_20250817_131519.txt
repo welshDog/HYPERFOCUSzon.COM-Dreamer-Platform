@@ -1,0 +1,41 @@
+🚀💎⚡ PROMETHEUS DATA SOURCE CONFIGURATION FIX ⚡💎🚀
+================================================================
+
+❌ ISSUE IDENTIFIED:
+The connection refused error occurs because Grafana is trying to connect 
+via IPv6 ([::1]:9090) and/or from within the container "localhost" doesn't 
+resolve to the host machine.
+
+✅ SOLUTION OPTIONS:
+
+OPTION 1 - Use Host Network (RECOMMENDED):
+Instead of: http://localhost:9090
+Use this URL in Grafana: http://host.docker.internal:9090
+
+OPTION 2 - Use Container IP:
+Instead of: http://localhost:9090  
+Use this URL in Grafana: http://prometheus-empire:9090
+
+OPTION 3 - Use Host Machine IP:
+Instead of: http://localhost:9090
+Use this URL in Grafana: http://127.0.0.1:9090
+
+🎯 IMMEDIATE FIX STEPS:
+1. In Grafana data source configuration
+2. Change the URL from: http://localhost:9090
+3. To: http://host.docker.internal:9090
+4. Click "Save & Test"
+5. Should now show "Data source is working" ✅
+
+🔧 TECHNICAL EXPLANATION:
+- Docker containers run in isolated networks
+- "localhost" inside a container refers to the container itself
+- "host.docker.internal" is Docker's way to reach the host machine
+- This allows Grafana container to reach Prometheus on the host
+
+💎 ALTERNATIVE: If host.docker.internal doesn't work, try:
+- http://127.0.0.1:9090
+- http://[::1]:9090 (force IPv6)
+- Or restart containers with --network host option
+
+🚀 This should resolve your connection refused error!

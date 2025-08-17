@@ -1,0 +1,9 @@
+{
+  "certificate_authority": "Let's Encrypt (via GitHub Pages)",
+  "domains": [
+    "support.hyperfocuszone.com",
+    "hyperfocuszone.com"
+  ],
+  "auto_renewal": true,
+  "force_https": true
+}

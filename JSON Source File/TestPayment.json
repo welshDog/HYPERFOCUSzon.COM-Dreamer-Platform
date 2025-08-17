@@ -1,0 +1,5 @@
+{
+    "user_id": "test_user",
+    "amount": 50.00,
+    "method": "stripe"
+}

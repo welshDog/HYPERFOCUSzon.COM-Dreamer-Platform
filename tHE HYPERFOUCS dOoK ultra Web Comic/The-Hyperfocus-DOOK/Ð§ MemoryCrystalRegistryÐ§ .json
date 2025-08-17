@@ -1,0 +1,82 @@
+{
+  "memory_crystal_system": {
+    "total_stories": 0,
+    "tagged_stories": 0,
+    "crystal_categories": {
+      "origin_crystals": {
+        "description": "Foundational life moments that shaped your path",
+        "tags": [
+          "origin",
+          "childhood",
+          "discovery",
+          "awakening"
+        ],
+        "color": "\ud83d\udd25 Fire Red",
+        "stories": []
+      },
+      "lesson_crystals": {
+        "description": "Insights, learnings, and wisdom gained",
+        "tags": [
+          "lesson",
+          "insight",
+          "learning",
+          "wisdom"
+        ],
+        "color": "\ud83d\udc99 Ocean Blue",
+        "stories": []
+      },
+      "victory_crystals": {
+        "description": "Major wins, breakthroughs, and achievements",
+        "tags": [
+          "victory",
+          "win",
+          "breakthrough",
+          "success"
+        ],
+        "color": "\ud83d\udc9b Golden Sun",
+        "stories": []
+      },
+      "pain_crystals": {
+        "description": "Raw struggles, hard times, and resilience",
+        "tags": [
+          "struggle",
+          "pain",
+          "resilience",
+          "growth"
+        ],
+        "color": "\ud83d\udc9c Deep Purple",
+        "stories": []
+      },
+      "future_crystals": {
+        "description": "Dreams, ideas, visions, and next moves",
+        "tags": [
+          "future",
+          "dreams",
+          "vision",
+          "goals"
+        ],
+        "color": "\ud83d\udc9a Emerald Green",
+        "stories": []
+      },
+      "tiktok_crystals": {
+        "description": "TikTok moments, viral content, and social impact",
+        "tags": [
+          "tiktok",
+          "viral",
+          "social",
+          "content"
+        ],
+        "color": "\ud83c\udf08 Rainbow Prism",
+        "stories": []
+      }
+    },
+    "semantic_search": {
+      "enabled": true,
+      "vector_embeddings": true,
+      "ai_enhanced": true,
+      "recall_accuracy": "legendary"
+    },
+    "last_sync": "2025-07-06T02:46:23.296934",
+    "ai_tagging_enabled": true
+  }
+}

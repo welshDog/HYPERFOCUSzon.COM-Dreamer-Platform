@@ -1,0 +1,189 @@
+{
+    "dashboard": {
+        "id": null,
+        "title": "🏆💎⚡ AI Empire Command Center - System Overview ⚡💎🏆",
+        "description": "Real-time monitoring of the AI Empire infrastructure",
+        "tags": [
+            "empire",
+            "legendary",
+            "command-center",
+            "overview"
+        ],
+        "timezone": "browser",
+        "panels": [
+            {
+                "id": 1,
+                "title": "🤖 Docker Containers Status",
+                "type": "stat",
+                "gridPos": {
+                    "h": 8,
+                    "w": 6,
+                    "x": 0,
+                    "y": 0
+                },
+                "targets": [
+                    {
+                        "expr": "count(up)",
+                        "legendFormat": "Total Services"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "thresholds": {
+                            "steps": [
+                                {
+                                    "color": "red",
+                                    "value": null
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 5
+                                },
+                                {
+                                    "color": "green",
+                                    "value": 10
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "title": "📊 System Memory Usage",
+                "type": "stat",
+                "gridPos": {
+                    "h": 8,
+                    "w": 6,
+                    "x": 6,
+                    "y": 0
+                },
+                "targets": [
+                    {
+                        "expr": "100 * (1 - ((node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)))",
+                        "legendFormat": "Memory Usage %"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "unit": "percent",
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "thresholds": {
+                            "steps": [
+                                {
+                                    "color": "green",
+                                    "value": null
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 70
+                                },
+                                {
+                                    "color": "red",
+                                    "value": 90
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "title": "⚡ CPU Usage",
+                "type": "stat",
+                "gridPos": {
+                    "h": 8,
+                    "w": 6,
+                    "x": 12,
+                    "y": 0
+                },
+                "targets": [
+                    {
+                        "expr": "100 - (avg(irate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
+                        "legendFormat": "CPU Usage %"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "unit": "percent",
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "thresholds": {
+                            "steps": [
+                                {
+                                    "color": "green",
+                                    "value": null
+                                },
+                                {
+                                    "color": "yellow",
+                                    "value": 70
+                                },
+                                {
+                                    "color": "red",
+                                    "value": 90
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "id": 4,
+                "title": "🌐 Network Traffic",
+                "type": "graph",
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 8
+                },
+                "targets": [
+                    {
+                        "expr": "rate(node_network_receive_bytes_total[5m])",
+                        "legendFormat": "RX {{device}}"
+                    },
+                    {
+                        "expr": "rate(node_network_transmit_bytes_total[5m])",
+                        "legendFormat": "TX {{device}}"
+                    }
+                ],
+                "yAxes": [
+                    {
+                        "unit": "Bps",
+                        "label": "Bytes/sec"
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "title": "🏆 Empire Status Log",
+                "type": "logs",
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 8
+                },
+                "targets": [
+                    {
+                        "expr": "{job=\"grafana\"}",
+                        "legendFormat": ""
+                    }
+                ]
+            }
+        ],
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "refresh": "30s",
+        "schemaVersion": 39,
+        "version": 1
+    }
+}

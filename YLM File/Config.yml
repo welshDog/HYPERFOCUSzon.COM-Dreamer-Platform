@@ -1,0 +1,34 @@
+# GitHub Pages Configuration for grafana-by-example
+url: "https://welshdog.github.io/grafana-by-example"
+baseurl: "/grafana-by-example"
+
+# Site settings
+title: Grafana By Example
+description: Professional Grafana dashboard templates and monitoring examples
+author: welshDog
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+# GitHub Pages specific settings
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Exclude files from processing
+exclude:
+  - README_LEGENDARY_UPGRADE.md
+  - legendary_upgrade_results.py
+  - node_modules/
+  - vendor/
+
+# Default settings
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"

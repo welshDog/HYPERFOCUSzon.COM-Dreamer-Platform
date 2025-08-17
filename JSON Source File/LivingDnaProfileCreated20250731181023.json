@@ -1,0 +1,70 @@
+{
+  "user_id": 123456789,
+  "dna_version": "1.0",
+  "creation_date": "2025-07-31T18:10:23.788923",
+  "last_evolution": "2025-07-31T18:10:23.788962",
+  "evolution_points": 0,
+  "evolution_level": 1,
+  "dna_traits": {
+    "focus_genes": {
+      "strength": 50,
+      "evolution_rate": 0.1,
+      "max_strength": 100
+    },
+    "creativity_genes": {
+      "strength": 50,
+      "evolution_rate": 0.1,
+      "max_strength": 100
+    },
+    "leadership_genes": {
+      "strength": 30,
+      "evolution_rate": 0.05,
+      "max_strength": 100
+    },
+    "empathy_genes": {
+      "strength": 60,
+      "evolution_rate": 0.08,
+      "max_strength": 100
+    },
+    "resilience_genes": {
+      "strength": 40,
+      "evolution_rate": 0.06,
+      "max_strength": 100
+    },
+    "innovation_genes": {
+      "strength": 45,
+      "evolution_rate": 0.09,
+      "max_strength": 100
+    },
+    "dedication_genes": {
+      "strength": 35,
+      "evolution_rate": 0.07,
+      "max_strength": 100
+    },
+    "collaboration_genes": {
+      "strength": 55,
+      "evolution_rate": 0.08,
+      "max_strength": 100
+    }
+  },
+  "unified_profile": {},
+  "living_metrics": {
+    "total_syncs": 2,
+    "evolution_count": 0,
+    "trait_improvements": 0,
+    "mastery_unlocks": 0
+  },
+  "behavioral_patterns": {
+    "activity_preference": "balanced",
+    "communication_style": "adaptive",
+    "motivation_type": "intrinsic",
+    "learning_style": "multimodal"
+  },
+  "empire_impact": {
+    "contributions": [],
+    "leadership_moments": [],
+    "collaboration_wins": [],
+    "innovation_sparks": []
+  },
+  "last_sync": "2025-07-31T18:10:23.791477"
+}

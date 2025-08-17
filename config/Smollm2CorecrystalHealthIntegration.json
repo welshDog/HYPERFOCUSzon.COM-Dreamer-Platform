@@ -1,0 +1,16 @@
+{
+  "smollm2_health_monitoring": {
+    "container_name": "smollm2-ai-engine",
+    "health_endpoint": "http://localhost:11435/health",
+    "restart_command": "docker restart smollm2-ai-engine",
+    "upgrade_command": "docker pull huggingface/smollm2:latest && docker restart smollm2-ai-engine",
+    "monitoring_interval": 30,
+    "failure_threshold": 3,
+    "auto_repair": true,
+    "integration_with_existing_systems": {
+      "grafana_alerts": true,
+      "prometheus_metrics": true,
+      "health_repair_system": true
+    }
+  }
+}

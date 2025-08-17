@@ -1,0 +1,301 @@
+# 🚀💎⚡ LEGENDARY SMOLLM2 DOCKER COMPOSE STACK ⚡💎🚀
+# BROski♾️ AI DEV - Ultra AI Integration following LOOK-THEN-BUILD Protocol
+# Integrates SmolLM2 with existing Docker empire for MAXIMUM LEGENDARY POWER!
+
+version: '3.8'
+
+networks:
+  legendary-ai-network:
+    name: legendary-ai-empire
+    driver: bridge
+  empire-bridge:
+    external: true
+
+volumes:
+  ollama_models:
+    name: ollama_models_legendary
+  chroma_data:
+    name: chroma_vector_legendary
+  smollm2_models:
+    name: smollm2_models_legendary
+  smollm2_cache:
+    name: smollm2_cache_legendary
+  ai_monitoring_data:
+    name: ai_monitoring_legendary
+
+services:
+  # 🤖 EXISTING OLLAMA AI ENGINE (Enhanced)
+  ollama-ai-engine:
+    image: ollama/ollama:latest
+    container_name: legendary-ollama-engine
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+      - OLLAMA_MODELS=/root/.ollama
+      - OLLAMA_KEEP_ALIVE=24h
+    networks:
+      - legendary-ai-network
+      - empire-bridge
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - "ai.hyperfocus.service=ollama"
+      - "ai.hyperfocus.type=large-language-model"
+      - "ai.hyperfocus.priority=high"
+
+  # 🧠 EXISTING CHROMADB VECTOR DATABASE (Enhanced)
+  chroma-vector-db:
+    image: chromadb/chroma:latest
+    container_name: legendary-chroma-vectordb
+    restart: unless-stopped
+    ports:
+      - "8002:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    environment:
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_PORT=8000
+      - CHROMA_SERVER_CORS_ALLOW_ORIGINS=["*"]
+    networks:
+      - legendary-ai-network
+      - empire-bridge
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    labels:
+      - "ai.hyperfocus.service=chromadb"
+      - "ai.hyperfocus.type=vector-database"
+      - "ai.hyperfocus.priority=high"
+
+  # ⚡ NEW SMOLLM2 COMPACT AI ENGINE (LEGENDARY ADDITION)
+  smollm2-ai-engine:
+    image: ai/smollm2:latest
+    container_name: legendary-smollm2-engine
+    restart: unless-stopped
+    ports:
+      - "11435:8080"
+    volumes:
+      - smollm2_models:/models
+      - smollm2_cache:/cache
+    environment:
+      - MODEL_NAME=SmolLM2
+      - MAX_TOKENS=8192
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512
+      - TRANSFORMERS_CACHE=/cache
+      - HF_HOME=/cache
+    networks:
+      - legendary-ai-network
+      - empire-bridge
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - "ai.hyperfocus.service=smollm2"
+      - "ai.hyperfocus.type=compact-language-model"
+      - "ai.hyperfocus.priority=high"
+      - "ai.hyperfocus.optimization=resource-efficient"
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+
+  # 📊 UNIFIED AI MONITORING SERVICE (NEW LEGENDARY ADDITION)
+  ai-monitoring-hub:
+    image: python:3.11-alpine
+    container_name: legendary-ai-monitoring-hub
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - ai_monitoring_data:/data
+      - ./monitoring:/app
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app
+      - AI_MONITORING_PORT=8090
+      - OLLAMA_URL=http://ollama-ai-engine:11434
+      - CHROMA_URL=http://chroma-vector-db:8000
+      - SMOLLM2_URL=http://smollm2-ai-engine:8080
+    networks:
+      - legendary-ai-network
+      - empire-bridge
+    command: |
+      sh -c "
+        apk add --no-cache curl
+        pip install fastapi uvicorn requests aiohttp
+        python -c \"
+import asyncio
+import json
+import time
+from datetime import datetime
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+import uvicorn
+import aiohttp
+
+app = FastAPI(title='🏆 Legendary AI Monitoring Hub 🏆')
+
+@app.get('/health')
+async def health_check():
+    return {'status': 'legendary', 'timestamp': datetime.now().isoformat()}
+
+@app.get('/ai-status')
+async def ai_status():
+    services = {
+        'ollama': {'url': 'http://ollama-ai-engine:11434/api/tags', 'name': 'Ollama AI Engine'},
+        'chromadb': {'url': 'http://chroma-vector-db:8000/api/v1/heartbeat', 'name': 'ChromaDB Vector Database'},
+        'smollm2': {'url': 'http://smollm2-ai-engine:8080/health', 'name': 'SmolLM2 Compact Engine'}
+    }
+
+    status = {}
+    async with aiohttp.ClientSession() as session:
+        for service, config in services.items():
+            try:
+                async with session.get(config['url'], timeout=5) as response:
+                    if response.status == 200:
+                        status[service] = {'status': 'legendary', 'name': config['name']}
+                    else:
+                        status[service] = {'status': f'warning_http_{response.status}', 'name': config['name']}
+            except Exception as e:
+                status[service] = {'status': 'connection_failed', 'name': config['name'], 'error': str(e)}
+
+    return status
+
+@app.get('/', response_class=HTMLResponse)
+async def dashboard():
+    return '''
+    <html><head><title>🏆 Legendary AI Empire Status 🏆</title></head>
+    <body style=\"font-family: Arial; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px;\">
+        <h1>🚀💎⚡ LEGENDARY AI EMPIRE STATUS ⚡💎🚀</h1>
+        <div id=\"status\"></div>
+        <script>
+            async function updateStatus() {
+                const response = await fetch('/ai-status');
+                const data = await response.json();
+                let html = '<h2>🏆 AI Services Status:</h2>';
+                for (const [service, info] of Object.entries(data)) {
+                    const emoji = info.status === 'legendary' ? '✅' : '⚠️';
+                    html += `<p>${emoji} ${info.name}: ${info.status}</p>`;
+                }
+                document.getElementById('status').innerHTML = html;
+            }
+            updateStatus();
+            setInterval(updateStatus, 10000);
+        </script>
+    </body></html>
+    '''
+
+if __name__ == '__main__':
+    uvicorn.run(app, host='0.0.0.0', port=8090)
+        \"
+      "
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    depends_on:
+      - ollama-ai-engine
+      - chroma-vector-db
+      - smollm2-ai-engine
+    labels:
+      - "ai.hyperfocus.service=monitoring"
+      - "ai.hyperfocus.type=dashboard"
+      - "ai.hyperfocus.priority=medium"
+
+  # 🔧 AI HEALTH CHECKER SERVICE (INTEGRATION WITH EXISTING SYSTEMS)
+  ai-health-checker:
+    image: python:3.11-alpine
+    container_name: legendary-ai-health-checker
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./health-reports:/reports
+    environment:
+      - CHECK_INTERVAL=60
+      - AUTO_RESTART=true
+      - INTEGRATION_WITH_ULTRA_HEALTH_REPAIR=true
+    networks:
+      - legendary-ai-network
+      - empire-bridge
+    command: |
+      sh -c "
+        apk add --no-cache curl docker-cli
+        pip install docker requests
+        python -c \"
+import time
+import docker
+import requests
+import json
+from datetime import datetime
+from pathlib import Path
+
+def health_check_cycle():
+    client = docker.from_env()
+    ai_containers = ['legendary-ollama-engine', 'legendary-chroma-vectordb', 'legendary-smollm2-engine']
+
+    while True:
+        report = {
+            'timestamp': datetime.now().isoformat(),
+            'containers': {},
+            'overall_status': 'legendary'
+        }
+
+        for container_name in ai_containers:
+            try:
+                container = client.containers.get(container_name)
+                status = container.attrs['State']['Health']['Status'] if 'Health' in container.attrs['State'] else 'unknown'
+
+                report['containers'][container_name] = {
+                    'status': container.status,
+                    'health': status,
+                    'running': container.status == 'running'
+                }
+
+                # Auto-restart if needed
+                if container.status != 'running':
+                    print(f'🔄 Restarting {container_name}...')
+                    container.restart()
+                    report['containers'][container_name]['action'] = 'restarted'
+
+            except Exception as e:
+                report['containers'][container_name] = {'error': str(e)}
+                report['overall_status'] = 'needs_attention'
+
+        # Save report for integration with existing systems
+        Path('/reports').mkdir(exist_ok=True)
+        with open(f'/reports/ai_health_report_{datetime.now().strftime(\"%Y%m%d_%H%M%S\")}.json', 'w') as f:
+            json.dump(report, f, indent=2)
+
+        print(f'🏥 Health check complete: {report[\"overall_status\"]}')
+        time.sleep(60)
+
+health_check_cycle()
+        \"
+      "
+    depends_on:
+      - ollama-ai-engine
+      - chroma-vector-db
+      - smollm2-ai-engine
+    labels:
+      - "ai.hyperfocus.service=health-checker"
+      - "ai.hyperfocus.type=automation"
+      - "ai.hyperfocus.integration=ultra-health-repair"

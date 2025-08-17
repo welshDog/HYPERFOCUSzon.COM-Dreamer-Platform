@@ -1,0 +1,23 @@
+{
+  "launch_timestamp": "2025-08-08T15:10:51.385599",
+  "servers_launched": 2,
+  "server_status": {
+    "analytics_dashboard": "ACTIVE",
+    "websocket_server": "ACTIVE"
+  },
+  "active_servers": [
+    {
+      "name": "analytics_dashboard",
+      "port": 9999,
+      "url": "http://localhost:9999/v2_legendary_dashboard.html",
+      "status": "ACTIVE"
+    },
+    {
+      "name": "websocket_server",
+      "port": 8765,
+      "url": "ws://localhost:8765",
+      "process_id": 23084,
+      "status": "ACTIVE"
+    }
+  ]
+}

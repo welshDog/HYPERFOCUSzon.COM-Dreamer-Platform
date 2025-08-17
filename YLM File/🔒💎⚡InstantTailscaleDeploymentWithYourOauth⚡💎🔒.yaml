@@ -1,0 +1,89 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tailscale-system
+  labels:
+    name: tailscale-system
+    app.kubernetes.io/name: tailscale
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: operator-oauth
+  namespace: tailscale-system
+type: Opaque
+stringData:
+  client_id: "kGsJg5r2TM11CNTRL"
+  client_secret: "tskey-client-kGsJg5r2TM11CNTRL-984KaB1C4zNAz7AGMTnTzNNqWffJ3K5M"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legendary-ai-empire-gateway
+  namespace: tailscale-system
+  labels:
+    app: tailscale-gateway
+    legendary: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tailscale-gateway
+  template:
+    metadata:
+      labels:
+        app: tailscale-gateway
+        legendary: "true"
+    spec:
+      serviceAccountName: operator
+      containers:
+      - name: tailscale
+        image: tailscale/tailscale:latest
+        env:
+        - name: TS_AUTHKEY
+          valueFrom:
+            secretKeyRef:
+              name: tailscale-auth
+              key: TS_AUTHKEY
+        - name: TS_ROUTES
+          value: "10.244.0.0/16,100.68.37.27/32,100.71.69.16/32"
+        - name: TS_HOSTNAME
+          value: "legendary-ai-empire"
+        - name: TS_ACCEPT_DNS
+          value: "true"
+        - name: TS_EXTRA_ARGS
+          value: "--accept-routes"
+        securityContext:
+          capabilities:
+            add: ["NET_ADMIN", "NET_RAW"]
+        volumeMounts:
+        - name: dev-net-tun
+          mountPath: /dev/net/tun
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+      volumes:
+      - name: dev-net-tun
+        hostPath:
+          path: /dev/net/tun
+          type: CharDevice
+      nodeSelector:
+        kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: legendary-ai-empire-gateway-service
+  namespace: tailscale-system
+spec:
+  selector:
+    app: tailscale-gateway
+  ports:
+  - port: 80
+    targetPort: 80
+  type: ClusterIP

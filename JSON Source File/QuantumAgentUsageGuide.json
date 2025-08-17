@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-08-10T01:41:30.260183",
+  "guide_type": "QUANTUM_AGENT_USAGE_MANUAL",
+  "total_agents": 1050,
+  "deployment_methods": 6,
+  "mission_templates": 4,
+  "interface_commands": 10,
+  "practical_examples": 5,
+  "agent_status": "READY_FOR_DEPLOYMENT",
+  "quantum_capabilities": "UNLIMITED_COGNITIVE_OPERATIONS"
+}

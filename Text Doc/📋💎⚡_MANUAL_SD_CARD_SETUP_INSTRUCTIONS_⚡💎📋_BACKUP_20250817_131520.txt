@@ -1,0 +1,107 @@
+📋💎⚡ MANUAL SD CARD SETUP INSTRUCTIONS ⚡💎📋
+=================================================
+
+🔓 STEP 1: UNLOCK SD CARD
+------------------------
+Your SD card is currently write-protected. Please:
+1. Remove the SD card from your computer
+2. Check the physical write-protection switch on the side
+3. Slide it to the UNLOCK position
+4. Reinsert the SD card
+
+📁 STEP 2: COPY FILES TO SD CARD
+-------------------------------
+Copy these files from your h:\ drive to E:\ (SD card):
+
+Required Files:
+✅ setup-pi.sh (Main setup script)
+✅ 💻💎⚡_LAPTOP_PI_RECEIVER_SERVICE_⚡💎💻.py (Laptop service)
+
+📝 STEP 3: CREATE ADDITIONAL FILES ON SD CARD
+--------------------------------------------
+Create these files directly on the SD card (E:\):
+
+1. CREATE: E:\ssh
+   (Empty file to enable SSH)
+
+2. CREATE: E:\firstrun.sh
+   Content:
+   #!/bin/bash
+   systemctl enable ssh
+   bash /boot/setup-pi.sh
+   rm -f /boot/firstrun.sh
+
+3. CREATE: E:\cmdline.txt (if it doesn't exist)
+   Content:
+   console=serial0,115200 console=tty1 root=PARTUUID=738a4d67-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait init=/usr/lib/raspi-config/init_resize.sh
+
+🚀 STEP 4: START LAPTOP SERVICE
+------------------------------
+On your laptop, run:
+python "💻💎⚡_LAPTOP_PI_RECEIVER_SERVICE_⚡💎💻.py"
+
+This will start the receiver service at:
+http://localhost:8888
+
+🥧 STEP 5: BOOT THE PI
+---------------------
+1. Insert SD card into Raspberry Pi
+2. Connect Ethernet cable
+3. Power on the Pi
+4. Wait 5-10 minutes for complete setup
+
+📊 STEP 6: MONITOR PROGRESS
+-------------------------
+Watch your laptop dashboard at:
+http://localhost:8888
+
+The Pi will:
+✅ Auto-update system
+✅ Install Docker & dependencies  
+✅ Deploy micro-cloud stack
+✅ Register with your laptop
+✅ Start sending heartbeats
+✅ Enable task offloading
+
+🎯 STEP 7: TEST DEPLOYMENT
+------------------------
+Once the Pi appears in your laptop dashboard:
+
+1. Pi Status Page: http://[PI_IP]/
+2. Health Check: http://[PI_IP]/health
+3. Task Offloading: Use laptop dashboard
+
+⚡ QUICK TEST COMMAND:
+curl -X POST localhost:8888/api/offload-task \
+-H "Content-Type: application/json" \
+-d '{"task_type": "compute", "payload": {"test": "data"}}'
+
+🎊 SUCCESS INDICATORS:
+====================
+✅ Laptop dashboard shows registered Pi
+✅ Pi heartbeats every 30 seconds
+✅ Pi status page accessible
+✅ Task offloading works
+✅ All Docker services running
+
+🔧 TROUBLESHOOTING:
+==================
+❌ SD card write-protected → Check physical switch
+❌ Pi not appearing → Check network connection
+❌ Services not starting → SSH into Pi, check logs
+❌ Laptop service not starting → Check port 8888
+
+📞 SUPPORT COMMANDS:
+==================
+# Check Pi services:
+ssh pi@[PI_IP]
+cd /opt/microcloud
+docker-compose ps
+
+# Check logs:
+docker-compose logs
+
+# Restart services:
+docker-compose restart
+
+🎊💎⚡ READY FOR LEGENDARY TASK OFFLOADING! ⚡💎🎊

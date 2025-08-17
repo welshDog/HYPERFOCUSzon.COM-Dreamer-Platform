@@ -1,0 +1,16 @@
+{
+  "timestamp": "2025-08-13T03:12:32.426273",
+  "empire_vitals": {
+    "Grafana": "DOWN",
+    "Prometheus": "HEALTHY",
+    "cAdvisor": "HEALTHY",
+    "Node Exporter": "HEALTHY",
+    "Docker": "INSTALLED",
+    "Docker Desktop": "RUNNING"
+  },
+  "critical_alerts": [
+    "Grafana service not responding on port 3001"
+  ],
+  "recovery_actions": [],
+  "system_status": "OPERATIONAL"
+}

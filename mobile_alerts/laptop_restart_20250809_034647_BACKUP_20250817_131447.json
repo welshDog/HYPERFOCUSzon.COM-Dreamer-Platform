@@ -1,0 +1,16 @@
+{
+  "type": "SYSTEM_MAINTENANCE_ALERT",
+  "timestamp": "2025-08-09T03:46:47.966759",
+  "title": "\ud83d\udea8 LAPTOP RESTART WARNING",
+  "message": "System restart pending: Pending Windows Update",
+  "estimated_downtime": "5-10 minutes",
+  "mobile_impact": "Limited functionality during restart",
+  "backup_options": [
+    "Pi Micro-Cloud (if available)",
+    "Mobile-only operations",
+    "Offline Memory Crystals"
+  ],
+  "priority": "HIGH",
+  "touch_optimized": true,
+  "offline_message": "Some features will be unavailable during laptop restart"
+}

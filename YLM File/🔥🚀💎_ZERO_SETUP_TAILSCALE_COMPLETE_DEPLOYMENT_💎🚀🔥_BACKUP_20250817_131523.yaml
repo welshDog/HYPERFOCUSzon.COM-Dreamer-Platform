@@ -1,0 +1,163 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tailscale-system
+  labels:
+    name: tailscale-system
+    app.kubernetes.io/name: tailscale
+    legendary: "true"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: operator-oauth
+  namespace: tailscale-system
+type: Opaque
+stringData:
+  client_id: "kGsJg5r2TM11CNTRL"
+  client_secret: "tskey-client-kGsJg5r2TM11CNTRL-984KaB1C4zNAz7AGMTnTzNNqWffJ3K5M"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tailscale-auth
+  namespace: tailscale-system
+type: Opaque
+stringData:
+  TS_AUTHKEY: "tskey-auth-knoPz9vsP611CNTRL-HC9xPp57QrMLF3nBCoU9sMdC2EAZLfA1"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: tailscale-operator
+rules:
+- apiGroups: [""]
+  resources: ["nodes", "services", "endpoints"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: tailscale-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: tailscale-operator
+subjects:
+- kind: ServiceAccount
+  name: operator
+  namespace: tailscale-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: operator
+  namespace: tailscale-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legendary-ai-empire-gateway
+  namespace: tailscale-system
+  labels:
+    app: tailscale-gateway
+    legendary: "true"
+    zero-setup: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tailscale-gateway
+  template:
+    metadata:
+      labels:
+        app: tailscale-gateway
+        legendary: "true"
+    spec:
+      serviceAccountName: operator
+      containers:
+      - name: tailscale
+        image: tailscale/tailscale:latest
+        env:
+        - name: TS_AUTHKEY
+          valueFrom:
+            secretKeyRef:
+              name: tailscale-auth
+              key: TS_AUTHKEY
+        - name: TS_ROUTES
+          value: "10.244.0.0/16,100.68.37.27/32,100.71.69.16/32"
+        - name: TS_HOSTNAME
+          value: "legendary-ai-empire"
+        - name: TS_ACCEPT_DNS
+          value: "true"
+        - name: TS_ACCEPT_ROUTES
+          value: "true"
+        - name: TS_EXTRA_ARGS
+          value: "--accept-routes --advertise-routes=10.244.0.0/16"
+        securityContext:
+          capabilities:
+            add: ["NET_ADMIN", "NET_RAW"]
+        volumeMounts:
+        - name: dev-net-tun
+          mountPath: /dev/net/tun
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+      volumes:
+      - name: dev-net-tun
+        hostPath:
+          path: /dev/net/tun
+          type: CharDevice
+      nodeSelector:
+        kubernetes.io/os: linux
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: legendary-ai-empire-gateway-service
+  namespace: tailscale-system
+  labels:
+    app: tailscale-gateway
+    legendary: "true"
+spec:
+  selector:
+    app: tailscale-gateway
+  ports:
+  - name: health
+    port: 80
+    targetPort: 80
+    protocol: TCP
+  type: ClusterIP
+---
+# SmolLM2 Service Exposure via Tailscale
+apiVersion: tailscale.com/v1alpha1
+kind: Connector
+metadata:
+  name: smollm2-connector
+  namespace: default
+spec:
+  hostname: "smollm2-legendary"
+  subnetRoutes:
+    - "10.244.0.0/16"
+---
+# Gradio Interface Service Exposure
+apiVersion: tailscale.com/v1alpha1
+kind: Connector
+metadata:
+  name: gradio-connector
+  namespace: default
+spec:
+  hostname: "gradio-legendary"
+  subnetRoutes:
+    - "10.244.0.0/16"

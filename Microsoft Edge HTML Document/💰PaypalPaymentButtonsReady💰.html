@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYPERFOCUS ZONE - HyperFocus Zone - Secure PayPal Payments</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .payment-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-section {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid #00ff88;
+        }
+
+        .price {
+            font-size: 2em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .paypal-button {
+            margin: 15px 0;
+        }
+
+        .quick-pay-link {
+            background: #0070ba;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 10px 0;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .quick-pay-link:hover {
+            background: #005ea6;
+        }
+
+        .emergency-notice {
+            background: #ff4757;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+    
+        /* HYPERFOCUS ZONE Mobile-First Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px !important;
+                font-size: 14px !important;
+            }
+
+            .container, .dashboard, .main-content {
+                max-width: 100% !important;
+                padding: 10px !important;
+                margin: 0 !important;
+            }
+
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 15px !important;
+            }
+
+            h2 {
+                font-size: 1.4rem !important;
+                line-height: 1.3 !important;
+                margin-bottom: 12px !important;
+            }
+
+            h3 {
+                font-size: 1.2rem !important;
+                line-height: 1.3 !important;
+                margin-bottom: 10px !important;
+            }
+
+            .stats-grid, .portal-grid, .service-grid, .payment-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+
+            .card, .portal-card, .service-card, .payment-card {
+                margin-bottom: 15px !important;
+                padding: 15px !important;
+            }
+
+            .btn, button, .payment-btn, .portal-button {
+                width: 100% !important;
+                padding: 12px 20px !important;
+                font-size: 1rem !important;
+                margin-bottom: 10px !important;
+            }
+
+            .header {
+                text-align: center !important;
+                margin-bottom: 20px !important;
+            }
+
+            .navigation, .nav-menu {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+
+            .two-column, .three-column {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* ADHD-Friendly Mobile Enhancements */
+            .focus-mode {
+                padding: 20px 10px !important;
+                margin: 10px 0 !important;
+                border-radius: 10px !important;
+            }
+
+            .quick-action {
+                font-size: 1.1rem !important;
+                padding: 15px !important;
+                margin: 8px 0 !important;
+            }
+
+            .mobile-hidden {
+                display: none !important;
+            }
+
+            .mobile-only {
+                display: block !important;
+            }
+        }
+
+        /* Touch-Friendly Interface */
+        @media (max-width: 480px) {
+            .touch-target {
+                min-height: 44px !important;
+                min-width: 44px !important;
+            }
+
+            input, textarea, select {
+                font-size: 16px !important; /* Prevents zoom on iOS */
+                padding: 12px !important;
+            }
+
+            .emoji-icon {
+                font-size: 1.5rem !important;
+            }
+        }
+        
+        </style>
+
+    <!-- Progressive Web App Configuration -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="HYPERFOCUS ZONE">
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <meta name="msapplication-TileImage" content="/icons/icon-144x144.png">
+
+    <!-- HYPERFOCUS ZONE SEO Enhanced Meta Tags -->
+    <meta name="description" content="HYPERFOCUS ZONE - Revolutionary ADHD productivity tools and focus enhancement system. HYPERFOCUS ZONE - HyperFocus Zone - Secure PayPal Payments - Dream It Build It with legendary focus solutions.">
+    <meta name="keywords" content="ADHD productivity, focus enhancement, HYPERFOCUS ZONE, productivity tools, attention management, ADHD solutions, focus training, mind optimization">
+    <meta name="author" content="HYPERFOCUS ZONE Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://hyperfocuszone.com/💰_PAYPAL_PAYMENT_BUTTONS_READY_💰.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://hyperfocuszone.com/💰_PAYPAL_PAYMENT_BUTTONS_READY_💰.html">
+    <meta property="og:title" content="HYPERFOCUS ZONE - HyperFocus Zone - Secure PayPal Payments - HYPERFOCUS ZONE">
+    <meta property="og:description" content="Revolutionary ADHD productivity tools and focus enhancement system. Dream It Build It with legendary focus solutions.">
+    <meta property="og:image" content="https://hyperfocuszone.com/images/hyperfocus-zone-og.jpg">
+    <meta property="og:site_name" content="HYPERFOCUS ZONE">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://hyperfocuszone.com/💰_PAYPAL_PAYMENT_BUTTONS_READY_💰.html">
+    <meta property="twitter:title" content="HYPERFOCUS ZONE - HyperFocus Zone - Secure PayPal Payments - HYPERFOCUS ZONE">
+    <meta property="twitter:description" content="Revolutionary ADHD productivity tools and focus enhancement system.">
+    <meta property="twitter:image" content="https://hyperfocuszone.com/images/hyperfocus-zone-twitter.jpg">
+
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-title" content="HYPERFOCUS ZONE">
+    <meta name="application-name" content="HYPERFOCUS ZONE">
+    <meta name="msapplication-TileColor" content="#667eea">
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "HYPERFOCUS ZONE - HYPERFOCUS ZONE - HyperFocus Zone - Secure PayPal Payments",
+        "description": "Revolutionary ADHD productivity tools and focus enhancement system",
+        "url": "https://hyperfocuszone.com/💰_PAYPAL_PAYMENT_BUTTONS_READY_💰.html",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "category": "ADHD Productivity Tools"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "HYPERFOCUS ZONE",
+            "url": "https://hyperfocuszone.com",
+            "contactPoint": {
+                "@type": "ContactPoint",
+                "email": "SEND-ME.NFT@UD.ME",
+                "contactType": "customer service"
+            }
+        },
+        "keywords": ["ADHD productivity", "focus enhancement", "productivity tools", "attention management"]
+    }
+    </script>
+</head>
+
+<body class="hyperfocus-mobile-ready">
+    <div class="hyperfocus-zone-tagline" style="text-align: center; padding: 10px; background: linear-gradient(135deg, #FF6B35, #004E89); color: white; font-weight: bold; font-size: 1.1em;">
+        🌟 DREAM IT BUILD IT HYPERFOCUS ZONE 🌟
+    </div>
+    <div class="payment-container">
+        <h1>HYPERFOCUS ZONE - 💰🚀 HyperFocus Zone - Instant Payments 🚀💰</h1>
+
+        <div class="emergency-notice">
+            🚨 EMERGENCY PAYMENT ACTIVATION - BILLS NEED PAYING NOW! 🚨
+        </div>
+
+        <!-- Quick Payment Links -->
+        <div class="service-section">
+            <h2>HYPERFOCUS ZONE - ⚡ INSTANT PAYMENT LINKS</h2>
+            <p>Click any link for immediate PayPal payment:</p>
+
+            <a href="https://paypal.me/WelshDog/25" class="quick-pay-link">Discord Bot Basic - $25</a>
+            <a href="https://paypal.me/WelshDog/50" class="quick-pay-link">Discord Bot Standard - $50</a>
+            <a href="https://paypal.me/WelshDog/75" class="quick-pay-link">Discord Bot Premium - $75</a><br>
+
+            <a href="https://paypal.me/WelshDog/150" class="quick-pay-link">ADHD Consultation - $150</a>
+            <a href="https://paypal.me/WelshDog/250" class="quick-pay-link">System Setup - $250</a><br>
+
+            <a href="https://paypal.me/WelshDog/75" class="quick-pay-link">Python Script - $75</a>
+            <a href="https://paypal.me/WelshDog/150" class="quick-pay-link">Complex Automation - $150</a><br>
+
+            <a href="https://paypal.me/WelshDog/40" class="quick-pay-link">AI Video - $40</a>
+            <a href="https://paypal.me/WelshDog/120" class="quick-pay-link">Video Package - $120</a>
+        </div>
+
+        <!-- Discord Bot Services -->
+        <div class="service-section">
+            <h2>HYPERFOCUS ZONE - 🤖 Discord Bot Services</h2>
+
+            <h3>Basic Package <span class="price">$25</span></h3>
+            <p>• Welcome system + 5 custom commands<br>
+                • 24-48 hour delivery<br>
+                • Setup tutorial included</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="Discord Bot - Basic Package">
+                    <input type="hidden" name="amount" value="25.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+
+            <h3>Standard Package <span class="price">$50</span></h3>
+            <p>• Full moderation system<br>
+                • Games + music bot features<br>
+                • Custom commands unlimited</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="Discord Bot - Standard Package">
+                    <input type="hidden" name="amount" value="50.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+
+            <h3>Premium Package <span class="price">$75</span></h3>
+            <p>• Everything + custom features<br>
+                • Database integration<br>
+                • 30-day support included</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="Discord Bot - Premium Package">
+                    <input type="hidden" name="amount" value="75.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+        </div>
+
+        <!-- ADHD Productivity Consulting -->
+        <div class="service-section">
+            <h2>HYPERFOCUS ZONE - 🧠 ADHD Productivity Consulting</h2>
+
+            <h3>Productivity Audit <span class="price">$150</span></h3>
+            <p>• 1-hour consultation session<br>
+                • Personalized system blueprint<br>
+                • ADHD-optimized strategies</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="ADHD Productivity Consultation">
+                    <input type="hidden" name="amount" value="150.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+
+            <h3>Complete System Setup <span class="price">$250</span></h3>
+            <p>• Full productivity system implementation<br>
+                • Tool integration & automation<br>
+                • 2 follow-up sessions included</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="Complete Productivity System Setup">
+                    <input type="hidden" name="amount" value="250.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+        </div>
+
+        <!-- Python Automation -->
+        <div class="service-section">
+            <h2>HYPERFOCUS ZONE - ⚡ Python Automation</h2>
+
+            <h3>Simple Script <span class="price">$75</span></h3>
+            <p>• Basic automation task<br>
+                • Clean, documented code<br>
+                • Setup instructions included</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="Python Automation Script - Simple">
+                    <input type="hidden" name="amount" value="75.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+
+            <h3>Complex Automation <span class="price">$150</span></h3>
+            <p>• Multi-step workflow automation<br>
+                • Database integration<br>
+                • Error handling & logging</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="Python Automation - Complex Workflow">
+                    <input type="hidden" name="amount" value="150.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+        </div>
+
+        <!-- AI Video Creation -->
+        <div class="service-section">
+            <h2>HYPERFOCUS ZONE - 🎬 AI Video Creation</h2>
+
+            <h3>Single Video <span class="price">$40</span></h3>
+            <p>• One AI-generated video (15-30 seconds)<br>
+                • Social media ready<br>
+                • Commercial usage rights</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="AI Video Creation - Single">
+                    <input type="hidden" name="amount" value="40.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+
+            <h3>Video Package <span class="price">$120</span></h3>
+            <p>• 3 AI videos with editing<br>
+                • Multiple formats/sizes<br>
+                • Custom branding integration</p>
+            <div class="paypal-button">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="item_name" value="AI Video Package - 3 Videos">
+                    <input type="hidden" name="amount" value="120.00">
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="business" value="SEND-ME.NFT@UD.ME">
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0"
+                        name="submit" alt="PayPal - Pay Now">
+                </form>
+            </div>
+        </div>
+
+        <!-- Emergency Contact -->
+        <div class="service-section">
+            <h2>HYPERFOCUS ZONE - 📞 Emergency Contact & Custom Orders</h2>
+            <p>For urgent projects or custom requirements:</p>
+            <p>📧 <strong>Email:</strong> SEND-ME.NFT@UD.ME</p>
+            <p>💬 <strong>Discord:</strong> Available in HyperFocus Zone server</p>
+            <p>💰 <strong>General Payments:</strong> <a href="https://paypal.me/WelshDog"
+                    class="quick-pay-link">paypal.me/WelshDog</a></p>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <h3>🚨 EMERGENCY CASH FLOW ACTIVE 🚨</h3>
+                <p>Fast delivery • Fair prices • ADHD-optimized solutions</p>
+                <p><strong>Your productivity empire starts with one payment!</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Optional: Add payment tracking
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function () {
+                console.log('Payment initiated for:', this.querySelector('[name="item_name"]').value);
+                // Add analytics tracking here if needed
+            });
+        });
+    </script>
+
+    <footer class="hyperfocus-zone-footer" style="text-align: center; padding: 20px; background: #3A3A3A; color: white; margin-top: 40px;">
+        <p><strong>🏆 HYPERFOCUS ZONE - DREAM IT BUILD IT 🏆</strong></p>
+        <p>Where neurodivergent minds create legendary results</p>
+        <p>✨ <a href="mailto:SEND-ME.NFT@UD.ME" style="color: #FFD23F;">SEND-ME.NFT@UD.ME</a> ✨</p>
+        <p><a href="https://hyperfocuszone.com" style="color: #FF6B35;">hyperfocuszone.com</a></p>
+    </footer>
+
+    <footer class="hyperfocus-zone-footer" style="text-align: center; padding: 20px; background: #3A3A3A; color: white; margin-top: 40px;">
+        <p><strong>🏆 HYPERFOCUS ZONE - DREAM IT BUILD IT 🏆</strong></p>
+        <p>Where neurodivergent minds create legendary results</p>
+        <p>✨ <a href="mailto:SEND-ME.NFT@UD.ME" style="color: #FFD23F;">SEND-ME.NFT@UD.ME</a> ✨</p>
+        <p><a href="https://hyperfocuszone.com" style="color: #FF6B35;">hyperfocuszone.com</a></p>
+    </footer>
+
+    <script>
+        // Progressive Web App Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('🚀 PWA Service Worker registered successfully');
+                    })
+                    .catch(function(error) {
+                        console.log('❌ PWA Service Worker registration failed');
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Show custom install button
+            const installButton = document.createElement('button');
+            installButton.innerHTML = '📱 Install HYPERFOCUS ZONE App';
+            installButton.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #FFD700, #FFA500);
+                color: #000;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 25px;
+                font-weight: bold;
+                cursor: pointer;
+                z-index: 1000;
+                animation: pulse 2s infinite;
+            `;
+
+            installButton.addEventListener('click', () => {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('🎉 User accepted the PWA install prompt');
+                    }
+                    deferredPrompt = null;
+                    installButton.remove();
+                });
+            });
+
+            document.body.appendChild(installButton);
+        });
+    </script>
+</body>
+
+</html>

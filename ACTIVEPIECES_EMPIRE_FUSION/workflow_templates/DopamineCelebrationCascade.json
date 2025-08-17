@@ -1,0 +1,12 @@
+{
+    "trigger": "Task completion or achievement",
+    "actions": [
+        "Send celebration message to Discord",
+        "Update achievement counter",
+        "Trigger visual celebration animation",
+        "Add BROski$ to economy balance",
+        "Log success to Memory Crystals",
+        "Schedule next hyperfocus session"
+    ],
+    "dopamine_rating": "MAXIMUM"
+}

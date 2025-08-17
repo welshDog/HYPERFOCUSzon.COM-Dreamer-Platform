@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: tailscale-system
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: operator-oauth
+  namespace: tailscale-system
+stringData:
+  client_id: kGsJg5r2TM11CNTRL
+  client_secret: tskey-client-kGsJg5r2TM11CNTRL-984KaB1C4zNAz7AGMTnTzNNqWffJ3K5M
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: legendary-ai-empire-gateway
+  namespace: tailscale-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tailscale-gateway
+  template:
+    metadata:
+      labels:
+        app: tailscale-gateway
+    spec:
+      containers:
+      - env:
+        - name: TS_AUTHKEY
+          valueFrom:
+            secretKeyRef:
+              key: TS_AUTHKEY
+              name: tailscale-auth
+        - name: TS_ROUTES
+          value: 10.244.0.0/16
+        - name: TS_HOSTNAME
+          value: legendary-ai-empire
+        - name: TS_ACCEPT_DNS
+          value: 'true'
+        image: tailscale/tailscale:latest
+        name: tailscale
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - NET_RAW
