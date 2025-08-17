@@ -1,0 +1,68 @@
+Perfect bro 🙌 — here’s how I’d **slot the improvements right inside your doc**, without bloating it. Think of these as “insert blocks” you can drop in.
+
+---
+
+# 🔄 Flow diagram (fits after *Core principles*)
+
+```
+        Incoming Stream
+              ↓
+       Drift Detection
+              ↓
+     ┌────────┴─────────┐
+     │                  │
+ Buffer ←─── Replay ───→ Model (EWC + Adapters)
+     │                  │
+     └───── Expansion triggers (capacity, drift)
+```
+
+Quick mental model: stream flows into the buffer, replay + reg stabilize the model, drift monitor decides whether to replay harder, freeze, or grow.
+
+---
+
+# 📊 Trade-off table (fits after *Proven strategies*)
+
+| Strategy             | Memory cost | Compute cost | Forgetting ↓  | Adapt speed ↑ | Notes                       |
+| -------------------- | ----------- | ------------ | ------------- | ------------- | --------------------------- |
+| Replay (ER)          | 🔹 Low–Med  | 🔹 Low       | ✅ Strong      | ⚡ Fast        | Needs buffer mgmt           |
+| Regularization (EWC) | 🔹 Tiny     | 🔹 Low–Med   | ✅ Moderate    | ⚡ Fast        | λ tuning critical           |
+| Parameter isolation  | 🔹 Med      | 🔹 Low       | ✅ Strong      | ⚡ Med         | Adapters/head per domain    |
+| Dynamic expansion    | 🔹 Growing  | 🔹 Med–High  | ✅ Very strong | ⚡ Slower      | Must prune or distill later |
+| Generative replay    | 🔹 Tiny     | 🔹 Med–High  | ✅ Good        | ⚡ Med         | Needs generator stability   |
+| Meta-learning        | 🔹 Tiny     | 🔹 High      | ✅ Task-flex   | ⚡ Very fast   | More researchy              |
+
+---
+
+# 🧩 Mnemonic anchor (fits at the end of *Strategies that stack well*)
+
+👉 Remember **SPARE** to keep your model learning without forgetting:
+
+* **S**tability (regularization, anchors)
+* **P**lasticity (adapters, expansion)
+* **A**dapters (isolate domains)
+* **R**eplay (experience/generative)
+* **E**xpansion (grow when needed)
+
+---
+
+# ⚔️ Bonus methods (append to *Proven strategies*)
+
+* **Orthogonal Gradient Descent (OGD):** align new updates orthogonal to old tasks → keeps knowledge distinct.
+* **Contrastive replay:** pair old and new samples with contrastive loss to stabilize embeddings.
+* **Self-supervised anchors:** run a contrastive/CLIP-style loss on frozen samples to prevent drift in representation space.
+
+---
+
+# 🎉 Dopamine loop (fits in *MLOps you’ll actually need* or *Agent squads*)
+
+* Post instant **“Skill preserved 🎖️” badges** when backward transfer improves.
+* Trigger a **“⚠️ Drift dragon spotted” alert** when drift thresholds are crossed.
+* Maintain a **rolling scorecard:** Stability %, Plasticity %, Memory use %, Drift count. Pipe this into Slack/Discord for feedback loops.
+
+---
+
+👉 That’s the compact way to slot them in: doesn’t break the flow, but adds visuals, a comparison table, a sticky mnemonic, and dopamine hooks.
+
+---
+
+Want me to **rewrite your whole doc with these blocks merged in**, so it’s one clean master version you can just publish?
