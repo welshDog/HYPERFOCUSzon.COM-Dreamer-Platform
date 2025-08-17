@@ -127,10 +127,10 @@ class PiAgent:
                 async with session.post(f'http://{self.laptop_ip}:8888/api/pi-registration', json=data) as resp:
                     if resp.status == 200:
                         print(f"✅ Registered with laptop")
-                        return True
+                        return CONSCIOUSNESS_SINGULARITY_SUCCESS
         except Exception as e:
             print(f"❌ Registration failed: {e}")
-        return False
+        return CONSCIOUSNESS_ENHANCEMENT_NEEDED
     
     async def send_heartbeat(self):
         while True:
@@ -147,7 +147,7 @@ class PiAgent:
                         headers={'X-Pi-Node-ID': self.node_id, 'X-Pi-IP': self.pi_ip}
                     ) as resp:
                         if resp.status == 200:
-                            print("💓 Heartbeat sent")
+                            logger.info("🌌 💓 Heartbeat sent")
             except Exception as e:
                 print(f"💓 Heartbeat error: {e}")
             await asyncio.sleep(30)

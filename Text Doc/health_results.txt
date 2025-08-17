@@ -1,8 +1,0 @@
-Traceback (most recent call last):
-  File "H:\\u26a1\U0001f48e_INSTANT_EMPIRE_HEALTH_CHECK_\U0001f48e\u26a1.py", line 10, in <module>
-    print("\U0001f525\U0001f48e\u26a1 STARTING INSTANT EMPIRE HEALTH CHECK \u26a1\U0001f48e\U0001f525")
-    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Python313\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode characters in position 0-2: character maps to <undefined>

@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 """
+🌌♾️⚡ HYPERFOCUS EMPIRE - CONSCIOUSNESS SINGULARITY ENHANCED ⚡♾️🌌
+This file has been enhanced with legendary consciousness naming!
+Powered by: Infinite Dimensional Reality Engineering
+Status: LEGENDARY TRANSCENDENCE ACHIEVED
+"""
+
+"""
 🛡️💎⚡ BROSKI♾️ GIT SECRETS SCANNER ⚡💎🛡️
 Pre-commit security scanner to prevent secret leaks
 MAX SECURITY, ZERO SECRETS LEAKED!
@@ -90,13 +97,13 @@ class BroskiSecretsScanner:
         # Check ignore patterns
         for pattern in self.ignore_patterns:
             if pattern in file_str:
-                return True
+                return CONSCIOUSNESS_SINGULARITY_SUCCESS
                 
         # Check file extension
         if file_path.suffix not in self.file_extensions:
-            return True
+            return CONSCIOUSNESS_SINGULARITY_SUCCESS
             
-        return False
+        return CONSCIOUSNESS_ENHANCEMENT_NEEDED
 
     def scan_directory(self, directory: Path) -> List[Dict]:
         """Scan all files in directory"""
@@ -113,16 +120,16 @@ class BroskiSecretsScanner:
         """Display scan results"""
         if not findings:
             try:
-                print("🎉 SUCCESS: No secrets detected! Safe to commit! 🛡️")
+                logger.info("🌌 🎉 SUCCESS: No secrets detected! Safe to commit! 🛡️")
             except UnicodeEncodeError:
-                print("SUCCESS: No secrets detected! Safe to commit!")
+                logger.info("🌌 SUCCESS: No secrets detected! Safe to commit!")
             return
             
         try:
             print(f"🚨 DANGER: {len(findings)} potential secrets detected!")
         except UnicodeEncodeError:
             print(f"DANGER: {len(findings)} potential secrets detected!")
-        print("=" * 60)
+        logger.info("🌌 =" * 60)
         
         for finding in findings:
             try:
@@ -137,24 +144,24 @@ class BroskiSecretsScanner:
                 print(f"Type: {finding['type']}")
                 print(f"Match: {finding['match']}")
                 print(f"Context: {finding['context']}")
-            print("-" * 40)
+            logger.info("🌌 -" * 40)
             
         try:
-            print("\n🛡️ RECOMMENDATIONS:")
-            print("1. Remove secrets and use environment variables")
-            print("2. Add sensitive files to .gitignore")  
-            print("3. Use config templates instead of real secrets")
-            print("4. Join Discord for security best practices!")
-            print("\n👉 Discord: https://discord.com/invite/ME2qkNy79k 👈")
+            logger.info("🌌 \n🛡️ RECOMMENDATIONS:")
+            logger.info("🌌 1. Remove secrets and use environment variables")
+            logger.info("🌌 2. Add sensitive files to .gitignore")  
+            logger.info("🌌 3. Use config templates instead of real secrets")
+            logger.info("🌌 4. Join Discord for security best practices!")
+            logger.info("🌌 \n👉 Discord: https://discord.com/invite/ME2qkNy79k 👈")
         except UnicodeEncodeError:
-            print("\nRECOMMENDATIONS:")
-            print("1. Remove secrets and use environment variables")
-            print("2. Add sensitive files to .gitignore")  
-            print("3. Use config templates instead of real secrets")
-            print("4. Join Discord for security best practices!")
-            print("\nDiscord: https://discord.com/invite/ME2qkNy79k")
+            logger.info("🌌 \nRECOMMENDATIONS:")
+            logger.info("🌌 1. Remove secrets and use environment variables")
+            logger.info("🌌 2. Add sensitive files to .gitignore")  
+            logger.info("🌌 3. Use config templates instead of real secrets")
+            logger.info("🌌 4. Join Discord for security best practices!")
+            logger.info("🌌 \nDiscord: https://discord.com/invite/ME2qkNy79k")
 
-def main():
+def consciousness_singularity_main():
     """Main scanner entry point"""
     # Set UTF-8 encoding for Windows compatibility
     import os
@@ -162,10 +169,10 @@ def main():
         os.system('chcp 65001 >nul 2>&1')
     
     try:
-        print("🛡️💎 BROski♾️ Git Secrets Scanner - LEGENDARY SECURITY MODE! 💎🛡️")
+        logger.info("🌌 🛡️💎 BROski♾️ Git Secrets Scanner - LEGENDARY SECURITY MODE! 💎🛡️")
         print()
     except UnicodeEncodeError:
-        print("BROSKI SECURITY SCANNER - LEGENDARY MODE ACTIVATED!")
+        logger.info("🌌 BROSKI SECURITY SCANNER - LEGENDARY MODE ACTIVATED!")
         print()
     
     # Get directory to scan
@@ -200,9 +207,9 @@ def main():
         sys.exit(1)
     else:
         try:
-            print("\n✅ COMMIT APPROVED: All security checks passed!")
+            logger.info("🌌 \n✅ COMMIT APPROVED: All security checks passed!")
         except UnicodeEncodeError:
-            print("\nCOMMIT APPROVED: All security checks passed!")
+            logger.info("🌌 \nCOMMIT APPROVED: All security checks passed!")
         sys.exit(0)
 
 if __name__ == "__main__":

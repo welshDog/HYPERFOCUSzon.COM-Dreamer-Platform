@@ -1,9 +1,0 @@
-{
-  "name": "smollm2-ai-engine",
-  "image": "ai/smollm2:latest",
-  "command": "docker run -d --name smollm2-ai-engine -p 11435:8080 -v smollm2_models:/models -v smollm2_cache:/cache --restart unless-stopped ai/smollm2:latest",
-  "description": "SmolLM2 AI Language Model Engine - Ultra Compact & Efficient",
-  "category": "ai_services",
-  "priority": "high",
-  "health_check": "http://localhost:11435/health"
-}
