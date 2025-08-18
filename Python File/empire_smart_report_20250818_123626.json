@@ -1,0 +1,95 @@
+{
+  "scan_timestamp": "2025-08-18T12:36:19.822944",
+  "network_status": {
+    "internet_connectivity": {
+      "https://google.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 259.35
+      },
+      "https://github.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 1173.85
+      },
+      "https://huggingface.co": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 137.93
+      },
+      "https://cloudflare.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 731.09
+      }
+    }
+  },
+  "server_status": {
+    "main_dive": {
+      "name": "main_dive",
+      "ip": "100.114.5.118",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 1.17,
+      "health_score": 100
+    },
+    "raspberry_pi": {
+      "name": "raspberry_pi",
+      "ip": "192.168.137.10",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 2.28,
+      "health_score": 100
+    },
+    "mini_server": {
+      "name": "mini_server",
+      "ip": "100.71.69.16",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 145.16,
+      "health_score": 50
+    },
+    "main_server": {
+      "name": "main_server",
+      "ip": "100.68.37.27",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 147.72,
+      "health_score": 50
+    },
+    "sync_server": {
+      "name": "sync_server",
+      "ip": "212.227.127.144",
+      "status": "\u274c OFFLINE",
+      "response_time_ms": null,
+      "health_score": 0
+    }
+  },
+  "local_system_status": {
+    "hostname": "HYPERFOCUSzone",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 23 Model 24 Stepping 1, AuthenticAMD",
+    "python_version": "3.13.5",
+    "cpu_count": 8,
+    "cpu_usage": 50.0,
+    "memory": {
+      "total_gb": 7.69,
+      "available_gb": 0.91,
+      "used_percent": 88.2
+    },
+    "disk": {
+      "total_gb": 434.56,
+      "free_gb": 237.72,
+      "used_percent": 45.3
+    },
+    "boot_time": "2025-08-17T18:55:51.568937",
+    "hyperfocus_environment": {
+      "hyperfocus_mode": true,
+      "neurodivergent_optimized": true,
+      "ai_enabled": false
+    }
+  },
+  "recommendations": [],
+  "scanner_mode": "AI-Enhanced",
+  "smart_analysis": {
+    "system_health": "\u26a0\ufe0f WARNING: Memory usage elevated. \ud83c\udfaf HyperFocus Tip: Address critical issues during peak focus hours",
+    "server_status": "\u26a0\ufe0f WARNING: 1 servers offline. \ud83c\udfaf HyperFocus Tip: Address critical issues during peak focus hours",
+    "network_connectivity": "\u2705 Network performance healthy. \ud83c\udfaf HyperFocus Tip: Address critical issues during peak focus hours"
+  }
+}

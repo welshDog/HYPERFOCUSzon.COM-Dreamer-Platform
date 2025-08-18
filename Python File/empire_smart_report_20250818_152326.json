@@ -1,0 +1,95 @@
+{
+  "scan_timestamp": "2025-08-18T15:16:53.657284",
+  "network_status": {
+    "internet_connectivity": {
+      "https://google.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 11704.25
+      },
+      "https://github.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 168.14
+      },
+      "https://huggingface.co": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 108.88
+      },
+      "https://cloudflare.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 937.13
+      }
+    }
+  },
+  "server_status": {
+    "main_dive": {
+      "name": "main_dive",
+      "ip": "100.114.5.118",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 6.35,
+      "health_score": 100
+    },
+    "raspberry_pi": {
+      "name": "raspberry_pi",
+      "ip": "192.168.137.10",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 4.5,
+      "health_score": 100
+    },
+    "main_server": {
+      "name": "main_server",
+      "ip": "100.68.37.27",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 323.89,
+      "health_score": 25
+    },
+    "mini_server": {
+      "name": "mini_server",
+      "ip": "100.71.69.16",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 320.38,
+      "health_score": 25
+    },
+    "sync_server": {
+      "name": "sync_server",
+      "ip": "212.227.127.144",
+      "status": "\u274c OFFLINE",
+      "response_time_ms": null,
+      "health_score": 0
+    }
+  },
+  "local_system_status": {
+    "hostname": "HYPERFOCUSzone",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 23 Model 24 Stepping 1, AuthenticAMD",
+    "python_version": "3.13.5",
+    "cpu_count": 8,
+    "cpu_usage": 80.8,
+    "memory": {
+      "total_gb": 7.69,
+      "available_gb": 0.05,
+      "used_percent": 99.4
+    },
+    "disk": {
+      "total_gb": 434.56,
+      "free_gb": 229.26,
+      "used_percent": 47.2
+    },
+    "boot_time": "2025-08-17T18:55:51.933809",
+    "hyperfocus_environment": {
+      "hyperfocus_mode": true,
+      "neurodivergent_optimized": true,
+      "ai_enabled": true
+    }
+  },
+  "recommendations": [],
+  "scanner_mode": "AI-Enhanced",
+  "smart_analysis": {
+    "system_health": "Hyperfocus zone has implemented a novel system that allows users to focus their attention on the world outside of the virtual reality environment. This system is able to take advantage of the user's perspective by allowing them to interact with the game in real time instead of being limited by the virtual reality or other limitations. The hyperfocus zone also offers several features such as multiple screen size, customizable backgrounds, and even an AI-powered visual assistant that can help players visualize their surroundings and explore the world around them. However, there are still some issues that need to be addressed before using the hyperfocus zone effectively. For example, the user experience may not be as immersive as it could have been if they had been immersed in a more realistic environment without restrictions.",
+    "server_status": "The hyperfocus zone is an excellent opportunity for both players to improve their abilities in combat and gain valuable points by running high-speed attacks. However, the game's balance may be too unbalanced due to its strategic elements, which could lead to situations where players are forced to sacrifice themselves for victory or even take out enemies instead of risking a loss.The strategy of the Hyperfocus Zone is more complex than it appears. It focuses on establishing a strong base with minimal damage, while simultaneously aiming for high scores and avoiding losses. This requires tactical planning and careful management. If you have a good idea and plan, then you can create a successful scenario that will ultimately benefit everyone involved.\n\nSolution: A possible solution involves implementing a few changes. One",
+    "network_connectivity": "The hyperfocus zone empire is an essential tool for building out AI systems that are capable of dealing with the world's most complex problems efficiently. This allows them to solve problems faster than humans, while also minimizing their waste and maximizing efficiency. Additionally, it provides valuable insights into how AI can be applied in practical scenarios, allowing us to understand its potential impact more effectively. \"HyperFocus Zone Empire System Data Analysis\"\nThis report presents detailed analysis of the Hyperfocus Zone empire based on the following criteria:\n\nThe primary focus area is around the core of the empire, which includes the main city (City X) as well as other important regions like the forests, mountains, deserts, and oceans. These areas play crucial roles in the growth and"
+  }
+}
