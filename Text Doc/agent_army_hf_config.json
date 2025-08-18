@@ -1,0 +1,52 @@
+{
+  "timestamp": "2025-08-18T04:37:53.005175",
+  "total_agents": 677,
+  "specializations": {
+    "monitoring_agents": {
+      "count": 200,
+      "model": "microsoft/DialoGPT-medium",
+      "task": "System monitoring and health analysis",
+      "skills": [
+        "alert_generation",
+        "status_reporting",
+        "metric_analysis"
+      ],
+      "response_style": "technical_concise"
+    },
+    "communication_agents": {
+      "count": 177,
+      "model": "facebook/blenderbot-400M-distill",
+      "task": "User communication and support",
+      "skills": [
+        "adhd_friendly_responses",
+        "celebration_messages",
+        "user_guidance"
+      ],
+      "response_style": "enthusiastic_supportive"
+    },
+    "analysis_agents": {
+      "count": 150,
+      "model": "google/flan-t5-large",
+      "task": "Data analysis and pattern recognition",
+      "skills": [
+        "trend_analysis",
+        "data_interpretation",
+        "insight_generation"
+      ],
+      "response_style": "analytical_clear"
+    },
+    "prediction_agents": {
+      "count": 150,
+      "model": "microsoft/DialoGPT-large",
+      "task": "Predictive analysis and forecasting",
+      "skills": [
+        "pattern_prediction",
+        "risk_assessment",
+        "optimization_suggestions"
+      ],
+      "response_style": "forward_thinking"
+    }
+  },
+  "status": "ACTIVATED",
+  "hf_integration": "SUCCESS"
+}

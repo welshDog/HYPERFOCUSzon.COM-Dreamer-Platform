@@ -1,0 +1,78 @@
+{
+  "timestamp": "2025-08-18T04:39:03.463362",
+  "total_categories": 4,
+  "total_recommended_models": 13,
+  "categories": {
+    "text_generation": {
+      "description": "Chat and text generation for BROski agents",
+      "recommended_models": [
+        "microsoft/DialoGPT-medium",
+        "facebook/blenderbot-400M-distill",
+        "google/flan-t5-large",
+        "microsoft/DialoGPT-large"
+      ],
+      "use_cases": [
+        "Agent conversations",
+        "User support",
+        "Content generation"
+      ]
+    },
+    "text_analysis": {
+      "description": "Analyze and understand text for ADHD optimization",
+      "recommended_models": [
+        "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        "facebook/bart-large-mnli",
+        "microsoft/deberta-v3-base"
+      ],
+      "use_cases": [
+        "Mood detection",
+        "Focus analysis",
+        "Priority classification"
+      ]
+    },
+    "image_generation": {
+      "description": "Visual content creation for hyperfocus inspiration",
+      "recommended_models": [
+        "stabilityai/stable-diffusion-2",
+        "runwayml/stable-diffusion-v1-5",
+        "CompVis/stable-diffusion-v1-4"
+      ],
+      "use_cases": [
+        "Visual motivation",
+        "ADHD-friendly diagrams",
+        "Celebration images"
+      ]
+    },
+    "productivity_ai": {
+      "description": "AI models specifically for productivity and focus",
+      "recommended_models": [
+        "sentence-transformers/all-MiniLM-L6-v2",
+        "microsoft/deberta-v3-small",
+        "distilbert-base-uncased"
+      ],
+      "use_cases": [
+        "Task prioritization",
+        "Focus scoring",
+        "Attention prediction"
+      ]
+    }
+  },
+  "empire_integration": {
+    "agent_army_ready": true,
+    "oracle_enhanced": true,
+    "grafana_ai_enabled": true,
+    "adhd_optimized": true
+  },
+  "cost_analysis": {
+    "model_access": "FREE",
+    "inference_calls": "FREE_TIER_AVAILABLE",
+    "storage": "FREE_WITH_LIMITS",
+    "total_monthly_cost": "$0.00"
+  },
+  "next_actions": [
+    "Test text generation models",
+    "Implement ADHD mood detection",
+    "Create visual motivation system",
+    "Deploy productivity AI features"
+  ]
+}
