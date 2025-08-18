@@ -1,6 +1,0 @@
-@echo off
-echo ???? LAUNCHING HYPERFOCUS REVENUE EMPIRE ????
-echo.
-echo Starting automated money-making systems...
-python "??????_HYPERFOCUS_AUTOMATED_REVENUE_EMPIRE_??????.py"
-pause

@@ -1,0 +1,85 @@
+{
+  "scan_timestamp": "2025-08-17T21:49:53.885891",
+  "initial_memory_usage": {
+    "total_gb": 7.69,
+    "available_gb": 0.7,
+    "used_gb": 6.99,
+    "used_percent": 90.9,
+    "free_gb": 0.7
+  },
+  "final_memory_usage": {
+    "total_gb": 7.69,
+    "available_gb": 0.5,
+    "used_gb": 7.19,
+    "used_percent": 93.5,
+    "free_gb": 0.5
+  },
+  "optimizations_applied": [
+    {
+      "type": "Python Garbage Collection",
+      "objects_freed": 373,
+      "cycles_collected": 0,
+      "status": "✅ COMPLETED"
+    },
+    {
+      "type": "System Cache Clear",
+      "files_cleared": 0,
+      "status": "✅ COMPLETED"
+    },
+    {
+      "type": "VS Code Memory Analysis",
+      "processes_found": 26,
+      "total_memory_mb": 2361.61,
+      "recommendation": "Consider restarting VS Code if memory usage > 1GB",
+      "status": "✅ ANALYZED"
+    },
+    {
+      "type": "Browser Memory Analysis",
+      "processes_found": 19,
+      "total_memory_mb": 67.96,
+      "status": "✅ ANALYZED"
+    },
+    {
+      "type": "Standby Memory Clear",
+      "method": "PowerShell GC",
+      "status": "✅ ATTEMPTED"
+    },
+    {
+      "type": "Memory Leak Analysis",
+      "high_memory_processes": 4,
+      "processes": [
+        {
+          "name": "Code.exe",
+          "memory_percent": 6.7,
+          "runtime_hours": 2.79
+        },
+        {
+          "name": "Code.exe",
+          "memory_percent": 6.73,
+          "runtime_hours": 1.93
+        },
+        {
+          "name": "Code.exe",
+          "memory_percent": 11.7,
+          "runtime_hours": 1.9
+        },
+        {
+          "name": "vmmemWSL",
+          "memory_percent": 14.48,
+          "runtime_hours": 2.89
+        }
+      ],
+      "status": "✅ ANALYZED"
+    }
+  ],
+  "performance_boost": -2.6,
+  "recommendations": [
+    "Restart VS Code to free memory (currently using >1GB)",
+    "ℹ️ Memory usage stable - consider process management",
+    "🔄 Restart VS Code if using >1GB memory",
+    "🌐 Close unused browser tabs regularly",
+    "🗑️ Run this optimizer weekly for best performance",
+    "📊 Monitor memory usage with Task Manager",
+    "💾 Consider adding more RAM if consistently >80%"
+  ]
+}

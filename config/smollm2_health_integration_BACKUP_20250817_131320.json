@@ -1,8 +1,0 @@
-{
-  "smollm2_monitoring": {
-    "container_name": "smollm2-ai-engine",
-    "health_endpoint": "http://localhost:11435/health",
-    "restart_command": "docker restart smollm2-ai-engine",
-    "upgrade_command": "docker pull ai/smollm2:latest && docker restart smollm2-ai-engine"
-  }
-}
