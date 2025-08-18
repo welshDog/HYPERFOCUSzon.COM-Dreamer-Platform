@@ -22,6 +22,10 @@ try:
     AI_AVAILABLE = True
 except ImportError:
     AI_AVAILABLE = False
+    # Suppress import warnings by creating dummy objects
+    torch = None
+    AutoTokenizer = None
+    AutoModelForCausalLM = None
 
 # Load environment
 try:
