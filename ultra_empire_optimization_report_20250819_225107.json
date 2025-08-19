@@ -1,0 +1,56 @@
+{
+  "timestamp": "2025-08-19T22:51:01.191602",
+  "duration_seconds": 5.917012,
+  "memory_optimization": {
+    "memory_freed": -0.6000000000000085,
+    "objects_collected": 28,
+    "files_cleaned": 0
+  },
+  "server_results": {
+    "main_server": {
+      "ip": "100.68.37.27",
+      "status": "\ud83d\udfe2 ONLINE",
+      "health_score": 75
+    },
+    "mini_server": {
+      "ip": "100.71.69.16",
+      "status": "\ud83d\udfe2 ONLINE",
+      "health_score": 75
+    },
+    "sync_server": {
+      "ip": "212.227.127.144",
+      "status": "\ud83d\udd34 OFFLINE",
+      "health_score": 0
+    }
+  },
+  "network_results": {
+    "Google": {
+      "domain": "google.com",
+      "status": "\u2705 CONNECTED"
+    },
+    "GitHub": {
+      "domain": "github.com",
+      "status": "\u2705 CONNECTED"
+    },
+    "HuggingFace": {
+      "domain": "huggingface.co",
+      "status": "\u2705 CONNECTED"
+    }
+  },
+  "performance_metrics": {
+    "cpu_usage_percent": 96.4,
+    "memory_usage_percent": 90.4,
+    "memory_available_gb": 0.7388191223144531,
+    "disk_usage_percent": 0.5189561560937814,
+    "disk_free_gb": 1464.0413398742676,
+    "python_version": "3.13.5"
+  },
+  "summary": {
+    "overall_score": 66.66666666666666,
+    "status": "\u2705 GOOD OPTIMIZATION",
+    "memory_score": 75,
+    "server_score": 66.66666666666666,
+    "network_score": 100.0,
+    "performance_score": 25
+  }
+}

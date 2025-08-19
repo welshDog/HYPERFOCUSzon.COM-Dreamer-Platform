@@ -1,0 +1,388 @@
+{
+  "scan_timestamp": "2025-08-19T18:16:24.159447",
+  "network_status": {
+    "internet_connectivity": {
+      "https://google.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 459.29
+      },
+      "https://github.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 293.22
+      },
+      "https://huggingface.co": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 86.05
+      },
+      "https://azure.microsoft.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 216.4
+      },
+      "https://aws.amazon.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 504.24
+      },
+      "https://cloudflare.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 200,
+        "response_time_ms": 729.68
+      },
+      "https://hyperfocuszone.com": {
+        "status": "\u2705 CONNECTED",
+        "status_code": 404,
+        "response_time_ms": 11244.28
+      }
+    },
+    "performance": {
+      "bytes_sent": 510543260,
+      "bytes_recv": 381552664,
+      "packets_sent": 2710897,
+      "packets_recv": 459900,
+      "errin": 7615,
+      "errout": 0,
+      "dropin": 7615,
+      "dropout": 0,
+      "error_rate_percent": 0.2402,
+      "drop_rate_percent": 0.2402,
+      "network_health_score": 75
+    }
+  },
+  "server_status": {
+    "raspberry_pi": {
+      "name": "raspberry_pi",
+      "ip": "192.168.137.10",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 2.24,
+      "health_score": 100,
+      "open_ports": {}
+    },
+    "main_dive": {
+      "name": "main_dive",
+      "ip": "100.114.5.118",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 2.08,
+      "health_score": 100,
+      "open_ports": {
+        "443": "HTTPS"
+      }
+    },
+    "main_server": {
+      "name": "main_server",
+      "ip": "100.68.37.27",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 347.52,
+      "health_score": 25,
+      "open_ports": {
+        "22": "SSH",
+        "80": "HTTP",
+        "443": "HTTPS",
+        "2222": "SSH-Alt",
+        "8888": "Agent-Army"
+      }
+    },
+    "mini_server": {
+      "name": "mini_server",
+      "ip": "100.71.69.16",
+      "status": "\u2705 ONLINE",
+      "response_time_ms": 364.5,
+      "health_score": 25,
+      "open_ports": {
+        "22": "SSH",
+        "80": "HTTP",
+        "6379": "Redis"
+      }
+    },
+    "sync_server": {
+      "name": "sync_server",
+      "ip": "212.227.127.144",
+      "status": "\u274c OFFLINE",
+      "response_time_ms": null,
+      "health_score": 0
+    }
+  },
+  "local_system_status": {
+    "hostname": "HYPERFOCUSzone",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 23 Model 24 Stepping 1, AuthenticAMD",
+    "architecture": [
+      "64bit",
+      "WindowsPE"
+    ],
+    "python_version": "3.13.5",
+    "cpu_count": 8,
+    "cpu_usage": 68.1,
+    "memory": {
+      "total_gb": 7.69,
+      "available_gb": 0.59,
+      "used_percent": 92.4
+    },
+    "disk": {
+      "total_gb": 434.56,
+      "free_gb": 223.44,
+      "used_percent": 48.6
+    },
+    "network_interfaces": {
+      "raz Pi": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "04-D4-C4-E3-C3-0C",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "192.168.137.10",
+            "netmask": "255.255.255.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::d334:d2dd:724f:9574",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 1000,
+          "mtu": 1500
+        }
+      },
+      "Local Area Connection* 1": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "82-91-33-B6-F3-9F",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "169.254.227.212",
+            "netmask": "255.255.0.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::6f9c:8c23:7356:4e17",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": false,
+          "duplex": "2",
+          "speed": 0,
+          "mtu": 1500
+        }
+      },
+      "Local Area Connection* 10": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "C2-91-33-B6-F3-9F",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "169.254.200.188",
+            "netmask": "255.255.0.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::8985:1ef8:3550:43da",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": false,
+          "duplex": "2",
+          "speed": 0,
+          "mtu": 1500
+        }
+      },
+      "WiFi": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "80-91-33-B6-F3-9F",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "192.168.0.11",
+            "netmask": "255.255.255.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "2a02:c7c:8621:9300:2f99:f0e9:2b95:3522",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fde1:b90d:40a5:0:a597:5475:dca1:8bc6",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "2a02:c7c:8621:9300:e4a8:c224:4e01:331b",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fde1:b90d:40a5:0:e4a8:c224:4e01:331b",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::a793:24dd:bcaf:7b4d",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 433,
+          "mtu": 1500
+        }
+      },
+      "Bluetooth Network Connection": {
+        "addresses": [
+          {
+            "family": "-1",
+            "address": "80-91-33-B6-F3-9E",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "2",
+            "address": "169.254.242.116",
+            "netmask": "255.255.0.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::1425:b2c4:1b65:ab98",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": false,
+          "duplex": "2",
+          "speed": 3,
+          "mtu": 1500
+        }
+      },
+      "Tailscale": {
+        "addresses": [
+          {
+            "family": "2",
+            "address": "100.114.5.118",
+            "netmask": "255.255.255.255",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fd7a:115c:a1e0::e401:580",
+            "netmask": null,
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "fe80::788f:7c8a:88df:4cc8",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 4294,
+          "mtu": 65535
+        }
+      },
+      "Loopback Pseudo-Interface 1": {
+        "addresses": [
+          {
+            "family": "2",
+            "address": "127.0.0.1",
+            "netmask": "255.0.0.0",
+            "broadcast": null
+          },
+          {
+            "family": "23",
+            "address": "::1",
+            "netmask": null,
+            "broadcast": null
+          }
+        ],
+        "stats": {
+          "isup": true,
+          "duplex": "2",
+          "speed": 1073,
+          "mtu": 1500
+        }
+      }
+    },
+    "boot_time": "2025-08-19T11:11:54.153161",
+    "hyperfocus_environment": {
+      "hyperfocus_mode": true,
+      "neurodivergent_optimized": true,
+      "ai_enabled": true
+    }
+  },
+  "recommendations": [
+    {
+      "category": "\ud83d\udea8 Critical",
+      "issue": "Offline servers detected: sync_server",
+      "recommendation": "Investigate network connectivity, firewall rules, and server status",
+      "priority": "HIGH",
+      "hyperfocus_tip": "Use 25-minute focused sessions to investigate each server individually"
+    },
+    {
+      "category": "\u26a0\ufe0f Performance",
+      "issue": "High memory usage: 92.4%",
+      "recommendation": "Close unnecessary applications or upgrade RAM",
+      "priority": "MEDIUM",
+      "hyperfocus_tip": "Set memory usage alerts to avoid cognitive overload"
+    },
+    {
+      "category": "\ud83c\udf1f Neurodivergent Optimization",
+      "issue": "Monitoring frequency",
+      "recommendation": "Set up automated alerts to reduce cognitive load",
+      "priority": "LOW",
+      "hyperfocus_tip": "Use color-coded dashboards for quick status recognition"
+    },
+    {
+      "category": "\ud83c\udfaf HyperFocus Enhancement",
+      "issue": "Attention management",
+      "recommendation": "Schedule infrastructure reviews during peak focus hours",
+      "priority": "LOW",
+      "hyperfocus_tip": "Batch similar tasks to maintain flow state"
+    }
+  ],
+  "ai_analysis": {
+    "system_health": "Unable to generate analysis",
+    "network_performance": "The Network Performance is a combination of two components: the connection quality and bottleneck identification. The first component measures the quality of the connections in an overall system, while the second component uses the information from these connections to determine whether or not the problems are caused by human errors or software flaws.\n\nConnection Quality Assessment:\n\nThe most common type of connection problem that affects performance is called \"connection quality.\" This refers to the number of failed connections among all the available connections, as well as the amount of time it takes before one fails (usually due to human error). In some cases, the number of connections may be higher than expected, but the quality of the results remains satisfactory.\n\nConnection Quality Assessment can be performed using various methods, including:\n\n1. Using an external tool like NetFlow Analyzer to analyze the flow through a network. This will help you identify any potential bottlenecks or outliers.\n2. Using an external application like OpenFlow to perform real-time analysis of the flow through a",
+    "infrastructure": "Unable to generate analysis"
+  },
+  "gemma_insights": {}
+}
