@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Personal Productivity Coach",
+    "purpose": "Help users optimize their focus sessions and productivity",
+    "features": [
+      "Hyperfocus session recommendations",
+      "Break time optimization",
+      "Task prioritization for ADHD brains",
+      "Personalized motivation messages"
+    ],
+    "integration_status": "READY"
+  },
+  {
+    "name": "Social Interaction Assistant",
+    "purpose": "Support users with social anxiety and communication challenges",
+    "features": [
+      "Conversation starter suggestions",
+      "Social cue interpretation help",
+      "Conflict resolution guidance",
+      "Community interaction coaching"
+    ],
+    "integration_status": "READY"
+  },
+  {
+    "name": "Focus State Optimizer",
+    "purpose": "Monitor and optimize user focus states in real-time",
+    "features": [
+      "ADHD state detection",
+      "Distraction pattern recognition",
+      "Optimal timing recommendations",
+      "Focus environment customization"
+    ],
+    "integration_status": "READY"
+  },
+  {
+    "name": "Content Discovery Agent",
+    "purpose": "Help users find relevant content based on their interests and ADHD patterns",
+    "features": [
+      "Interest-based content curation",
+      "Hyperfocus-friendly content formatting",
+      "Special interest deep-dive recommendations",
+      "ADHD-optimized content timing"
+    ],
+    "integration_status": "READY"
+  },
+  {
+    "name": "Community Wellness Guardian",
+    "purpose": "Maintain a safe and supportive community environment",
+    "features": [
+      "Mental health crisis detection",
+      "Bullying prevention and intervention",
+      "Positive community reinforcement",
+      "Neurodivergent-safe space maintenance"
+    ],
+    "integration_status": "READY"
+  }
+]
