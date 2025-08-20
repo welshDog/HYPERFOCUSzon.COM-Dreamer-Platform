@@ -18,6 +18,7 @@ def legendary_push():
         "HYPERFOCUSzone-DEV-Community",
         "HYPERFOCUSzone-Community",
         "HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER-",
+        "-HYPERFOCUS-ZONE-Omega-Vault-",
     ]
     original_dir = os.getcwd()
 
@@ -76,11 +77,13 @@ def legendary_push():
     print("🏆 https://github.com/welshDog/HYPERFOCUSzone-DEV-Community")
     print("🌈 https://github.com/welshDog/HYPERFOCUSzone-Community")
     print("💫 https://github.com/welshDog/HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER-")
+    print("🌌 https://github.com/welshDog/-HYPERFOCUS-ZONE-Omega-Vault-")
     print("")
     print("🎯 IF PUSH FAILED, MANUAL COMMANDS:")
     print("cd HYPERFOCUSzone-DEV-Community && git push origin main")
     print("cd ../HYPERFOCUSzone-Community && git push origin main")
     print("cd ../HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER- && git push origin main")
+    print("cd ../-HYPERFOCUS-ZONE-Omega-Vault- && git push origin main")
     print("")
     print("🚀 READY TO WATCH JAWS DROP AND HEAR 'WOW!'")
 
