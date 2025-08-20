@@ -1,0 +1,54 @@
+﻿# SSH Configuration for your server
+
+# Server Configuration
+SERVER_CONFIG = {
+    'hostname': '212.227.127.144',    # Your server IP
+    'username': 'root',               # Your username on the server
+    'password': None,                 # Set your password here if not using key-based auth
+    'port': 22,                       # SSH port (22 is default)
+    'private_key_path': '~/.ssh/id_rsa',  # Path to your SSH private key
+}
+
+# Connection Settings
+CONNECTION_SETTINGS = {
+    'timeout': 30,                    # Connection timeout in seconds
+    'auto_add_host_key': True,        # Automatically add unknown host keys
+    'compress': True,                 # Enable compression
+    'keep_alive': 30,                 # Keep alive interval
+    'max_retries': 3,                 # Maximum connection retries
+    'retry_delay': 2,                 # Delay between retries
+}
+
+# File Transfer Paths
+FILE_PATHS = {
+    'local_directory': './downloads/',     # Where files go on your local machine
+    'remote_directory': '/root/uploads/',  # Where to upload/download on your server
+    'backup_directory': './backups/',      # Local backup directory
+}
+
+# Logging Configuration
+LOGGING_CONFIG = {
+    'log_level': 'INFO',              # DEBUG, INFO, WARNING, ERROR
+    'log_file': './logs/ssh_manager.log',
+    'max_log_size': 10*1024*1024,     # 10MB max log file size
+    'backup_count': 5,                # Number of backup log files
+}
+
+# Common Commands (used in interactive shell)
+COMMON_COMMANDS = {
+    'system_info': 'uname -a',
+    'disk_usage': 'df -h',
+    'memory_usage': 'free -h',
+    'running_processes': 'ps aux | head -20',
+    'network_info': 'ip addr show',
+    'uptime': 'uptime',
+    'sysinfo': 'uname -a && uptime && free -h',
+    'diskspace': 'df -h',
+    'processes': 'ps aux | head -10',
+    'network': 'ip addr show',
+    'logs': 'tail -20 /var/log/syslog',
+    'users': 'who && last | head -5',
+    'memory': 'free -h && cat /proc/meminfo | head -10',
+    'cpu': 'lscpu && cat /proc/loadavg',
+    'services': 'systemctl list-units --type=service --state=running | head -10',
+    'docker':

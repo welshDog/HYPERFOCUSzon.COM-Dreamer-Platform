@@ -1,0 +1,473 @@
+﻿#!/usr/bin/env python3
+"""
+🚀 Enhanced Server Manager - Professional SSH Management Tool
+Version: 2.0
+Author: HyperBeast Development Team
+"""
+
+import paramiko
+import sys
+import os
+import getpass
+import subprocess
+import time
+import logging
+import json
+from datetime import datetime
+from pathlib import Path
+from rich.console import Console
+from rich.table import Table
+from rich.panel import Panel
+from rich.progress import Progress
+from rich.text import Text
+from config import (
+    SERVER_CONFIG, CONNECTION_SETTINGS, COMMON_COMMANDS, 
+    SECURITY_SETTINGS, LOGGING_CONFIG, COLORS, COMMAND_ALIASES,
+    FILE_PATHS, TRANSFER_SETTINGS, ADVANCED_FEATURES
+)
+
+# Initialize rich console
+console = Console()
+
+class EnhancedServerManager:
+    def __init__(self):
+        self.ssh = None
+        self.sftp = None
+        self.connected = False
+        self.session_start = None
+        self.command_history = []
+        self.setup_logging()
+        self.setup_directories()
+        
+    def setup_logging(self):
+        """Setup logging configuration"""
+        log_dir = Path(LOGGING_CONFIG['log_file']).parent
+        log_dir.mkdir(exist_ok=True)
+        
+        logging.basicConfig(
+            level=getattr(logging, LOGGING_CONFIG['log_level']),
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler(LOGGING_CONFIG['log_file']),
+                logging.StreamHandler(sys.stdout)
+            ]
+        )
+        self.logger = logging.getLogger(__name__)
+    
+    def setup_directories(self):
+        """Create necessary directories"""
+        for path in [FILE_PATHS['local_directory'], FILE_PATHS['backup_directory']]:
+            Path(path).mkdir(parents=True, exist_ok=True)
+    
+    def print_header(self):
+        """Print application header"""
+        header = Panel.fit(
+            "[bold cyan]🚀 ENHANCED SERVER MANAGER 🚀[/bold cyan]\n"
+            f"[green]Connected to: {SERVER_CONFIG['hostname']}[/green]\n"
+            f"[blue]Session: {self.session_start or 'Not Connected'}[/blue]",
+            border_style="bright_blue"
+        )
+        console.print(header)
+    
+    def test_connection(self):
+        """Test basic connectivity to the server"""
+        try:
+            console.print(f"[yellow]🔍 Testing connection to {SERVER_CONFIG['hostname']}:{SERVER_CONFIG.get('port', 22)}[/yellow]")
+            
+            import socket
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.settimeout(5)
+            result = sock.connect_ex((SERVER_CONFIG['hostname'], SERVER_CONFIG.get('port', 22)))
+            sock.close()
+            
+            if result == 0:
+                console.print("[green]✅ Server is reachable[/green]")
+                self.logger.info("Server connectivity test passed")
+                return True
+            else:
+                console.print("[red]❌ Server is not reachable[/red]")
+                self.logger.error("Server connectivity test failed")
+                return False
+                
+        except Exception as e:
+            console.print(f"[red]❌ Connection test failed: {e}[/red]")
+            self.logger.error(f"Connection test failed: {e}")
+            return False
+    
+    def connect_ssh(self):
+        """Connect via SSH with enhanced error handling"""
+        try:
+            self.ssh = paramiko.SSHClient()
+            self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            
+            console.print(f"[yellow]🔄 Connecting to {SERVER_CONFIG['hostname']}...[/yellow]")
+            
+            # Try different authentication methods
+            auth_methods = []
+            
+            # Method 1: Try key-based authentication
+            key_path = os.path.expanduser(SERVER_CONFIG.get('private_key_path', '~/.ssh/id_rsa'))
+            if os.path.exists(key_path):
+                auth_methods.append(('key', key_path))
+            
+            # Method 2: Use password if provided
+            if SERVER_CONFIG.get('password'):
+                auth_methods.append(('password', SERVER_CONFIG['password']))
+            
+            # Method 3: Prompt for password
+            auth_methods.append(('prompt', None))
+            
+            for method, credential in auth_methods:
+                try:
+                    if method == 'key':
+                        self.ssh.connect(
+                            hostname=SERVER_CONFIG['hostname'],
+                            username=SERVER_CONFIG['username'],
+                            key_filename=credential,
+                            port=SERVER_CONFIG.get('port', 22),
+                            timeout=CONNECTION_SETTINGS.get('timeout', 30)
+                        )
+                        console.print("[green]✅ Connected using SSH key[/green]")
+                        self.logger.info("SSH connection established using key authentication")
+                        break
+                        
+                    elif method == 'password':
+                        self.ssh.connect(
+                            hostname=SERVER_CONFIG['hostname'],
+                            username=SERVER_CONFIG['username'],
+                            password=credential,
+                            port=SERVER_CONFIG.get('port', 22),
+                            timeout=CONNECTION_SETTINGS.get('timeout', 30)
+                        )
+                        console.print("[green]✅ Connected using stored password[/green]")
+                        self.logger.info("SSH connection established using password authentication")
+                        break
+                        
+                    elif method == 'prompt':
+                        password = getpass.getpass(f"Enter password for {SERVER_CONFIG['username']}@{SERVER_CONFIG['hostname']}: ")
+                        self.ssh.connect(
+                            hostname=SERVER_CONFIG['hostname'],
+                            username=SERVER_CONFIG['username'],
+                            password=password,
+                            port=SERVER_CONFIG.get('port', 22),
+                            timeout=CONNECTION_SETTINGS.get('timeout', 30)
+                        )
+                        console.print("[green]✅ Connected using entered password[/green]")
+                        self.logger.info("SSH connection established using prompted password")
+                        break
+                        
+                except paramiko.AuthenticationException:
+                    continue
+                except Exception as e:
+                    console.print(f"[red]❌ Connection failed with {method}: {e}[/red]")
+                    self.logger.error(f"Connection failed with {method}: {e}")
+                    continue
+            else:
+                console.print("[red]❌ All authentication methods failed[/red]")
+                self.logger.error("All authentication methods failed")
+                return False
+            
+            # Setup SFTP for file transfers
+            self.sftp = self.ssh.open_sftp()
+            self.connected = True
+            self.session_start = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            
+            return True
+            
+        except Exception as e:
+            console.print(f"[red]❌ Connection failed: {e}[/red]")
+            self.logger.error(f"Connection failed: {e}")
+            return False
+    
+    def run_command(self, command, show_output=True):
+        """Execute a command on the remote server with enhanced output"""
+        if not self.connected:
+            console.print("[red]❌ Not connected to server[/red]")
+            return None, "Not connected"
+        
+        try:
+            # Log command execution
+            self.logger.info(f"Executing command: {command}")
+            self.command_history.append({
+                'command': command,
+                'timestamp': datetime.now().isoformat(),
+                'user': SERVER_CONFIG['username']
+            })
+            
+            stdin, stdout, stderr = self.ssh.exec_command(command)
+            
+            output = stdout.read().decode('utf-8')
+            error = stderr.read().decode('utf-8')
+            
+            if show_output:
+                if output:
+                    console.print(f"[green]{output}[/green]")
+                if error:
+                    console.print(f"[red]Error: {error}[/red]")
+            
+            return output, error
+            
+        except Exception as e:
+            error_msg = f"Command failed: {e}"
+            console.print(f"[red]❌ {error_msg}[/red]")
+            self.logger.error(error_msg)
+            return None, error_msg
+    
+    def show_server_info(self):
+        """Display comprehensive server information"""
+        console.print("[yellow]🔍 Gathering server information...[/yellow]")
+        
+        info_commands = {
+            "System": "uname -a",
+            "Uptime": "uptime",
+            "Disk Usage": "df -h",
+            "Memory": "free -h",
+            "CPU Info": "lscpu | head -10",
+            "Network": "ip addr show | head -20",
+            "Load Average": "cat /proc/loadavg",
+            "Running Services": "systemctl list-units --type=service --state=running | head -10"
+        }
+        
+        table = Table(title="Server Information", border_style="bright_blue")
+        table.add_column("Category", style="cyan", width=15)
+        table.add_column("Information", style="green")
+        
+        for name, cmd in info_commands.items():
+            output, _ = self.run_command(cmd, show_output=False)
+            if output:
+                # Truncate long output
+                display_output = output.strip()
+                if len(display_output) > 200:
+                    display_output = display_output[:200] + "..."
+                table.add_row(name, display_output)
+        
+        console.print(table)
+    
+    def quick_commands_menu(self):
+        """Enhanced quick commands menu"""
+        while True:
+            console.print("\n[bold cyan]🚀 Quick Commands Menu[/bold cyan]")
+            
+            table = Table(border_style="bright_blue")
+            table.add_column("ID", style="cyan", width=4)
+            table.add_column("Command", style="green", width=20)
+            table.add_column("Description", style="white")
+            
+            commands_list = list(COMMON_COMMANDS.items())
+            for i, (name, cmd) in enumerate(commands_list, 1):
+                description = name.replace('_', ' ').title()
+                table.add_row(str(i), name, description)
+            
+            table.add_row("0", "back", "Return to main menu")
+            console.print(table)
+            
+            try:
+                choice = input("\n🎯 Select command (0-{0}): ".format(len(COMMON_COMMANDS))).strip()
+                
+                if choice == '0':
+                    break
+                    
+                try:
+                    choice_num = int(choice)
+                    if 1 <= choice_num <= len(COMMON_COMMANDS):
+                        cmd_name = commands_list[choice_num - 1][0]
+                        cmd = COMMON_COMMANDS[cmd_name]
+                        console.print(f"\n[yellow]⚡ Running: {cmd}[/yellow]")
+                        self.run_command(cmd)
+                    else:
+                        console.print("[red]❌ Invalid choice[/red]")
+                except ValueError:
+                    console.print("[red]❌ Please enter a number[/red]")
+                    
+            except KeyboardInterrupt:
+                break
+    
+    def interactive_shell(self):
+        """Enhanced interactive shell with history and aliases"""
+        console.print("\n[bold green]🚀 Interactive Shell Started[/bold green]")
+        console.print("[dim]Type 'help' for available commands, 'exit' to quit[/dim]")
+        
+        while True:
+            try:
+                cmd = input(f"\n[{SERVER_CONFIG['username']}@{SERVER_CONFIG['hostname']}]$ ").strip()
+                
+                if cmd.lower() in ['exit', 'quit']:
+                    break
+                elif cmd.lower() == 'help':
+                    self.show_help()
+                elif cmd.lower() == 'history':
+                    self.show_command_history()
+                elif cmd.lower() == 'clear':
+                    os.system('cls' if os.name == 'nt' else 'clear')
+                elif cmd in COMMAND_ALIASES:
+                    actual_cmd = COMMON_COMMANDS[COMMAND_ALIASES[cmd]]
+                    console.print(f"[dim]Running: {actual_cmd}[/dim]")
+                    self.run_command(actual_cmd)
+                elif cmd:
+                    self.run_command(cmd)
+                    
+            except KeyboardInterrupt:
+                console.print("\n[yellow]Use 'exit' to quit[/yellow]")
+            except EOFError:
+                break
+    
+    def show_help(self):
+        """Show help information"""
+        help_text = """
+[bold cyan]🚀 Enhanced Server Manager - Help[/bold cyan]
+
+[bold]Built-in Commands:[/bold]
+  help     - Show this help message
+  history  - Show command history
+  clear    - Clear screen
+  exit     - Exit the shell
+
+[bold]Quick Command Aliases:[/bold]
+"""
+        for alias, command in COMMAND_ALIASES.items():
+            help_text += f"  {alias:8} - {command}\n"
+        
+        console.print(help_text)
+    
+    def show_command_history(self):
+        """Show command history"""
+        if not self.command_history:
+            console.print("[yellow]No command history available[/yellow]")
+            return
+        
+        table = Table(title="Command History", border_style="bright_blue")
+        table.add_column("Time", style="cyan")
+        table.add_column("Command", style="green")
+        
+        for entry in self.command_history[-10:]:  # Show last 10 commands
+            table.add_row(entry['timestamp'], entry['command'])
+        
+        console.print(table)
+    
+    def main_menu(self):
+        """Enhanced main menu system"""
+        while True:
+            self.print_header()
+            
+            menu_options = [
+                ("1", "Test Connection", "🔍"),
+                ("2", "Connect and Show Server Info", "📊"),
+                ("3", "Interactive Shell", "💻"),
+                ("4", "Quick Commands", "⚡"),
+                ("5", "Security Scan", "🔒"),
+                ("6", "File Transfer", "📁"),
+                ("7", "System Monitoring", "📈"),
+                ("8", "Settings", "⚙️"),
+                ("9", "Exit", "🚪")
+            ]
+            
+            table = Table(title="Main Menu", border_style="bright_blue")
+            table.add_column("Option", style="cyan", width=8)
+            table.add_column("Action", style="green", width=30)
+            table.add_column("Icon", style="yellow", width=5)
+            
+            for option, action, icon in menu_options:
+                table.add_row(option, action, icon)
+            
+            console.print(table)
+            
+            try:
+                choice = input("\n🎯 Select option (1-9): ").strip()
+                
+                if choice == '1':
+                    self.test_connection()
+                elif choice == '2':
+                    if self.connect_ssh():
+                        self.show_server_info()
+                elif choice == '3':
+                    if self.connect_ssh():
+                        self.interactive_shell()
+                elif choice == '4':
+                    if self.connect_ssh():
+                        self.quick_commands_menu()
+                elif choice == '5':
+                    if self.connect_ssh():
+                        self.security_scan()
+                elif choice == '6':
+                    if self.connect_ssh():
+                        self.file_transfer_menu()
+                elif choice == '7':
+                    if self.connect_ssh():
+                        self.system_monitoring()
+                elif choice == '8':
+                    self.settings_menu()
+                elif choice == '9':
+                    self.cleanup()
+                    console.print("[green]👋 Goodbye![/green]")
+                    break
+                else:
+                    console.print("[red]❌ Invalid choice. Please select 1-9.[/red]")
+                    
+            except KeyboardInterrupt:
+                console.print("\n[yellow]👋 Goodbye![/yellow]")
+                self.cleanup()
+                break
+            except EOFError:
+                break
+    
+    def security_scan(self):
+        """Basic security scan"""
+        console.print("[yellow]🔒 Running security scan...[/yellow]")
+        
+        security_commands = {
+            "Open Ports": "netstat -tuln",
+            "Failed Login Attempts": "grep 'Failed password' /var/log/auth.log | tail -10",
+            "Active Users": "who",
+            "Firewall Status": "ufw status",
+            "System Updates": "apt list --upgradable"
+        }
+        
+        for check, cmd in security_commands.items():
+            console.print(f"\n[cyan]🔍 {check}:[/cyan]")
+            self.run_command(cmd)
+    
+    def file_transfer_menu(self):
+        """File transfer menu placeholder"""
+        console.print("[yellow]📁 File Transfer feature coming soon![/yellow]")
+    
+    def system_monitoring(self):
+        """System monitoring placeholder"""
+        console.print("[yellow]📈 System Monitoring feature coming soon![/yellow]")
+    
+    def settings_menu(self):
+        """Settings menu placeholder"""
+        console.print("[yellow]⚙️ Settings feature coming soon![/yellow]")
+    
+    def cleanup(self):
+        """Cleanup connections and save session data"""
+        if self.connected:
+            if self.sftp:
+                self.sftp.close()
+            if self.ssh:
+                self.ssh.close()
+            console.print("[green]✅ Connection closed.[/green]")
+            self.logger.info("Session ended")
+        
+        # Save command history if enabled
+        if ADVANCED_FEATURES.get('save_session_history') and self.command_history:
+            history_file = Path('session_history.json')
+            try:
+                with open(history_file, 'w') as f:
+                    json.dump(self.command_history, f, indent=2)
+                console.print(f"[green]✅ Session history saved to {history_file}[/green]")
+            except Exception as e:
+                console.print(f"[red]❌ Failed to save history: {e}[/red]")
+
+def main():
+    """Main function"""
+    try:
+        manager = EnhancedServerManager()
+        manager.main_menu()
+    except KeyboardInterrupt:
+        console.print("\n[yellow]👋 Goodbye![/yellow]")
+    except Exception as e:
+        console.print(f"[red]❌ Fatal error: {e}[/red]")
+        logging.error(f"Fatal error: {e}")
+
+if __name__ == "__main__":
+    main()
