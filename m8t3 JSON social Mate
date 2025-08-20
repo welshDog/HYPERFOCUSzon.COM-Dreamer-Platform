@@ -1,0 +1,240 @@
+hey Bro — love the energy. I didn’t wait — I built both for you: a plug-and-play **n8n workflow skeleton** (steps, node configs, prompts you can paste) **and** the exact **Discord bot messages + interaction payloads** (Morning Brief, Draft → Approve flow, Sprint finish, Celebration Cascade). Copy/paste and wire them to your existing BROski services (replace placeholders with your tokens/URLs). Let’s go.
+
+# 1) n8n workflow skeleton — “Draft → Approve → Publish → Reward → Monitor”
+
+Use these nodes in n8n (names + quick config). Replace `{{...}}` placeholders.
+
+1. **Trigger: Cron (every 08:00)**
+
+   * Purpose: kick Morning Brief + daily drafts generation.
+   * Cron: daily at your local time.
+
+2. **Node: HTTP Request — Fetch trending seeds**
+
+   * GET `https://your-trend-source/api/trends?limit=5` (or your internal repo).
+   * Save JSON to `items`.
+
+3. **Node: OpenAI (LLM) — Strategy Brief & Draft Generator**
+
+   * Model: `gpt-4o` or your preferred.
+   * Input (example prompt — paste exactly):
+
+```
+System: You are Hyperfocus Zone's Social Strategist.
+User: Given theme: {{ $json["theme"] }}, goal: {{ $json["goal"] }}, audience: {{ $json["audience"] }}, produce:
+1) A one-line strategy (1 sentence).
+2) Three platform-specific posts (X/Threads, LinkedIn, Instagram caption) — include image prompt, 2 hashtags, 1 CTA, and two A/B variants each.
+3) Confidence score (0-1).
+Tone: short, playful, neurodivergent-friendly. Prioritize measurable KPI: {{ $json["kpi"] }}.
+```
+
+* Output: store to `drafts`.
+
+4. **Node: MySQL / SQLite — Save drafts**
+
+   * Table `social_drafts` with fields: id, theme, platform, draft\_text, image\_prompt, variants, status=pending, created\_at.
+
+5. **Node: HTTP Request — Discord webhook (Post to #drafts)**
+
+   * POST to `https://discord.com/api/webhooks/{{DRAFT_WEBHOOK}}`
+   * Payload (JSON embed): title, description (post preview), components (buttons: Approve ✅, Edit ✏️)
+   * Include metadata with `draft_id`.
+
+6. **Node: Discord Trigger — Reaction or Interaction**
+
+   * Trigger: button interaction or reaction on message.
+   * If user presses **Approve (✅)**:
+
+     * Continue to Publish path.
+   * If **Edit (✏️)**:
+
+     * Open a thread or send an ephemeral message to request edits.
+
+7. **Publish Path — HTTP Request nodes per platform**
+
+   * X: POST `https://api.twitter.com/2/tweets` (use your OAuth)
+   * LinkedIn: POST `https://api.linkedin.com/v2/ugcPosts`
+   * Instagram: POST to FB Graph `/media_publish`
+   * After each successful publish, update DB `status=published` and store `post_id` & `published_at`.
+
+8. **Reward Node — HTTP Request to BROski economy**
+
+   * POST `https://hyperfocus.zone/economy/award` with `{ user_id, amount, reason, metadata }`
+   * Use mapping rules (see sample rule table below).
+
+9. **Monitoring Loop — Cron (every 1 hour)**
+
+   * For each published post fetch metrics via platform APIs
+   * Compute `engagement_score` = likes + comments*2 + shares*3 / followers
+   * If engagement\_score >= threshold → trigger **Celebration** node.
+
+10. **Celebration Node — Discord webhook to #celebrations**
+
+    * Embed summary: metrics, award details, confetti GIF link, leaderboard update
+    * Call Reward node for bonus BROski\$.
+
+11. **ULTRA FIX Engine Node (optional)**
+
+    * Send draft text to ULTRA FIX API: `POST /ultrafix/fix` returns suggested edits + confidence
+    * If fixes > threshold, attach suggested fix to Discord approval message (shows “Apply Fix” button).
+
+12. **Rollback Node**
+
+    * Slash command `/rollback <post_id>` triggers HTTP calls to delete posts (if API allows) and mark DB `status=rolled_back`.
+
+---
+
+# Sample n8n expressions / condition
+
+* Check confidence: `{{ $json["confidence"] >= 0.9 }}`
+* Auto-publish if confidence and no human edits within X minutes:
+
+  * Use `Wait` node (X minutes) then a `If` node evaluating confidence and `edited==false`.
+
+---
+
+# Reward rules (copy to your Rewards service)
+
+* Human approves draft: `BROski$ 1`
+* Post reaches 100 engagements in 24h: `BROski$ 5`
+* A/B test winner: `BROski$ 3`
+* ULTRA FIX auto-fix applied: `BROski$ 0.5`
+
+Adjust amounts to your budget.
+
+---
+
+# 2) Discord bot messages & interaction payloads (ready to paste)
+
+Use Discord message embeds + components (buttons). Replace `{{}}` placeholders.
+
+## Morning Brief — Post via webhook at 08:00
+
+Embed:
+
+* Title: `🌅 Morning Brief — Hyperfocus Squad`
+* Description: `Top wins: +{{top_likes}} likes | Top post: {{top_post_link}}\nToday’s theme: **{{theme}}**\nAction: Review 3 drafts in #drafts (react ✅ to approve).`
+  Components: single row with one button:
+* `label: Approve all drafts`, `custom_id: approve_all_{{date}}`
+
+## Draft message (one per draft) — posted to #drafts
+
+Embed:
+
+* Title: `Draft #{{draft_id}} — {{platform}}`
+* Description: `{{draft_text}}\n\nImage idea: {{image_prompt}}\nVariants: A/B\nConfidence: {{confidence}}`
+  Components: buttons
+* Approve ✅ => `custom_id: approve_{{draft_id}}`
+* Edit ✏️ => `custom_id: edit_{{draft_id}}`
+* Apply Fix 🔧 (if ULTRA FIX returned) => `custom_id: applyfix_{{draft_id}}`
+
+When `approve_{{draft_id}}` pressed:
+
+* Bot replies ephemeral: `Publishing now—you earned BROski$1.`
+* Trigger the n8n publish path and reward.
+
+When `edit_{{draft_id}}` pressed:
+
+* Bot opens modal with `new_text` and updates DB.
+
+## Sprint Create (one-click) — create sprint channel
+
+Message (in #sprints):
+
+* Title: `⚡ Focus Sprint — {{post_title}}`
+* Embed checklist:
+
+  * [ ] Headline
+  * [ ] Hero image
+  * [ ] CTA + Alt text
+* Components:
+
+  * `Start Timer` button (starts countdown)
+  * `Ship` button (custom\_id: ship\_{{sprint\_id}})
+
+When `Ship` pressed:
+
+* Bot: `Nice ship! Awarded BROski$2 + XP50. Confetti! 🎉`
+* Call rewards endpoint, post to #celebrations, and publish the asset (or mark as ready).
+
+## Celebration Cascade — sent when thresholds met
+
+Embed:
+
+* Title: `🎉 Confetti Cascade — Post #{{post_id}}`
+* Fields:
+
+  * `Engagement:` `{{likes}} ❤️ / {{comments}} 💬 / {{shares}} 🔁`
+  * `Award:` `BROski$ {{bonus}}`
+* Image: confetti gif (hosted)
+* Component: `View Post` button linking to platform
+
+---
+
+# 3) Exact LLM prompts (copy/paste for n8n OpenAI node)
+
+**Strategy brief** (single-shot)
+
+```
+You are Hyperfocus Zone's Social Strategist.
+Theme: {{theme}}.
+Goal: {{awareness|engagement|leads}}.
+Audience: {{audience}}.
+Output JSON exactly:
+{
+  "strategy": "<one-line>",
+  "posts": [
+    { "platform": "X", "variantA": "...", "variantB": "...", "image_prompt": "...", "hashtags": ["#...","#..."], "cta": "..." },
+    { "platform": "LinkedIn", ... },
+    { "platform": "Instagram", ... }
+  ],
+  "confidence": 0.0
+}
+Tone: short, playful, neurodivergent-friendly.
+```
+
+**Post generator** (single platform)
+
+```
+Create a 280-char X post about: {topic}.
+Return JSON: { "variantA": "...", "variantB": "...", "image_caption": "...", "hashtags": ["...","..."] }
+Hook in first 20 chars; include 1 emoji.
+```
+
+**Performance explainer**
+
+```
+Analyze last 7 posts with tag {theme}. Return:
+1) top metric deltas (JSON),
+2) 1–3 likely causes,
+3) one A/B test to run next cycle (exact test definition).
+Return as JSON.
+```
+
+---
+
+# 4) Quick security & guardrails (copy to n8n or your bot)
+
+* Profanity check (run simple regex + 3rd-party content moderation API). If flagged → escalate to human.
+* PII blocklist: regexes for emails/phones → prevent publish.
+* Approval fallback: if model confidence < 0.6 → require two human approvals.
+* Audit logging: store every action (who approved, timestamps).
+
+---
+
+# 5) Extras — helpful bits
+
+* **Auto-retry**: if publish API returns rate-limit, sleep 60s and retry x3.
+* **Testing**: add a `test_mode` boolean to n8n to post to a staging channel.
+* **Metrics**: store `time_to_first_like` and surface in Morning Brief for dopamine wins.
+
+---
+
+That’s the full toolbox, Bro — n8n workflow plan + LLM prompts + the exact Discord interactions to wire into BROski bot and your reward system.
+
+Want me to:
+
+* export a ready-to-import n8n JSON file for the workflow **now**, **or**
+* generate the actual Discord bot code (Node.js + discord.js) for these interactions (with reward webhook examples)?
+
+Say which one you want deployed first and I’ll spit it out live.
