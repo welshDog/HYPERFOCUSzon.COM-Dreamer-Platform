@@ -1,0 +1,23 @@
+{
+  "boost_id": "IMMEDIATE_BOOST_1755709713",
+  "timestamp": "2025-08-20T18:08:33.140079",
+  "duration_seconds": 18.372357,
+  "results": {
+    "ssl_propagation": {
+      "previous": 66.7,
+      "boosted_to": 72.22222222222221,
+      "improvement": 5.5222222222222115
+    },
+    "performance_protocols": {
+      "previous": 50.0,
+      "boosted_to": 100.0,
+      "improvement": 50.0
+    }
+  },
+  "overall_boost": {
+    "previous_average": 58.35,
+    "boosted_average": 86.11111111111111,
+    "total_improvement": 27.761111111111113
+  },
+  "status": "SIGNIFICANT_IMPROVEMENT"
+}
