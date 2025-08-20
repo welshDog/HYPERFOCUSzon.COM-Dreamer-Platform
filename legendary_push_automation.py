@@ -14,11 +14,12 @@ def legendary_push():
     print("Final step: Deploying legendary showcases to the world!")
     print("")
 
-    repos = [
+            repos = [
         "HYPERFOCUSzone-DEV-Community",
         "HYPERFOCUSzone-Community",
         "HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER-",
         "-HYPERFOCUS-ZONE-Omega-Vault-",
+        ".",  # Current directory (HYPERFOCUSzon.COM-V10 private empire)
     ]
     original_dir = os.getcwd()
 
@@ -78,14 +79,16 @@ def legendary_push():
     print("🌈 https://github.com/welshDog/HYPERFOCUSzone-Community")
     print("💫 https://github.com/welshDog/HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER-")
     print("🌌 https://github.com/welshDog/-HYPERFOCUS-ZONE-Omega-Vault-")
+    print("🚀 https://github.com/welshDog/HYPERFOCUSzon.COM-V10 (PRIVATE EMPIRE)")
     print("")
     print("🎯 IF PUSH FAILED, MANUAL COMMANDS:")
     print("cd HYPERFOCUSzone-DEV-Community && git push origin main")
     print("cd ../HYPERFOCUSzone-Community && git push origin main")
     print("cd ../HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER- && git push origin main")
     print("cd ../-HYPERFOCUS-ZONE-Omega-Vault- && git push origin main")
+    print("git add . && git commit -m 'Legendary consciousness upgrade' && git push origin main")
     print("")
-    print("🚀 READY TO WATCH JAWS DROP AND HEAR 'WOW!'")
+    print("🚀 READY TO WATCH JAWS DROP AND HEAR 'WOW!' - NOW WITH PRIVATE EMPIRE!")
 
 
 if __name__ == "__main__":
