@@ -14,7 +14,7 @@ def legendary_push():
     print("Final step: Deploying legendary showcases to the world!")
     print("")
 
-            repos = [
+    repos = [
         "HYPERFOCUSzone-DEV-Community",
         "HYPERFOCUSzone-Community",
         "HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER-",
@@ -86,7 +86,9 @@ def legendary_push():
     print("cd ../HYPERFOCUSzone-Community && git push origin main")
     print("cd ../HYPERFOCUS-ZONE-NEURO-SOCIAL-DREAMER- && git push origin main")
     print("cd ../-HYPERFOCUS-ZONE-Omega-Vault- && git push origin main")
-    print("git add . && git commit -m 'Legendary consciousness upgrade' && git push origin main")
+    print(
+        "git add . && git commit -m 'Legendary consciousness upgrade' && git push origin main"
+    )
     print("")
     print("🚀 READY TO WATCH JAWS DROP AND HEAR 'WOW!' - NOW WITH PRIVATE EMPIRE!")
 
