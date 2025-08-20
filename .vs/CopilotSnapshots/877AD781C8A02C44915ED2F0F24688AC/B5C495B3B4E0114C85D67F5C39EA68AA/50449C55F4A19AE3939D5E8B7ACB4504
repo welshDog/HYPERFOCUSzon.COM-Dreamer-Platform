@@ -1,0 +1,250 @@
+﻿#!/usr/bin/env python3
+"""
+Server Connection Manager
+Multiple ways to connect to your server
+"""
+
+import paramiko
+import sys
+import os
+import getpass
+import subprocess
+from config import SERVER_CONFIG, CONNECTION_SETTINGS, COMMON_COMMANDS
+
+def test_connection():
+    """
+    Test basic connectivity to the server
+    """
+    try:
+        print(f"🔍 Testing connection to {SERVER_CONFIG['hostname']}:{SERVER_CONFIG.get('port', 22)}")
+        
+        # Test if server is reachable
+        import socket
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        sock.settimeout(5)
+        result = sock.connect_ex((SERVER_CONFIG['hostname'], SERVER_CONFIG.get('port', 22)))
+        sock.close()
+        
+        if result == 0:
+            print("✅ Server is reachable")
+            return True
+        else:
+            print("❌ Server is not reachable")
+            return False
+            
+    except Exception as e:
+        print(f"❌ Connection test failed: {e}")
+        return False
+
+def connect_ssh():
+    """
+    Connect via SSH and return connection object
+    """
+    try:
+        ssh = paramiko.SSHClient()
+        ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        
+        print(f"🔗 Connecting to {SERVER_CONFIG['hostname']}...")
+        
+        # Try different authentication methods
+        auth_methods = []
+        
+        # Method 1: Try key-based authentication
+        if os.path.exists(os.path.expanduser(SERVER_CONFIG.get('private_key_path', '~/.ssh/id_rsa'))):
+            auth_methods.append('key')
+        
+        # Method 2: Use password if provided
+        if SERVER_CONFIG.get('password'):
+            auth_methods.append('password')
+        
+        # Method 3: Prompt for password
+        auth_methods.append('prompt')
+        
+        for method in auth_methods:
+            try:
+                if method == 'key':
+                    ssh.connect(
+                        hostname=SERVER_CONFIG['hostname'],
+                        username=SERVER_CONFIG['username'],
+                        key_filename=os.path.expanduser(SERVER_CONFIG.get('private_key_path', '~/.ssh/id_rsa')),
+                        port=SERVER_CONFIG.get('port', 22),
+                        timeout=CONNECTION_SETTINGS.get('timeout', 30)
+                    )
+                    print("✅ Connected using SSH key")
+                    return ssh
+                    
+                elif method == 'password':
+                    ssh.connect(
+                        hostname=SERVER_CONFIG['hostname'],
+                        username=SERVER_CONFIG['username'],
+                        password=SERVER_CONFIG['password'],
+                        port=SERVER_CONFIG.get('port', 22),
+                        timeout=CONNECTION_SETTINGS.get('timeout', 30)
+                    )
+                    print("✅ Connected using stored password")
+                    return ssh
+                    
+                elif method == 'prompt':
+                    password = getpass.getpass(f"Enter password for {SERVER_CONFIG['username']}@{SERVER_CONFIG['hostname']}: ")
+                    ssh.connect(
+                        hostname=SERVER_CONFIG['hostname'],
+                        username=SERVER_CONFIG['username'],
+                        password=password,
+                        port=SERVER_CONFIG.get('port', 22),
+                        timeout=CONNECTION_SETTINGS.get('timeout', 30)
+                    )
+                    print("✅ Connected using entered password")
+                    return ssh
+                    
+            except paramiko.AuthenticationException:
+                continue
+            except Exception as e:
+                print(f"❌ Connection failed with {method}: {e}")
+                continue
+                
+        print("❌ All authentication methods failed")
+        return None
+        
+    except Exception as e:
+        print(f"❌ Connection failed: {e}")
+        return None
+
+def run_command(ssh, command, show_output=True):
+    """
+    Execute a command on the remote server
+    """
+    try:
+        stdin, stdout, stderr = ssh.exec_command(command)
+        
+        output = stdout.read().decode('utf-8')
+        error = stderr.read().decode('utf-8')
+        
+        if show_output:
+            if output:
+                print(output)
+            if error:
+                print(f"Error: {error}")
+        
+        return output, error
+        
+    except Exception as e:
+        print(f"❌ Command failed: {e}")
+        return None, str(e)
+
+def show_server_info(ssh):
+    """
+    Display server information
+    """
+    print("\n📊 Server Information")
+    print("=" * 50)
+    
+    commands = {
+        "System": "uname -a",
+        "Uptime": "uptime",
+        "Disk Usage": "df -h",
+        "Memory": "free -h",
+        "CPU Info": "lscpu | head -10",
+        "Network": "ip addr show | head -20"
+    }
+    
+    for name, cmd in commands.items():
+        print(f"\n🔹 {name}:")
+        output, _ = run_command(ssh, cmd, show_output=False)
+        if output:
+            print(output.strip())
+
+def quick_commands_menu(ssh):
+    """
+    Show menu of quick commands
+    """
+    print("\n⚡ Quick Commands")
+    print("=" * 30)
+    
+    for i, (name, cmd) in enumerate(COMMON_COMMANDS.items(), 1):
+        print(f"{i:2d}. {name.replace('_', ' ').title()}")
+    
+    print(" 0. Back to main menu")
+    
+    while True:
+        try:
+            choice = input("\nSelect command (0-{0}): ".format(len(COMMON_COMMANDS))).strip()
+            
+            if choice == '0':
+                break
+                
+            try:
+                choice_num = int(choice)
+                if 1 <= choice_num <= len(COMMON_COMMANDS):
+                    cmd_name = list(COMMON_COMMANDS.keys())[choice_num - 1]
+                    cmd = COMMON_COMMANDS[cmd_name]
+                    print(f"\n🔸 Running: {cmd}")
+                    run_command(ssh, cmd)
+                else:
+                    print("❌ Invalid choice")
+            except ValueError:
+                print("❌ Please enter a number")
+                
+        except KeyboardInterrupt:
+            break
+
+def main_menu():
+    """
+    Main menu system
+    """
+    print("\n🌐 Server Connection Manager")
+    print("=" * 40)
+    print("1. Test Connection")
+    print("2. Connect and Show Server Info")
+    print("3. Interactive Shell")
+    print("4. Quick Commands")
+    print("5. Exit")
+    
+    while True:
+        try:
+            choice = input("\nSelect option (1-5): ").strip()
+            
+            if choice == '1':
+                test_connection()
+                
+            elif choice == '2':
+                ssh = connect_ssh()
+                if ssh:
+                    show_server_info(ssh)
+                    ssh.close()
+                    
+            elif choice == '3':
+                ssh = connect_ssh()
+                if ssh:
+                    print("\n🚀 Interactive Shell (type 'exit' to quit)")
+                    while True:
+                        try:
+                            cmd = input(f"{SERVER_CONFIG['username']}@{SERVER_CONFIG['hostname']}:~$ ").strip()
+                            if cmd.lower() in ['exit', 'quit']:
+                                break
+                            if cmd:
+                                run_command(ssh, cmd)
+                        except KeyboardInterrupt:
+                            break
+                    ssh.close()
+                    
+            elif choice == '4':
+                ssh = connect_ssh()
+                if ssh:
+                    quick_commands_menu(ssh)
+                    ssh.close()
+                    
+            elif choice == '5':
+                print("👋 Goodbye!")
+                break
+                
+            else:
+                print("❌ Invalid choice. Please select 1-5.")
+                
+        except KeyboardInterrupt:
+            print("\n👋 Goodbye!")
+            break
+        except EOFError:
+            break
+
+if __name__ == "__main__":
+    main_menu()

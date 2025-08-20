@@ -1,0 +1,147 @@
+﻿#!/usr/bin/env python3
+"""
+🚀 Project Setup Script
+Automatically sets up the Python SSH Manager with all dependencies
+"""
+
+import os
+import sys
+import subprocess
+import platform
+from pathlib import Path
+
+def run_command(command, description=""):
+    """Run a command and return the result"""
+    if description:
+        print(f"🔄 {description}")
+    
+    try:
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        if result.returncode == 0:
+            print(f"✅ Success: {description}")
+            return True
+        else:
+            print(f"❌ Error: {description}")
+            print(f"   {result.stderr}")
+            return False
+    except Exception as e:
+        print(f"❌ Exception: {e}")
+        return False
+
+def check_python_version():
+    """Check if Python version is compatible"""
+    version = sys.version_info
+    if version.major == 3 and version.minor >= 8:
+        print(f"✅ Python {version.major}.{version.minor} is compatible")
+        return True
+    else:
+        print(f"❌ Python {version.major}.{version.minor} is not compatible. Requires Python 3.8+")
+        return False
+
+def install_dependencies():
+    """Install required dependencies"""
+    print("📦 Installing dependencies...")
+    
+    requirements = [
+        "paramiko>=3.0.0",
+        "cryptography>=3.4.8", 
+        "colorama>=0.4.6",
+        "rich>=13.0.0",
+        "psutil>=5.9.0"
+    ]
+    
+    for package in requirements:
+        if not run_command(f"pip install {package}", f"Installing {package}"):
+            return False
+    
+    return True
+
+def create_directories():
+    """Create necessary directories"""
+    directories = [
+        "downloads",
+        "backups", 
+        "logs",
+        "configs"
+    ]
+    
+    print("📁 Creating directories...")
+    for directory in directories:
+        Path(directory).mkdir(exist_ok=True)
+        print(f"✅ Created: {directory}/")
+    
+    return True
+
+def create_run_script():
+    """Create convenient run script"""
+    if platform.system() == "Windows":
+        script_content = """@echo off
+echo 🚀 Starting Enhanced Server Manager...
+python enhanced_manager.py
+pause
+"""
+        with open("run_manager.bat", "w") as f:
+            f.write(script_content)
+        print("✅ Created run_manager.bat")
+    else:
+        script_content = """#!/bin/bash
+echo "🚀 Starting Enhanced Server Manager..."
+python3 enhanced_manager.py
+"""
+        with open("run_manager.sh", "w") as f:
+            f.write(script_content)
+        os.chmod("run_manager.sh", 0o755)
+        print("✅ Created run_manager.sh")
+
+def create_config_backup():
+    """Create backup of current config"""
+    if Path("config.py").exists():
+        import shutil
+        shutil.copy("config.py", "configs/config_backup.py")
+        print("✅ Created config backup")
+
+def setup_project():
+    """Main setup function"""
+    print("🚀 HyperBeast SSH Manager Setup")
+    print("=" * 40)
+    
+    # Check Python version
+    if not check_python_version():
+        return False
+    
+    # Create directories
+    if not create_directories():
+        return False
+    
+    # Create config backup
+    create_config_backup()
+    
+    # Install dependencies
+    if not install_dependencies():
+        return False
+    
+    # Create run script
+    create_run_script()
+    
+    print("\n🎉 Setup completed successfully!")
+    print("=" * 40)
+    print("📋 Next steps:")
+    print("1. Review config.py for your server settings")
+    print("2. Run: python enhanced_manager.py")
+    print("3. Or use the run script created for your platform")
+    print("\n🔧 Available scripts:")
+    print("   • enhanced_manager.py - Main application")
+    print("   • quick_connect.py - Quick connection")
+    print("   • server_manager.py - Original manager")
+    print("   • connect.py - Simple connection")
+    
+    return True
+
+if __name__ == "__main__":
+    try:
+        setup_project()
+    except KeyboardInterrupt:
+        print("\n❌ Setup interrupted by user")
+    except Exception as e:
+        print(f"❌ Setup failed: {e}")
+        sys.exit(1)

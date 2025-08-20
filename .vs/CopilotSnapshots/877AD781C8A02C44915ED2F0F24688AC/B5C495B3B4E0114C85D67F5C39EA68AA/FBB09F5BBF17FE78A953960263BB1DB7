@@ -1,0 +1,145 @@
+﻿#!/usr/bin/env python3
+"""
+Simple SSH Server Connection Script
+This script connects to your server using SSH
+"""
+
+import paramiko
+import sys
+import os
+import getpass
+from config import SERVER_CONFIG, CONNECTION_SETTINGS
+
+def connect_to_server():
+    """
+    Connect to the server using SSH
+    """
+    try:
+        # Create SSH client
+        ssh = paramiko.SSHClient()
+        
+        # Set policy for unknown host keys
+        if CONNECTION_SETTINGS.get('auto_add_host_key', True):
+            ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        
+        print(f"🔗 Connecting to {SERVER_CONFIG['hostname']}...")
+        
+        # Connect using password or key-based authentication
+        if SERVER_CONFIG.get('password'):
+            # Password authentication
+            ssh.connect(
+                hostname=SERVER_CONFIG['hostname'],
+                username=SERVER_CONFIG['username'],
+                password=SERVER_CONFIG['password'],
+                port=SERVER_CONFIG.get('port', 22),
+                timeout=CONNECTION_SETTINGS.get('timeout', 30),
+                compress=CONNECTION_SETTINGS.get('compress', True)
+            )
+        else:
+            # Try key-based authentication first
+            try:
+                ssh.connect(
+                    hostname=SERVER_CONFIG['hostname'],
+                    username=SERVER_CONFIG['username'],
+                    port=SERVER_CONFIG.get('port', 22),
+                    timeout=CONNECTION_SETTINGS.get('timeout', 30),
+                    compress=CONNECTION_SETTINGS.get('compress', True)
+                )
+            except paramiko.AuthenticationException:
+                # If key auth fails, prompt for password
+                password = getpass.getpass(f"Enter password for {SERVER_CONFIG['username']}@{SERVER_CONFIG['hostname']}: ")
+                ssh.connect(
+                    hostname=SERVER_CONFIG['hostname'],
+                    username=SERVER_CONFIG['username'],
+                    password=password,
+                    port=SERVER_CONFIG.get('port', 22),
+                    timeout=CONNECTION_SETTINGS.get('timeout', 30),
+                    compress=CONNECTION_SETTINGS.get('compress', True)
+                )
+        
+        print("✅ Connected successfully!")
+        return ssh
+        
+    except paramiko.AuthenticationException:
+        print("❌ Authentication failed. Please check your credentials.")
+        return None
+    except paramiko.SSHException as e:
+        print(f"❌ SSH connection failed: {e}")
+        return None
+    except Exception as e:
+        print(f"❌ Connection failed: {e}")
+        return None
+
+def execute_command(ssh, command):
+    """
+    Execute a command on the remote server
+    """
+    try:
+        stdin, stdout, stderr = ssh.exec_command(command)
+        
+        # Get output
+        output = stdout.read().decode('utf-8')
+        error = stderr.read().decode('utf-8')
+        
+        if output:
+            print(f"Output:\n{output}")
+        if error:
+            print(f"Error:\n{error}")
+            
+        return output, error
+        
+    except Exception as e:
+        print(f"❌ Command execution failed: {e}")
+        return None, str(e)
+
+def interactive_shell(ssh):
+    """
+    Interactive shell session
+    """
+    print("\n🚀 Interactive shell started. Type 'exit' to quit.")
+    print("Common commands: ls, pwd, whoami, df -h, free -h, ps aux")
+    
+    while True:
+        try:
+            command = input(f"{SERVER_CONFIG['username']}@{SERVER_CONFIG['hostname']}:~$ ").strip()
+            
+            if command.lower() in ['exit', 'quit']:
+                break
+                
+            if command:
+                execute_command(ssh, command)
+                
+        except KeyboardInterrupt:
+            print("\n👋 Goodbye!")
+            break
+        except EOFError:
+            break
+
+def main():
+    """
+    Main function
+    """
+    print("🌐 SSH Server Connection Tool")
+    print("=" * 40)
+    
+    # Connect to server
+    ssh = connect_to_server()
+    if not ssh:
+        sys.exit(1)
+    
+    try:
+        # Show server info
+        print("\n📊 Server Information:")
+        execute_command(ssh, "uname -a")
+        execute_command(ssh, "uptime")
+        
+        # Start interactive shell
+        interactive_shell(ssh)
+        
+    finally:
+        # Clean up
+        ssh.close()
+        print("🔒 Connection closed.")
+
+if __name__ == "__main__":
+    main()
