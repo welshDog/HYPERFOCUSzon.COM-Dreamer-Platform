@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,8 +36,13 @@
         }
 
         @keyframes glow {
-            from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3); }
-            to { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.6); }
+            from {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+
+            to {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
         }
 
         .hero-subtitle {
@@ -86,11 +92,25 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .mood-button.energized { background: linear-gradient(135deg, #ffa726, #ff7043); }
-        .mood-button.overwhelmed { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
-        .mood-button.tired { background: linear-gradient(135deg, #ab47bc, #8e24aa); }
-        .mood-button.motivated { background: linear-gradient(135deg, #66bb6a, #43a047); }
-        .mood-button.accomplished { background: linear-gradient(135deg, #ffd54f, #ffb300); }
+        .mood-button.energized {
+            background: linear-gradient(135deg, #ffa726, #ff7043);
+        }
+
+        .mood-button.overwhelmed {
+            background: linear-gradient(135deg, #42a5f5, #1e88e5);
+        }
+
+        .mood-button.tired {
+            background: linear-gradient(135deg, #ab47bc, #8e24aa);
+        }
+
+        .mood-button.motivated {
+            background: linear-gradient(135deg, #66bb6a, #43a047);
+        }
+
+        .mood-button.accomplished {
+            background: linear-gradient(135deg, #ffd54f, #ffb300);
+        }
 
         .portal-categories {
             display: grid;
@@ -172,9 +192,17 @@
         }
 
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         .quick-access:hover {
@@ -192,12 +220,22 @@
         }
 
         @media (max-width: 768px) {
-            .hero-title { font-size: 2rem; }
-            .hero-subtitle { font-size: 1.2rem; }
-            .portal-categories { grid-template-columns: 1fr; padding: 1rem; }
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .portal-categories {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="hero-section">
         <h1 class="hero-title">🌟 HYPERFOCUS ZONE 🌟</h1>
@@ -224,7 +262,7 @@
                 🎉 Accomplished<br><small>Time to celebrate</small>
             </button>
         </div>
-        
+
         <div id="ai-recommendation" class="ai-recommendation" style="display: none;">
             <h3>🤖 AI Recommendation</h3>
             <p id="recommendation-text"></p>
@@ -245,7 +283,8 @@
                     </a>
                 </li>
                 <li class="portal-item">
-                    <a href="http://localhost:8080/💎🎮⚡_GAMIFIED_FOCUS_CHALLENGE_PORTAL_⚡🎮💎.html" class="portal-link">
+                    <a href="http://localhost:8080/💎🎮⚡_GAMIFIED_FOCUS_CHALLENGE_PORTAL_⚡🎮💎.html"
+                        class="portal-link">
                         🎮 Gamified Focus Challenge
                     </a>
                 </li>
@@ -262,12 +301,14 @@
             <p class="category-description">Connect with your ADHD community</p>
             <ul class="portal-list">
                 <li class="portal-item">
-                    <a href="http://localhost:8080/🧠❤️‍🔥⚡_ADHD_BRAIN_TWIN_MATCHING_PORTAL_⚡❤️‍🔥🧠.html" class="portal-link">
+                    <a href="http://localhost:8080/🧠❤️‍🔥⚡_ADHD_BRAIN_TWIN_MATCHING_PORTAL_⚡❤️‍🔥🧠.html"
+                        class="portal-link">
                         🧠 ADHD Brain Twin Matching
                     </a>
                 </li>
                 <li class="portal-item">
-                    <a href="http://localhost:8082/🎊❤️‍🔥💚🩵AmazingTeamLushCelebrationInstant❤️💕🎊.html" class="portal-link">
+                    <a href="http://localhost:8082/🎊❤️‍🔥💚🩵AmazingTeamLushCelebrationInstant❤️💕🎊.html"
+                        class="portal-link">
                         🎊 Team Celebration Hub
                     </a>
                 </li>
@@ -323,7 +364,8 @@
             <p class="category-description">Achievement recognition & rewards</p>
             <ul class="portal-list">
                 <li class="portal-item">
-                    <a href="http://localhost:8082/🎊🚀💎⚡UltimateFocusrelicCelebrationPage⚡💎🚀🎊.html" class="portal-link">
+                    <a href="http://localhost:8082/🎊🚀💎⚡UltimateFocusrelicCelebrationPage⚡💎🚀🎊.html"
+                        class="portal-link">
                         🎊 Ultimate Celebration Portal
                     </a>
                 </li>
@@ -333,7 +375,8 @@
                     </a>
                 </li>
                 <li class="portal-item">
-                    <a href="http://localhost:8082/🎊LegendaryFocustotemOperationalVictoryPage20250801184514.html" class="portal-link">
+                    <a href="http://localhost:8082/🎊LegendaryFocustotemOperationalVictoryPage20250801184514.html"
+                        class="portal-link">
                         🏆 Victory Achievement Pages
                     </a>
                 </li>
@@ -345,7 +388,8 @@
             <p class="category-description">Advanced & experimental features</p>
             <ul class="portal-list">
                 <li class="portal-item">
-                    <a href="http://localhost:8080/♾️💎🌐_IMMORTAL_WEB3_HYPERFOCUS_ZONE_PORTAL_🌐💎♾️.html" class="portal-link">
+                    <a href="http://localhost:8080/♾️💎🌐_IMMORTAL_WEB3_HYPERFOCUS_ZONE_PORTAL_🌐💎♾️.html"
+                        class="portal-link">
                         ♾️ Immortal Web3 Portal
                     </a>
                 </li>
@@ -405,7 +449,7 @@
             recText.textContent = recommendation.text;
             recLink.textContent = recommendation.portal;
             recLink.href = recommendation.url;
-            
+
             recDiv.style.display = 'block';
             recDiv.scrollIntoView({ behavior: 'smooth' });
         }
@@ -422,10 +466,10 @@
         }
 
         // Auto-recommendation based on time of day
-        window.onload = function() {
+        window.onload = function () {
             const hour = new Date().getHours();
             let autoMood = '';
-            
+
             if (hour >= 6 && hour < 9) {
                 autoMood = 'motivated'; // Morning energy
             } else if (hour >= 9 && hour < 12) {
@@ -439,7 +483,7 @@
             } else {
                 autoMood = 'tired'; // Night time
             }
-            
+
             // Show subtle suggestion
             setTimeout(() => {
                 const suggestion = moodPortals[autoMood];
@@ -448,4 +492,5 @@
         };
     </script>
 </body>
+
 </html>

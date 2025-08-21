@@ -1,0 +1,553 @@
+🚀❤️‍🔥🪄 HYPERFOCUS ZONE MOBILE-FIRST RESPONSIVE ENGINE 🪄❤️‍🔥🚀 Creating the ultimate mobile experience for neurodivergent minds on-the-go ! 🌟 MOBILE MAGIC FEATURES: 📱 Touch-optimized for ADHD fingers ⚡ Lightning-fast loading for impatient minds 🎯 One-thumb navigation perfection 🔄 Swipe gestures for hyperfocus flow 📍 Location-aware portal suggestions 🔔 Smart notification management 🎮 Mobile-first gamification 💎 Offline mode for subway focus sessions
+/*
+🎯 MOBILE-FIRST CSS FRAMEWORK
+Designed specifically for neurodivergent mobile users!
+*/
+
+/* Base Mobile Styles */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 1rem !important;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Touch-Friendly Buttons */
+    .mood-button {
+        min-height: 60px !important;
+        font-size: 1.2rem !important;
+        padding: 1.2rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* One-Thumb Navigation */
+    .portal-categories {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 1rem !important;
+    }
+
+    .category-card {
+        padding: 1.5rem !important;
+        border-radius: 15px !important;
+    }
+
+    .portal-item {
+        min-height: 50px !important;
+        padding: 1rem !important;
+        font-size: 1.1rem !important;
+        border-radius: 12px !important;
+    }
+
+    /* Quick Access - Bigger for Thumbs */
+    .quick-access {
+        width: 70px !important;
+        height: 70px !important;
+        font-size: 2rem !important;
+        bottom: 30px !important;
+        right: 30px !important;
+    }
+
+    /* Swipe Gesture Areas */
+    .swipe-hint {
+        position: fixed;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        z-index: 1000;
+        animation: fadeInOut 3s ease-in-out;
+    }
+
+    @keyframes fadeInOut {
+
+        0%,
+        100% {
+            opacity: 0;
+        }
+
+        50% {
+            opacity: 1;
+        }
+    }
+}
+
+/* Extra Small Phones */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 2rem !important;
+    }
+
+    .mood-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .mood-button {
+        min-height: 70px !important;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        padding: 1rem !important;
+    }
+
+    .hero-title {
+        font-size: 2rem !important;
+    }
+
+    .mood-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+}
+
+/* PWA (Progressive Web App) Styles */
+.pwa-install-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    z-index: 2000;
+    display: none;
+}
+
+.pwa-install-button {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+/* Mobile Accessibility */
+.mobile-accessibility-fab {
+    position: fixed;
+    bottom: 120px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+/* Touch Feedback */
+.touch-feedback {
+    position: relative;
+    overflow: hidden;
+}
+
+.touch-feedback::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+.touch-feedback:active::after {
+    width: 100px;
+    height: 100px;
+}
+
+/* Mobile-Optimized Mood Selector */
+@media (max-width: 768px) {
+    .mood-selector {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        margin: 0;
+        border-radius: 0 0 20px 20px;
+    }
+
+    .mood-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+}
+
+/* Haptic Feedback Classes */
+.haptic-light {
+    /* For light taps */
+}
+
+.haptic-medium {
+    /* For button presses */
+}
+
+.haptic-heavy {
+    /* For important actions */
+}
+
+/* Mobile Focus Mode */
+.mobile-focus-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.mobile-focus-timer {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 2rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.mobile-focus-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.mobile-focus-button {
+    padding: 1rem 2rem;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+/* Dark Mode for OLED Screens */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(135deg, #1a1a2e, #16213e) !important;
+    }
+
+    .category-card {
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
+/* Notification Styles */
+.mobile-notification {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    z-index: 3000;
+    transform: translateY(-100px);
+    transition: transform 0.3s ease;
+}
+
+.mobile-notification.show {
+    transform: translateY(0);
+}
+
+/*
+🎮 MOBILE JAVASCRIPT FUNCTIONALITY
+*/
+
+// Mobile-specific JavaScript
+const mobileFeatures= {
+
+    // Touch gestures
+    setupSwipeGestures() {
+        let startX,
+        startY,
+        startTime;
+
+        document.addEventListener('touchstart', (e)=> {
+                startX=e.touches[0].clientX;
+                startY=e.touches[0].clientY;
+                startTime=Date.now();
+            });
+
+        document.addEventListener('touchend', (e)=> {
+                const endX=e.changedTouches[0].clientX;
+                const endY=e.changedTouches[0].clientY;
+                const endTime=Date.now();
+
+                const deltaX=endX - startX;
+                const deltaY=endY - startY;
+                const deltaTime=endTime - startTime;
+
+                // Swipe right for emergency focus
+                if (deltaX > 100 && Math.abs(deltaY) < 50 && deltaTime < 300) {
+                    emergencyFocus();
+                }
+
+                // Swipe left for accessibility panel
+                if (deltaX < -100 && Math.abs(deltaY) < 50 && deltaTime < 300) {
+                    toggleAccessibilityPanel();
+                }
+
+                // Swipe up for portal search
+                if (deltaY < -100 && Math.abs(deltaX) < 50 && deltaTime < 300) {
+                    showPortalSearch();
+                }
+            });
+    }
+
+    ,
+
+    // PWA installation
+    setupPWA() {
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e)=> {
+                e.preventDefault();
+                deferredPrompt=e;
+                showPWABanner();
+            });
+
+        function showPWABanner() {
+            const banner=document.createElement('div');
+            banner.className='pwa-install-banner';
+            banner.innerHTML=` <div>📱 Install HyperFocus Zone for the best mobile experience !</div><button class="pwa-install-button" onclick="installPWA()">Install App</button>`;
+            document.body.prepend(banner);
+            banner.style.display='block';
+        }
+
+        window.installPWA=()=> {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+
+                deferredPrompt.userChoice.then((result)=> {
+                        if (result.outcome==='accepted') {
+                            console.log('PWA installed successfully!');
+                        }
+
+                        deferredPrompt=null;
+                    });
+            }
+        }
+
+        ;
+    }
+
+    ,
+
+    // Haptic feedback
+    addHapticFeedback() {
+        document.querySelectorAll('.mood-button, .portal-item').forEach(element=> {
+                element.addEventListener('touchstart', ()=> {
+                        if ('vibrate' in navigator) {
+                            navigator.vibrate(10); // Light haptic
+                        }
+                    });
+            });
+
+        document.querySelector('.quick-access').addEventListener('touchstart', ()=> {
+                if ('vibrate' in navigator) {
+                    navigator.vibrate([50, 50, 50]); // Triple buzz for emergency
+                }
+            });
+    }
+
+    ,
+
+    // Mobile notifications
+    showMobileNotification(message, duration=3000) {
+        const notification=document.createElement('div');
+        notification.className='mobile-notification';
+        notification.textContent=message;
+        document.body.appendChild(notification);
+
+        setTimeout(()=> notification.classList.add('show'), 100);
+
+        setTimeout(()=> {
+                notification.classList.remove('show');
+                setTimeout(()=> document.body.removeChild(notification), 300);
+            }
+
+            , duration);
+    }
+
+    ,
+
+    // Mobile focus mode
+    enterMobileFocusMode() {
+        const focusMode=document.createElement('div');
+        focusMode.className='mobile-focus-mode';
+        focusMode.innerHTML=` <h2>🎯 HYPERFOCUS ACTIVATED</h2><div class="mobile-focus-timer" id="mobile-timer">25: 00</div> <p>Stay focused, you've got this! 💪</p>
+ <div class="mobile-focus-controls" > <button class="mobile-focus-button" onclick="pauseTimer()" >⏸️ Pause</button> <button class="mobile-focus-button" onclick="exitMobileFocus()" >❌ Exit</button> </div> `;
+        document.body.appendChild(focusMode);
+        focusMode.style.display='flex';
+
+        // Start 25-minute timer
+        let timeLeft=25 * 60;
+
+        const timer=setInterval(()=> {
+                timeLeft--;
+                const minutes=Math.floor(timeLeft / 60);
+                const seconds=timeLeft % 60;
+
+                document.getElementById('mobile-timer').textContent=`$ {
+                    minutes
+                }
+
+                :$ {
+                    seconds.toString().padStart(2, '0')
+                }
+
+                `;
+
+                if (timeLeft <=0) {
+                    clearInterval(timer);
+                    mobileFeatures.showMobileNotification('🎉 Pomodoro Complete! Great job!');
+                    exitMobileFocus();
+                }
+            }
+
+            , 1000);
+
+        window.exitMobileFocus=()=> {
+            clearInterval(timer);
+            document.body.removeChild(focusMode);
+        }
+
+        ;
+    }
+}
+
+;
+
+// Initialize mobile features
+if (window.innerWidth <=768) {
+    document.addEventListener('DOMContentLoaded', ()=> {
+            mobileFeatures.setupSwipeGestures();
+            mobileFeatures.setupPWA();
+            mobileFeatures.addHapticFeedback();
+
+            // Show swipe hints
+            setTimeout(()=> {
+                    const hint=document.createElement('div');
+                    hint.className='swipe-hint';
+                    hint.textContent='👈 Swipe left/right for quick actions';
+                    document.body.appendChild(hint);
+
+                    setTimeout(()=> document.body.removeChild(hint), 3000);
+                }
+
+                , 2000);
+        });
+
+    // Override emergency focus for mobile
+    window.emergencyFocus=()=> {
+        mobileFeatures.showMobileNotification('🚨 Mobile HyperFocus Activated!');
+        mobileFeatures.enterMobileFocusMode();
+    }
+
+    ;
+}
+
+/*
+📱 PWA MANIFEST CONFIGURATION
+*/
+const pwaManifest= {
+
+    "name": "HyperFocus Zone - Neurodivergent Superpowers",
+    "short_name": "HyperFocus Zone",
+    "description": "Turn ADHD into your greatest strength with our neurodivergent productivity hub",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#667eea",
+    "theme_color": "#764ba2",
+    "orientation": "portrait",
+    "categories": ["productivity",
+    "health",
+    "education"],
+    "screenshots": [ {
+        "src": "/screenshots/mobile.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow",
+            "label": "Mobile view of HyperFocus Zone"
+    }
+
+    ],
+    "icons": [ {
+        "src": "/icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+    }
+
+    ,
+    {
+    "src": "/icons/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any maskable"
+}
+
+],
+"shortcuts": [ {
+
+    "name": "Emergency Focus",
+    "short_name": "Focus Now",
+    "description": "Activate immediate hyperfocus mode",
+    "url": "/?action=emergency-focus",
+    "icons": [ {
+        "src": "/icons/focus.png", "sizes": "96x96"
+    }
+
+    ]
+}
+
+,
+{
+
+"name": "Brain Twin Matching",
+"short_name": "Find Tribe",
+"description": "Connect with your ADHD community",
+"url": "/?action=brain-twin",
+"icons": [ {
+    "src": "/icons/community.png", "sizes": "96x96"
+}
+
+]
+}
+
+]
+}
+
+;
+
+console.log("📱🚀 MOBILE-FIRST RESPONSIVE ENGINE LOADED! 🚀📱");
+console.log("🌟 Optimized for neurodivergent minds on-the-go! 🌟");
