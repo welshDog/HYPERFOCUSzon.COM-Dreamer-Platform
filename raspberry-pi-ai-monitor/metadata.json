@@ -1,0 +1,5 @@
+{
+  "name": "Raspberry Pi AI Monitor",
+  "description": "A web-based dashboard for monitoring Raspberry Pi system statistics in real-time, featuring an AI assistant powered by Gemini to provide insights and answer questions about system health.",
+  "requestFramePermissions": []
+}

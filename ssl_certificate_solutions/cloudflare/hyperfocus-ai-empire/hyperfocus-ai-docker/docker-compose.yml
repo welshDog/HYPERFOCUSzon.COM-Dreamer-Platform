@@ -1,0 +1,48 @@
+# HyperFocus Zone AI Assistant - Docker Compose
+version: '3.8'
+
+networks:
+  hyperfocus_ai:
+    driver: bridge
+
+services:
+  # AI Assistant (Main Service)
+  hyperfocus-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hyperfocus_ai_assistant
+    restart: unless-stopped
+    ports:
+      - "8888:8888"
+    environment:
+      - NODE_ENV=production
+      - PORT=8888
+      - SERVER_IP=212.227.127.144
+      - AI_MODEL_PRIMARY=gemma2:2b
+      - AI_MODEL_FALLBACK=llama3.2:1b
+      - LOCAL_AI_ENDPOINT=http://ollama:11434
+      - EMPIRE_MODE=LEGENDARY
+    networks:
+      - hyperfocus_ai
+    depends_on:
+      - ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Ollama (Local AI Models)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: hyperfocus_ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    environment:
+      - OLLAMA_HOST=0.0.0.0
+    volumes:
+      - ./ollama_data:/root/.ollama
+    networks:
+      - hyperfocus_ai

@@ -1,0 +1,179 @@
+{
+  "timestamp": "2025-08-21T02:22:43.237245",
+  "initial_memory": {
+    "total_gb": 7.69,
+    "available_gb": 0.63,
+    "used_percent": 91.8,
+    "free_gb": 0.63
+  },
+  "final_memory": {
+    "total_gb": 7.69,
+    "available_gb": 1.49,
+    "used_percent": 80.6,
+    "free_gb": 1.49
+  },
+  "empire_processes": [
+    {
+      "pid": 15260,
+      "name": "Docker Desktop.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\frontend\\Docker Desktop.exe --type=renderer --user-data-dir=C:\\Users\\...",
+      "memory_mb": 177.6,
+      "memory_percent": 2.26
+    },
+    {
+      "pid": 16684,
+      "name": "python.exe",
+      "cmdline": "h:\\.venv\\Scripts\\python.exe c:\\Users\\Lyndz\\.vscode\\extensions\\ms-python.pylint-2025.2.0\\bundled\\tool...",
+      "memory_mb": 169.8,
+      "memory_percent": 2.16
+    },
+    {
+      "pid": 15564,
+      "name": "com.docker.backend.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\resources\\com.docker.backend.exe services",
+      "memory_mb": 130.5,
+      "memory_percent": 1.66
+    },
+    {
+      "pid": 9208,
+      "name": "Docker Desktop.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\frontend\\Docker Desktop.exe --type=gpu-process --user-data-dir=C:\\Use...",
+      "memory_mb": 48.3,
+      "memory_percent": 0.61
+    },
+    {
+      "pid": 1792,
+      "name": "Docker Desktop.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\frontend\\Docker Desktop.exe --reason=open-tray --analytics-enabled=tr...",
+      "memory_mb": 44.7,
+      "memory_percent": 0.57
+    },
+    {
+      "pid": 14164,
+      "name": "python.exe",
+      "cmdline": "h:\\.venv\\Scripts\\python.exe c:\\Users\\Lyndz\\.vscode\\extensions\\ms-python.black-formatter-2025.2.0\\bun...",
+      "memory_mb": 29.8,
+      "memory_percent": 0.38
+    },
+    {
+      "pid": 17244,
+      "name": "com.docker.backend.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\resources\\com.docker.backend.exe",
+      "memory_mb": 23.7,
+      "memory_percent": 0.3
+    },
+    {
+      "pid": 12016,
+      "name": "docker.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe stats --all --no-trunc --no-stream --format ...",
+      "memory_mb": 22.3,
+      "memory_percent": 0.28
+    },
+    {
+      "pid": 16864,
+      "name": "python.exe",
+      "cmdline": "C:\\Python313\\python.exe \u26a1\ud83d\udc8e\ud83d\ude80_ADVANCED_MEMORY_EMPIRE_MANAGER_\ud83d\ude80\ud83d\udc8e\u26a1.py",
+      "memory_mb": 19.3,
+      "memory_percent": 0.25
+    },
+    {
+      "pid": 16928,
+      "name": "python.exe",
+      "cmdline": "h:\\.venv\\Scripts\\python.exe c:\\Users\\Lyndz\\.vscode\\extensions\\ms-python.isort-2025.0.0\\bundled\\tool\\...",
+      "memory_mb": 18.4,
+      "memory_percent": 0.23
+    },
+    {
+      "pid": 6876,
+      "name": "com.docker.build.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\resources\\com.docker.build.exe --log-no-timestamp",
+      "memory_mb": 5.0,
+      "memory_percent": 0.06
+    },
+    {
+      "pid": 15256,
+      "name": "Docker Desktop.exe",
+      "cmdline": "C:\\Program Files\\Docker\\Docker\\frontend\\Docker Desktop.exe --type=utility --utility-sub-type=network...",
+      "memory_mb": 4.7,
+      "memory_percent": 0.06
+    },
+    {
+      "pid": 5408,
+      "name": "wsl.exe",
+      "cmdline": "C:\\WINDOWS\\System32\\wsl.exe -d docker-desktop -e /usr/bin/vpnkit-bridge --pid-file=/run/vpnkit-bridg...",
+      "memory_mb": 2.2,
+      "memory_percent": 0.03
+    },
+    {
+      "pid": 10912,
+      "name": "wsl.exe",
+      "cmdline": "C:\\WINDOWS\\System32\\wsl.exe -d docker-desktop -u root -e wsl-bootstrap run --base-image /c/Program F...",
+      "memory_mb": 1.7,
+      "memory_percent": 0.02
+    },
+    {
+      "pid": 11128,
+      "name": "wsl.exe",
+      "cmdline": "C:\\WINDOWS\\System32\\wsl.exe -d docker-desktop -u root -e wsl-bootstrap run --base-image /c/Program F...",
+      "memory_mb": 0.7,
+      "memory_percent": 0.01
+    },
+    {
+      "pid": 16632,
+      "name": "wsl.exe",
+      "cmdline": "C:\\WINDOWS\\System32\\wsl.exe -d docker-desktop -e /usr/bin/vpnkit-bridge --pid-file=/run/vpnkit-bridg...",
+      "memory_mb": 0.6,
+      "memory_percent": 0.01
+    },
+    {
+      "pid": 12492,
+      "name": "python.exe",
+      "cmdline": "h:\\.venv\\Scripts\\python.exe c:\\Users\\Lyndz\\.vscode\\extensions\\ms-python.black-formatter-2025.2.0\\bun...",
+      "memory_mb": 0.0,
+      "memory_percent": 0.0
+    },
+    {
+      "pid": 12596,
+      "name": "python.exe",
+      "cmdline": "h:\\.venv\\Scripts\\python.exe c:\\Users\\Lyndz\\.vscode\\extensions\\ms-python.pylint-2025.2.0\\bundled\\tool...",
+      "memory_mb": 0.0,
+      "memory_percent": 0.0
+    },
+    {
+      "pid": 16564,
+      "name": "python.exe",
+      "cmdline": "h:\\.venv\\Scripts\\python.exe c:\\Users\\Lyndz\\.vscode\\extensions\\ms-python.isort-2025.0.0\\bundled\\tool\\...",
+      "memory_mb": 0.0,
+      "memory_percent": 0.0
+    }
+  ],
+  "port_processes": {},
+  "optimizations": {
+    "paused_processes": [],
+    "python_optimization": {
+      "garbage_collected": 464,
+      "modules_cleared": 0,
+      "heavy_processes": [
+        {
+          "pid": 16684,
+          "memory_mb": 169.8,
+          "cmdline": "h:\\.venv\\Scripts\\python.exe c:\\Users\\Lyndz\\.vscode\\extensions\\ms-python.pylint-2..."
+        }
+      ]
+    },
+    "windows_optimization": [
+      "System file check initiated",
+      "Working set memory trim completed"
+    ]
+  },
+  "deployment_strategy": {
+    "current_memory_usage": 80.6,
+    "target_usage": 70.0,
+    "memory_gap_gb": 10.599999999999994,
+    "recommendations": [
+      "\ud83d\udca1 Monitor deployment closely",
+      "\ud83d\udd27 Use virtual environment isolation",
+      "\ud83d\udcca Deploy in phases (Workers AI first)"
+    ]
+  }
+}

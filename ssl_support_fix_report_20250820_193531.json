@@ -1,0 +1,115 @@
+{
+  "timestamp": "20250820_193531",
+  "ssl_analysis": {
+    "issue_type": "HOSTNAME_MISMATCH",
+    "affected_domain": "support.hyperfocuszone.com",
+    "current_certificate": "hyperfocuszone.com (wildcard not including support subdomain)",
+    "dns_status": "RESOLVES_TO_185.199.108.153",
+    "certificate_authority": "Google Trust Services WE1",
+    "root_cause": "Certificate SAN does not include support.hyperfocuszone.com"
+  },
+  "fix_options": {
+    "option_1": {
+      "name": "Update Existing Certificate (RECOMMENDED)",
+      "description": "Add support.hyperfocuszone.com to existing certificate SAN",
+      "complexity": "LOW",
+      "downtime": "MINIMAL",
+      "steps": [
+        "Access current certificate provider (Google Trust Services)",
+        "Update certificate SAN to include support.hyperfocuszone.com",
+        "Re-issue certificate with updated SAN list",
+        "Deploy updated certificate to server",
+        "Update NGINX configuration if needed",
+        "Verify SSL for support subdomain"
+      ],
+      "estimated_time": "15-30 minutes"
+    },
+    "option_2": {
+      "name": "Separate Certificate for Support Subdomain",
+      "description": "Generate dedicated SSL certificate for support.hyperfocuszone.com",
+      "complexity": "MEDIUM",
+      "downtime": "MINIMAL",
+      "steps": [
+        "Generate new CSR for support.hyperfocuszone.com",
+        "Request certificate from CA (Let's Encrypt or existing provider)",
+        "Install separate certificate for support subdomain",
+        "Update NGINX server block for support.hyperfocuszone.com",
+        "Test SSL functionality",
+        "Monitor certificate expiration separately"
+      ],
+      "estimated_time": "30-45 minutes"
+    },
+    "option_3": {
+      "name": "Wildcard Certificate Upgrade",
+      "description": "Upgrade to wildcard certificate (*.hyperfocuszone.com)",
+      "complexity": "HIGH",
+      "downtime": "LOW",
+      "steps": [
+        "Request wildcard certificate (*.hyperfocuszone.com)",
+        "Update DNS validation for wildcard",
+        "Replace existing certificate with wildcard",
+        "Update all NGINX configurations",
+        "Test all subdomains",
+        "Verify automatic coverage for future subdomains"
+      ],
+      "estimated_time": "45-60 minutes"
+    }
+  },
+  "recommended_action_plan": {
+    "priority": "HIGH",
+    "target": "support.hyperfocuszone.com SSL certificate fix",
+    "method": "Update existing certificate SAN",
+    "immediate_steps": [
+      {
+        "step": 1,
+        "action": "Identify Current Certificate Provider",
+        "command": "Check certificate management interface",
+        "details": "Access Google Trust Services or certificate management panel"
+      },
+      {
+        "step": 2,
+        "action": "Request Certificate Update",
+        "command": "Add support.hyperfocuszone.com to SAN list",
+        "details": "Include support subdomain in Subject Alternative Names"
+      },
+      {
+        "step": 3,
+        "action": "Download Updated Certificate",
+        "command": "Download new certificate files",
+        "details": "Get .crt, .key, and intermediate certificates"
+      },
+      {
+        "step": 4,
+        "action": "Backup Current Configuration",
+        "command": "cp /etc/nginx/ssl/* /etc/nginx/ssl/backup/",
+        "details": "Backup existing SSL certificates and NGINX config"
+      },
+      {
+        "step": 5,
+        "action": "Install Updated Certificate",
+        "command": "Update certificate files on server 212.227.127.144",
+        "details": "Replace certificate files with updated versions"
+      },
+      {
+        "step": 6,
+        "action": "Update NGINX Configuration",
+        "command": "nginx -t && systemctl reload nginx",
+        "details": "Verify configuration and reload NGINX"
+      },
+      {
+        "step": 7,
+        "action": "Verify SSL Certificate",
+        "command": "openssl s_client -connect support.hyperfocuszone.com:443 -servername support.hyperfocuszone.com",
+        "details": "Test SSL connection and verify certificate validity"
+      }
+    ]
+  },
+  "nginx_config_template": "\n# SSL Configuration for support.hyperfocuszone.com\nserver {\n    listen 443 ssl http2;\n    listen [::]:443 ssl http2;\n    server_name support.hyperfocuszone.com;\n\n    # SSL Certificate Configuration\n    ssl_certificate /etc/nginx/ssl/hyperfocuszone.com.crt;\n    ssl_certificate_key /etc/nginx/ssl/hyperfocuszone.com.key;\n\n    # SSL Security Settings\n    ssl_protocols TLSv1.2 TLSv1.3;\n    ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384;\n    ssl_prefer_server_ciphers off;\n    ssl_session_cache shared:SSL:10m;\n    ssl_session_timeout 10m;\n\n    # Security Headers\n    add_header Strict-Transport-Security \"max-age=31536000; includeSubDomains; preload\" always;\n    add_header X-Frame-Options DENY always;\n    add_header X-Content-Type-Options nosniff always;\n    add_header X-XSS-Protection \"1; mode=block\" always;\n    add_header Referrer-Policy \"strict-origin-when-cross-origin\" always;\n\n    # Support Application Configuration\n    location / {\n        # Proxy to support application or serve static files\n        root /var/www/support.hyperfocuszone.com;\n        index index.html index.php;\n        try_files $uri $uri/ =404;\n    }\n\n    # Error Pages\n    error_page 404 /404.html;\n    error_page 500 502 503 504 /50x.html;\n\n    # Logging\n    access_log /var/log/nginx/support.hyperfocuszone.com.access.log;\n    error_log /var/log/nginx/support.hyperfocuszone.com.error.log;\n}\n\n# HTTP to HTTPS Redirect for support subdomain\nserver {\n    listen 80;\n    listen [::]:80;\n    server_name support.hyperfocuszone.com;\n    return 301 https://$server_name$request_uri;\n}\n",
+  "empire_integration": {
+    "server_ip": "212.227.127.144",
+    "affected_domain": "support.hyperfocuszone.com",
+    "dns_ip": "185.199.108.153",
+    "priority": "HIGH - Immediate action required",
+    "estimated_completion": "15-30 minutes with Option 1"
+  }
+}

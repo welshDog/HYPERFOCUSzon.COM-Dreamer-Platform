@@ -1,0 +1,160 @@
+{
+  "timestamp": "20250820_192109",
+  "server_analysis": {
+    "hyperfocus_app": [
+      {
+        "host": "127.0.0.1",
+        "port": 3000,
+        "weight": 3,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "hyperfocus_app"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 3001,
+        "weight": 2,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "hyperfocus_app"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 3002,
+        "weight": 2,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "hyperfocus_app"
+      }
+    ],
+    "ai_cabin_services": [
+      {
+        "host": "127.0.0.1",
+        "port": 4000,
+        "weight": 3,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "ai_cabin_services"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 4001,
+        "weight": 3,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "ai_cabin_services"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 4002,
+        "weight": 2,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "ai_cabin_services"
+      }
+    ],
+    "agent_army_api": [
+      {
+        "host": "127.0.0.1",
+        "port": 5000,
+        "weight": 3,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "agent_army_api"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 5001,
+        "weight": 3,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "agent_army_api"
+      },
+      {
+        "host": "127.0.0.1",
+        "port": 5002,
+        "weight": 2,
+        "status": "AVAILABLE",
+        "connectable": false,
+        "service": "agent_army_api"
+      }
+    ]
+  },
+  "pi_network_analysis": {
+    "main_dive": {
+      "ip": "100.114.5.118",
+      "network_type": "TAILSCALE",
+      "ssh_status": "AVAILABLE",
+      "reachable": false
+    },
+    "empire_ssh": {
+      "ip": "100.68.37.27",
+      "network_type": "TAILSCALE",
+      "ssh_status": "IN_USE",
+      "reachable": true
+    },
+    "backup": {
+      "ip": "100.71.69.16",
+      "network_type": "TAILSCALE",
+      "ssh_status": "IN_USE",
+      "reachable": true
+    },
+    "local": {
+      "ip": "192.168.137.10",
+      "network_type": "LOCAL",
+      "ssh_status": "AVAILABLE",
+      "reachable": false
+    }
+  },
+  "scaling_recommendations": {
+    "immediate_actions": [
+      {
+        "type": "SERVER_ACTIVATION",
+        "service": "hyperfocus_app",
+        "action": "Start hyperfocus_app services on available ports",
+        "ports": [
+          3000
+        ],
+        "priority": "HIGH"
+      },
+      {
+        "type": "SERVER_ACTIVATION",
+        "service": "ai_cabin_services",
+        "action": "Start ai_cabin_services services on available ports",
+        "ports": [
+          4000
+        ],
+        "priority": "HIGH"
+      },
+      {
+        "type": "SERVER_ACTIVATION",
+        "service": "agent_army_api",
+        "action": "Start agent_army_api services on available ports",
+        "ports": [
+          5000
+        ],
+        "priority": "HIGH"
+      }
+    ],
+    "scaling_opportunities": [],
+    "performance_improvements": [
+      {
+        "type": "PI_NETWORK_UTILIZATION",
+        "action": "Leverage Pi network for distributed processing",
+        "available_nodes": [
+          "empire_ssh",
+          "backup"
+        ],
+        "opportunity": "Distribute AI agent workloads across Pi cluster",
+        "priority": "MEDIUM"
+      }
+    ]
+  },
+  "metrics": {
+    "total_configured_servers": 9,
+    "active_servers": 0,
+    "utilization_rate_percent": 0.0,
+    "pi_nodes_reachable": 2,
+    "scaling_potential": "HIGH"
+  }
+}
