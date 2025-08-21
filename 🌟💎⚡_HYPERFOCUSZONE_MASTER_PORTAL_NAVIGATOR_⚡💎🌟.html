@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 HyperFocus Zone - Master Portal Navigator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3); }
+            to { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.6); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .mood-selector {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(15px);
+        }
+
+        .mood-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .mood-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 15px;
+            padding: 1rem;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .mood-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .mood-button.energized { background: linear-gradient(135deg, #ffa726, #ff7043); }
+        .mood-button.overwhelmed { background: linear-gradient(135deg, #42a5f5, #1e88e5); }
+        .mood-button.tired { background: linear-gradient(135deg, #ab47bc, #8e24aa); }
+        .mood-button.motivated { background: linear-gradient(135deg, #66bb6a, #43a047); }
+        .mood-button.accomplished { background: linear-gradient(135deg, #ffd54f, #ffb300); }
+
+        .portal-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .category-description {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .portal-list {
+            list-style: none;
+        }
+
+        .portal-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portal-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        .portal-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .quick-access {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .quick-access:hover {
+            transform: scale(1.2);
+        }
+
+        .ai-recommendation {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2rem; }
+            .hero-subtitle { font-size: 1.2rem; }
+            .portal-categories { grid-template-columns: 1fr; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1 class="hero-title">🌟 HYPERFOCUS ZONE 🌟</h1>
+        <p class="hero-subtitle">Your Ultimate Neurodivergent Superpower Hub</p>
+        <p>✨ Turn ADHD into your greatest strength ✨</p>
+    </div>
+
+    <div class="mood-selector">
+        <h2 class="mood-title">🌈 How are you feeling right now?</h2>
+        <div class="mood-grid">
+            <button class="mood-button overwhelmed" onclick="showPortals('overwhelmed')">
+                😤 Overwhelmed<br><small>Need support</small>
+            </button>
+            <button class="mood-button energized" onclick="showPortals('energized')">
+                🔥 Energized<br><small>Ready to focus</small>
+            </button>
+            <button class="mood-button tired" onclick="showPortals('tired')">
+                😴 Tired<br><small>Need gentle boost</small>
+            </button>
+            <button class="mood-button motivated" onclick="showPortals('motivated')">
+                💪 Motivated<br><small>Let's achieve</small>
+            </button>
+            <button class="mood-button accomplished" onclick="showPortals('accomplished')">
+                🎉 Accomplished<br><small>Time to celebrate</small>
+            </button>
+        </div>
+        
+        <div id="ai-recommendation" class="ai-recommendation" style="display: none;">
+            <h3>🤖 AI Recommendation</h3>
+            <p id="recommendation-text"></p>
+            <a id="recommendation-link" class="mood-button" style="display: inline-block; margin-top: 1rem;">
+                🚀 Go to Portal
+            </a>
+        </div>
+    </div>
+
+    <div class="portal-categories">
+        <div class="category-card">
+            <h3 class="category-title">🎯 FOCUS NOW</h3>
+            <p class="category-description">Instant hyperfocus activation tools</p>
+            <ul class="portal-list">
+                <li class="portal-item">
+                    <a href="http://localhost:8080/🎯⚡🔥_HYPERFOCUS_SESSION_OPTIMIZER_🔥⚡🎯.html" class="portal-link">
+                        🎯 HyperFocus Session Optimizer
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8080/💎🎮⚡_GAMIFIED_FOCUS_CHALLENGE_PORTAL_⚡🎮💎.html" class="portal-link">
+                        🎮 Gamified Focus Challenge
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/🚀💰⚡30MinuteSprintTrackerFixed⚡💰🚀.html" class="portal-link">
+                        ⏰ 30-Minute Sprint Tracker
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <h3 class="category-title">🧠 FIND YOUR TRIBE</h3>
+            <p class="category-description">Connect with your ADHD community</p>
+            <ul class="portal-list">
+                <li class="portal-item">
+                    <a href="http://localhost:8080/🧠❤️‍🔥⚡_ADHD_BRAIN_TWIN_MATCHING_PORTAL_⚡❤️‍🔥🧠.html" class="portal-link">
+                        🧠 ADHD Brain Twin Matching
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/🎊❤️‍🔥💚🩵AmazingTeamLushCelebrationInstant❤️💕🎊.html" class="portal-link">
+                        🎊 Team Celebration Hub
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <h3 class="category-title">💰 MONETIZE HYPERFOCUS</h3>
+            <p class="category-description">Turn your superpowers into income</p>
+            <ul class="portal-list">
+                <li class="portal-item">
+                    <a href="http://localhost:8080/💰🚀⚡_NEURODIVERGENT_ECONOMY_PORTAL_⚡🚀💰.html" class="portal-link">
+                        💰 Neurodivergent Economy Portal
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/🏆💎⚡RevenueEmpireVisionbeacon⚡💎🏆.html" class="portal-link">
+                        🏆 Revenue Empire Dashboard
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/HyperfocusMarketplaceVisionbeacon.html" class="portal-link">
+                        🏪 Marketplace Portal
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <h3 class="category-title">🤖 GET SUPPORT</h3>
+            <p class="category-description">Executive function & AI assistance</p>
+            <ul class="portal-list">
+                <li class="portal-item">
+                    <a href="http://localhost:8080/🤖🧠⚡_PERSONAL_EXECUTIVE_FUNCTION_AI_⚡🧠🤖.html" class="portal-link">
+                        🤖 Personal Executive Function AI
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/📱💎⚡MobileFocustotemCommandCenter⚡💎📱.html" class="portal-link">
+                        📱 Mobile Command Center
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/🔧💎⚡MobileFocustotemDebugCenter⚡💎🔧.html" class="portal-link">
+                        🔧 Help & Debug Center
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <h3 class="category-title">🎊 CELEBRATE WINS</h3>
+            <p class="category-description">Achievement recognition & rewards</p>
+            <ul class="portal-list">
+                <li class="portal-item">
+                    <a href="http://localhost:8082/🎊🚀💎⚡UltimateFocusrelicCelebrationPage⚡💎🚀🎊.html" class="portal-link">
+                        🎊 Ultimate Celebration Portal
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/💖⚡FocustotemEmpireWishlistPortal⚡💖.html" class="portal-link">
+                        💖 Dreams & Wishlist Portal
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/🎊LegendaryFocustotemOperationalVictoryPage20250801184514.html" class="portal-link">
+                        🏆 Victory Achievement Pages
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="category-card">
+            <h3 class="category-title">🌟 SPECIAL PORTALS</h3>
+            <p class="category-description">Advanced & experimental features</p>
+            <ul class="portal-list">
+                <li class="portal-item">
+                    <a href="http://localhost:8080/♾️💎🌐_IMMORTAL_WEB3_HYPERFOCUS_ZONE_PORTAL_🌐💎♾️.html" class="portal-link">
+                        ♾️ Immortal Web3 Portal
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/QuantumMemoryTimelineNavigator.html" class="portal-link">
+                        ⚡ Quantum Memory Navigator
+                    </a>
+                </li>
+                <li class="portal-item">
+                    <a href="http://localhost:8082/BciFusionForgeNeuralDevelopment.html" class="portal-link">
+                        🧠 BCI Neural Development
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="quick-access" onclick="emergencyFocus()">
+        🚨
+    </div>
+
+    <script>
+        const moodPortals = {
+            overwhelmed: {
+                text: "When you're overwhelmed, start with gentle executive function support. The AI will help you break things down step by step.",
+                portal: "🤖 Personal Executive Function AI",
+                url: "http://localhost:8080/🤖🧠⚡_PERSONAL_EXECUTIVE_FUNCTION_AI_⚡🧠🤖.html"
+            },
+            energized: {
+                text: "Perfect energy for hyperfocus! Try the gamified challenge to channel that energy into productive flow.",
+                portal: "🎮 Gamified Focus Challenge",
+                url: "http://localhost:8080/💎🎮⚡_GAMIFIED_FOCUS_CHALLENGE_PORTAL_⚡🎮💎.html"
+            },
+            tired: {
+                text: "When you're tired, the Dopamine Lab will gently boost your energy with ADHD-friendly techniques.",
+                portal: "🧠 Dopamine Zen Lab",
+                url: "http://localhost:8082/DopamineVisionbeaconZenModeCreativeFusionLab.html"
+            },
+            motivated: {
+                text: "Great motivation! Use the Sprint Tracker to capture this energy in focused 30-minute sessions.",
+                portal: "⏰ 30-Minute Sprint Tracker",
+                url: "http://localhost:8082/🚀💰⚡30MinuteSprintTrackerFixed⚡💰🚀.html"
+            },
+            accomplished: {
+                text: "Celebrate your success! The Victory Portal will help you recognize your achievements and plan what's next.",
+                portal: "🎊 Ultimate Celebration Portal",
+                url: "http://localhost:8082/🎊🚀💎⚡UltimateFocusrelicCelebrationPage⚡💎🚀🎊.html"
+            }
+        };
+
+        function showPortals(mood) {
+            const recommendation = moodPortals[mood];
+            const recDiv = document.getElementById('ai-recommendation');
+            const recText = document.getElementById('recommendation-text');
+            const recLink = document.getElementById('recommendation-link');
+
+            recText.textContent = recommendation.text;
+            recLink.textContent = recommendation.portal;
+            recLink.href = recommendation.url;
+            
+            recDiv.style.display = 'block';
+            recDiv.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function emergencyFocus() {
+            alert("🚨 EMERGENCY HYPERFOCUS ACTIVATED! 🚨\n\n🎯 Opening Focus Session Optimizer...\n⏰ 30-minute timer starting NOW!\n🔥 You've got this!");
+            window.open("http://localhost:8080/🎯⚡🔥_HYPERFOCUS_SESSION_OPTIMIZER_🔥⚡🎯.html", "_blank");
+        }
+
+        // Add portal tracking
+        function trackPortalUsage(portalName) {
+            console.log(`🚀 Portal accessed: ${portalName}`);
+            // Could integrate with analytics later
+        }
+
+        // Auto-recommendation based on time of day
+        window.onload = function() {
+            const hour = new Date().getHours();
+            let autoMood = '';
+            
+            if (hour >= 6 && hour < 9) {
+                autoMood = 'motivated'; // Morning energy
+            } else if (hour >= 9 && hour < 12) {
+                autoMood = 'energized'; // Peak focus time
+            } else if (hour >= 12 && hour < 15) {
+                autoMood = 'overwhelmed'; // Post-lunch dip
+            } else if (hour >= 15 && hour < 18) {
+                autoMood = 'motivated'; // Afternoon boost
+            } else if (hour >= 18 && hour < 22) {
+                autoMood = 'tired'; // Evening wind-down
+            } else {
+                autoMood = 'tired'; // Night time
+            }
+            
+            // Show subtle suggestion
+            setTimeout(() => {
+                const suggestion = moodPortals[autoMood];
+                console.log(`💡 AI Suggestion based on time: ${suggestion.portal}`);
+            }, 2000);
+        };
+    </script>
+</body>
+</html>

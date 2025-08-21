@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Neurodivergent Economy Portal - HyperFocus Zone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .portal-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 3px solid #667eea;
+        }
+
+        .portal-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .portal-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .earnings-dashboard {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .earnings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .earning-item {
+            text-align: center;
+        }
+
+        .earning-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .earning-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .energy-matcher {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border-left: 5px solid #f093fb;
+        }
+
+        .energy-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .energy-control {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .energy-control:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .energy-control.active {
+            border-color: #667eea;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), #f8f9fa);
+        }
+
+        .energy-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .energy-description {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .gig-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .gig-category {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .gig-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .category-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .gig-list {
+            margin-bottom: 15px;
+        }
+
+        .gig-item {
+            background: #e3f2fd;
+            border: 1px solid #667eea;
+            border-radius: 8px;
+            padding: 8px 12px;
+            margin: 5px 0;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .gig-item:before {
+            content: "💰";
+            font-size: 1.1em;
+        }
+
+        .pricing-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .adhd-strengths {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .strength-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 5px solid #f093fb;
+            transition: all 0.3s ease;
+        }
+
+        .strength-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .strength-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .strength-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .opportunities-list {
+            margin-top: 10px;
+        }
+
+        .opportunity-item {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 8px;
+            margin: 4px 0;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .opportunity-item:before {
+            content: "🌟";
+            font-size: 1em;
+        }
+
+        .platform-features {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 5px solid #764ba2;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 4px 0;
+            font-size: 0.85em;
+            color: #555;
+        }
+
+        .feature-list li:before {
+            content: "✅ ";
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .quick-start {
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .start-button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .start-button:hover {
+            background: white;
+            color: #f093fb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .hyperfocus-zone-footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 20px;
+        }
+
+        .footer-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .footer-subtitle {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .portal-title {
+                font-size: 2em;
+            }
+
+            .energy-controls {
+                grid-template-columns: 1fr;
+            }
+
+            .gig-categories {
+                grid-template-columns: 1fr;
+            }
+
+            .strengths-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-header">
+        <h1 class="portal-title">💰 Neurodivergent Economy Portal 🚀</h1>
+        <p class="portal-subtitle">Turn your ADHD superpowers into sustainable income streams!</p>
+        <p><strong>✨ DREAM IT BUILD IT HYPERFOCUS ZONE ✨</strong></p>
+    </div>
+
+    <div class="main-container">
+        <!-- Earnings Dashboard -->
+        <div class="earnings-dashboard">
+            <h2>💎 Your Neurodivergent Economy Stats</h2>
+            <div class="earnings-grid">
+                <div class="earning-item">
+                    <span class="earning-number">$2,847</span>
+                    <span class="earning-label">This Month</span>
+                </div>
+                <div class="earning-item">
+                    <span class="earning-number">156</span>
+                    <span class="earning-label">Gigs Completed</span>
+                </div>
+                <div class="earning-item">
+                    <span class="earning-number">4.9⭐</span>
+                    <span class="earning-label">ADHD-Friendly Rating</span>
+                </div>
+                <div class="earning-item">
+                    <span class="earning-number">47h</span>
+                    <span class="earning-label">Hyperfocus Hours</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Energy Level Matcher -->
+        <div class="energy-matcher">
+            <h2 style="text-align: center; margin-bottom: 20px;">⚡ Match Gigs to Your Current Energy</h2>
+
+            <div class="energy-controls">
+                <div class="energy-control active" onclick="selectEnergyLevel('hyperfocus')">
+                    <div class="energy-title">🎯 Hyperfocus Mode</div>
+                    <div class="energy-description">Deep focus, ready for intensive work</div>
+                </div>
+                <div class="energy-control" onclick="selectEnergyLevel('creative')">
+                    <div class="energy-title">🎨 Creative Flow</div>
+                    <div class="energy-description">Ideas flowing, inspiration high</div>
+                </div>
+                <div class="energy-control" onclick="selectEnergyLevel('scattered')">
+                    <div class="energy-title">⚡ Scattered Energy</div>
+                    <div class="energy-description">Need bite-sized tasks</div>
+                </div>
+                <div class="energy-control" onclick="selectEnergyLevel('crisis')">
+                    <div class="energy-title">🚨 Crisis Mode</div>
+                    <div class="energy-description">Urgency activates superpowers</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="start-button" onclick="findMatchingGigs()">
+                    🔍 Find Perfect Gigs for My Energy
+                </button>
+            </div>
+        </div>
+
+        <!-- Quick Start Section -->
+        <div class="quick-start">
+            <h2 style="margin-bottom: 15px;">🚀 Start Monetizing Your ADHD Superpowers!</h2>
+            <p style="margin-bottom: 20px;">Choose your path to neurodivergent financial freedom:</p>
+
+            <button class="start-button" onclick="startEarning('hyperfocus')">
+                🎯 Start Hyperfocus Gigs
+            </button>
+            <button class="start-button" onclick="startEarning('creative')">
+                🎨 Launch Creative Projects
+            </button>
+            <button class="start-button" onclick="startEarning('coaching')">
+                🧠 Begin ADHD Coaching
+            </button>
+            <button class="start-button" onclick="startEarning('crisis')">
+                🚨 Join Crisis Response Team
+            </button>
+        </div>
+
+        <!-- Gig Categories -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h2>💰 ADHD-Optimized Gig Categories</h2>
+        </div>
+
+        <div class="gig-categories">
+            <div class="gig-category">
+                <div class="category-title">🎯 🎯 Hyperfocus Intensive Work</div>
+                <div class="category-description">Projects perfect for deep, uninterrupted work sessions</div>
+                <div class="gig-list"><div class="gig-item">Deep Research Projects</div><div class="gig-item">Complex Coding Marathons</div><div class="gig-item">Intensive Writing Projects</div><div class="gig-item">Detailed Design Work</div>
+                </div>
+                <div class="pricing-badge">Premium hourly or project-based</div>
+            </div>
+            <div class="gig-category">
+                <div class="category-title">⚡ ⚡ Bite-Sized Task Bursts</div>
+                <div class="category-description">Perfect for scattered attention days</div>
+                <div class="gig-list"><div class="gig-item">Quick Content Creation</div><div class="gig-item">Social Media Management</div><div class="gig-item">Data Entry Sprints</div><div class="gig-item">Image Editing Tasks</div>
+                </div>
+                <div class="pricing-badge">Micro-task or batch pricing</div>
+            </div>
+            <div class="gig-category">
+                <div class="category-title">🎨 🎨 Creative Expression Projects</div>
+                <div class="category-description">Monetize your unique creative perspective</div>
+                <div class="gig-list"><div class="gig-item">Graphic Design & Illustration</div><div class="gig-item">Content Writing & Copywriting</div><div class="gig-item">Video Creation & Editing</div><div class="gig-item">Podcast Production</div>
+                </div>
+                <div class="pricing-badge">Creative project rates + royalties</div>
+            </div>
+            <div class="gig-category">
+                <div class="category-title">🧠 🧠 ADHD Coaching & Support</div>
+                <div class="category-description">Help others with your lived ADHD experience</div>
+                <div class="gig-list"><div class="gig-item">ADHD Life Coaching</div><div class="gig-item">Executive Function Tutoring</div><div class="gig-item">Study Skills Coaching</div><div class="gig-item">Productivity Consulting</div>
+                </div>
+                <div class="pricing-badge">Professional coaching rates</div>
+            </div>
+            <div class="gig-category">
+                <div class="category-title">🌟 🌟 Special Interest Monetization</div>
+                <div class="category-description">Turn your obsessions into income streams</div>
+                <div class="gig-list"><div class="gig-item">Subject Matter Expert Consulting</div><div class="gig-item">Specialized Content Creation</div><div class="gig-item">Niche Market Research</div><div class="gig-item">Hobby Instruction & Tutoring</div>
+                </div>
+                <div class="pricing-badge">Expert specialist premium rates</div>
+            </div>
+            <div class="gig-category">
+                <div class="category-title">🚨 🚨 Crisis & Emergency Services</div>
+                <div class="category-description">High-pressure work that activates ADHD superpowers</div>
+                <div class="gig-list"><div class="gig-item">Emergency Project Rescue</div><div class="gig-item">Urgent Deadline Deliveries</div><div class="gig-item">Crisis Communication</div><div class="gig-item">Last-Minute Event Support</div>
+                </div>
+                <div class="pricing-badge">Premium emergency rates (2-3x normal)</div>
+            </div>
+        </div>
+
+        <!-- ADHD Economic Strengths -->
+        <div class="adhd-strengths">
+            <h2 style="text-align: center; margin-bottom: 20px;">🌟 Your ADHD Economic Superpowers</h2>
+
+            <div class="strengths-grid">
+                <div class="strength-card">
+                    <div class="strength-title">🎯 🎯 Hyperfocus Specialization</div>
+                    <div class="strength-description">Leverage intense focus periods for high-value work</div>
+                    <div class="opportunities-list"><div class="opportunity-item">Deep research projects (3-10 hours of pure focus)</div><div class="opportunity-item">Complex problem-solving consulting</div><div class="opportunity-item">Intensive creative work (design, writing, coding)</div>
+                    </div>
+                </div>
+                <div class="strength-card">
+                    <div class="strength-title">🎨 🎨 Creative Innovation Engine</div>
+                    <div class="strength-description">ADHD brains generate novel ideas and solutions</div>
+                    <div class="opportunities-list"><div class="opportunity-item">Creative brainstorming sessions</div><div class="opportunity-item">Innovation consulting for stuck projects</div><div class="opportunity-item">Content creation and storytelling</div>
+                    </div>
+                </div>
+                <div class="strength-card">
+                    <div class="strength-title">🔍 🔍 Pattern Recognition Mastery</div>
+                    <div class="strength-description">Exceptional ability to see connections others miss</div>
+                    <div class="opportunities-list"><div class="opportunity-item">Data analysis and trend identification</div><div class="opportunity-item">Market research and insights</div><div class="opportunity-item">Bug detection and QA testing</div>
+                    </div>
+                </div>
+                <div class="strength-card">
+                    <div class="strength-title">🚨 🚨 Crisis Superhero Mode</div>
+                    <div class="strength-description">ADHD brains thrive under pressure and urgency</div>
+                    <div class="opportunities-list"><div class="opportunity-item">Emergency project rescue</div><div class="opportunity-item">Urgent deadline deliveries</div><div class="opportunity-item">Crisis communication and PR</div>
+                    </div>
+                </div>
+                <div class="strength-card">
+                    <div class="strength-title">🔄 🔄 Dynamic Multitasking</div>
+                    <div class="strength-description">Managing multiple interests and projects simultaneously</div>
+                    <div class="opportunities-list"><div class="opportunity-item">Project portfolio management</div><div class="opportunity-item">Multi-client coordination</div><div class="opportunity-item">Cross-functional team leadership</div>
+                    </div>
+                </div>
+                <div class="strength-card">
+                    <div class="strength-title">🌊 🌊 Adaptability Superpower</div>
+                    <div class="strength-description">Quick pivoting and adaptation to changing requirements</div>
+                    <div class="opportunities-list"><div class="opportunity-item">Agile project management</div><div class="opportunity-item">Rapid market response consulting</div><div class="opportunity-item">Change management facilitation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform Features -->
+        <div class="platform-features">
+            <h2 style="text-align: center; margin-bottom: 20px;">🛡️ ADHD-Friendly Platform Features</h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-title">⚡ ⚡ Energy Level Matching</div>
+                    <div class="feature-description">Match gigs to your current energy and focus state</div>
+                    <ul class="feature-list"><li>Real-time energy level tracking</li><li>Focus state assessment (hyperfocus vs scattered)</li><li>Dopamine level indicators</li><li>Motivation and enthusiasm meters</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">📅 📅 ADHD-Friendly Scheduling</div>
+                    <div class="feature-description">Work when your brain works best</div>
+                    <ul class="feature-list"><li>No fixed schedules - work when inspired</li><li>Hyperfocus session protection</li><li>Time blindness accommodation</li><li>Deadline flexibility with clear communication</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">🎊 🎊 Dopamine Reward System</div>
+                    <div class="feature-description">Instant gratification and celebration</div>
+                    <ul class="feature-list"><li>Immediate payment upon task completion</li><li>Micro-celebrations for small wins</li><li>Achievement badges and progress tracking</li><li>Gamified earning milestones</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">🧠 🧠 Executive Function Assistance</div>
+                    <div class="feature-description">Built-in support for ADHD challenges</div>
+                    <ul class="feature-list"><li>Task breakdown and chunking tools</li><li>Automated project management</li><li>Reminder and notification systems</li><li>Progress tracking and accountability</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">🎵 🎵 Sensory Environment Control</div>
+                    <div class="feature-description">Customize your work environment</div>
+                    <ul class="feature-list"><li>Background noise and music options</li><li>Visual customization and themes</li><li>Distraction blocking and focus modes</li><li>Sensory break reminders</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-title">💝 💝 RSD-Safe Communication</div>
+                    <div class="feature-description">Protect against rejection sensitive dysphoria</div>
+                    <ul class="feature-list"><li>Positive communication frameworks</li><li>Constructive feedback templates</li><li>Conflict resolution support</li><li>Emotional safety protocols</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HyperFocus Zone Footer -->
+    <div class="hyperfocus-zone-footer">
+        <h3 class="footer-title">💎 DREAM IT BUILD IT HYPERFOCUS ZONE 💎</h3>
+        <p class="footer-subtitle">Empowering neurodivergent minds to thrive financially</p>
+        <a href="mailto:SEND-ME.NFT@UD.ME" class="footer-contact">
+            📧 Contact: SEND-ME.NFT@UD.ME
+        </a>
+    </div>
+
+    <script>
+        let currentEnergyLevel = 'hyperfocus';
+
+        function selectEnergyLevel(energyType) {
+            currentEnergyLevel = energyType;
+
+            // Update UI
+            document.querySelectorAll('.energy-control').forEach(control => {
+                control.classList.remove('active');
+            });
+            event.target.closest('.energy-control').classList.add('active');
+
+            console.log(`⚡ Energy level set to: ${energyType}`);
+        }
+
+        function findMatchingGigs() {
+            const energyMessages = {
+                'hyperfocus': '🎯 Found 12 perfect hyperfocus gigs! Deep research, coding marathons, and intensive creative work available!',
+                'creative': '🎨 Found 8 amazing creative projects! Graphic design, content creation, and innovation consulting ready!',
+                'scattered': '⚡ Found 25 bite-sized tasks! Quick wins and easy completions to build momentum!',
+                'crisis': '🚨 Found 5 high-urgency projects! Emergency deadlines with premium crisis rates!'
+            };
+
+            alert(energyMessages[currentEnergyLevel] || '💰 Found amazing gigs perfect for your current state!');
+        }
+
+        function startEarning(category) {
+            const categoryMessages = {
+                'hyperfocus': '🎯 Hyperfocus gigs activated! Time to leverage your deep focus superpowers! 💪',
+                'creative': '🎨 Creative projects launched! Your unique ADHD perspective is your goldmine! ✨',
+                'coaching': '🧠 ADHD coaching started! Share your journey and help others thrive! 💝',
+                'crisis': '🚨 Crisis response activated! Your pressure-thriving abilities are in demand! ⚡'
+            };
+
+            alert(categoryMessages[category] || '💰 Your ADHD superpowers are now earning money! 🚀');
+
+            // Simulate earnings update
+            updateEarningsDisplay();
+        }
+
+        function updateEarningsDisplay() {
+            // Simulate small earning increase
+            const currentEarnings = parseInt(document.querySelector('.earning-number').textContent.replace('$', '').replace(',', ''));
+            const newEarnings = currentEarnings + Math.floor(Math.random() * 100) + 25;
+
+            setTimeout(() => {
+                document.querySelector('.earning-number').textContent = '$' + newEarnings.toLocaleString();
+                console.log('💰 Earnings updated! Your ADHD superpowers are paying off!');
+            }, 1000);
+        }
+
+        // Simulate real-time opportunity notifications
+        function showOpportunityNotification() {
+            const opportunities = [
+                '🎯 New hyperfocus gig available: 6-hour research project - $450!',
+                '🎨 Creative brief posted: Logo design for ADHD startup - $300!',
+                '🚨 URGENT: Website needs fixing by tomorrow - $600 crisis rate!',
+                '🧠 ADHD coaching session requested: Help with study skills - $120/hour!',
+                '⚡ Micro-tasks available: 20 quick data entry jobs - $5 each!'
+            ];
+
+            const randomOpportunity = opportunities[Math.floor(Math.random() * opportunities.length)];
+
+            console.log('🔔 NEW OPPORTUNITY: ' + randomOpportunity);
+        }
+
+        // Start showing opportunities
+        setTimeout(() => {
+            showOpportunityNotification();
+            setInterval(showOpportunityNotification, 15000); // Every 15 seconds
+        }, 3000);
+
+        // Welcome message
+        setTimeout(() => {
+            console.log('💰🚀 Welcome to the Neurodivergent Economy Portal! 🚀💰');
+            console.log('🌟 Your ADHD brain is your BIGGEST ASSET!');
+            console.log('⚡ Let's turn your neurodivergent superpowers into income!');
+        }, 1000);
+    </script>
+</body>
+</html>

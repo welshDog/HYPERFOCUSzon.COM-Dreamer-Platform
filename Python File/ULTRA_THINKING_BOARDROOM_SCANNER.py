@@ -293,8 +293,8 @@ class UltraThinkingBoardroomScanner:
                 error_rate = (total_errors / total_packets) * 100
                 drop_rate = (total_drops / total_packets) * 100
 
-                performance_data["error_rate_percent"] = round(error_rate, 4)
-                performance_data["drop_rate_percent"] = round(drop_rate, 4)
+                performance_data["error_rate_percent"] = float(round(error_rate, 4))
+                performance_data["drop_rate_percent"] = float(round(drop_rate, 4))
 
                 # Health score calculation
                 if error_rate < 0.01 and drop_rate < 0.01:
