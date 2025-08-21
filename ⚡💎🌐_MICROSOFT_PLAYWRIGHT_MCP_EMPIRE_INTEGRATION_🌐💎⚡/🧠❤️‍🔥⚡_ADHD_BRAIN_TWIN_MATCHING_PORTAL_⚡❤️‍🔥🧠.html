@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 ADHD Brain Twin Matching Portal - HyperFocus Zone</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .portal-header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 3px solid #ff6b6b;
+        }
+
+        .portal-title {
+            font-size: 2.5em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .portal-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .matching-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .brain-profile-setup {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .profile-category {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .category-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .interest-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+
+        .interest-tag {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .interest-tag:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .interest-tag.selected {
+            background: linear-gradient(45deg, #45b7d1, #96c93d);
+            transform: scale(1.05);
+        }
+
+        .brain-twins-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .brain-twin-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brain-twin-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
+        }
+
+        .brain-twin-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: #ff6b6b;
+        }
+
+        .twin-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .twin-avatar {
+            font-size: 3em;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .twin-info {
+            flex: 1;
+        }
+
+        .twin-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .match-score {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .twin-bio {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .twin-patterns {
+            display: grid;
+            gap: 10px;
+        }
+
+        .pattern-item {
+            background: #f8f9fa;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .twin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .connect-btn {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+        }
+
+        .connect-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .focus-session-btn {
+            background: linear-gradient(45deg, #45b7d1, #96c93d);
+            color: white;
+        }
+
+        .focus-session-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .floating-features {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .feature-bubble {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 15px;
+            border-radius: 50px;
+            font-size: 1.5em;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .feature-bubble:hover {
+            transform: scale(1.1);
+        }
+
+        .stats-banner {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .hyperfocus-zone-footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            text-align: center;
+            margin-top: 50px;
+            border-radius: 20px;
+        }
+
+        .footer-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .footer-subtitle {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .portal-title {
+                font-size: 2em;
+            }
+
+            .brain-profile-setup {
+                grid-template-columns: 1fr;
+            }
+
+            .brain-twins-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-features {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-header">
+        <h1 class="portal-title">🧠 ADHD Brain Twin Matching Portal ❤️‍🔥</h1>
+        <p class="portal-subtitle">Find people with your EXACT hyperfocus interests and ADHD patterns!</p>
+        <p><strong>✨ DREAM IT BUILD IT HYPERFOCUS ZONE ✨</strong></p>
+    </div>
+
+    <div class="main-container">
+        <!-- Stats Banner -->
+        <div class="stats-banner">
+            <h2>🌟 Brain Twin Community Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">2,847</span>
+                    <span class="stat-label">Active Brain Twins</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15,693</span>
+                    <span class="stat-label">Successful Matches</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3,421</span>
+                    <span class="stat-label">Hyperfocus Sessions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">892</span>
+                    <span class="stat-label">Online Now</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brain Profile Setup -->
+        <div class="matching-section">
+            <h2 class="section-title">🎯 Set Up Your ADHD Brain Profile</h2>
+
+            <div class="brain-profile-setup">
+                <div class="profile-category">
+                    <h3 class="category-title">🌟 Hyperfocus Interests</h3>
+                    <div class="interest-grid"><button class="interest-tag" onclick="toggleInterest(this)">🎮 Gaming & Game Development</button><button class="interest-tag" onclick="toggleInterest(this)">🎨 Digital Art & Design</button><button class="interest-tag" onclick="toggleInterest(this)">💻 Programming & Tech</button><button class="interest-tag" onclick="toggleInterest(this)">🎵 Music Production & Audio</button><button class="interest-tag" onclick="toggleInterest(this)">📚 Reading & Writing</button><button class="interest-tag" onclick="toggleInterest(this)">🧠 Psychology & Neuroscience</button><button class="interest-tag" onclick="toggleInterest(this)">🌱 Plants & Gardening</button><button class="interest-tag" onclick="toggleInterest(this)">🍳 Cooking & Baking</button><button class="interest-tag" onclick="toggleInterest(this)">🎭 Theater & Performance</button><button class="interest-tag" onclick="toggleInterest(this)">📊 Data Analysis & Visualization</button><button class="interest-tag" onclick="toggleInterest(this)">🎬 Video Editing & Creation</button><button class="interest-tag" onclick="toggleInterest(this)">🏗️ Architecture & Design</button>
+                    </div>
+                </div>
+
+                <div class="profile-category">
+                    <h3 class="category-title">⚡ Energy Patterns</h3>
+                    <div class="interest-grid"><button class="interest-tag" onclick="toggleInterest(this)">🌅 Early Bird Hyperfocus (5-9 AM)</button><button class="interest-tag" onclick="toggleInterest(this)">🌞 Morning Focus Warrior (9 AM-12 PM)</button><button class="interest-tag" onclick="toggleInterest(this)">🌤️ Afternoon Productivity Burst (12-4 PM)</button><button class="interest-tag" onclick="toggleInterest(this)">🌇 Evening Deep Dive (4-8 PM)</button><button class="interest-tag" onclick="toggleInterest(this)">🌙 Night Owl Hyperfocus (8 PM-12 AM)</button><button class="interest-tag" onclick="toggleInterest(this)">🦉 Late Night Laser Focus (12-4 AM)</button><button class="interest-tag" onclick="toggleInterest(this)">💫 Random Burst Energy</button><button class="interest-tag" onclick="toggleInterest(this)">⚡ All-Day Steady Focus</button><button class="interest-tag" onclick="toggleInterest(this)">🌊 Wave Pattern Focus</button>
+                    </div>
+                </div>
+
+                <div class="profile-category">
+                    <h3 class="category-title">🎯 Dopamine Triggers</h3>
+                    <div class="interest-grid"><button class="interest-tag" onclick="toggleInterest(this)">🏆 Achievement & Completion</button><button class="interest-tag" onclick="toggleInterest(this)">🎯 Challenge & Competition</button><button class="interest-tag" onclick="toggleInterest(this)">🌟 Recognition & Praise</button><button class="interest-tag" onclick="toggleInterest(this)">💡 Learning & Discovery</button><button class="interest-tag" onclick="toggleInterest(this)">🤝 Social Connection</button><button class="interest-tag" onclick="toggleInterest(this)">🎨 Creative Expression</button><button class="interest-tag" onclick="toggleInterest(this)">🛍️ Shopping & Collecting</button><button class="interest-tag" onclick="toggleInterest(this)">🎵 Music & Rhythm</button><button class="interest-tag" onclick="toggleInterest(this)">🍫 Food & Treats</button><button class="interest-tag" onclick="toggleInterest(this)">🎮 Games & Rewards</button><button class="interest-tag" onclick="toggleInterest(this)">📱 Social Media & Notifications</button><button class="interest-tag" onclick="toggleInterest(this)">🌈 Visual Stimulation</button>
+                    </div>
+                </div>
+
+                <div class="profile-category">
+                    <h3 class="category-title">🧠 Executive Function Style</h3>
+                    <div class="interest-grid"><button class="interest-tag" onclick="toggleInterest(this)">📋 List Maker & Planner</button><button class="interest-tag" onclick="toggleInterest(this)">🎯 Hyperfocus & Intensity</button><button class="interest-tag" onclick="toggleInterest(this)">🌊 Go With Flow</button><button class="interest-tag" onclick="toggleInterest(this)">⚡ Crisis Mode Performer</button><button class="interest-tag" onclick="toggleInterest(this)">🧩 System Builder</button><button class="interest-tag" onclick="toggleInterest(this)">🎭 Deadline Driven</button><button class="interest-tag" onclick="toggleInterest(this)">👥 Body Doubling Dependent</button><button class="interest-tag" onclick="toggleInterest(this)">🔄 Routine & Structure</button><button class="interest-tag" onclick="toggleInterest(this)">💫 Chaos Thrives</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brain Twin Matches -->
+        <div class="matching-section">
+            <h2 class="section-title">🎊 Your ADHD Brain Twin Matches!</h2>
+
+            <div class="brain-twins-grid">
+                <div class="brain-twin-card">
+                    <div class="twin-header">
+                        <div class="twin-avatar">👨‍💻</div>
+                        <div class="twin-info">
+                            <div class="twin-name">Alex the Code Hyperfocuser</div>
+                            <div class="match-score">94% Match!</div>
+                        </div>
+                        <div style="color: #FF9800">🟡 Hyperfocusing</div>
+                    </div>
+
+                    <div class="twin-bio">I disappear into coding for 14 hours straight and forget to eat. Currently obsessed with React and building ADHD-friendly apps!</div>
+
+                    <div class="twin-patterns">
+                        <div class="pattern-item">
+                            <strong>⚡ Energy:</strong> 🌅 Early Bird Hyperfocus (5-9 AM)
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🧠 Executive Function:</strong> 🧩 System Builder
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🎵 Sensory:</strong> 🤫 Complete Silence
+                        </div>
+                        <div class="pattern-item">
+                            <strong>💬 Communication:</strong> 🤔 Thoughtful & Deliberate
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🌟 Shared Interests:</strong> 🏃 Fitness & Movement, 🤖 AI & Machine Learning...
+                        </div>
+                    </div>
+
+                    <div class="twin-actions">
+                        <button class="action-btn connect-btn" onclick="connectWithTwin('Alex the Code Hyperfocuser')">
+                            💬 Connect & Chat
+                        </button>
+                        <button class="action-btn focus-session-btn" onclick="startFocusSession('Alex the Code Hyperfocuser')">
+                            🎯 Start Focus Session
+                        </button>
+                    </div>
+                </div>
+                <div class="brain-twin-card">
+                    <div class="twin-header">
+                        <div class="twin-avatar">🎨</div>
+                        <div class="twin-info">
+                            <div class="twin-name">Sam the Creative Chaos</div>
+                            <div class="match-score">89% Match!</div>
+                        </div>
+                        <div style="color: #FF9800">🟡 Hyperfocusing</div>
+                    </div>
+
+                    <div class="twin-bio">My hyperfocus rotates between digital art, music production, and learning random languages. I have 47 unfinished projects!</div>
+
+                    <div class="twin-patterns">
+                        <div class="pattern-item">
+                            <strong>⚡ Energy:</strong> 🦉 Late Night Laser Focus (12-4 AM)
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🧠 Executive Function:</strong> 🧩 System Builder
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🎵 Sensory:</strong> 🌊 White/Brown Noise
+                        </div>
+                        <div class="pattern-item">
+                            <strong>💬 Communication:</strong> 🤔 Thoughtful & Deliberate
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🌟 Shared Interests:</strong> 🧠 Psychology & Neuroscience, 🔬 Science & Research...
+                        </div>
+                    </div>
+
+                    <div class="twin-actions">
+                        <button class="action-btn connect-btn" onclick="connectWithTwin('Sam the Creative Chaos')">
+                            💬 Connect & Chat
+                        </button>
+                        <button class="action-btn focus-session-btn" onclick="startFocusSession('Sam the Creative Chaos')">
+                            🎯 Start Focus Session
+                        </button>
+                    </div>
+                </div>
+                <div class="brain-twin-card">
+                    <div class="twin-header">
+                        <div class="twin-avatar">🦉</div>
+                        <div class="twin-info">
+                            <div class="twin-name">River the Night Owl Researcher</div>
+                            <div class="match-score">92% Match!</div>
+                        </div>
+                        <div style="color: #FF9800">🟡 Hyperfocusing</div>
+                    </div>
+
+                    <div class="twin-bio">Best focus hours: 11 PM - 4 AM. Currently down a rabbit hole about neuroscience and how ADHD brains are actually superpowers!</div>
+
+                    <div class="twin-patterns">
+                        <div class="pattern-item">
+                            <strong>⚡ Energy:</strong> 💫 Random Burst Energy
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🧠 Executive Function:</strong> 📋 List Maker & Planner
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🎵 Sensory:</strong> 🌿 Natural Sounds
+                        </div>
+                        <div class="pattern-item">
+                            <strong>💬 Communication:</strong> 💬 Voice/Video Chat Lover
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🌟 Shared Interests:</strong> ✍️ Creative Writing, 🎭 Theater & Performance...
+                        </div>
+                    </div>
+
+                    <div class="twin-actions">
+                        <button class="action-btn connect-btn" onclick="connectWithTwin('River the Night Owl Researcher')">
+                            💬 Connect & Chat
+                        </button>
+                        <button class="action-btn focus-session-btn" onclick="startFocusSession('River the Night Owl Researcher')">
+                            🎯 Start Focus Session
+                        </button>
+                    </div>
+                </div>
+                <div class="brain-twin-card">
+                    <div class="twin-header">
+                        <div class="twin-avatar">🎮</div>
+                        <div class="twin-info">
+                            <div class="twin-name">Phoenix the Gaming Strategist</div>
+                            <div class="match-score">87% Match!</div>
+                        </div>
+                        <div style="color: #F44336">🔴 In Deep Work</div>
+                    </div>
+
+                    <div class="twin-bio">Turn everything into a game! Love strategy games, building systems, and creating epic spreadsheets for tracking my habits.</div>
+
+                    <div class="twin-patterns">
+                        <div class="pattern-item">
+                            <strong>⚡ Energy:</strong> 🌊 Wave Pattern Focus
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🧠 Executive Function:</strong> 👥 Body Doubling Dependent
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🎵 Sensory:</strong> 🖤 Minimal & Clean
+                        </div>
+                        <div class="pattern-item">
+                            <strong>💬 Communication:</strong> 📝 Long-form Deep Dives
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🌟 Shared Interests:</strong> 🏗️ Architecture & Design, 🚀 Space & Astronomy...
+                        </div>
+                    </div>
+
+                    <div class="twin-actions">
+                        <button class="action-btn connect-btn" onclick="connectWithTwin('Phoenix the Gaming Strategist')">
+                            💬 Connect & Chat
+                        </button>
+                        <button class="action-btn focus-session-btn" onclick="startFocusSession('Phoenix the Gaming Strategist')">
+                            🎯 Start Focus Session
+                        </button>
+                    </div>
+                </div>
+                <div class="brain-twin-card">
+                    <div class="twin-header">
+                        <div class="twin-avatar">🌱</div>
+                        <div class="twin-info">
+                            <div class="twin-name">Jordan the Plant Parent</div>
+                            <div class="match-score">91% Match!</div>
+                        </div>
+                        <div style="color: #F44336">🔴 In Deep Work</div>
+                    </div>
+
+                    <div class="twin-bio">Went from 0 to 200 plants in 6 months. Currently learning everything about hydroponics and plant genetics!</div>
+
+                    <div class="twin-patterns">
+                        <div class="pattern-item">
+                            <strong>⚡ Energy:</strong> 🌙 Night Owl Hyperfocus (8 PM-12 AM)
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🧠 Executive Function:</strong> 🎯 Hyperfocus & Intensity
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🎵 Sensory:</strong> 🌊 White/Brown Noise
+                        </div>
+                        <div class="pattern-item">
+                            <strong>💬 Communication:</strong> ✍️ Text-Only Preferred
+                        </div>
+                        <div class="pattern-item">
+                            <strong>🌟 Shared Interests:</strong> 💰 Finance & Investing, 🏃 Fitness & Movement...
+                        </div>
+                    </div>
+
+                    <div class="twin-actions">
+                        <button class="action-btn connect-btn" onclick="connectWithTwin('Jordan the Plant Parent')">
+                            💬 Connect & Chat
+                        </button>
+                        <button class="action-btn focus-session-btn" onclick="startFocusSession('Jordan the Plant Parent')">
+                            🎯 Start Focus Session
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Features -->
+    <div class="floating-features">
+        <div class="feature-bubble" onclick="showFeature('focus-buddy')" title="Virtual Body Doubling">👥</div>
+        <div class="feature-bubble" onclick="showFeature('interest-explorer')" title="Interest Galaxy Explorer">🌌</div>
+        <div class="feature-bubble" onclick="showFeature('dopamine-boost')" title="Dopamine Boost Tools">⚡</div>
+        <div class="feature-bubble" onclick="showFeature('hyperfocus-timer')" title="Hyperfocus Timer">🎯</div>
+    </div>
+
+    <!-- HyperFocus Zone Footer -->
+    <div class="hyperfocus-zone-footer">
+        <h3 class="footer-title">💎 DREAM IT BUILD IT HYPERFOCUS ZONE 💎</h3>
+        <p class="footer-subtitle">The world's first neurodivergent-focused social platform</p>
+        <a href="mailto:SEND-ME.NFT@UD.ME" class="footer-contact">
+            📧 Contact: SEND-ME.NFT@UD.ME
+        </a>
+    </div>
+
+    <script>
+        // Interactive functionality
+        function toggleInterest(button) {
+            button.classList.toggle('selected');
+            updateMatches();
+        }
+
+        function updateMatches() {
+            // Simulate updating matches based on selected interests
+            console.log('🧠 Updating brain twin matches based on your ADHD profile!');
+        }
+
+        function connectWithTwin(twinName) {
+            alert(`🎊 Connecting with ${twinName}! ❤️‍🔥\n\n✨ Opening chat portal...\n🧠 Finding your ADHD brain twin match!\n💫 This is going to be AMAZING!`);
+        }
+
+        function startFocusSession(twinName) {
+            alert(`🎯 Starting hyperfocus session with ${twinName}! ⚡\n\n⏰ Session Type: Virtual Body Doubling\n🎵 Focus Music: Activated\n🚀 Let's get into the zone together!`);
+        }
+
+        function showFeature(feature) {
+            const features = {
+                'focus-buddy': '👥 Virtual Body Doubling: Work alongside your brain twin in real-time!',
+                'interest-explorer': '🌌 Interest Galaxy Explorer: Discover new hyperfocus rabbit holes together!',
+                'dopamine-boost': '⚡ Dopamine Boost Tools: Instant motivation and reward systems!',
+                'hyperfocus-timer': '🎯 Hyperfocus Timer: Protect and optimize your deep work sessions!'
+            };
+
+            alert(`${features[feature]}\n\n🚀 Coming soon to HyperFocus Zone!`);
+        }
+
+        // Add some sparkle animations
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.fontSize = '20px';
+            sparkle.innerHTML = '✨';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.zIndex = '1000';
+
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Create sparkles periodically
+        setInterval(createSparkle, 3000);
+
+        // Welcome message
+        setTimeout(() => {
+            console.log('🧠❤️‍🔥 Welcome to the ADHD Brain Twin Matching Portal! ❤️‍🔥🧠');
+            console.log('🌟 Find people who GET your hyperfocus obsessions!');
+            console.log('⚡ Connect with ADHD brains that think like yours!');
+            console.log('💫 This is the future of neurodivergent social connection!');
+        }, 1000);
+    </script>
+</body>
+</html>
