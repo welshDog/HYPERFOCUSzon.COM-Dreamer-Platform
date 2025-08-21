@@ -1,18 +1,18 @@
-﻿{
-    "mcpServers":  {
-                       "playwright-empire":  {
-                                                 "args":  [
-                                                              "@playwright/mcp@latest",
-                                                              "--browser",
-                                                              "chrome",
-                                                              "--headless",
-                                                              "--allowed-origins",
-                                                              "localhost;github.com",
-                                                              "--save-session",
-                                                              "--output-dir",
-                                                              "./empire-automation-logs"
-                                                          ],
-                                                 "command":  "npx"
-                                             }
-                   }
+{
+  "mcpServers": {
+    "playwright-empire": {
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser",
+        "chrome",
+        "--headless",
+        "--allowed-origins",
+        "localhost;github.com",
+        "--save-session",
+        "--output-dir",
+        "./empire-automation-logs"
+      ],
+      "command": "npx"
+    }
+  }
 }

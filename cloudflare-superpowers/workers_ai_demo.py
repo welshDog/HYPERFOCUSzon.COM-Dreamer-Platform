@@ -5,9 +5,11 @@
 🎯 Runs locally without Cloudflare API for testing
 """
 
+import os
+import json
 import time
 from datetime import datetime
-
+from dotenv import load_dotenv
 
 class HyperfocusWorkerAIDemo:
     """Demo version of Workers AI hyperfocus coaching assistant"""
@@ -21,11 +23,11 @@ class HyperfocusWorkerAIDemo:
                 "Hyperfocus Channeling (Redirect energy)",
                 "Sensory Regulation (Environment)",
                 "Transition Buffers (Task switching)",
-                "Interest-Based Pairing (Dopamine boost)",
+                "Interest-Based Pairing (Dopamine boost)"
             ],
             "current_session": None,
             "total_sessions": 0,
-            "focus_score": 0,
+            "focus_score": 0
         }
 
     def start_focus_session(self, technique="Modified Pomodoro", duration=25):
@@ -37,7 +39,7 @@ class HyperfocusWorkerAIDemo:
             "start_time": datetime.now().isoformat(),
             "status": "active",
             "breaks_taken": 0,
-            "distractions": 0,
+            "distractions": 0
         }
 
         self.session_data["current_session"] = session
@@ -68,11 +70,10 @@ class HyperfocusWorkerAIDemo:
                 "💝 Hey, it's okay if focus feels hard today. Some days are diamonds, some are rough - both are valuable!",
                 "🔄 Let's try a different technique. Maybe Body Doubling or Sensory Regulation would work better?",
                 "🎯 Remember: Even 5 minutes of focused work is better than none. You've got this!",
-            ],
+            ]
         }
 
         import random
-
         return random.choice(advice_bank.get(user_state, advice_bank["starting"]))
 
     def track_progress(self):
@@ -88,7 +89,7 @@ class HyperfocusWorkerAIDemo:
             "focus_quality": "high",
             "technique_effectiveness": "excellent",
             "mood": "energized",
-            "next_suggestion": self.get_coaching_advice("mid_session"),
+            "next_suggestion": self.get_coaching_advice("mid_session")
         }
 
         return progress
@@ -105,7 +106,7 @@ class HyperfocusWorkerAIDemo:
             "points_earned": 10,
             "total_score": self.session_data["focus_score"] + 10,
             "celebration": "🎉 You just proved your brain can do amazing things!",
-            "next_session_tip": self.get_coaching_advice("break_time"),
+            "next_session_tip": self.get_coaching_advice("break_time")
         }
 
         # Update focus score
@@ -115,12 +116,11 @@ class HyperfocusWorkerAIDemo:
         self.session_data["current_session"] = None
         return completion_data
 
-
 def demo_hyperfocus_coaching():
     """Demonstrate the hyperfocus coaching system"""
-    print("🌟" + "=" * 78 + "🌟")
+    print("🌟" + "="*78 + "🌟")
     print("🏆 HYPERFOCUS ZONE EMPIRE - WORKERS AI DEMO 🏆")
-    print("🌟" + "=" * 78 + "🌟")
+    print("🌟" + "="*78 + "🌟")
     print("🎯 Demonstrating hyperfocus coaching assistant")
     print("⚡ This is how it will work with Cloudflare Workers AI")
     print()
@@ -169,7 +169,6 @@ def demo_hyperfocus_coaching():
 
     return True
 
-
 def show_cloudflare_setup_guide():
     """Show how to set up Cloudflare credentials"""
     print("🔧 CLOUDFLARE SETUP GUIDE:")
@@ -189,7 +188,6 @@ def show_cloudflare_setup_guide():
     print("   3. 👁️ Look for 'Account ID' in the right sidebar")
     print("   4. 📋 Copy it to your .env file")
     print()
-
 
 def main():
     """Main demo function"""
@@ -225,10 +223,9 @@ def main():
         print("   4. 🌍 Test live hyperfocus coaching assistant")
         print()
 
-    print("🏆" + "=" * 78 + "🏆")
+    print("🏆" + "="*78 + "🏆")
     print("🌟 HYPERFOCUS ZONE EMPIRE - WORKERS AI DEMO COMPLETE 🌟")
-    print("🏆" + "=" * 78 + "🏆")
-
+    print("🏆" + "="*78 + "🏆")
 
 if __name__ == "__main__":
     main()

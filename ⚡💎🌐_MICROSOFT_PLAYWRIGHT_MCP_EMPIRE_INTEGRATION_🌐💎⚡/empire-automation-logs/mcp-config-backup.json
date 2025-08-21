@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "playwright-empire": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--browser",
+        "chrome",
+        "--headless",
+        "--allowed-origins",
+        "localhost;github.com;hyperfocuszone.com;reddit.com;stackoverflow.com;discord.com;linkedin.com;twitter.com;youtube.com;medium.com",
+        "--save-session",
+        "--save-trace",
+        "--output-dir",
+        "./empire-automation-logs",
+        "--timeout",
+        "30000",
+        "--viewport-width",
+        "1920",
+        "--viewport-height",
+        "1080"
+      ],
+      "env": {
+        "PLAYWRIGHT_BROWSERS_PATH": "./browsers",
+        "DEBUG": "pw:api"
+      }
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "deployment_summary": {
+    "total_agents": 677,
+    "deployment_time": "2025-08-21T12:09:21.070069",
+    "empire_status": "LEGENDARY",
+    "divisions": {
+      "intelligence_network": {
+        "agents": 200,
+        "targets": 20
+      },
+      "quality_assurance": {
+        "agents": 127,
+        "targets": 10
+      },
+      "social_media_empire": {
+        "agents": 150,
+        "targets": 12
+      },
+      "revenue_generation": {
+        "agents": 200,
+        "targets": 12
+      }
+    }
+  },
+  "sample_agents": [
+    {
+      "id": "EMPIRE-001",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062520"
+    },
+    {
+      "id": "EMPIRE-002",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062618"
+    },
+    {
+      "id": "EMPIRE-003",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062624"
+    },
+    {
+      "id": "EMPIRE-004",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062629"
+    },
+    {
+      "id": "EMPIRE-005",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062632"
+    },
+    {
+      "id": "EMPIRE-006",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062636"
+    },
+    {
+      "id": "EMPIRE-007",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062639"
+    },
+    {
+      "id": "EMPIRE-008",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062643"
+    },
+    {
+      "id": "EMPIRE-009",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062646"
+    },
+    {
+      "id": "EMPIRE-010",
+      "division": "intelligence_network",
+      "status": "ACTIVE",
+      "deployed_at": "2025-08-21T12:09:21.062650"
+    }
+  ]
+}
