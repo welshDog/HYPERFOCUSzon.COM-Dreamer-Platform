@@ -1,0 +1,67 @@
+{
+  "timestamp": "20250820_194927",
+  "target_domain": "support.hyperfocuszone.com",
+  "base_domain": "hyperfocuszone.com",
+  "server_ip": "212.227.127.144",
+  "detected_providers": {
+    "azure_keyvault": {
+      "available": false,
+      "priority": 1,
+      "automation_level": "HIGH",
+      "description": "Azure Key Vault with managed certificates"
+    },
+    "lets_encrypt": {
+      "available": false,
+      "priority": 2,
+      "automation_level": "HIGH",
+      "description": "Let's Encrypt with Certbot automation"
+    },
+    "manual_files": {
+      "available": false,
+      "priority": 3,
+      "automation_level": "MEDIUM",
+      "description": "Manual certificate file management"
+    }
+  },
+  "generated_solutions": {
+    "manual_certificate": {
+      "method": "manual_certificate",
+      "steps": [
+        {
+          "step": 1,
+          "action": "Generate CSR with SAN",
+          "command": "openssl req -new -key hyperfocuszone.com.key -out hyperfocuszone.com.csr -config san.conf",
+          "description": "Generate Certificate Signing Request with support subdomain"
+        },
+        {
+          "step": 2,
+          "action": "Submit CSR to CA",
+          "command": "Submit CSR to Google Trust Services or other CA",
+          "description": "Submit CSR to certificate authority for signing"
+        },
+        {
+          "step": 3,
+          "action": "Download Signed Certificate",
+          "command": "Download certificate from CA",
+          "description": "Download signed certificate with SAN"
+        },
+        {
+          "step": 4,
+          "action": "Deploy Certificate",
+          "command": "sudo cp hyperfocuszone.com.crt /etc/nginx/ssl/ && sudo systemctl reload nginx",
+          "description": "Deploy certificate to web server"
+        }
+      ],
+      "automation_scripts": {
+        "openssl_config": "[req]\ndistinguished_name = req_distinguished_name\nreq_extensions = v3_req\nprompt = no\n\n[req_distinguished_name]\nC = US\nST = State\nL = City\nO = HYPERFOCUS ZONE EMPIRE\nOU = IT Department\nCN = hyperfocuszone.com\n\n[v3_req]\nkeyUsage = keyEncipherment, dataEncipherment\nextendedKeyUsage = serverAuth\nsubjectAltName = @alt_names\n\n[alt_names]\nDNS.1 = hyperfocuszone.com\nDNS.2 = www.hyperfocuszone.com\nDNS.3 = support.hyperfocuszone.com\nDNS.4 = api.hyperfocuszone.com\nDNS.5 = admin.hyperfocuszone.com\n",
+        "deployment_script": "#!/bin/bash\n# Manual SSL Certificate Deployment Script\n# HYPERFOCUS ZONE EMPIRE - Manual Certificate Management\n\nset -e\n\nSERVER_IP=\"212.227.127.144\"\nCERT_FILE=\"hyperfocuszone.com.crt\"\nKEY_FILE=\"hyperfocuszone.com.key\"\n\necho \"\ud83d\udcdd Starting manual SSL certificate deployment...\"\n\n# Backup existing certificates\necho \"\ud83d\udcbe Backing up existing certificates...\"\nssh root@$SERVER_IP \"cp /etc/nginx/ssl/* /etc/nginx/ssl/backup/ 2>/dev/null || true\"\n\n# Deploy new certificates\necho \"\ud83d\ude80 Deploying new certificates...\"\nscp $CERT_FILE root@$SERVER_IP:/etc/nginx/ssl/\nscp $KEY_FILE root@$SERVER_IP:/etc/nginx/ssl/\n\n# Test and reload NGINX\necho \"\ud83d\udd04 Testing and reloading NGINX...\"\nssh root@$SERVER_IP \"nginx -t && systemctl reload nginx\"\n\necho \"\u2705 Manual SSL certificate deployment complete!\"\n"
+      }
+    }
+  },
+  "recommended_approach": {
+    "method": "manual_certificate",
+    "automation_level": "MEDIUM",
+    "description": "Manual certificate management with provided scripts",
+    "estimated_time": "45-60 minutes"
+  }
+}

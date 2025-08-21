@@ -1,0 +1,27 @@
+{
+  "name": "hyperfocus-ai-assistant",
+  "version": "1.0.0",
+  "description": "AI Assistant for Neurodivergent Focus Coaching",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0",
+    "winston": "^3.10.0",
+    "axios": "^1.5.0",
+    "dotenv": "^16.3.1"
+  },
+  "keywords": [
+    "ai",
+    "adhd",
+    "autism",
+    "focus",
+    "neurodivergent"
+  ],
+  "author": "HyperFocus Zone Empire",
+  "license": "MIT"
+}

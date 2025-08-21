@@ -1,0 +1,39 @@
+name = "hyperfocus-ai-assistant"
+main = "src/workers/focus-coach.js"
+compatibility_date = "2024-08-20"
+compatibility_flags = ["nodejs_compat"]
+
+[env.production]
+route = "support.hyperfocuszone.com/api/*"
+
+[env.production.ai]
+binding = "AI"
+
+[env.production.vars]
+ENVIRONMENT = "production"
+SERVICE_NAME = "HyperFocus AI Assistant"
+VERSION = "1.0.0"
+
+# Vectorize binding (add after setup)
+# [[env.production.vectorize]]
+# binding = "VECTORIZE_INDEX"
+# index_name = "hyperfocus-knowledge"
+
+# D1 Database binding (add after setup)
+# [[env.production.d1_databases]]
+# binding = "DB"
+# database_name = "hyperfocus-empire"
+# database_id = "your-database-id-here"
+
+# Queue bindings (add after setup)
+# [[env.production.queues.producers]]
+# queue = "hyperfocus-analytics"
+# binding = "ANALYTICS_QUEUE"
+
+# [[env.production.queues.producers]]
+# queue = "hyperfocus-notifications"
+# binding = "NOTIFICATIONS_QUEUE"
+
+# [[env.production.queues.producers]]
+# queue = "hyperfocus-achievements"
+# binding = "ACHIEVEMENTS_QUEUE"
