@@ -1,0 +1,38 @@
+{
+    "name": "hyperfocuszone",
+    "version": "1.0.0",
+    "description": "The Ultimate Neurodivergent Productivity Platform",
+    "scripts": {
+        "build": "echo 'Build complete'",
+        "start": "node mcp-server.js",
+        "dev": "node mcp-server.js",
+        "static": "python -m http.server 3000"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/welshDog/HYPERFOCUSzon.COM-V10.git"
+    },
+    "keywords": [
+        "ADHD",
+        "neurodivergent",
+        "productivity",
+        "hyperfocus",
+        "accessibility",
+        "neurodiversity"
+    ],
+    "author": "HyperFocus Zone Team",
+    "license": "MIT",
+    "main": "index.js",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/welshDog/HYPERFOCUSzon.COM-V10/issues"
+    },
+    "homepage": "https://github.com/welshDog/HYPERFOCUSzon.COM-V10#readme",
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.17.3",
+        "@types/node": "^24.3.0",
+        "cors": "^2.8.5",
+        "dotenv": "^17.2.1",
+        "express": "^5.1.0"
+    }
+}

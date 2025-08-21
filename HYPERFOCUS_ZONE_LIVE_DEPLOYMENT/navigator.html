@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🌟 HyperFocus Zone - Ultimate Neurodivergent Hub</title>
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#764ba2">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="HyperFocus Zone">
+
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Skip to main content */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #000;
+            color: #fff;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+
+        /* Accessibility Controls */
+        .accessibility-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .accessibility-panel {
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            z-index: 1000;
+            display: none;
+            min-width: 250px;
+            backdrop-filter: blur(10px);
+        }
+
+        .accessibility-option {
+            margin: 0.8rem 0;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .accessibility-option:hover,
+        .accessibility-option:focus {
+            background: rgba(255, 255, 255, 0.2);
+            outline: 2px solid #ffeb3b;
+            outline-offset: 2px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+
+            to {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .mood-selector {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            backdrop-filter: blur(15px);
+        }
+
+        .mood-title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .mood-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 15px;
+            padding: 1rem;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mood-button:hover,
+        .mood-button:focus {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            outline: 2px solid #ffeb3b;
+            outline-offset: 2px;
+        }
+
+        .mood-button.energized {
+            background: linear-gradient(135deg, #ffa726, #ff7043);
+        }
+
+        .mood-button.overwhelmed {
+            background: linear-gradient(135deg, #42a5f5, #1e88e5);
+        }
+
+        .mood-button.tired {
+            background: linear-gradient(135deg, #ab47bc, #8e24aa);
+        }
+
+        .mood-button.motivated {
+            background: linear-gradient(135deg, #66bb6a, #43a047);
+        }
+
+        .mood-button.accomplished {
+            background: linear-gradient(135deg, #ffd54f, #ffb300);
+        }
+
+        /* Touch feedback */
+        .mood-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+
+        .mood-button:active::after {
+            width: 100px;
+            height: 100px;
+        }
+
+        .portal-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .category-card:hover,
+        .category-card:focus-within {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .category-description {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            opacity: 0.9;
+        }
+
+        .portal-list {
+            list-style: none;
+        }
+
+        .portal-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .portal-item:hover,
+        .portal-item:focus-within {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        .portal-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .portal-link:focus {
+            outline: 2px solid #ffeb3b;
+            outline-offset: 2px;
+        }
+
+        .quick-access {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+            border: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .quick-access:hover,
+        .quick-access:focus {
+            transform: scale(1.2);
+            outline: 2px solid #ffeb3b;
+            outline-offset: 2px;
+        }
+
+        .ai-recommendation {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Accessibility Classes */
+        .high-contrast {
+            background: #000000 !important;
+            color: #ffffff !important;
+        }
+
+        .high-contrast .category-card {
+            background: #1a1a1a !important;
+            border: 2px solid #ffffff !important;
+        }
+
+        .dyslexia-friendly {
+            font-family: 'OpenDyslexic', 'Comic Sans MS', sans-serif !important;
+            letter-spacing: 0.12em !important;
+            line-height: 1.6 !important;
+        }
+
+        .reduce-motion * {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        .large-text {
+            font-size: 1.2em !important;
+        }
+
+        .large-text .hero-title {
+            font-size: 4rem !important;
+        }
+
+        .simple-mode .portal-categories {
+            grid-template-columns: 1fr 1fr !important;
+        }
+
+        .simple-mode .category-card:nth-child(n+5) {
+            display: none !important;
+        }
+
+        .focus-mode .hero-section {
+            display: none !important;
+        }
+
+        .focus-mode .mood-selector {
+            display: none !important;
+        }
+
+        .calm-mode {
+            background: linear-gradient(135deg, #a8d8ea, #aa96da) !important;
+        }
+
+        .calm-mode .mood-button {
+            background: linear-gradient(135deg, #81c784, #66bb6a) !important;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem !important;
+                margin-bottom: 1.5rem !important;
+            }
+
+            .mood-button {
+                min-height: 70px !important;
+                font-size: 1.2rem !important;
+                padding: 1.2rem !important;
+                margin-bottom: 1rem !important;
+            }
+
+            .portal-categories {
+                grid-template-columns: 1fr !important;
+                gap: 1.5rem !important;
+                padding: 1rem !important;
+            }
+
+            .category-card {
+                padding: 1.5rem !important;
+                border-radius: 15px !important;
+            }
+
+            .portal-item {
+                min-height: 60px !important;
+                padding: 1rem !important;
+                font-size: 1.1rem !important;
+                border-radius: 12px !important;
+            }
+
+            .quick-access {
+                width: 70px !important;
+                height: 70px !important;
+                font-size: 2rem !important;
+                bottom: 30px !important;
+                right: 30px !important;
+            }
+
+            .mood-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .accessibility-panel {
+                left: 10px;
+                right: 10px;
+                width: auto;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-title {
+                font-size: 2rem !important;
+            }
+
+            .mood-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Skip Links -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Accessibility Controls -->
+    <button class="accessibility-toggle" onclick="toggleAccessibilityPanel()" aria-label="Open accessibility options"
+        aria-expanded="false">
+        ♿
+    </button>
+
+    <div id="accessibility-panel" class="accessibility-panel" role="dialog" aria-labelledby="accessibility-title"
+        aria-hidden="true">
+        <h3 id="accessibility-title">🌟 Accessibility Options</h3>
+
+        <div class="accessibility-option" onclick="toggleHighContrast()" role="button" tabindex="0"
+            aria-label="Toggle high contrast mode">
+            🌓 High Contrast Mode
+        </div>
+
+        <div class="accessibility-option" onclick="toggleDyslexiaFont()" role="button" tabindex="0"
+            aria-label="Toggle dyslexia-friendly font">
+            📖 Dyslexia-Friendly Font
+        </div>
+
+        <div class="accessibility-option" onclick="toggleLargeText()" role="button" tabindex="0"
+            aria-label="Toggle large text mode">
+            🔍 Large Text Mode
+        </div>
+
+        <div class="accessibility-option" onclick="toggleReduceMotion()" role="button" tabindex="0"
+            aria-label="Toggle reduce motion">
+            ⏸️ Reduce Motion
+        </div>
+
+        <div class="accessibility-option" onclick="toggleSimpleMode()" role="button" tabindex="0"
+            aria-label="Toggle simple interface">
+            🎯 Simple Mode
+        </div>
+
+        <div class="accessibility-option" onclick="toggleFocusMode()" role="button" tabindex="0"
+            aria-label="Toggle focus mode">
+            🧘 Focus Mode
+        </div>
+
+        <div class="accessibility-option" onclick="toggleCalmMode()" role="button" tabindex="0"
+            aria-label="Toggle calm colors">
+            💙 Calm Colors
+        </div>
+    </div>
+
+    <main id="main-content">
+        <header class="hero-section">
+            <h1 class="hero-title">🌟 HYPERFOCUS ZONE 🌟</h1>
+            <p class="hero-subtitle">Your Ultimate Neurodivergent Superpower Hub</p>
+            <p>✨ Turn ADHD into your greatest strength ✨</p>
+        </header>
+
+        <section class="mood-selector" aria-labelledby="mood-title">
+            <h2 id="mood-title" class="mood-title">🌈 How are you feeling right now?</h2>
+            <div class="mood-grid" role="group" aria-label="Mood selection buttons">
+                <button class="mood-button overwhelmed" onclick="showPortals('overwhelmed')"
+                    aria-describedby="overwhelmed-desc">
+                    😤 Overwhelmed<br><small id="overwhelmed-desc">Need support</small>
+                </button>
+                <button class="mood-button energized" onclick="showPortals('energized')"
+                    aria-describedby="energized-desc">
+                    🔥 Energized<br><small id="energized-desc">Ready to focus</small>
+                </button>
+                <button class="mood-button tired" onclick="showPortals('tired')" aria-describedby="tired-desc">
+                    😴 Tired<br><small id="tired-desc">Need gentle boost</small>
+                </button>
+                <button class="mood-button motivated" onclick="showPortals('motivated')"
+                    aria-describedby="motivated-desc">
+                    💪 Motivated<br><small id="motivated-desc">Let's achieve</small>
+                </button>
+                <button class="mood-button accomplished" onclick="showPortals('accomplished')"
+                    aria-describedby="accomplished-desc">
+                    🎉 Accomplished<br><small id="accomplished-desc">Time to celebrate</small>
+                </button>
+            </div>
+
+            <div id="ai-recommendation" class="ai-recommendation" style="display: none;" aria-live="polite">
+                <h3>🤖 AI Recommendation</h3>
+                <p id="recommendation-text"></p>
+                <a id="recommendation-link" class="mood-button" style="display: inline-block; margin-top: 1rem;"
+                    target="_blank" rel="noopener">
+                    🚀 Go to Portal
+                </a>
+            </div>
+        </section>
+
+        <section class="portal-categories" aria-label="Portal categories">
+            <article class="category-card">
+                <h3 class="category-title">🎯 FOCUS NOW</h3>
+                <p class="category-description">Instant hyperfocus activation tools</p>
+                <ul class="portal-list" role="list">
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8080/🎯⚡🔥_HYPERFOCUS_SESSION_OPTIMIZER_🔥⚡🎯.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('HyperFocus Session Optimizer')">
+                            🎯 HyperFocus Session Optimizer
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8080/💎🎮⚡_GAMIFIED_FOCUS_CHALLENGE_PORTAL_⚡🎮💎.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('Gamified Focus Challenge')">
+                            🎮 Gamified Focus Challenge
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/🚀💰⚡30MinuteSprintTrackerFixed⚡💰🚀.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('30-Minute Sprint Tracker')">
+                            ⏰ 30-Minute Sprint Tracker
+                        </a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="category-card">
+                <h3 class="category-title">🧠 FIND YOUR TRIBE</h3>
+                <p class="category-description">Connect with your ADHD community</p>
+                <ul class="portal-list" role="list">
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8080/🧠❤️‍🔥⚡_ADHD_BRAIN_TWIN_MATCHING_PORTAL_⚡❤️‍🔥🧠.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('ADHD Brain Twin Matching')">
+                            🧠 ADHD Brain Twin Matching
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/🎊❤️‍🔥💚🩵AmazingTeamLushCelebrationInstant❤️💕🎊.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('Team Celebration Hub')">
+                            🎊 Team Celebration Hub
+                        </a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="category-card">
+                <h3 class="category-title">💰 MONETIZE HYPERFOCUS</h3>
+                <p class="category-description">Turn your superpowers into income</p>
+                <ul class="portal-list" role="list">
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8080/💰🚀⚡_NEURODIVERGENT_ECONOMY_PORTAL_⚡🚀💰.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('Neurodivergent Economy Portal')">
+                            💰 Neurodivergent Economy Portal
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/🏆💎⚡RevenueEmpireVisionbeacon⚡💎🏆.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('Revenue Empire Dashboard')">
+                            🏆 Revenue Empire Dashboard
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/HyperfocusMarketplaceVisionbeacon.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('Marketplace Portal')">
+                            🏪 Marketplace Portal
+                        </a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="category-card">
+                <h3 class="category-title">🤖 GET SUPPORT</h3>
+                <p class="category-description">Executive function & AI assistance</p>
+                <ul class="portal-list" role="list">
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8080/🤖🧠⚡_PERSONAL_EXECUTIVE_FUNCTION_AI_⚡🧠🤖.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('Personal Executive Function AI')">
+                            🤖 Personal Executive Function AI
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/📱💎⚡MobileFocustotemCommandCenter⚡💎📱.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('Mobile Command Center')">
+                            📱 Mobile Command Center
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/🔧💎⚡MobileFocustotemDebugCenter⚡💎🔧.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('Help & Debug Center')">
+                            🔧 Help & Debug Center
+                        </a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="category-card">
+                <h3 class="category-title">🎊 CELEBRATE WINS</h3>
+                <p class="category-description">Achievement recognition & rewards</p>
+                <ul class="portal-list" role="list">
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/🎊🚀💎⚡UltimateFocusrelicCelebrationPage⚡💎🚀🎊.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('Ultimate Celebration Portal')">
+                            🎊 Ultimate Celebration Portal
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/💖⚡FocustotemEmpireWishlistPortal⚡💖.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('Dreams & Wishlist Portal')">
+                            💖 Dreams & Wishlist Portal
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/🎊LegendaryFocustotemOperationalVictoryPage20250801184514.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('Victory Achievement Pages')">
+                            🏆 Victory Achievement Pages
+                        </a>
+                    </li>
+                </ul>
+            </article>
+
+            <article class="category-card">
+                <h3 class="category-title">🌟 SPECIAL PORTALS</h3>
+                <p class="category-description">Advanced & experimental features</p>
+                <ul class="portal-list" role="list">
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8080/♾️💎🌐_IMMORTAL_WEB3_HYPERFOCUS_ZONE_PORTAL_🌐💎♾️.html"
+                            class="portal-link" target="_blank" rel="noopener"
+                            onclick="trackPortalUsage('Immortal Web3 Portal')">
+                            ♾️ Immortal Web3 Portal
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/QuantumMemoryTimelineNavigator.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('Quantum Memory Navigator')">
+                            ⚡ Quantum Memory Navigator
+                        </a>
+                    </li>
+                    <li class="portal-item" role="listitem">
+                        <a href="http://localhost:8082/BciFusionForgeNeuralDevelopment.html" class="portal-link"
+                            target="_blank" rel="noopener" onclick="trackPortalUsage('BCI Neural Development')">
+                            🧠 BCI Neural Development
+                        </a>
+                    </li>
+                </ul>
+            </article>
+        </section>
+    </main>
+
+    <button class="quick-access" onclick="emergencyFocus()" aria-label="Emergency hyperfocus activation">
+        🚨
+    </button>
+
+    <script>
+        const moodPortals = {
+            overwhelmed: {
+                text: "When you're overwhelmed, start with gentle executive function support. The AI will help you break things down step by step.",
+                portal: "🤖 Personal Executive Function AI",
+                url: "http://localhost:8080/🤖🧠⚡_PERSONAL_EXECUTIVE_FUNCTION_AI_⚡🧠🤖.html"
+            },
+            energized: {
+                text: "Perfect energy for hyperfocus! Try the gamified challenge to channel that energy into productive flow.",
+                portal: "🎮 Gamified Focus Challenge",
+                url: "http://localhost:8080/💎🎮⚡_GAMIFIED_FOCUS_CHALLENGE_PORTAL_⚡🎮💎.html"
+            },
+            tired: {
+                text: "When you're tired, the Executive Function AI will gently guide you with ADHD-friendly techniques.",
+                portal: "🤖 Personal Executive Function AI",
+                url: "http://localhost:8080/🤖🧠⚡_PERSONAL_EXECUTIVE_FUNCTION_AI_⚡🧠🤖.html"
+            },
+            motivated: {
+                text: "Great motivation! Use the Sprint Tracker to capture this energy in focused 30-minute sessions.",
+                portal: "⏰ 30-Minute Sprint Tracker",
+                url: "http://localhost:8082/🚀💰⚡30MinuteSprintTrackerFixed⚡💰🚀.html"
+            },
+            accomplished: {
+                text: "Celebrate your success! The Victory Portal will help you recognize your achievements and plan what's next.",
+                portal: "🎊 Ultimate Celebration Portal",
+                url: "http://localhost:8082/🎊🚀💎⚡UltimateFocusrelicCelebrationPage⚡💎🚀🎊.html"
+            }
+        };
+
+        function showPortals(mood) {
+            const recommendation = moodPortals[mood];
+            const recDiv = document.getElementById('ai-recommendation');
+            const recText = document.getElementById('recommendation-text');
+            const recLink = document.getElementById('recommendation-link');
+
+            recText.textContent = recommendation.text;
+            recLink.textContent = recommendation.portal;
+            recLink.href = recommendation.url;
+
+            recDiv.style.display = 'block';
+            recDiv.scrollIntoView({ behavior: 'smooth' });
+
+            announceAction(`AI recommends: ${recommendation.portal}. ${recommendation.text}`);
+        }
+
+        function emergencyFocus() {
+            announceAction("Emergency hyperfocus activated! Opening Focus Session Optimizer with 30-minute timer starting now!");
+            alert("🚨 EMERGENCY HYPERFOCUS ACTIVATED! 🚨\n\n🎯 Opening Focus Session Optimizer...\n⏰ 30-minute timer starting NOW!\n🔥 You've got this!");
+            window.open("http://localhost:8080/🎯⚡🔥_HYPERFOCUS_SESSION_OPTIMIZER_🔥⚡🎯.html", "_blank");
+        }
+
+        function trackPortalUsage(portalName) {
+            console.log(`🚀 Portal accessed: ${portalName}`);
+            announceAction(`Opening ${portalName}`);
+        }
+
+        // Accessibility Functions
+        function toggleAccessibilityPanel() {
+            const panel = document.getElementById('accessibility-panel');
+            const toggle = document.querySelector('.accessibility-toggle');
+            const isOpen = panel.style.display !== 'none';
+
+            panel.style.display = isOpen ? 'none' : 'block';
+            panel.setAttribute('aria-hidden', isOpen);
+            toggle.setAttribute('aria-expanded', !isOpen);
+
+            if (!isOpen) {
+                announceAction("Accessibility panel opened");
+            }
+        }
+
+        function toggleHighContrast() {
+            document.body.classList.toggle('high-contrast');
+            const isActive = document.body.classList.contains('high-contrast');
+            localStorage.setItem('high-contrast', isActive);
+            announceAction(`High contrast mode ${isActive ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleDyslexiaFont() {
+            document.body.classList.toggle('dyslexia-friendly');
+            const isActive = document.body.classList.contains('dyslexia-friendly');
+            localStorage.setItem('dyslexia-font', isActive);
+            announceAction(`Dyslexia-friendly font ${isActive ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleLargeText() {
+            document.body.classList.toggle('large-text');
+            const isActive = document.body.classList.contains('large-text');
+            localStorage.setItem('large-text', isActive);
+            announceAction(`Large text mode ${isActive ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleReduceMotion() {
+            document.body.classList.toggle('reduce-motion');
+            const isActive = document.body.classList.contains('reduce-motion');
+            localStorage.setItem('reduce-motion', isActive);
+            announceAction(`Reduce motion ${isActive ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleSimpleMode() {
+            document.body.classList.toggle('simple-mode');
+            const isActive = document.body.classList.contains('simple-mode');
+            localStorage.setItem('simple-mode', isActive);
+            announceAction(`Simple mode ${isActive ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleFocusMode() {
+            document.body.classList.toggle('focus-mode');
+            const isActive = document.body.classList.contains('focus-mode');
+            localStorage.setItem('focus-mode', isActive);
+            announceAction(`Focus mode ${isActive ? 'enabled' : 'disabled'}`);
+        }
+
+        function toggleCalmMode() {
+            document.body.classList.toggle('calm-mode');
+            const isActive = document.body.classList.contains('calm-mode');
+            localStorage.setItem('calm-mode', isActive);
+            announceAction(`Calm colors ${isActive ? 'enabled' : 'disabled'}`);
+        }
+
+        function announceAction(message) {
+            const announcement = document.createElement('div');
+            announcement.setAttribute('aria-live', 'polite');
+            announcement.setAttribute('aria-atomic', 'true');
+            announcement.className = 'sr-only';
+            announcement.textContent = message;
+            document.body.appendChild(announcement);
+
+            setTimeout(() => {
+                if (document.body.contains(announcement)) {
+                    document.body.removeChild(announcement);
+                }
+            }, 1000);
+        }
+
+        // Load saved preferences
+        window.addEventListener('load', function () {
+            if (localStorage.getItem('high-contrast') === 'true') {
+                document.body.classList.add('high-contrast');
+            }
+            if (localStorage.getItem('dyslexia-font') === 'true') {
+                document.body.classList.add('dyslexia-friendly');
+            }
+            if (localStorage.getItem('large-text') === 'true') {
+                document.body.classList.add('large-text');
+            }
+            if (localStorage.getItem('reduce-motion') === 'true') {
+                document.body.classList.add('reduce-motion');
+            }
+            if (localStorage.getItem('simple-mode') === 'true') {
+                document.body.classList.add('simple-mode');
+            }
+            if (localStorage.getItem('focus-mode') === 'true') {
+                document.body.classList.add('focus-mode');
+            }
+            if (localStorage.getItem('calm-mode') === 'true') {
+                document.body.classList.add('calm-mode');
+            }
+
+            // Auto-recommendation based on time of day
+            const hour = new Date().getHours();
+            let autoMood = '';
+
+            if (hour >= 6 && hour < 9) {
+                autoMood = 'motivated';
+            } else if (hour >= 9 && hour < 12) {
+                autoMood = 'energized';
+            } else if (hour >= 12 && hour < 15) {
+                autoMood = 'overwhelmed';
+            } else if (hour >= 15 && hour < 18) {
+                autoMood = 'motivated';
+            } else if (hour >= 18 && hour < 22) {
+                autoMood = 'tired';
+            } else {
+                autoMood = 'tired';
+            }
+
+            setTimeout(() => {
+                const suggestion = moodPortals[autoMood];
+                console.log(`💡 AI Suggestion based on time: ${suggestion.portal}`);
+            }, 2000);
+        });
+
+        // Keyboard navigation support
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                const panel = document.getElementById('accessibility-panel');
+                if (panel.style.display !== 'none') {
+                    toggleAccessibilityPanel();
+                }
+            }
+
+            if (e.altKey && e.key === 'a') {
+                e.preventDefault();
+                toggleAccessibilityPanel();
+            }
+
+            if (e.altKey && e.key === 'f') {
+                e.preventDefault();
+                emergencyFocus();
+            }
+        });
+
+        // Make accessibility options keyboard navigable
+        document.querySelectorAll('.accessibility-option').forEach(option => {
+            option.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+
+        console.log("🚀❤️‍🔥🪄 ULTIMATE HYPERFOCUS ZONE LOADED! 🪄❤️‍🔥🚀");
+        console.log("🌟 The most user-friendly neurodivergent portal hub is READY! 🌟");
+    </script>
+</body>
+
+</html>
