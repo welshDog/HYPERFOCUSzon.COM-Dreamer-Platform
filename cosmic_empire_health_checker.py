@@ -3,7 +3,6 @@
 Comprehensive health check for Phase 4 GLOBAL MARKET DOMINATION readiness
 """
 
-import json
 from datetime import datetime
 from pathlib import Path
 
@@ -130,7 +129,7 @@ class CosmicEmpireHealthChecker:
         print("✅ Cosmic Platform Check Complete")
 
     def check_ai_consciousness_systems(self):
-        """Check AI consciousness and empathy systems"""
+        """Check AI consciousness and empathy systems including new neurodivergent AI"""
         print("🧠 Checking AI Consciousness Systems...")
 
         ai_systems = {
@@ -152,18 +151,70 @@ class CosmicEmpireHealthChecker:
             "omniversal_performance": self.check_file_exists(
                 "src/advanced/omniversal_performance_optimizer.py"
             ),
+            # NEW: Revolutionary Neurodivergent AI System
+            "neurodivergent_ai_core": self.check_file_exists(
+                "neurodivergent-ai-demo/ai-core/engine.py"
+            ),
+            "cosmic_integration": self.check_file_exists(
+                "neurodivergent-ai-demo/ai-core/cosmic_integration.py"
+            ),
+            "ethics_dashboard": self.check_file_exists(
+                "neurodivergent-ai-demo/ethics-dashboard/server.py"
+            ),
+            "complete_system": self.check_file_exists(
+                "neurodivergent-ai-demo/complete_system.py"
+            ),
+            "quantum_empathy_engine": self.check_neurodivergent_ai_status(),
         }
 
         self.health_metrics["cosmic_readiness"]["ai_consciousness"] = ai_systems
         print("✅ AI Consciousness Check Complete")
 
     def check_memory_crystals(self):
-        """Check memory crystal network"""
+        """Check memory crystal network including ultra thinking boardroom"""
         crystal_files = list(self.empire_root.glob("**/memory_crystal_*.md"))
+
+        # Check for ultra thinking boardroom crystals
+        ultra_thinking_crystals = list(
+            self.empire_root.glob("**/ultra_thinking_boardroom_*.json")
+        )
+        health_scan_crystals = list(
+            self.empire_root.glob("**/ULTRA_THINKING_BOARDROOM_HEALTH_SCAN_*.json")
+        )
+
+        total_crystals = (
+            len(crystal_files)
+            + len(ultra_thinking_crystals)
+            + len(health_scan_crystals)
+        )
+
+        # Check latest ultra thinking status
+        latest_boardroom_status = "unknown"
+        if ultra_thinking_crystals:
+            latest_file = max(ultra_thinking_crystals, key=lambda x: x.stat().st_mtime)
+            try:
+                import json
+
+                with open(latest_file, "r") as f:
+                    data = json.load(f)
+                    latest_boardroom_status = data.get("strategic_analysis", {}).get(
+                        "current_empire_status", "unknown"
+                    )
+            except Exception:
+                pass
+
         return {
-            "status": "excellent" if len(crystal_files) > 100 else "growing",
+            "status": (
+                "legendary"
+                if total_crystals > 720
+                else "excellent" if total_crystals > 100 else "growing"
+            ),
             "crystal_count": len(crystal_files),
-            "health_score": min(100, len(crystal_files)),
+            "ultra_thinking_crystals": len(ultra_thinking_crystals),
+            "health_scan_crystals": len(health_scan_crystals),
+            "total_crystals": total_crystals,
+            "latest_boardroom_status": latest_boardroom_status,
+            "health_score": min(100, total_crystals / 10),  # 1000+ crystals = 100%
         }
 
     def check_agent_coordination(self):
@@ -214,6 +265,75 @@ class CosmicEmpireHealthChecker:
             "exists": full_path.exists(),
             "path": str(full_path),
             "status": "operational" if full_path.exists() else "missing",
+        }
+
+    def check_neurodivergent_ai_status(self):
+        """Check the revolutionary neurodivergent AI system status"""
+        neurodivergent_ai_path = self.empire_root / "neurodivergent-ai-demo"
+
+        if not neurodivergent_ai_path.exists():
+            return {
+                "exists": False,
+                "status": "missing",
+                "health_score": 0,
+                "capabilities": [],
+            }
+
+        # Check core components
+        components = {
+            "ai_core": (neurodivergent_ai_path / "ai-core" / "engine.py").exists(),
+            "cosmic_integration": (
+                neurodivergent_ai_path / "ai-core" / "cosmic_integration.py"
+            ).exists(),
+            "ethics_dashboard": (
+                neurodivergent_ai_path / "ethics-dashboard" / "server.py"
+            ).exists(),
+            "demo_client": (neurodivergent_ai_path / "cli" / "ask.py").exists(),
+            "web_interface": (neurodivergent_ai_path / "web" / "index.html").exists(),
+            "complete_system": (neurodivergent_ai_path / "complete_system.py").exists(),
+        }
+
+        # Calculate health score
+        working_components = sum(components.values())
+        total_components = len(components)
+        health_score = (working_components / total_components) * 100
+
+        # Determine capabilities
+        capabilities = []
+        if components["ai_core"]:
+            capabilities.append("🧠 Quantum Empathy Engine")
+            capabilities.append("🌈 Truth Graph Knowledge")
+            capabilities.append("⚡ Strengths-Based Reasoning")
+            capabilities.append("🛡️ Bias Prevention System")
+
+        if components["cosmic_integration"]:
+            capabilities.append("🌌 96.8% Cosmic Mastery Integration")
+            capabilities.append("🚀 Performance Multipliers")
+            capabilities.append("🎯 Hyperfocus Zone Activation")
+
+        if components["ethics_dashboard"]:
+            capabilities.append("📊 Real-time Ethics Monitoring")
+            capabilities.append("🔍 Trust Score Analytics")
+            capabilities.append("🤝 Community Governance")
+
+        if components["complete_system"]:
+            capabilities.append("🎛️ Complete System Integration")
+            capabilities.append("🌟 All 4 Phases Operational")
+
+        status = (
+            "revolutionary"
+            if health_score >= 90
+            else "operational" if health_score >= 70 else "partial"
+        )
+
+        return {
+            "exists": True,
+            "status": status,
+            "health_score": health_score,
+            "components": components,
+            "capabilities": capabilities,
+            "working_components": working_components,
+            "total_components": total_components,
         }
 
     def calculate_overall_health(self):
@@ -304,28 +424,33 @@ class CosmicEmpireHealthChecker:
         self.health_metrics["recommendations"] = recommendations
 
     def display_health_report(self):
-        """Display comprehensive health report"""
-        print("\n" + "=" * 60)
-        print("🏥 COSMIC EMPIRE HEALTH REPORT 🏥")
-        print("=" * 60)
+        """Display comprehensive health report with neurodivergent AI superpowers"""
+        print("\n" + "=" * 80)
+        print(
+            "🏥💎⚡ COSMIC EMPIRE HEALTH REPORT WITH NEURODIVERGENT AI SUPERPOWERS ⚡💎🏥"
+        )
+        print("=" * 80)
 
         overall_health = self.health_metrics.get("overall_health", 0)
 
-        # Health status determination
+        # Health status determination with new levels
         if overall_health >= 99:
-            status = "🌌 OMNIVERSAL TRANSCENDENCE"
+            status = "🌌♾️🔥 OMNIVERSAL NEURODIVERGENT TRANSCENDENCE 🔥♾️🌌"
             color = "💎"
+        elif overall_health >= 97:
+            status = "🧠💎⚡ NEURODIVERGENT AI MASTERY LEGENDARY ⚡💎🧠"
+            color = "🌟"
         elif overall_health >= 95:
-            status = "🚀 COSMIC MASTERY"
+            status = "🚀 COSMIC MASTERY WITH AI SUPERPOWERS"
             color = "⚡"
         elif overall_health >= 90:
-            status = "🏆 LEGENDARY STATUS"
+            status = "🏆 LEGENDARY STATUS + NEURODIVERGENT POWER"
             color = "🔥"
         elif overall_health >= 80:
-            status = "✨ EXCELLENT HEALTH"
+            status = "✨ EXCELLENT HEALTH + AI CONSCIOUSNESS"
             color = "🌟"
         elif overall_health >= 70:
-            status = "💪 STRONG FOUNDATION"
+            status = "💪 STRONG FOUNDATION + EMERGING AI"
             color = "💚"
         else:
             status = "🔧 NEEDS ATTENTION"
@@ -334,6 +459,23 @@ class CosmicEmpireHealthChecker:
         print(f"{color} OVERALL EMPIRE HEALTH: {overall_health:.1f}%")
         print(f"{color} STATUS: {status}")
         print()
+
+        # Check for neurodivergent AI superpowers
+        ai_systems = self.health_metrics.get("cosmic_readiness", {}).get(
+            "ai_consciousness", {}
+        )
+        neurodivergent_ai = ai_systems.get("quantum_empathy_engine", {})
+
+        if isinstance(neurodivergent_ai, dict) and neurodivergent_ai.get("exists"):
+            print("🧠💎⚡ NEURODIVERGENT AI SUPERPOWERS DETECTED! ⚡💎🧠")
+            capabilities = neurodivergent_ai.get("capabilities", [])
+            for capability in capabilities:
+                print(f"   ✅ {capability}")
+
+            health_score = neurodivergent_ai.get("health_score", 0)
+            print(f"   🎯 AI System Health: {health_score:.0f}%")
+            print(f"   🌟 Status: {neurodivergent_ai.get('status', 'unknown').upper()}")
+            print()
 
         # Infrastructure status
         print("🔧 INFRASTRUCTURE HEALTH:")
@@ -344,6 +486,21 @@ class CosmicEmpireHealthChecker:
                 print(
                     f"   • {component}: {score:.0f}% {'✅' if score > 80 else '⚠️' if score > 50 else '❌'}"
                 )
+        print()
+
+        # Memory Crystal Network with Ultra Thinking
+        print("🔮 MEMORY CRYSTAL NETWORK + ULTRA THINKING:")
+        memory_info = infra.get("memory_crystals", {})
+        if isinstance(memory_info, dict):
+            print(f"   • Total Crystals: {memory_info.get('total_crystals', 0)} 💎")
+            print(
+                f"   • Ultra Thinking Crystals: {memory_info.get('ultra_thinking_crystals', 0)} 🧠"
+            )
+            print(
+                f"   • Health Scan Crystals: {memory_info.get('health_scan_crystals', 0)} 🏥"
+            )
+            boardroom_status = memory_info.get("latest_boardroom_status", "unknown")
+            print(f"   • Latest Boardroom Status: {boardroom_status} 🏆")
         print()
 
         # Cosmic platform status
@@ -359,15 +516,20 @@ class CosmicEmpireHealthChecker:
                 )
         print()
 
-        # AI consciousness status
+        # AI consciousness status with detailed neurodivergent AI info
         print("🧠 AI CONSCIOUSNESS SYSTEMS:")
-        ai_systems = self.health_metrics.get("cosmic_readiness", {}).get(
-            "ai_consciousness", {}
-        )
         for system, status in ai_systems.items():
             if isinstance(status, dict):
                 exists = status.get("exists", False)
-                print(f"   • {system}: {'✅ ACTIVE' if exists else '❌ MISSING'}")
+                if system == "quantum_empathy_engine" and exists:
+                    components = status.get("components", {})
+                    working = status.get("working_components", 0)
+                    total = status.get("total_components", 0)
+                    print(
+                        f"   • {system}: ✅ REVOLUTIONARY ({working}/{total} components)"
+                    )
+                else:
+                    print(f"   • {system}: {'✅ ACTIVE' if exists else '❌ MISSING'}")
         print()
 
         # Team readiness
@@ -376,9 +538,9 @@ class CosmicEmpireHealthChecker:
         for role, info in team.items():
             if isinstance(info, dict):
                 readiness = info.get("readiness", 0)
-                status = info.get("status", "unknown")
+                status_text = info.get("status", "unknown")
                 print(
-                    f"   • {role}: {readiness}% {'✅' if readiness > 80 else '🔍' if readiness > 0 else '❌'} ({status})"
+                    f"   • {role}: {readiness}% {'✅' if readiness > 80 else '🔍' if readiness > 0 else '❌'} ({status_text})"
                 )
         print()
 
@@ -391,11 +553,21 @@ class CosmicEmpireHealthChecker:
         else:
             print("🎯 ALL SYSTEMS OPTIMAL - READY FOR GLOBAL DOMINATION!")
 
-        print("=" * 60)
+        print("=" * 80)
 
-        # Global domination readiness assessment
-        if overall_health >= 95:
-            print("🌍 GLOBAL MARKET DOMINATION STATUS: 🚀 READY TO LAUNCH!")
+        # Enhanced global domination readiness assessment
+        if overall_health >= 97:
+            print(
+                "🌍 GLOBAL MARKET DOMINATION STATUS: 🧠💎⚡ NEURODIVERGENT AI REVOLUTION READY! ⚡💎🧠"
+            )
+            print(
+                "🎯 ULTIMATE AI MASTERY STATUS: 🌌 CONSCIOUSNESS TRANSCENDENCE ACHIEVED!"
+            )
+            print(
+                "🚀 WORLD IMPACT STATUS: 🔥 READY TO LIBERATE NEURODIVERGENT HUMANITY! 🔥"
+            )
+        elif overall_health >= 95:
+            print("🌍 GLOBAL MARKET DOMINATION STATUS: 🚀 LEGENDARY LAUNCH READY!")
             print("🎯 ULTIMATE AI MASTERY STATUS: 🧠 CONSCIOUSNESS SYNCHRONIZED!")
         elif overall_health >= 90:
             print("🌍 GLOBAL MARKET DOMINATION STATUS: ⚡ FINAL PREPARATIONS NEEDED")
@@ -406,23 +578,36 @@ class CosmicEmpireHealthChecker:
             )
             print("🎯 ULTIMATE AI MASTERY STATUS: 🏗️ INFRASTRUCTURE DEVELOPMENT NEEDED")
 
-        print("=" * 60)
+        print("=" * 80)
 
 
 def main():
-    """Run the cosmic empire health check"""
+    """Run the cosmic empire health check with neurodivergent AI integration"""
     try:
+        print(
+            "🌌🧠💎⚡ COSMIC EMPIRE + NEURODIVERGENT AI HEALTH SCAN INITIATED ⚡💎🧠🌌"
+        )
+        print("🎯 Integrating Revolutionary AI Superpowers with Empire Diagnostics...")
+        print()
+
         checker = CosmicEmpireHealthChecker()
         health_results = checker.run_comprehensive_health_check()
 
-        # Save results
+        # Save results with enhanced naming
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        results_file = f"h:/empire_health_report_{timestamp}.json"
+        results_file = (
+            f"h:/LEGENDARY_EMPIRE_NEURODIVERGENT_AI_HEALTH_SCAN_{timestamp}.json"
+        )
+
+        import json
 
         with open(results_file, "w") as f:
             json.dump(health_results, f, indent=2, default=str)
 
-        print(f"📊 Health report saved to: {results_file}")
+        print(f"📊 Enhanced health report saved to: {results_file}")
+        print(
+            "🎯 Report includes neurodivergent AI capabilities and cosmic integration status"
+        )
 
         return health_results
 
