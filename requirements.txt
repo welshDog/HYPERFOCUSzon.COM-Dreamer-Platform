@@ -1,9 +1,16 @@
 # ⚡💎🌟 HyperFocus Zone Empire - Python Dependencies 🌟💎⚡
+# Updated following BROski Ultra LOOK-THEN-BUILD System Protocol
+
+# 🔐 Security & Environment
+python-dotenv>=1.0.0       # Environment variable management
 
 # Core System Dependencies
 psutil>=5.9.0              # System and process monitoring
 requests>=2.31.0           # HTTP requests for connectivity testing
 ping3>=4.0.4              # Network ping functionality
+
+# 🤖 Discord Bot
+discord.py>=2.3.0          # Discord bot framework
 
 # AI and Machine Learning
 torch>=2.0.0              # PyTorch for AI models

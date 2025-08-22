@@ -1,0 +1,67 @@
+{
+    "schema_version": 1,
+    "name": "HyperFocus Zone - Neurodivergent Social Hub",
+    "description": "ADHD-optimized Discord Activity with BROski Economy integration and real-time focus coaching",
+    "developer": {
+        "name": "HyperFocus Zone Empire"
+    },
+    "flags": [
+        "embedded_iap"
+    ],
+    "tags": [
+        "social",
+        "productivity",
+        "adhd",
+        "neurodivergent",
+        "focus"
+    ],
+    "supported_platforms": [
+        "desktop",
+        "mobile"
+    ],
+    "orientation_lock_state": "unlocked",
+    "tablet_default_orientation": "landscape",
+    "requires_age_gate": false,
+    "size": {
+        "width": 1280,
+        "height": 720
+    },
+    "activity_preview_video_asset_id": null,
+    "assets": {
+        "small_image": "hyperfocus_logo_small",
+        "large_image": "hyperfocus_logo_large"
+    },
+    "activity_type": "embedded",
+    "release_phase": "development",
+    "default_orientation_lock_state": "unlocked",
+    "supported_features": [
+        "voice_chat",
+        "screen_share",
+        "camera",
+        "text_chat"
+    ],
+    "broski_integration": {
+        "economy_enabled": true,
+        "reward_events": [
+            "session_start",
+            "session_join",
+            "celebrate_trigger",
+            "session_end",
+            "focus_session_complete",
+            "memory_crystal_created"
+        ],
+        "adhd_coach_endpoints": [
+            "/api/adhd-coach/energy-assessment",
+            "/api/adhd-coach/focus-session-start",
+            "/api/adhd-coach/task-breakdown",
+            "/api/adhd-coach/dopamine-boost"
+        ]
+    },
+    "accessibility": {
+        "adhd_optimized": true,
+        "high_contrast_mode": true,
+        "reduced_motion_option": true,
+        "focus_indicators": true,
+        "screen_reader_compatible": true
+    }
+}

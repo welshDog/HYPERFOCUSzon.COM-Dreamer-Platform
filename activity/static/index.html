@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperFocus Zone - ADHD Social Hub</title>
+    <meta name="description" content="ADHD-optimized Discord Activity with BROski Economy integration">
+
+    <!-- Discord Activity SDK -->
+    <script src="https://sdk.discord.com/embedded-app-sdk/stable/sdk.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Accessibility enhancements */
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin: 10px 0;
+        }
+
+        /* Empire Status Dashboard */
+        .empire-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 2px solid #4ecdc4;
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.3);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            min-width: 200px;
+        }
+
+        .empire-status h3 {
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            align-items: center;
+        }
+
+        .status-value {
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        /* 3-Avatar Social Hub */
+        .social-hub {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 20px 0;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .hub-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #4ecdc4;
+        }
+
+        .avatar-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .avatar-slot {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            border: 3px solid transparent;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .avatar:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(78, 205, 196, 0.4);
+        }
+
+        .avatar.occupied {
+            border-color: #4ecdc4;
+            animation: pulseGlow 2s infinite;
+        }
+
+        .avatar.empty {
+            background: linear-gradient(45deg, #666, #999);
+            opacity: 0.6;
+        }
+
+        @keyframes pulseGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 0 rgba(78, 205, 196, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 10px rgba(78, 205, 196, 0);
+            }
+        }
+
+        .avatar-info {
+            margin-top: 10px;
+            text-align: center;
+            min-height: 60px;
+        }
+
+        .avatar-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .avatar-status {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        .focus-indicator {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #4ecdc4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-5px);
+            }
+
+            60% {
+                transform: translateY(-3px);
+            }
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff5252);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .cta-button.secondary {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+        }
+
+        .cta-button.secondary:hover {
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+        }
+
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #4ecdc4;
+        }
+
+        /* Reward Notification */
+        .reward-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            z-index: 2000;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .reward-notification.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .empire-status {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 20px;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .avatar-container {
+                gap: 20px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
+
+        /* Focus mode styles */
+        .focus-mode {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+        }
+
+        .focus-timer {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+        }
+
+        .timer-display {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #4ecdc4;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Empire Status Dashboard -->
+    <div class="empire-status" id="empireStatus">
+        <h3>🏆 Empire Status</h3>
+        <div class="status-item">
+            <span>💰 BROski$:</span>
+            <span class="status-value" id="broskiBalance">Loading...</span>
+        </div>
+        <div class="status-item">
+            <span>🔮 Crystals:</span>
+            <span class="status-value" id="memoryCrystals">0</span>
+        </div>
+        <div class="status-item">
+            <span>⚡ Energy:</span>
+            <span class="status-value" id="energyLevel">Medium</span>
+        </div>
+        <div class="status-item">
+            <span>🎯 Sessions:</span>
+            <span class="status-value" id="totalSessions">0</span>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="header">
+        <h1 class="title">🧠⚡ HyperFocus Zone ⚡🧠</h1>
+        <p class="subtitle">ADHD-Optimized Social Hub with BROski Economy</p>
+    </div>
+
+    <!-- 3-Avatar Social Hub -->
+    <div class="social-hub">
+        <h2 class="hub-title">🤝 Current Focus Session</h2>
+
+        <div class="avatar-container">
+            <!-- Avatar Slot 1 -->
+            <div class="avatar-slot">
+                <div class="avatar occupied" id="avatar1" onclick="interactWithUser(1)">
+                    🧠
+                    <div class="focus-indicator">🎯</div>
+                </div>
+                <div class="avatar-info">
+                    <div class="avatar-name" id="name1">You</div>
+                    <div class="avatar-status" id="status1">Deep Focus</div>
+                </div>
+            </div>
+
+            <!-- Avatar Slot 2 -->
+            <div class="avatar-slot">
+                <div class="avatar empty" id="avatar2" onclick="inviteFriend(2)">
+                    ➕
+                </div>
+                <div class="avatar-info">
+                    <div class="avatar-name" id="name2">Invite Friend</div>
+                    <div class="avatar-status" id="status2">Available</div>
+                </div>
+            </div>
+
+            <!-- Avatar Slot 3 -->
+            <div class="avatar-slot">
+                <div class="avatar empty" id="avatar3" onclick="inviteFriend(3)">
+                    ➕
+                </div>
+                <div class="avatar-info">
+                    <div class="avatar-name" id="name3">Invite Friend</div>
+                    <div class="avatar-status" id="status3">Available</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="cta-button" onclick="startFocusSession()">
+                🚀 Start Focus Session
+            </button>
+            <button class="cta-button secondary" onclick="requestSupport()">
+                🤝 Request Support
+            </button>
+            <button class="cta-button secondary" onclick="shareAchievement()">
+                🏆 Share Achievement
+            </button>
+        </div>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="features">
+        <div class="feature-card" onclick="openADHDCoach()">
+            <span class="feature-icon">🧠</span>
+            <h3 class="feature-title">ADHD Coach</h3>
+            <p>AI-powered coaching for focus, task breakdown, and dopamine boosts</p>
+        </div>
+
+        <div class="feature-card" onclick="openBROskiStore()">
+            <span class="feature-icon">💰</span>
+            <h3 class="feature-title">BROski Store</h3>
+            <p>Spend your earned BROski$ on focus tools and rewards</p>
+        </div>
+
+        <div class="feature-card" onclick="openBodyDoubling()">
+            <span class="feature-icon">🤝</span>
+            <h3 class="feature-title">Body Doubling</h3>
+            <p>Work alongside others for accountability and motivation</p>
+        </div>
+
+        <div class="feature-card" onclick="openMemoryCrystals()">
+            <span class="feature-icon">🔮</span>
+            <h3 class="feature-title">Memory Crystals</h3>
+            <p>Unlock legendary achievements and build your empire</p>
+        </div>
+    </div>
+
+    <!-- Focus Mode Overlay -->
+    <div class="focus-mode" id="focusMode">
+        <div class="focus-timer">
+            <div class="timer-display" id="timerDisplay">25:00</div>
+            <p>🎯 Deep Focus Mode Active</p>
+            <button class="cta-button" onclick="endFocusSession()">End Session</button>
+        </div>
+    </div>
+
+    <!-- Reward Notification -->
+    <div class="reward-notification" id="rewardNotification"></div>
+
+    <script>
+        // Discord Activity SDK initialization
+        let discordSdk;
+        let currentUser;
+        let wsConnection;
+
+        async function initializeDiscordActivity() {
+            try {
+                // Initialize Discord Embedded App SDK
+                discordSdk = new window.DiscordSDK(window.location.origin);
+
+                // Wait for ready
+                await discordSdk.ready();
+
+                // Get user info
+                const { user } = await discordSdk.commands.authenticate({
+                    access_token: await getActivityToken()
+                });
+
+                currentUser = user;
+
+                // Update UI with user info
+                document.getElementById('name1').textContent = user.username;
+
+                // Initialize WebSocket connection
+                initializeWebSocket();
+
+                // Load empire status
+                await loadEmpireStatus();
+
+                console.log('🚀 Discord Activity initialized successfully!');
+
+            } catch (error) {
+                console.error('Failed to initialize Discord Activity:', error);
+                // Fallback to demo mode
+                initializeDemoMode();
+            }
+        }
+
+        function initializeDemoMode() {
+            console.log('🎮 Running in demo mode');
+            currentUser = { id: 'demo-user', username: 'Demo User' };
+            document.getElementById('name1').textContent = 'Demo User';
+            loadEmpireStatus();
+        }
+
+        async function getActivityToken() {
+            try {
+                const response = await fetch('/api/token', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: 'demo-user',
+                        username: 'Demo User',
+                        energy_level: 'medium',
+                        activity_type: 'social_focus'
+                    })
+                });
+
+                const data = await response.json();
+                return data.token;
+
+            } catch (error) {
+                console.error('Failed to get activity token:', error);
+                return 'demo-token';
+            }
+        }
+
+        function initializeWebSocket() {
+            const userId = currentUser?.id || 'demo-user';
+            const wsProtocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+
+            try {
+                wsConnection = new WebSocket(`${wsProtocol}//${window.location.host}/ws/${userId}`);
+
+                wsConnection.onmessage = function (event) {
+                    const data = JSON.parse(event.data);
+                    handleWebSocketMessage(data);
+                };
+
+                wsConnection.onerror = function (error) {
+                    console.log('WebSocket error:', error);
+                };
+
+            } catch (error) {
+                console.log('WebSocket connection failed, using polling fallback');
+            }
+        }
+
+        function handleWebSocketMessage(data) {
+            switch (data.type) {
+                case 'broski_reward':
+                    showRewardNotification(`+${data.amount} BROski$!`);
+                    updateBroskiBalance(data.new_balance);
+                    break;
+
+                case 'empire_status':
+                    updateEmpireStatus(data);
+                    break;
+
+                case 'user_joined':
+                    handleUserJoined(data);
+                    break;
+
+                case 'user_left':
+                    handleUserLeft(data);
+                    break;
+            }
+        }
+
+        async function loadEmpireStatus() {
+            try {
+                const userId = currentUser?.id || 'demo-user';
+                const response = await fetch(`/api/broski/balance/${userId}`);
+                const data = await response.json();
+
+                updateBroskiBalance(data.broski_balance);
+                document.getElementById('totalSessions').textContent = data.total_sessions;
+                document.getElementById('memoryCrystals').textContent = data.achievement_count;
+
+            } catch (error) {
+                console.error('Failed to load empire status:', error);
+                // Demo values
+                updateBroskiBalance(2500);
+                document.getElementById('totalSessions').textContent = '12';
+                document.getElementById('memoryCrystals').textContent = '3';
+            }
+        }
+
+        function updateBroskiBalance(balance) {
+            document.getElementById('broskiBalance').textContent = balance.toLocaleString();
+        }
+
+        function updateEmpireStatus(status) {
+            updateBroskiBalance(status.broski_balance);
+            document.getElementById('memoryCrystals').textContent = status.memory_crystals;
+        }
+
+        async function startFocusSession() {
+            try {
+                const userId = currentUser?.id || 'demo-user';
+                const response = await fetch('/api/adhd-coach/focus-session-start', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        duration_minutes: 25,
+                        difficulty_level: 'medium'
+                    })
+                });
+
+                const data = await response.json();
+
+                showRewardNotification(`🚀 Session Started! Potential reward: ${data.estimated_broski_reward} BROski$`);
+
+                // Update avatar status
+                document.getElementById('status1').textContent = 'In Session';
+                document.getElementById('avatar1').querySelector('.focus-indicator').style.display = 'flex';
+
+                // Show focus mode (optional)
+                // document.getElementById('focusMode').style.display = 'flex';
+
+            } catch (error) {
+                console.error('Failed to start focus session:', error);
+                showRewardNotification('🚀 Focus Session Started!');
+            }
+        }
+
+        async function requestSupport() {
+            try {
+                const userId = currentUser?.id || 'demo-user';
+                const response = await fetch('/api/adhd-coach/dopamine-boost', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ user_id: userId })
+                });
+
+                const data = await response.json();
+
+                showRewardNotification(`💪 ${data.boost_strategy}`);
+
+            } catch (error) {
+                console.error('Failed to request support:', error);
+                showRewardNotification('💪 You\'ve got this! Take a deep breath and try again.');
+            }
+        }
+
+        function shareAchievement() {
+            showRewardNotification('🏆 Achievement shared with your friends!');
+
+            // Award sharing bonus
+            fetch('/api/broski/reward', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: currentUser?.id || 'demo-user',
+                    event_type: 'achievement_shared',
+                    reward_amount: 100,
+                    description: 'Shared achievement with friends'
+                })
+            });
+        }
+
+        function interactWithUser(slotNumber) {
+            if (slotNumber === 1) {
+                openADHDCoach();
+            }
+        }
+
+        function inviteFriend(slotNumber) {
+            showRewardNotification(`📧 Invite sent for slot ${slotNumber}!`);
+
+            // Simulate friend joining after a delay
+            setTimeout(() => {
+                const avatar = document.getElementById(`avatar${slotNumber}`);
+                const name = document.getElementById(`name${slotNumber}`);
+                const status = document.getElementById(`status${slotNumber}`);
+
+                avatar.className = 'avatar occupied';
+                avatar.innerHTML = `🤖<div class="focus-indicator">⚡</div>`;
+                name.textContent = `Friend ${slotNumber}`;
+                status.textContent = 'Joining...';
+
+                showRewardNotification('🎉 Friend joined your session!');
+            }, 2000);
+        }
+
+        function openADHDCoach() {
+            showRewardNotification('🧠 ADHD Coach activated! Real-time support available.');
+        }
+
+        function openBROskiStore() {
+            showRewardNotification('💰 BROski Store opening soon! Save your BROski$!');
+        }
+
+        function openBodyDoubling() {
+            showRewardNotification('🤝 Body doubling feature coming soon!');
+        }
+
+        function openMemoryCrystals() {
+            showRewardNotification('🔮 Memory Crystal gallery opening...');
+        }
+
+        function showRewardNotification(message) {
+            const notification = document.getElementById('rewardNotification');
+            notification.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function endFocusSession() {
+            document.getElementById('focusMode').style.display = 'none';
+            showRewardNotification('🎉 Focus session completed! +250 BROski$');
+
+            // Award completion bonus
+            fetch('/api/broski/reward', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    user_id: currentUser?.id || 'demo-user',
+                    event_type: 'focus_session_completed',
+                    reward_amount: 250,
+                    description: 'Completed 25-minute focus session'
+                })
+            });
+        }
+
+        // Initialize the activity when page loads
+        window.addEventListener('load', initializeDiscordActivity);
+
+        // Handle page visibility changes for ADHD-friendly pausing
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                console.log('🛑 Activity paused - user switched tabs');
+            } else {
+                console.log('▶️ Activity resumed - user returned');
+                loadEmpireStatus(); // Refresh status when returning
+            }
+        });
+
+        // Keyboard shortcuts for accessibility
+        document.addEventListener('keydown', function (event) {
+            // Space bar to start/stop focus session
+            if (event.code === 'Space' && !event.target.matches('input, textarea')) {
+                event.preventDefault();
+                startFocusSession();
+            }
+
+            // H key for help/support
+            if (event.code === 'KeyH' && event.ctrlKey) {
+                event.preventDefault();
+                requestSupport();
+            }
+        });
+    </script>
+</body>
+
+</html>

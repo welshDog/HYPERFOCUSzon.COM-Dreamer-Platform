@@ -1,0 +1,110 @@
+hey Bro — done. I packaged that whole **Discord Activity Masterplan** into a squad-ready doc and saved it to the canvas for you: **Discord Activity Masterplan — Hyperfocus Zone**.
+
+I used the official Discord Activities development page as a reference while making the plan. ([Discord][1])
+
+Open the doc in the canvas (should be visible on the right). If you want, I’ll now:
+
+* convert this into a release-ready `README.md` + `manifest.json` and `proxy` starter files, **or**
+* build the 1-minute MVP scaffold (ngrok + proxy + minimal UI) ready to run locally.
+
+Which of those two next steps do you want me to do first, boss?
+
+[1]: https://discord.com/developers/docs/activities/development-guides "Discord Developer Portal"
+
+# Discord Activity Masterplan — One‑Page Visual Map
+
+> **Hyperfocus Zone — Squad‑ready snapshot**
+
+---
+
+## 🎯 Core Purpose
+
+Single end‑to‑end blueprint marrying Discord Activity technical standards with experience design patterns — fast to onboard, easy to iterate, built for social flow.
+
+---
+
+## 🧭 Guiding Principles
+
+* **Interaction > Isolation**
+* **Expression > Monotony**
+* **Accessibility > Exclusion**
+* **Solo‑Plus** (fun solo, better with 3–8 friends)
+
+---
+
+## ⚙️ Tech Spine (minimum viable)
+
+* **Repo scaffold**: `/activity/` + `manifest.json` + `proxy/` + `static/`
+* **Local dev**: `npm run dev` → `ngrok`/`localtunnel`
+* **Security**: HTTPS, CSP, ephemeral join tokens
+* **Mobile**: responsive, safe touch targets, thermal degrade
+* **Telemetry**: `session_start`, `session_join`, `celebrate_trigger`, `session_end`
+
+---
+
+## 🔁 Session Flow (fast join UX)
+
+1. **Invite / Activity Card** → 2. **Pre‑join overlay** (choose mic/cam) → 3. **Quick connect** → 4. **3 avatars visible + CTA to invite** → 5. **Shared micro‑task / mini‑game** → 6. **Celebrate & persist artifact**
+
+```
+Invite/Card  → [Pre-join overlay] → Join → In-Session (presence, actions) → Milestone → Celebrate → Persist
+```
+
+---
+
+## 👥 Multiplayer & Presence
+
+* Session ID + region shard + rejoin window (e.g., 120s)
+* Presence: avatar, voice activity, current action tag
+* Privacy: member list toggle, nickname anonymize for cross‑server
+
+---
+
+## 🚀 Growth Hooks
+
+* Ephemeral themed invite links
+* Referral rewards (inviter + invitee)
+* Timed surprise events to re‑engage
+
+---
+
+## ✅ MVP Checklist (1‑minute MVP)
+
+* [ ] Manifest with icons
+* [ ] Proxy `/token` endpoint (ephemeral tokens)
+* [ ] Local dev script (ngrok)
+* [ ] Quick join UI (3 avatars + CTA)
+* [ ] One micro‑achievement + celebratory animation
+* [ ] Telemetry: `session_start` & `session_end`
+
+---
+
+## 📏 Success Metrics (keep it tiny)
+
+* **Retention:** Day‑1 / Day‑7 returns
+* **Social lift:** Avg session length with >1 participant
+* **Viral spread:** Invite → join conversion rate
+
+---
+
+## 🛠 Next Actions (first sprint)
+
+1. Fork/commit this map into repo `/docs/one-pager.md`
+2. Implement proxy token & local dev runner
+3. Build quick join UI + 3 avatars
+4. Run closed alpha (20 users), collect telemetry, iterate
+
+---
+
+## ✋ Ownership
+
+* Product: Lyndon (Hyperfocus Zone)
+* Tech Lead: (assign)
+* Design Lead: (assign)
+
+---
+
+*Compact visual map — use this as a sprint card or onboarding flyer.*
+I turned that into a tight one-page visual map and saved it to the canvas as Discord Activity Masterplan — One-Page Visual Map.
+
+Open it on the right and you’ve got a sprint-ready snapshot: purpose, principles, tech spine, fast-join flow, MVP checklist, metrics, and next steps — everything your squad needs to start the first sprint.
