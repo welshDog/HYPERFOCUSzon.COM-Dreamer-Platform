@@ -1,0 +1,23 @@
+# Simple Dockerfile for testing
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Install basic dependencies
+RUN pip install --no-cache-dir psutil matplotlib
+
+# Copy application files
+COPY system_monitor.py .
+COPY docker_demo.py .
+
+# Create a non-root user
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import psutil; print('OK')" || exit 1
+
+# Default command
+CMD ["python", "docker_demo.py"]
