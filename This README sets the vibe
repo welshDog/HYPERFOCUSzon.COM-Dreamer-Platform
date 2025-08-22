@@ -1,0 +1,265 @@
+Got it BROSKI ⚡ — here’s a **README.md** draft you can drop straight into your repo for your AI squad. It captures the **why**, the **how**, and the **spin-up steps** so everyone knows what’s what:
+
+---
+
+# 🧠 Neuro-AI Demo Clients
+
+This repo contains **demo clients** for the Neuro-AI project:
+
+* `/ask` client (CLI + micro-web app) → fast tangible demo for squads, devs, and press.
+* Ethics Dashboard (React mock) → transparent governance dashboard for funders & policymakers (next in queue).
+
+---
+
+## 🚀 Vision
+
+Neuro-AI is building an AI that **understands neurodivergence** — ADHD, autism, dyslexia, and combinations — using both:
+
+* **Science data** (papers, orgs, validated knowledge).
+* **Lived data** (stories, forums, advocacy voices).
+
+The demo clients prove the **pipeline works** end-to-end and set us up for squad playtesting + funder confidence.
+
+---
+
+## 📂 Structure
+
+```
+neuro-ai-demo/
+├── cli/               # Python CLI client for /ask
+│   └── ask.py
+├── web/               # Minimal HTML/JS web client
+│   └── index.html
+├── mock_server/       # Optional mock FastAPI server (for instant play)
+│   └── server.py
+└── README.md
+```
+
+---
+
+## 🖥️ /ask Demo Client
+
+### CLI Usage
+
+```bash
+cd cli
+python ask.py "Is ADHD the same as inability to focus?"
+```
+
+Output:
+
+```
+Verdict: 🟨 Contextual  |  Trust: 0.72
+Sources:
+ - PubMed: Smith et al. 2023
+ - lived_experience_forum/thread_445
+
+Answer:
+{
+  "summary": "ADHD is not simply inability to focus. It includes attention regulation differences, hyperfocus, and more.",
+  "modes": ["science","lived"]
+}
+```
+
+---
+
+### Web Client Usage
+
+```bash
+cd web
+# Open index.html in your browser
+```
+
+Features:
+
+* Ask a question with one click.
+* Toggle modes: **balanced** (gold), **science** (blue), **lived** (green).
+* Get verdict + trust score + sources in a clean result card.
+
+---
+
+## 🧪 Mock API (Optional)
+
+If your `/ask` endpoint isn’t running yet, use the included **mock server**.
+
+```bash
+cd mock_server
+uvicorn server:app --reload --port 8000
+```
+
+The mock replies with canned verdicts, trust, and sources.
+
+---
+
+## 📊 Next in Queue — Ethics Dashboard
+
+* **Why:** To showcase **governance + transparency**.
+
+* **What it shows:**
+
+  * Trust distribution histogram.
+  * Consent integrity stats.
+  * Active flag queue.
+  * Model card (modes, version, last audit).
+
+* **Stack:** React (plain or Next.js, your choice).
+
+---
+
+## 🧭 Roadmap
+
+1. **Now:** Ship `/ask` CLI + micro-web client.
+2. **Next 24h:** Build Ethics Dashboard mock.
+3. **Next sprint:** Wire dashboard to real metrics (trust, flags, consent).
+4. **Beyond:** Discord bot, leaderboard, gamified feedback loops.
+
+---
+
+## 🤝 Squad Notes
+
+* **Modes:**
+
+  * 🟦 *Science* = peer-review, orgs.
+  * 🟩 *Lived* = stories, forums, advocacy.
+  * 🟨 *Balanced* = both perspectives.
+* **Feedback:** Squad members can flag answers or add context → feeds the feedback loop.
+* **Recognition:** Expect badges (*Truth Seeker*, *Bias Buster*, *Strength Amplifier*).
+
+---
+
+## ⚡ Quick Start
+
+```bash
+# 1. Start mock server (if no real /ask yet)
+cd mock_server
+uvicorn server:app --reload --port 8000
+
+# 2. Test CLI
+cd cli
+python ask.py "What’s the link between ADHD and dyslexia?"
+
+# 3. Test Web Client
+cd web
+open index.html
+```
+
+---
+
+🔥 This README sets the vibe: **fast playtest + serious transparency**.
+
+---
+
+Do you want me to also **bundle this README with the actual CLI + web client code + mock server** into a ready-to-drop zip (like I did with the starter kit), so your AI team has it all in one go?
+Got you, BROSKI ⚡ — here’s a **squad‑ready `README.md`** that packages your `/ask` CLI + micro‑web client drop, and queues the Ethics Dashboard build so your devs know exactly what’s shipping now and what’s next.
+I’ve kept it dopamine‑rich but still repo‑clean so it works as the front page of your starter kit.
+
+---
+
+```markdown
+# 🧠 Hyperfocus Zone — `/ask` Demo Client + Ethics Dashboard Roadmap
+
+Welcome to the **Neurodivergent‑First AI Starter Kit** — built to run against your existing FastAPI `/ask` endpoint (or a local mock) and pave the way for the **Ethics Dashboard**.
+
+---
+
+## 📦 Current Drop: `/ask` CLI + Micro‑Web Client
+
+### Contents
+- **`cli/ask.py`** — Minimal Python CLI for querying `/ask`
+- **`web/index.html`** — Micro‑web client with mode toggles (`science` | `lived` | `balanced`)
+- **`mock_server.py`** — Optional local mock of `/ask` for offline demos
+- **`README.md`** — Quickstart for both CLI + web
+- **`requirements.txt`** — Only what’s needed for CLI
+
+### Quickstart
+
+**CLI**
+```bash
+pip install -r requirements.txt
+python cli/ask.py "Does ADHD improve creativity?"
+```
+
+**Web**
+```bash
+# Serve locally
+cd web
+python -m http.server 8080
+# Open http://localhost:8080 in your browser
+```
+
+---
+
+## 🛡 Modes & Safety Defaults
+- **Modes:** `science` (peer‑reviewed only), `lived` (community voices), `balanced` (weighted blend)
+- **Consent:** Enforced at API level
+- **PII:** Scrubbed by default
+- **Transparency:** `/modelcard` endpoint always available
+
+---
+
+## 🎯 Next in Queue: Ethics Dashboard
+
+The Ethics Dashboard will visualise:
+- **Trust Histogram** — distribution of claim trust scores
+- **Consent Integrity** — % of usable items by scope
+- **Bias Gap Chart** — fairness metrics across ND segments
+- **Flag Queue** — open issues, SLA timers, resolutions
+- **Model Card** — version, data mix, known limits
+
+### Build Options
+- **Plain React + system‑UI styling** → fastest to ship, easy to embed
+- **Next.js + polish** → SSR, routing, SEO, animations for funder‑pitch readiness
+
+---
+
+## 🗂 Suggested Repo Layout
+
+```
+/cli
+  ask.py
+/web
+  index.html
+/mock
+  mock_server.py
+/services
+  api/...
+  verifier/...
+  consent/...
+/dashboards
+  ethics/...
+requirements.txt
+README.md
+```
+
+---
+
+## 🚀 Dev Rituals
+- Keep commits modular — one feature or fix per commit
+- Celebrate shipped features in squad channel 🎉
+- Run red‑team tests before merging to `main`
+- Keep `/modelcard` updated with every deploy
+
+---
+
+## 📜 License & Ethics
+This project follows **neurodivergent‑first ethical guidelines**:
+- Strengths‑based framing
+- Consent‑aware data handling
+- Transparent trust scoring
+- Community feedback loops
+
+---
+
+## 🧨 Roadmap Snapshot
+1. **Now:** Ship `/ask` CLI + micro‑web client zip
+2. **Next:** Ethics Dashboard (React or Next.js)
+3. **Later:** Full NeuroGraph integration + squad governance tools
+
+---
+
+**BROSKI Protocol:** Build fast, verify truth, celebrate progress.
+```
+
+---
+
+If you want, I can also **drop in the actual `/ask` CLI + micro‑web client code** into this README so your team can literally copy‑paste and run it without hunting through the repo. That way, onboarding is instant and dopamine‑rich. Would you like me to embed that next?

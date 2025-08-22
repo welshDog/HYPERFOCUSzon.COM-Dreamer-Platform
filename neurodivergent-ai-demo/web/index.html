@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠💎⚡ Neurodivergent AI - Demo Interface</title>
+    <style>
+        /* 🎨 Neurodivergent-friendly design system */
+        :root {
+            --cosmic-primary: #667eea;
+            --cosmic-secondary: #764ba2;
+            --science-blue: #3b82f6;
+            --lived-green: #10b981;
+            --balanced-gold: #f59e0b;
+            --trust-high: #10b981;
+            --trust-medium: #f59e0b;
+            --trust-low: #ef4444;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--cosmic-primary), var(--cosmic-secondary));
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .mode-selector {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .mode-btn {
+            padding: 12px 24px;
+            border: 2px solid transparent;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+        }
+
+        .mode-btn.science {
+            border-color: var(--science-blue);
+            color: var(--science-blue);
+        }
+
+        .mode-btn.lived {
+            border-color: var(--lived-green);
+            color: var(--lived-green);
+        }
+
+        .mode-btn.balanced {
+            border-color: var(--balanced-gold);
+            color: var(--balanced-gold);
+        }
+
+        .mode-btn.active {
+            background: var(--border);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-section {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            align-items: stretch;
+        }
+
+        .question-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            background: rgba(30, 41, 59, 0.8);
+            color: var(--text-primary);
+            font-size: 16px;
+            resize: none;
+            min-height: 60px;
+            transition: all 0.3s ease;
+        }
+
+        .question-input:focus {
+            outline: none;
+            border-color: var(--cosmic-primary);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .ask-btn {
+            padding: 16px 32px;
+            background: linear-gradient(45deg, var(--cosmic-primary), var(--cosmic-secondary));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+
+        .ask-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .ask-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .result-section {
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .verdict {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .verdict.likely {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid var(--trust-high);
+        }
+
+        .verdict.mixed {
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px solid var(--trust-medium);
+        }
+
+        .verdict.unclear {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--trust-low);
+        }
+
+        .trust-score {
+            margin-bottom: 25px;
+        }
+
+        .trust-label {
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .trust-bar {
+            height: 12px;
+            background: rgba(51, 65, 85, 0.8);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .trust-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .trust-high {
+            background: linear-gradient(45deg, var(--trust-high), #34d399);
+        }
+
+        .trust-medium {
+            background: linear-gradient(45deg, var(--trust-medium), #fbbf24);
+        }
+
+        .trust-low {
+            background: linear-gradient(45deg, var(--trust-low), #f87171);
+        }
+
+        .sources {
+            margin-bottom: 25px;
+        }
+
+        .sources h3 {
+            margin-bottom: 15px;
+            color: var(--cosmic-primary);
+        }
+
+        .source-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .source-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 8px;
+            border-left: 4px solid var(--cosmic-primary);
+        }
+
+        .explanation {
+            margin-bottom: 25px;
+        }
+
+        .explanation h3 {
+            margin-bottom: 15px;
+            color: var(--cosmic-primary);
+        }
+
+        .explanation p {
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .tag.strength {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--trust-high);
+            border: 1px solid var(--trust-high);
+        }
+
+        .tag.overlap {
+            background: rgba(102, 126, 234, 0.2);
+            color: var(--cosmic-primary);
+            border: 1px solid var(--cosmic-primary);
+        }
+
+        .tag.struggle {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--trust-medium);
+            border: 1px solid var(--trust-medium);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(102, 126, 234, 0.3);
+            border-left: 4px solid var(--cosmic-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid var(--trust-low);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .error.show {
+            display: block;
+        }
+
+        .accessibility-note {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid var(--cosmic-primary);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .input-group {
+                flex-direction: column;
+            }
+
+            .mode-selector {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🧠💎⚡ Neurodivergent AI</h1>
+            <p>Ask questions about ADHD, Autism, Dyslexia, and overlaps</p>
+            <p>Built BY and FOR the neurodivergent community</p>
+
+            <div class="accessibility-note">
+                ♿ Accessibility: This interface is designed with neurodivergent users in mind.
+                Adjust your browser zoom or use assistive technology as needed.
+            </div>
+
+            <div class="mode-selector">
+                <button class="mode-btn science" data-mode="science">
+                    🟦 Science Mode
+                    <div style="font-size: 0.8em; margin-top: 4px;">Peer-reviewed research</div>
+                </button>
+                <button class="mode-btn lived active" data-mode="lived">
+                    🟩 Lived Mode
+                    <div style="font-size: 0.8em; margin-top: 4px;">Community experiences</div>
+                </button>
+                <button class="mode-btn balanced" data-mode="balanced">
+                    🟨 Balanced Mode
+                    <div style="font-size: 0.8em; margin-top: 4px;">Research + experiences</div>
+                </button>
+            </div>
+        </header>
+
+        <section class="input-section">
+            <div class="input-group">
+                <textarea class="question-input" placeholder="Ask about ADHD, Autism, Dyslexia, or their overlaps...
+Examples:
+• Does ADHD improve creativity?
+• What helps with sensory overload?
+• How do ADHD and autism overlap?
+• What are neurodivergent strengths?" id="questionInput"></textarea>
+                <button class="ask-btn" id="askBtn">
+                    🧠 Ask AI
+                </button>
+            </div>
+        </section>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>🧠 Neurodivergent AI is thinking deeply...</p>
+            <p style="font-size: 0.9em; color: var(--text-secondary); margin-top: 10px;">
+                Processing research and lived experiences
+            </p>
+        </div>
+
+        <div class="error" id="error">
+            <h3>❌ Error</h3>
+            <p id="errorMessage"></p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                💡 Try starting the mock server: <code>python mock_server/server.py</code>
+            </p>
+        </div>
+
+        <section class="result-section" id="results">
+            <div class="verdict" id="verdict"></div>
+
+            <div class="trust-score">
+                <div class="trust-label">
+                    <span>📊 Trust Score</span>
+                    <span id="trustPercent"></span>
+                </div>
+                <div class="trust-bar">
+                    <div class="trust-fill" id="trustFill"></div>
+                </div>
+            </div>
+
+            <div class="sources">
+                <h3>🔍 Sources</h3>
+                <ul class="source-list" id="sourceList"></ul>
+            </div>
+
+            <div class="explanation">
+                <h3>💬 Explanation</h3>
+                <p id="explanationText"></p>
+                <div class="tags" id="tags"></div>
+            </div>
+
+            <div
+                style="margin-top: 30px; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 12px; border: 1px solid var(--cosmic-primary);">
+                <h4 style="margin-bottom: 10px;">🌟 Neurodivergent-First Approach</h4>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; font-size: 0.9em;">
+                    <div>✅ Strengths-based framing</div>
+                    <div>✅ Lived experience valued</div>
+                    <div>✅ Community-driven insights</div>
+                    <div>✅ Ethical transparency</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>🧠 Built with empathy for the neurodivergent community</p>
+            <p>💎 Strengths-based • ♿ Accessible • 🛡️ Ethical • 🌍 Community-driven</p>
+            <p style="margin-top: 10px;">
+                <a href="#" onclick="showModelCard()" style="color: var(--cosmic-primary);">📋 View Model Card</a>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // 🚀 Neurodivergent AI Web Interface JavaScript
+
+        let currentMode = 'lived';
+        const API_BASE = 'http://localhost:8000';
+
+        // Initialize interface
+        document.addEventListener('DOMContentLoaded', function () {
+            setupEventListeners();
+            setupAccessibility();
+        });
+
+        function setupEventListeners() {
+            // Mode selection
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentMode = btn.dataset.mode;
+                });
+            });
+
+            // Ask button
+            document.getElementById('askBtn').addEventListener('click', askQuestion);
+
+            // Enter key in textarea
+            document.getElementById('questionInput').addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    askQuestion();
+                }
+            });
+        }
+
+        function setupAccessibility() {
+            // Add ARIA labels and keyboard navigation
+            document.getElementById('questionInput').setAttribute('aria-label', 'Enter your question about neurodivergence');
+            document.getElementById('askBtn').setAttribute('aria-label', 'Submit question to neurodivergent AI');
+
+            // High contrast mode detection
+            if (window.matchMedia('(prefers-contrast: high)').matches) {
+                document.body.classList.add('high-contrast');
+            }
+
+            // Reduced motion detection
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.body.classList.add('reduced-motion');
+            }
+        }
+
+        async function askQuestion() {
+            const question = document.getElementById('questionInput').value.trim();
+
+            if (!question) {
+                alert('Please enter a question about neurodivergence!');
+                return;
+            }
+
+            // Show loading
+            showLoading(true);
+            hideError();
+            hideResults();
+
+            try {
+                const response = await fetch(`${API_BASE}/ask`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        question: question,
+                        mode: currentMode,
+                        user_id: 'demo-user',
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                displayResults(result);
+
+            } catch (error) {
+                console.error('Error:', error);
+                showError(error.message);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function displayResults(result) {
+            if (result.error) {
+                showError(result.error + ': ' + result.message);
+                return;
+            }
+
+            // Display verdict
+            const verdict = result.verdict || '❓ Unknown';
+            const verdictEl = document.getElementById('verdict');
+            verdictEl.textContent = verdict;
+            verdictEl.className = 'verdict';
+
+            if (verdict.includes('✅')) verdictEl.classList.add('likely');
+            else if (verdict.includes('🟨')) verdictEl.classList.add('mixed');
+            else verdictEl.classList.add('unclear');
+
+            // Display trust score
+            const trust = result.trust || 0;
+            const trustPercent = Math.round(trust * 100);
+            document.getElementById('trustPercent').textContent = `${trustPercent}%`;
+
+            const trustFill = document.getElementById('trustFill');
+            trustFill.style.width = `${trustPercent}%`;
+            trustFill.className = 'trust-fill';
+
+            if (trust >= 0.8) trustFill.classList.add('trust-high');
+            else if (trust >= 0.6) trustFill.classList.add('trust-medium');
+            else trustFill.classList.add('trust-low');
+
+            // Display sources
+            const sources = result.sources || [];
+            const sourceList = document.getElementById('sourceList');
+            sourceList.innerHTML = '';
+
+            sources.slice(0, 5).forEach((source, index) => {
+                const li = document.createElement('li');
+                li.className = 'source-item';
+                li.innerHTML = `<strong>${index + 1}.</strong> <a href="${source}" target="_blank" rel="noopener">${source}</a>`;
+                sourceList.appendChild(li);
+            });
+
+            if (sources.length > 5) {
+                const li = document.createElement('li');
+                li.className = 'source-item';
+                li.innerHTML = `<em>... and ${sources.length - 5} more sources</em>`;
+                sourceList.appendChild(li);
+            }
+
+            // Display explanation
+            const answer = result.answer || {};
+            document.getElementById('explanationText').textContent =
+                answer.explanation || 'No explanation provided';
+
+            // Display tags
+            const tags = answer.tags || {};
+            const tagsContainer = document.getElementById('tags');
+            tagsContainer.innerHTML = '';
+
+            if (tags.strengths && tags.strengths.length > 0) {
+                tags.strengths.forEach(strength => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag strength';
+                    tag.textContent = `💪 ${strength}`;
+                    tagsContainer.appendChild(tag);
+                });
+            }
+
+            if (tags.overlaps && tags.overlaps.length > 0) {
+                tags.overlaps.forEach(overlap => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag overlap';
+                    tag.textContent = `🔗 ${overlap}`;
+                    tagsContainer.appendChild(tag);
+                });
+            }
+
+            if (tags.struggles && tags.struggles.length > 0) {
+                tags.struggles.forEach(struggle => {
+                    const tag = document.createElement('span');
+                    tag.className = 'tag struggle';
+                    tag.textContent = `⚠️ ${struggle}`;
+                    tagsContainer.appendChild(tag);
+                });
+            }
+
+            // Show results
+            showResults();
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').classList.toggle('show', show);
+            document.getElementById('askBtn').disabled = show;
+        }
+
+        function showResults() {
+            document.getElementById('results').classList.add('show');
+        }
+
+        function hideResults() {
+            document.getElementById('results').classList.remove('show');
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('error').classList.add('show');
+        }
+
+        function hideError() {
+            document.getElementById('error').classList.remove('show');
+        }
+
+        async function showModelCard() {
+            try {
+                const response = await fetch(`${API_BASE}/modelcard`);
+                const modelInfo = await response.json();
+
+                const info = `
+📋 NEURODIVERGENT AI - MODEL CARD
+
+🏷️ Name: ${modelInfo.name || 'Unknown'}
+🌐 Modes: ${(modelInfo.modes || []).join(', ')}
+🛡️ Consent: ${modelInfo.consent || 'Unknown'}
+🔒 PII Handling: ${modelInfo.pii || 'Unknown'}
+⚠️ Limitations: ${(modelInfo.limits || []).join(', ')}
+
+🧠 Designed for neurodivergent excellence
+                `;
+
+                alert(info);
+            } catch (error) {
+                alert('Could not retrieve model card: ' + error.message);
+            }
+        }
+    </script>
+</body>
+
+</html>

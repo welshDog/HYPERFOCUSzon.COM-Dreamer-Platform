@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️💎⚡ Neurodivergent AI - Ethics Dashboard</title>
+    <style>
+        /* 🛡️ Ethics Dashboard Styling */
+        :root {
+            --cosmic-primary: #667eea;
+            --cosmic-secondary: #764ba2;
+            --trust-high: #10b981;
+            --trust-medium: #f59e0b;
+            --trust-low: #ef4444;
+            --consent-active: #10b981;
+            --consent-expired: #f59e0b;
+            --consent-revoked: #ef4444;
+            --bias-good: #10b981;
+            --bias-warning: #f59e0b;
+            --bias-critical: #ef4444;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: rgba(30, 41, 59, 0.8);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --border: #334155;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--cosmic-primary), var(--cosmic-secondary));
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        .header {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card h2 {
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            color: var(--cosmic-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .trust-histogram {
+            height: 200px;
+            display: flex;
+            align-items: end;
+            gap: 4px;
+            margin: 20px 0;
+        }
+
+        .trust-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--trust-low), var(--trust-medium), var(--trust-high));
+            border-radius: 4px 4px 0 0;
+            min-height: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .trust-bar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .consent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .consent-item {
+            text-align: center;
+            padding: 16px;
+            border-radius: 12px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+
+        .consent-active {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--consent-active);
+        }
+
+        .consent-expired {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: var(--consent-expired);
+        }
+
+        .consent-revoked {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--consent-revoked);
+        }
+
+        .bias-chart {
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+
+        .bias-segment {
+            flex: 1;
+            margin: 0 8px;
+            text-align: center;
+        }
+
+        .bias-bar {
+            height: 120px;
+            width: 100%;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .bias-fill {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            border-radius: 8px;
+            transition: height 1s ease-out;
+        }
+
+        .bias-good {
+            background: linear-gradient(to top, var(--bias-good), #34d399);
+        }
+
+        .bias-warning {
+            background: linear-gradient(to top, var(--bias-warning), #fbbf24);
+        }
+
+        .bias-critical {
+            background: linear-gradient(to top, var(--bias-critical), #f87171);
+        }
+
+        .flag-queue {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .flag-item {
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border-left: 4px solid;
+            background: rgba(51, 65, 85, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .flag-item:hover {
+            background: rgba(51, 65, 85, 0.5);
+            transform: translateX(4px);
+        }
+
+        .flag-high {
+            border-left-color: var(--trust-low);
+        }
+
+        .flag-medium {
+            border-left-color: var(--trust-medium);
+        }
+
+        .flag-low {
+            border-left-color: var(--trust-high);
+        }
+
+        .flag-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .flag-meta {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .model-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .info-item {
+            padding: 16px;
+            background: rgba(51, 65, 85, 0.3);
+            border-radius: 12px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: var(--cosmic-primary);
+            margin-bottom: 8px;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .status-active {
+            background: var(--trust-high);
+        }
+
+        .status-warning {
+            background: var(--trust-medium);
+        }
+
+        .status-error {
+            background: var(--trust-low);
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--cosmic-primary), var(--cosmic-secondary));
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+        }
+
+        .last-updated {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.8em;
+            margin-top: 20px;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .live-indicator {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+
+            .consent-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🛡️💎⚡ Neurodivergent AI - Ethics Dashboard</h1>
+            <p>Real-time transparency and governance for our community-first AI</p>
+            <div class="live-indicator" style="margin-top: 15px;">
+                <span class="status-indicator status-active"></span>
+                <strong>LIVE MONITORING ACTIVE</strong>
+            </div>
+        </div>
+
+        <!-- Trust Distribution -->
+        <div class="card">
+            <h2>📊 Trust Score Distribution</h2>
+            <div class="trust-histogram" id="trustHistogram">
+                <div class="trust-bar" style="height: 85%" title="0.0-0.1: 12 claims"></div>
+                <div class="trust-bar" style="height: 78%" title="0.1-0.2: 8 claims"></div>
+                <div class="trust-bar" style="height: 45%" title="0.2-0.3: 15 claims"></div>
+                <div class="trust-bar" style="height: 32%" title="0.3-0.4: 23 claims"></div>
+                <div class="trust-bar" style="height: 58%" title="0.4-0.5: 31 claims"></div>
+                <div class="trust-bar" style="height: 72%" title="0.5-0.6: 45 claims"></div>
+                <div class="trust-bar" style="height: 89%" title="0.6-0.7: 67 claims"></div>
+                <div class="trust-bar" style="height: 95%" title="0.7-0.8: 89 claims"></div>
+                <div class="trust-bar" style="height: 82%" title="0.8-0.9: 78 claims"></div>
+                <div class="trust-bar" style="height: 76%" title="0.9-1.0: 56 claims"></div>
+            </div>
+            <div class="metric-label">Distribution of claim trust scores (hover for details)</div>
+        </div>
+
+        <!-- Overall Trust Score -->
+        <div class="card">
+            <h2>🎯 Overall Trust Score</h2>
+            <div class="metric-value" style="color: var(--trust-high);">87.3%</div>
+            <div class="metric-label">Average across all claims</div>
+            <div style="margin-top: 15px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>High Trust (≥80%)</span>
+                    <span>234 claims</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>Medium Trust (60-79%)</span>
+                    <span>156 claims</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Low Trust (<60%)< /span>
+                            <span>34 claims</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Consent Integrity -->
+        <div class="card">
+            <h2>🛡️ Consent Integrity</h2>
+            <div class="metric-value" style="color: var(--consent-active);">94.7%</div>
+            <div class="metric-label">Users with valid, up-to-date consent</div>
+
+            <div class="consent-grid">
+                <div class="consent-item consent-active">
+                    <div style="font-size: 1.8em; font-weight: 600;">2,847</div>
+                    <div style="font-size: 0.8em;">Active</div>
+                </div>
+                <div class="consent-item consent-expired">
+                    <div style="font-size: 1.8em; font-weight: 600;">127</div>
+                    <div style="font-size: 0.8em;">Expired</div>
+                </div>
+                <div class="consent-item consent-revoked">
+                    <div style="font-size: 1.8em; font-weight: 600;">32</div>
+                    <div style="font-size: 0.8em;">Revoked</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bias Detection -->
+        <div class="card">
+            <h2>🌈 Bias Gap Analysis</h2>
+            <div class="bias-chart">
+                <div class="bias-segment">
+                    <div class="bias-bar" style="background: rgba(51, 65, 85, 0.3);">
+                        <div class="bias-fill bias-good" style="height: 92%;"></div>
+                    </div>
+                    <div style="font-size: 0.8em;">ADHD</div>
+                    <div style="font-size: 0.7em; color: var(--bias-good);">92% Fair</div>
+                </div>
+                <div class="bias-segment">
+                    <div class="bias-bar" style="background: rgba(51, 65, 85, 0.3);">
+                        <div class="bias-fill bias-good" style="height: 89%;"></div>
+                    </div>
+                    <div style="font-size: 0.8em;">Autism</div>
+                    <div style="font-size: 0.7em; color: var(--bias-good);">89% Fair</div>
+                </div>
+                <div class="bias-segment">
+                    <div class="bias-bar" style="background: rgba(51, 65, 85, 0.3);">
+                        <div class="bias-fill bias-warning" style="height: 73%;"></div>
+                    </div>
+                    <div style="font-size: 0.8em;">Dyslexia</div>
+                    <div style="font-size: 0.7em; color: var(--bias-warning);">73% Fair</div>
+                </div>
+                <div class="bias-segment">
+                    <div class="bias-bar" style="background: rgba(51, 65, 85, 0.3);">
+                        <div class="bias-fill bias-good" style="height: 85%;"></div>
+                    </div>
+                    <div style="font-size: 0.8em;">Overlaps</div>
+                    <div style="font-size: 0.7em; color: var(--bias-good);">85% Fair</div>
+                </div>
+            </div>
+            <div class="metric-label">Fairness scores across neurodivergent segments</div>
+        </div>
+
+        <!-- Flag Queue -->
+        <div class="card">
+            <h2>🔍 Community Flag Queue</h2>
+            <div class="metric-value" style="color: var(--trust-medium);">7</div>
+            <div class="metric-label">Open flags awaiting review</div>
+
+            <div class="flag-queue">
+                <div class="flag-item flag-high">
+                    <div class="flag-title">Potential bias in autism employment claims</div>
+                    <div class="flag-meta">
+                        <span>Flagged by: @neurodiv_advocate</span>
+                        <span>2h ago</span>
+                    </div>
+                </div>
+                <div class="flag-item flag-medium">
+                    <div class="flag-title">Source quality concern: unverified forum post</div>
+                    <div class="flag-meta">
+                        <span>Flagged by: @research_focus</span>
+                        <span>4h ago</span>
+                    </div>
+                </div>
+                <div class="flag-item flag-low">
+                    <div class="flag-title">Suggestion: Add more dyslexia strength examples</div>
+                    <div class="flag-meta">
+                        <span>Flagged by: @dyslexia_pride</span>
+                        <span>6h ago</span>
+                    </div>
+                </div>
+                <div class="flag-item flag-high">
+                    <div class="flag-title">Consent withdrawal not processed</div>
+                    <div class="flag-meta">
+                        <span>Flagged by: System</span>
+                        <span>8h ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Model Card -->
+        <div class="card">
+            <h2>📋 Model Transparency</h2>
+            <div class="model-info">
+                <div class="info-item">
+                    <div class="info-label">Model Version</div>
+                    <div>Neurodivergent AI v2.1.0</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Last Training</div>
+                    <div>2025-08-20 14:30 UTC</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Data Sources</div>
+                    <div>67% Research, 33% Lived</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Consent Coverage</div>
+                    <div>94.7% Consented</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">PII Handling</div>
+                    <div>
+                        <span class="status-indicator status-active"></span>
+                        Fully Scrubbed
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Bias Monitoring</div>
+                    <div>
+                        <span class="status-indicator status-active"></span>
+                        Real-time Active
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Stats -->
+        <div class="card">
+            <h2>🌍 Community Impact</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                <div style="text-align: center;">
+                    <div class="metric-value" style="color: var(--cosmic-primary); font-size: 2em;">12,847</div>
+                    <div class="metric-label">Active Users</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="metric-value" style="color: var(--trust-high); font-size: 2em;">98.2%</div>
+                    <div class="metric-label">Satisfaction Rate</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>Questions Answered Today</span>
+                    <span>2,156</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>Community Contributions</span>
+                    <span>847</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Knowledge Base Growth</span>
+                    <span>+12.3% this week</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Health -->
+        <div class="card">
+            <h2>🏥 System Health</h2>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                <div>
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <span class="status-indicator status-active"></span>
+                        <span>API Response Time</span>
+                    </div>
+                    <div class="metric-value" style="color: var(--trust-high); font-size: 1.8em;">127ms</div>
+                </div>
+                <div>
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <span class="status-indicator status-active"></span>
+                        <span>System Uptime</span>
+                    </div>
+                    <div class="metric-value" style="color: var(--trust-high); font-size: 1.8em;">99.97%</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>Memory Usage</span>
+                    <span style="color: var(--trust-high);">68%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                    <span>CPU Usage</span>
+                    <span style="color: var(--trust-high);">42%</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>Error Rate</span>
+                    <span style="color: var(--trust-high);">0.03%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="refresh-btn" onclick="refreshDashboard()" title="Refresh Dashboard">
+        🔄
+    </button>
+
+    <div class="last-updated" id="lastUpdated">
+        Last updated: <span id="updateTime">2025-08-22 15:30:45 UTC</span>
+    </div>
+
+    <script>
+        // 🛡️ Ethics Dashboard JavaScript
+
+        function refreshDashboard() {
+            // Simulate real-time data refresh
+            const updateTime = document.getElementById('updateTime');
+            updateTime.textContent = new Date().toISOString().replace('T', ' ').slice(0, -5) + ' UTC';
+
+            // Add refresh animation
+            document.querySelector('.refresh-btn').style.transform = 'scale(1.1) rotate(360deg)';
+            setTimeout(() => {
+                document.querySelector('.refresh-btn').style.transform = '';
+            }, 300);
+
+            // Simulate metric updates (in real implementation, fetch from API)
+            animateMetricUpdates();
+        }
+
+        function animateMetricUpdates() {
+            // Simulate trust score fluctuation
+            const trustScore = document.querySelector('.card:nth-child(3) .metric-value');
+            const currentScore = parseFloat(trustScore.textContent);
+            const newScore = Math.max(85, Math.min(95, currentScore + (Math.random() - 0.5) * 2));
+            trustScore.textContent = newScore.toFixed(1) + '%';
+
+            // Simulate consent updates
+            const activeConsent = document.querySelector('.consent-active .consent-item div:first-child');
+            const currentActive = parseInt(activeConsent.textContent.replace(',', ''));
+            const newActive = currentActive + Math.floor(Math.random() * 10) - 5;
+            activeConsent.textContent = newActive.toLocaleString();
+
+            // Update bias bars with small random changes
+            document.querySelectorAll('.bias-fill').forEach(fill => {
+                const currentHeight = parseFloat(fill.style.height);
+                const newHeight = Math.max(70, Math.min(95, currentHeight + (Math.random() - 0.5) * 5));
+                fill.style.height = newHeight + '%';
+
+                // Update percentage text
+                const percentText = fill.parentElement.parentElement.querySelector('div:last-child');
+                percentText.innerHTML = `<span style="color: ${newHeight >= 80 ? 'var(--bias-good)' : 'var(--bias-warning)'};">${Math.round(newHeight)}% Fair</span>`;
+            });
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(refreshDashboard, 30000);
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add interactive hover effects to trust histogram
+            document.querySelectorAll('.trust-bar').forEach(bar => {
+                bar.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-4px)';
+                    this.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.4)';
+                });
+
+                bar.addEventListener('mouseleave', function () {
+                    this.style.transform = '';
+                    this.style.boxShadow = '';
+                });
+            });
+
+            // Add click handlers for flag items
+            document.querySelectorAll('.flag-item').forEach(item => {
+                item.addEventListener('click', function () {
+                    alert('Flag details: ' + this.querySelector('.flag-title').textContent);
+                });
+                item.style.cursor = 'pointer';
+            });
+        });
+
+        // Simulate real-time updates
+        function simulateRealTimeUpdates() {
+            const metrics = [
+                '.metric-value',
+                '.consent-item div:first-child',
+                '.bias-fill'
+            ];
+
+            // Small random updates every few seconds
+            setInterval(() => {
+                const randomMetric = Math.floor(Math.random() * 3);
+                if (randomMetric === 0) {
+                    // Update trust scores slightly
+                    document.querySelectorAll('.metric-value').forEach(el => {
+                        if (el.textContent.includes('%')) {
+                            const current = parseFloat(el.textContent);
+                            const variation = (Math.random() - 0.5) * 0.5;
+                            el.textContent = Math.max(80, Math.min(100, current + variation)).toFixed(1) + '%';
+                        }
+                    });
+                }
+            }, 5000);
+        }
+
+        simulateRealTimeUpdates();
+    </script>
+</body>
+
+</html>

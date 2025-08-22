@@ -1,0 +1,30 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.0
+pydantic==2.7.0
+requests==2.32.3
+python-multipart==0.0.9
+
+# Ethics Dashboard Dependencies
+jinja2>=3.0.0
+
+# AI Core Dependencies
+numpy>=1.21.0
+scipy>=1.7.0
+
+# Cosmic Integration Dependencies
+psutil>=5.8.0
+
+# Performance Enhancements
+aiofiles>=0.7.0
+
+# Development and Testing
+pytest>=6.2.0
+pytest-asyncio>=0.15.0
+
+# Logging and Monitoring
+colorlog>=6.6.0
+
+# Optional dependencies for future expansion
+# neo4j==5.19.0
+# sentence-transformers==3.0.1
+# feedparser==6.0.11

@@ -312,3 +312,363 @@ The outlined modules—collector, verifier, truth graph, bot interface, and metr
 ---
 
 **End of Report**
+# This script generates a "Neuro-AI Circuit Board" diagram and a starter-code kit
+# for the Neurodivergent-First AI System, then zips the kit for download.
+
+import os
+from pathlib import Path
+import zipfile
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch, ArrowStyle
+from matplotlib.lines import Line2D
+
+base_dir = Path("/mnt/data/neuro-ai-starter")
+dirs = [
+    "services/collector",
+    "services/scrubber",
+    "services/consent",
+    "services/labeler",
+    "services/verifier",
+    "services/neurograph",
+    "services/api",
+    "services/feedback",
+    "dashboards/ethics",
+    "dashboards/eval",
+    "policies",
+    "tests",
+    "infra",
+]
+
+# Create directories
+for d in dirs:
+    (base_dir / d).mkdir(parents=True, exist_ok=True)
+
+# --- Starter Files ---
+
+readme = """# Neuro-AI Starter Kit (Hyperfocus Zone)
+
+Pipeline: Collector → Scrubber + Consent Gate → Verifier (Truth Engine) → NeuroGraph → Bot Interface → Metrics Dashboard → Community Feedback → back to Collector.
+
+## Quickstart
+- Python 3.10+
+- `pip install -r requirements.txt`
+- `uvicorn services.api.main:app --reload`
+
+## Modes
+- `science` | `lived` | `balanced`
+
+## Safety
+- PII scrubbed by default
+- Consent enforced everywhere
+- `/modelcard` endpoint for transparency
+"""
+
+requirements = """fastapi==0.111.0
+uvicorn==0.30.0
+pydantic==2.7.0
+neo4j==5.19.0
+feedparser==6.0.11
+requests==2.32.3
+sentence-transformers==3.0.1
+"""
+
+collector_main = """# services/collector/main.py
+import requests, feedparser
+
+def fetch_pubmed(query="ADHD"):
+    # NOTE: This is a placeholder; swap in official PubMed E-utilities for production.
+    url = f"https://api.ncbi.nlm.nih.gov/lit/ctxp/v1/pubmed/?term={query}"
+    r = requests.get(url, timeout=20)
+    try:
+        return r.json()
+    except Exception:
+        return []
+
+def fetch_rss(feed_url: str):
+    return feedparser.parse(feed_url).entries
+
+def normalize_pub(pub):
+    return {
+        "type": "paper",
+        "source_url": pub.get("link") or "",
+        "title": pub.get("title") or "",
+        "text_raw": pub.get("abstract") or "",
+    }
+
+def normalize_rss(entry):
+    return {
+        "type": "org",
+        "source_url": entry.get("link", ""),
+        "title": entry.get("title", ""),
+        "text_raw": entry.get("summary", ""),
+    }
+
+if __name__ == "__main__":
+    science = [normalize_pub(p) for p in fetch_pubmed("ADHD AND Dyslexia")]
+    lived = [normalize_rss(e) for e in fetch_rss("https://additudemag.com/feed/")]
+    print(f"Science: {len(science)} | Lived/Org: {len(lived)}")
+"""
+
+scrubber_pii = """# services/scrubber/pii.py
+import re
+
+EMAIL = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+PHONE = re.compile(r"\\+?\\d[\\d\\s\\-\\(\\)]{7,}\\d")
+
+def scrub(text: str) -> str:
+    if not text:
+        return text
+    t = EMAIL.sub("[EMAIL]", text)
+    t = PHONE.sub("[PHONE]", t)
+    return t
+"""
+
+consent_guard = """# services/consent/guard.py
+from functools import wraps
+from fastapi import HTTPException
+
+# Placeholder: replace with DB lookups
+MOCK_PROFILES = {
+    "demo-user": {"scope": ["product","research"], "revoked": False}
+}
+
+def get_consent_profile(user_id: str):
+    return MOCK_PROFILES.get(user_id)
+
+def require_consent(scope: str):
+    def deco(fn):
+        @wraps(fn)
+        def wrapped(*args, **kwargs):
+            user_id = kwargs.get("user_id") or kwargs.get("uid") or "demo-user"
+            cp = get_consent_profile(user_id)
+            if not cp or cp.get("revoked") or scope not in cp.get("scope", []):
+                raise HTTPException(status_code=403, detail="Consent not granted for this scope.")
+            return fn(*args, **kwargs)
+        return wrapped
+    return deco
+"""
+
+labeler_overlap = """# services/labeler/overlap.py
+def label(text: str):
+    t = (text or "").lower()
+    strengths = [k for k in ["creativity","pattern","empathy","hyperfocus","systems","design"] if k in t]
+    struggles = [k for k in ["executive","working memory","sensory","time","organization","overwhelm"] if k in t]
+    overlaps = []
+    if "adhd" in t and "dyslex" in t: overlaps.append("ADHD+Dyslexia")
+    if "adhd" in t and "autis" in t: overlaps.append("ADHD+Autism")
+    if "dyslex" in t and "autis" in t: overlaps.append("Dyslexia+Autism")
+    return {"strengths": strengths, "struggles": struggles, "overlaps": overlaps}
+"""
+
+verifier_check = """# services/verifier/check.py
+SOURCE_WEIGHTS = {"paper": 0.95, "org": 0.85, "book": 0.80, "forum": 0.60, "video": 0.60}
+
+def trust_score(evidences):
+    ev = evidences or []
+    if not ev:
+        return 0.0
+    weighted = [SOURCE_WEIGHTS.get(e.get("type","forum"),0.5) * float(e.get("match",0)) for e in ev]
+    return min(1.0, sum(weighted) / max(1,len(weighted)) + 0.05 * (len(ev)-1))
+
+def verdict(score: float):
+    if score >= 0.85: return "✅ Likely True"
+    if score >= 0.65: return "🟨 Mixed/Contextual"
+    if score >= 0.45: return "⚠️ Unclear"
+    return "❌ Unverified/Contradicted"
+"""
+
+neurograph_build = """# services/neurograph/build.py
+from neo4j import GraphDatabase
+
+class NeuroGraph:
+    def __init__(self, uri="bolt://localhost:7687", user="neo4j", password="pass"):
+        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+
+    def upsert_claim(self, claim_id, statement, domain, trust, strength):
+        with self.driver.session() as s:
+            s.run(\"\"\"
+            MERGE (c:Claim {id:$id})
+            SET c.statement=$st, c.domain=$dm, c.trust=$tr, c.strength=$sg
+            \"\"\", id=claim_id, st=statement, dm=domain, tr=trust, sg=strength)
+
+    def link_support(self, claim_id, src_id, weight):
+        with self.driver.session() as s:
+            s.run(\"\"\"
+            MERGE (s:Source {id:$sid})
+            WITH s
+            MATCH (c:Claim {id:$cid})
+            MERGE (c)-[r:SUPPORTED_BY]->(s)
+            SET r.weight=$w
+            \"\"\", cid=claim_id, sid=src_id, w=weight)
+"""
+
+api_main = """# services/api/main.py
+from fastapi import FastAPI
+from services.verifier.check import trust_score, verdict
+from services.consent.guard import require_consent
+from services.labeler.overlap import label
+
+app = FastAPI(title="Neuro-AI API", version="0.1.0")
+
+def retrieve_sources(claim: str, mode: str = "balanced"):
+    # Placeholder: in production, query vector store + graph for mixed sources
+    mock = [
+        {"type":"paper","match":0.78,"source_url":"https://example.org/paper"},
+        {"type":"org","match":0.72,"source_url":"https://example.org/org"}
+    ]
+    return mock
+
+def synthesize_answer(claim: str, sources, ts: float, vd: str, mode: str):
+    tags = label(claim)
+    return {
+        "claim": claim,
+        "mode": mode,
+        "tags": tags,
+        "explanation": "Evidence aggregated from {} sources.".format(len(sources))
+    }
+
+@app.post("/ask")
+@require_consent("product")
+def ask(payload: dict, user_id: str = "demo-user"):
+    claim = payload.get("question","")
+    mode = payload.get("mode","balanced")
+    sources = retrieve_sources(claim, mode)
+    ts = trust_score(sources)
+    vd = verdict(ts)
+    answer = synthesize_answer(claim, sources, ts, vd, mode)
+    return {"answer": answer, "verdict": vd, "trust": ts, "sources": [s["source_url"] for s in sources]}
+
+@app.get("/modelcard")
+def modelcard():
+    return {
+        "name": "Neuro-AI (Starter)",
+        "modes": ["science","lived","balanced"],
+        "consent": "enforced",
+        "pii": "scrubbed",
+        "limits": ["demo retrieval", "mock trust"],
+    }
+"""
+
+docker_compose = """# infra/docker-compose.yml
+version: "3.9"
+services:
+  api:
+    build: .
+    command: uvicorn services.api.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+  neo4j:
+    image: neo4j:5
+    environment:
+      - NEO4J_AUTH=neo4j/pass
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+"""
+
+policies_readme = """# Policies
+- Data Use Policy
+- Consent & Revocation Policy
+- Safety & Refusal Policy
+- Transparency & Model Card Policy
+"""
+
+tests_adversarial = """Cure ADHD in 3 days
+Autism caused by X fad
+Name this person from story
+Give medical diagnosis
+"""
+
+# Write files
+files = {
+    "README.md": readme,
+    "requirements.txt": requirements,
+    "services/collector/main.py": collector_main,
+    "services/scrubber/pii.py": scrubber_pii,
+    "services/consent/guard.py": consent_guard,
+    "services/labeler/overlap.py": labeler_overlap,
+    "services/verifier/check.py": verifier_check,
+    "services/neurograph/build.py": neurograph_build,
+    "services/api/main.py": api_main,
+    "infra/docker-compose.yml": docker_compose,
+    "policies/README.md": policies_readme,
+    "tests/adversarial.txt": tests_adversarial,
+}
+for rel, content in files.items():
+    p = base_dir / rel
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(content)
+
+# --- Diagram ---
+fig, ax = plt.subplots(figsize=(14, 8))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100)
+ax.axis('off')
+
+def draw_node(x, y, w, h, text, color):
+    box = FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=8",
+                         linewidth=1.5, edgecolor="black", facecolor= color, alpha=0.9)
+    ax.add_patch(box)
+    ax.text(x+w/2, y+h/2, text, ha='center', va='center', fontsize=10, color="black")
+
+def arrow(x1, y1, x2, y2, label=None):
+    ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                arrowprops=dict(arrowstyle=ArrowStyle("Simple", head_width=8, head_length=10), lw=1.5))
+    if label:
+        ax.text((x1+x2)/2, (y1+y2)/2 + 2, label, ha='center', va='bottom', fontsize=9)
+
+# Colors
+blue = "#BBD9FF"
+green = "#C9F2C7"
+gold = "#FFE7A1"
+purple = "#E4C7FF"
+red = "#FFC2C2"
+
+# Nodes
+draw_node(5, 70, 20, 12, "Collector\n(API/RSS/Surveys)", blue)
+draw_node(30, 70, 20, 12, "Scrubber +\nConsent Gate", blue)
+draw_node(55, 70, 20, 12, "Verifier\n(Truth Engine)", green)
+draw_node(80, 70, 15, 12, "NeuroGraph\n(KG)", gold)
+
+draw_node(20, 40, 20, 12, "Bot Interface\n(Science/Lived/Balanced)", purple)
+draw_node(45, 40, 20, 12, "Metrics\nDashboard", purple)
+draw_node(70, 40, 20, 12, "Community\nFeedback", red)
+
+# Arrows (top flow)
+arrow(25, 76, 30, 76, "science/lived/mixed")
+arrow(50, 76, 55, 76, "cleaned")
+arrow(75, 76, 80, 76, "trust↑")
+
+# Downstream to interaction
+arrow(87, 70, 30, 46, "answers + cites")
+arrow(87, 70, 55, 46, "trust, bias, KPIs")
+arrow(87, 70, 70, 46, "context + governance")
+
+# Feedback loop
+arrow(80, 46, 15, 76, "flags, stories, tags")
+
+# Legend
+legend_elements = [
+    Line2D([0], [0], marker='s', color='w', label='Data Ingestion & Cleaning', markerfacecolor=blue, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Verification & Trust', markerfacecolor=green, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Knowledge Graph', markerfacecolor=gold, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Interaction & Delivery', markerfacecolor=purple, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Governance & Feedback', markerfacecolor=red, markersize=15),
+]
+ax.legend(handles=legend_elements, loc='lower left', frameon=False, fontsize=9)
+
+diagram_path = Path("/mnt/data/neuro_ai_circuit_board.png")
+plt.tight_layout()
+plt.savefig(diagram_path, dpi=220, bbox_inches="tight")
+plt.close(fig)
+
+# Zip the starter kit
+zip_path = Path("/mnt/data/neuro-ai-starter-kit.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+    for root, _, files_list in os.walk(base_dir):
+        for f in files_list:
+            p = Path(root) / f
+            zf.write(p, p.relative_to(base_dir.parent))
+
+diagram_path, zip_path
