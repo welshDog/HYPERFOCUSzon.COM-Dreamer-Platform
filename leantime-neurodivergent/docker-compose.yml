@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  leantime:
+    image: leantime/leantime:latest
+    container_name: hyperfocus_leantime
+    ports:
+      - "8080:80"
+    environment:
+      - LEAN_SITENAME=HyperFocus Zone PM
+      - LEAN_APP_URL=http://localhost:8080
+    restart: unless-stopped

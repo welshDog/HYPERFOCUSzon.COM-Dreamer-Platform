@@ -1,0 +1,80 @@
+/* HyperFocus Zone Neurodivergent Customizations */
+
+/* ADHD-Friendly Color Scheme */
+:root {
+    --adhd-focus-blue: #4A90E2;
+    --adhd-energy-orange: #F39C12;
+    --autism-calm-green: #2ECC71;
+    --dyslexia-contrast: #2C3E50;
+    --sensory-soft-purple: #9B59B6;
+}
+
+/* Reduce visual overwhelm for autism */
+.main-container {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Open Sans', Arial, sans-serif;
+}
+
+/* ADHD-friendly button styling */
+.btn-primary {
+    background: var(--adhd-focus-blue);
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 12px 24px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--adhd-energy-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+}
+
+/* Dyslexia-friendly text improvements */
+body {
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--dyslexia-contrast);
+}
+
+/* Sensory-friendly card design */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+/* ADHD focus indicators */
+.task-priority-high {
+    border-left: 5px solid var(--adhd-energy-orange);
+    background: rgba(243, 156, 18, 0.1);
+}
+
+.task-priority-medium {
+    border-left: 5px solid var(--adhd-focus-blue);
+    background: rgba(74, 144, 226, 0.1);
+}
+
+.task-priority-low {
+    border-left: 5px solid var(--autism-calm-green);
+    background: rgba(46, 204, 113, 0.1);
+}
+
+/* Break reminder styling */
+.break-reminder {
+    background: var(--sensory-soft-purple);
+    color: white;
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    text-align: center;
+    font-weight: 600;
+}

@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  model_runner:
+    image: ghcr.io/mudler/localai:latest
+    container_name: hyperfocus_model_runner_standalone
+    restart: unless-stopped
+    ports:
+      - "8081:8080"
+    environment:
+      - MODELS_PATH=/models
+      - THREADS=4
+      - CONTEXT_SIZE=1024
+    volumes:
+      - ./ai_models:/models
+      - model_data:/tmp/localai
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  model_data:

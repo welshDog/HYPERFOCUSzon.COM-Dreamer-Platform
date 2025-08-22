@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+  # 🌈 Leantime - Neurodivergent Project Management
+  leantime:
+    image: leantime/leantime:latest
+    container_name: hyperfocus_leantime
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      # Database Configuration
+      - LEAN_DB_HOST=leantime_db
+      - LEAN_DB_USER=leantime
+      - LEAN_DB_PASSWORD=HyperFocus2025!
+      - LEAN_DB_DATABASE=leantime
+
+      # Application Configuration
+      - LEAN_SITENAME=HyperFocus Zone Project Management
+      - LEAN_APP_URL=http://localhost:8080
+      - LEAN_SESSION_PASSWORD=NeurodivergentEmpire2025!
+      - LEAN_SESSION_EXPIRATION=28800
+
+      # Neurodivergent Optimizations
+      - LEAN_DEFAULT_TIMEZONE=UTC
+      - LEAN_DEFAULT_LANGUAGE=en-US
+      - LEAN_LDAP_USE=false
+      - LEAN_LOG_PATH=/var/log/leantime
+
+      # ADHD-Friendly Settings
+      - LEAN_KEEP_THEME=true
+      - LEAN_S3_USE=false
+
+    volumes:
+      - leantime_files:/var/www/html/userfiles
+      - leantime_logs:/var/log/leantime
+      - ./leantime-config:/var/www/html/config
+    depends_on:
+      - leantime_db
+    networks:
+      - hyperfocus_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/api/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # 🗄️ Database for Leantime
+  leantime_db:
+    image: mysql:8.0
+    container_name: hyperfocus_leantime_db
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=HyperFocusRoot2025!
+      - MYSQL_DATABASE=leantime
+      - MYSQL_USER=leantime
+      - MYSQL_PASSWORD=HyperFocus2025!
+    volumes:
+      - leantime_db_data:/var/lib/mysql
+      - ./leantime-init:/docker-entrypoint-initdb.d
+    networks:
+      - hyperfocus_network
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🔄 Redis Cache for Performance
+  leantime_redis:
+    image: redis:7-alpine
+    container_name: hyperfocus_leantime_redis
+    restart: unless-stopped
+    command: redis-server --requirepass HyperFocusRedis2025!
+    volumes:
+      - leantime_redis_data:/data
+    networks:
+      - hyperfocus_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🌐 Nginx Reverse Proxy
+  leantime_nginx:
+    image: nginx:alpine
+    container_name: hyperfocus_leantime_nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/leantime.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - leantime
+    networks:
+      - hyperfocus_network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  leantime_files:
+    name: hyperfocus_leantime_files
+  leantime_logs:
+    name: hyperfocus_leantime_logs
+  leantime_db_data:
+    name: hyperfocus_leantime_db
+  leantime_redis_data:
+    name: hyperfocus_leantime_redis
+
+networks:
+  hyperfocus_network:
+    name: hyperfocus_empire_network
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.30.0.0/16

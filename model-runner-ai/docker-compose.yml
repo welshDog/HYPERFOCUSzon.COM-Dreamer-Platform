@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  localai:
+    image: quay.io/go-skynet/local-ai:latest
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./models:/models
+    restart: unless-stopped
