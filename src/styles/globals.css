@@ -1,0 +1,331 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🧠 Global Neurodivergent Accessibility Styles */
+
+:root {
+    --motion-duration: 200ms;
+    --focus-ring-color: #0066CC;
+    --focus-ring-width: 3px;
+    --hyperfocus-blue: #0066CC;
+    --calm-green: #22C55E;
+    --energy-orange: #F97316;
+    --gentle-gray: #6B7280;
+}
+
+/* 🎯 Enhanced focus styles for ADHD users */
+*:focus {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: 2px;
+}
+
+.focus-enhanced:focus {
+    outline: 4px solid var(--focus-ring-color);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px rgba(0, 102, 204, 0.2);
+}
+
+/* 🌈 ADHD Mode Optimizations */
+.adhd-mode {
+    --motion-duration: 150ms;
+}
+
+.adhd-mode .adhd-focus-active {
+    animation: adhd-focus-pulse 3s ease-in-out;
+    border: 3px solid var(--hyperfocus-blue);
+    box-shadow: 0 0 0 6px rgba(0, 102, 204, 0.3);
+}
+
+@keyframes adhd-focus-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 102, 204, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(0, 102, 204, 0.1);
+    }
+}
+
+/* 🌿 Autism Mode Optimizations */
+.autism-mode {
+    --motion-duration: 300ms;
+}
+
+.autism-mode * {
+    transition-duration: var(--motion-duration);
+}
+
+.autism-mode .predictability-indicator {
+    border-left: 4px solid var(--calm-green);
+}
+
+/* 🧭 Cognitive Support Mode */
+.cognitive-support {
+    font-size: 1.125rem;
+    line-height: 1.75;
+}
+
+.cognitive-support button {
+    min-height: 48px;
+    padding: 12px 24px;
+}
+
+.cognitive-support .cognitive-friendly {
+    max-width: 65ch;
+    margin: 0 auto;
+}
+
+/* 🎨 High Contrast Mode */
+.high-contrast-mode {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+.high-contrast-mode * {
+    background: inherit !important;
+    color: inherit !important;
+    border-color: #FFFFFF !important;
+}
+
+.high-contrast-mode button {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border: 2px solid #FFFFFF !important;
+}
+
+.high-contrast-mode button:hover {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* 🔤 Dyslexic-Friendly Typography */
+.font-dyslexic-friendly {
+    font-family: 'Inter', 'Open Sans', Arial, sans-serif;
+    letter-spacing: 0.05em;
+    word-spacing: 0.16em;
+    line-height: 1.6;
+}
+
+/* 📏 Font Size Adjustments */
+[data-font-size="small"] {
+    font-size: 0.875rem;
+}
+
+[data-font-size="medium"] {
+    font-size: 1rem;
+}
+
+[data-font-size="large"] {
+    font-size: 1.125rem;
+}
+
+[data-font-size="extra-large"] {
+    font-size: 1.25rem;
+}
+
+/* ⏱️ Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.reduced-motion *,
+.reduced-motion *::before,
+.reduced-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+}
+
+/* 🎯 Skip Links */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--hyperfocus-blue);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+    top: 6px;
+}
+
+/* 🧠 Screen Reader Only Content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.sr-only:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+}
+
+/* 🌟 Loading States for ADHD Users */
+.loading-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* 🎮 Quick Action Styles */
+.quick-action {
+    position: relative;
+}
+
+.quick-action::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--hyperfocus-blue), var(--energy-orange));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.quick-action:hover::after {
+    opacity: 0.7;
+}
+
+/* 🌈 Custom Scrollbars for Better UX */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--hyperfocus-blue);
+    border-radius: 6px;
+    border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #004d99;
+}
+
+/* 🌙 Dark Mode Adaptations */
+@media (prefers-color-scheme: dark) {
+    ::-webkit-scrollbar-track {
+        background: #374151;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-color: #374151;
+    }
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #374151;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    border-color: #374151;
+}
+
+/* 🎯 Neurodivergent Button Enhancements */
+.btn-neurodivergent {
+    min-height: 44px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all var(--motion-duration) ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-neurodivergent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-neurodivergent:hover::before {
+    left: 100%;
+}
+
+/* 📱 Mobile Accessibility Improvements */
+@media (max-width: 768px) {
+    .btn-neurodivergent {
+        min-height: 48px;
+        font-size: 1rem;
+    }
+
+    .cognitive-friendly {
+        font-size: 1.25rem;
+        line-height: 1.8;
+    }
+
+    .focus-enhanced:focus {
+        outline-width: 4px;
+        outline-offset: 4px;
+    }
+}
+
+/* 🎨 Print Styles for Accessibility */
+@media print {
+
+    .skip-link,
+    .sr-only {
+        display: none !important;
+    }
+
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+}
