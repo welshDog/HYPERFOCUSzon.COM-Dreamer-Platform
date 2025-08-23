@@ -37,6 +37,22 @@ except ImportError as e:
     print(f"COO Handover system not available: {e}")
     COO_HANDOVER_AVAILABLE = False
 
+# Import HyperFocus Zone Auto-Population Engine
+try:
+    import sys
+
+    sys.path.append(".")
+    exec(
+        open(
+            "🌐💎⚡_HYPERFOCUS_ZONE_AUTO_POPULATION_ENGINE_⚡💎🌐.py", encoding="utf-8"
+        ).read()
+    )
+    AUTO_POPULATION_AVAILABLE = True
+    print("✅ HyperFocus Zone Auto-Population Engine loaded successfully!")
+except Exception as e:
+    print(f"⚠️ Auto-Population Engine not available: {e}")
+    AUTO_POPULATION_AVAILABLE = False
+
 
 class LegendaryBROskiBot:
     def __init__(self):
@@ -630,6 +646,10 @@ class LegendaryBROskiBot:
         # Setup BROski Auto COO handover system
         if COO_HANDOVER_AVAILABLE:
             self.setup_coo_integration()
+
+        # Setup HyperFocus Zone Auto-Population Engine
+        if AUTO_POPULATION_AVAILABLE:
+            self.setup_auto_population_integration()
 
     def setup_events(self):
         """Setup Discord bot events"""
@@ -1232,6 +1252,19 @@ Ready to serve the HyperFocus Zone community!
             self.logger.info("BROski Auto COO handover system integrated successfully!")
         except Exception as e:
             self.logger.error(f"Failed to setup COO integration: {e}")
+
+    def setup_auto_population_integration(self):
+        """🌐 Setup HyperFocus Zone Auto-Population Engine integration"""
+        try:
+            self.logger.info("🌐 Setting up HyperFocus Zone Auto-Population Engine...")
+            # The setup_auto_population function is loaded from the imported file
+            global setup_auto_population
+            self.auto_population_system = setup_auto_population(self.bot)
+            self.logger.info(
+                "✅ HyperFocus Zone Auto-Population Engine integrated successfully!"
+            )
+        except Exception as e:
+            self.logger.error(f"❌ Failed to setup Auto-Population integration: {e}")
 
     def run(self):
         """Launch the LEGENDARY BROski Discord Bot"""
