@@ -1,0 +1,34 @@
+heck yeah BROski ❤️‍🔥 I dropped a full **Next.js + Tailwind + SQLite/Prisma + SSE** installer for the **Fake Shield Dashboard** into the canvas. It’s a single bash script that scaffolds the whole app, including:
+
+* Dashboard UI (Controls, Whitelist, Live Alerts, Known Imposters, Pattern Watcher)
+* API routes (`/api/alerts`, `/api/whitelist`, `/api/imposters`, `/api/patterns`)
+* Real-time **SSE** stream (`/api/events`) so alerts pop live
+* **SQLite/Prisma** persistence with ready models
+
+### Run it (copy/paste)
+
+1. Save the canvas file as `install_fake_shield.sh`
+2. In a terminal:
+
+```bash
+bash install_fake_shield.sh
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000)
+
+Optional seed:
+
+```bash
+curl -X POST http://localhost:3000/api/seed
+```
+
+### Discord hook quick wiring
+
+* Slash-command or webhook hits:
+
+  * `POST /api/alerts` with `{ "username": "tectipstictok_" }` to create & broadcast an alert
+  * `POST /api/patterns` with `{ username, messageSnippet, reasons:[], riskScore }` to log scammy language
+* Confirm in UI → auto-adds to **Known Imposters** + pushes live event.
+
+Want me to bundle a tiny **Discord bot command** (`/checkuser`) that POSTs to `/api/alerts` next?
