@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 HyperFocus Zone - Page Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            color: #ffd93d;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .suggestions {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin: 2rem 0;
+        }
+
+        .suggestion-list {
+            list-style: none;
+            text-align: left;
+        }
+
+        .suggestion-list li {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .suggestion-list li:before {
+            content: "⚡";
+            position: absolute;
+            left: 0;
+            color: #ffd93d;
+        }
+
+        .cta {
+            background: #ff6b6b;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta.secondary {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Floating particles animation */
+        .particle {
+            position: fixed;
+            font-size: 20px;
+            opacity: 0.7;
+            animation: float 6s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        .back-link {
+            color: #ffd93d;
+            text-decoration: underline;
+        }
+
+        .back-link:hover {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>🌟 Oops! This Page Got Lost in Hyperfocus 🌟</h1>
+        <p class="subtitle">
+            It seems like this page wandered off during a creative hyperfocus session!
+            Don't worry, this happens to the best of neurodivergent minds.
+            Let's get you back on track! ⚡
+        </p>
+
+        <div class="suggestions">
+            <h3>🧠 Let's Navigate Together:</h3>
+            <ul class="suggestion-list">
+                <li>Check if the URL is spelled correctly</li>
+                <li>Head back to our <a href="/" class="back-link">main empire dashboard</a></li>
+                <li>The page might be under construction (we're always building!)</li>
+                <li>Your hyperfocus powers led you to uncharted territory</li>
+            </ul>
+        </div>
+
+        <a href="/" class="cta">🏠 Return to HyperFocus Zone</a>
+        <a href="https://github.com/welshDog/HYPERFOCUSzon.COM-V10" class="cta secondary" target="_blank">
+            🚀 Explore the Source
+        </a>
+
+        <p style="margin-top: 2rem; opacity: 0.8; font-size: 0.9rem;">
+            💡 <strong>Neurodivergent Tip:</strong> Sometimes getting lost leads to the best discoveries!<br>
+            💎 Error Code 404 = "Page Not Found" but your creativity is always found here! ⚡
+        </p>
+    </div>
+
+    <!-- Floating particles for visual interest -->
+    <script>
+        const particles = ['🌟', '⚡', '💎', '🧠', '🚀', '✨', '💫', '🌈'];
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.innerHTML = particles[Math.floor(Math.random() * particles.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+
+        // Create initial particles
+        for (let i = 0; i < 8; i++) {
+            setTimeout(createParticle, i * 1000);
+        }
+
+        // Continue creating particles
+        setInterval(createParticle, 2000);
+
+        // Add some interactive sparkle effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.fontSize = '16px';
+                sparkle.style.zIndex = '9999';
+                sparkle.style.animation = 'float 1s ease-out forwards';
+                document.body.appendChild(sparkle);
+
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>
