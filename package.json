@@ -1,0 +1,40 @@
+{
+    "name": "hyperfocus-zone-empire",
+    "version": "1.0.0",
+    "description": "🌟 HyperFocus Zone - Empowering 1.1 Billion Neurodivergent Minds Worldwide ⚡💎🧠",
+    "main": "index.js",
+    "scripts": {
+        "build": "echo 'Building HyperFocus Zone Empire...'",
+        "start": "echo 'Starting HyperFocus Zone Empire...'",
+        "test": "echo 'Testing HyperFocus Zone Empire...'",
+        "dev": "echo 'Development mode for HyperFocus Zone Empire...'"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/welshDog/HYPERFOCUSzon.COM-V10.git"
+    },
+    "keywords": [
+        "hyperfocus",
+        "neurodivergent",
+        "adhd",
+        "autism",
+        "productivity",
+        "empire",
+        "ai",
+        "accessibility"
+    ],
+    "author": "HyperFocus Zone Empire",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/welshDog/HYPERFOCUSzon.COM-V10/issues"
+    },
+    "homepage": "https://welshdog.github.io/HYPERFOCUSzon.COM-V10",
+    "devDependencies": {
+        "concurrently": "^8.2.2",
+        "express": "^4.18.2"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
+    }
+}
