@@ -1,0 +1,100 @@
+name: 🌐 Deploy GitHub Pages Empire
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 📦 Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 🔧 Setup Pages
+      uses: actions/configure-pages@v4
+
+    - name: 🏗️ Build Empire Site
+      run: |
+        echo "🚀 Building HyperFocus Zone Empire GitHub Pages..."
+
+        # Create public site directory
+        mkdir -p _site
+
+        # Copy web dashboard
+        cp -r web/* _site/
+
+        # Copy documentation
+        mkdir -p _site/docs
+        cp -r docs/* _site/docs/
+
+        # Copy examples
+        mkdir -p _site/examples
+        cp -r examples/* _site/examples/
+
+        # Create index.html redirect to empire dashboard
+        cat > _site/index.html << 'EOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>🌟💎⚡ HyperFocus Zone Empire ⚡💎🌟</title>
+            <meta http-equiv="refresh" content="0; url=./empire_dashboard.html">
+            <style>
+                body {
+                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                    color: white;
+                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100vh;
+                    margin: 0;
+                    text-align: center;
+                }
+                .loader {
+                    animation: pulse 2s infinite;
+                }
+                @keyframes pulse {
+                    0% { opacity: 0.5; }
+                    50% { opacity: 1; }
+                    100% { opacity: 0.5; }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="loader">
+                <h1>🚀 Launching HyperFocus Zone Empire...</h1>
+                <p>Redirecting to Ultra-Thinking Boardroom Dashboard...</p>
+                <p><a href="./empire_dashboard.html" style="color: #fff;">Click here if not redirected automatically</a></p>
+            </div>
+        </body>
+        </html>
+        EOF
+
+        echo "✅ GitHub Pages site built successfully!"
+
+    - name: 📦 Upload Pages Artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: _site
+
+    - name: 🚀 Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
