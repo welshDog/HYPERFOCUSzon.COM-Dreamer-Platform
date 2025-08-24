@@ -1,0 +1,75 @@
+{
+  "scan_timestamp": "2025-08-19T22:49:08.997164",
+  "optimizations_performed": [],
+  "memory_optimization": {
+    "before_percent": 94.1,
+    "after_percent": 94.3,
+    "memory_freed_percent": -0.20000000000000284,
+    "objects_collected": 0,
+    "temp_files_cleaned": 0,
+    "status": "STABLE"
+  },
+  "server_optimization": {
+    "main_server": {
+      "ip": "100.68.37.27",
+      "status": "\ud83d\udfe2 ONLINE",
+      "response_time_ms": 51.34224891662598,
+      "health_score": 75
+    },
+    "mini_server": {
+      "ip": "100.71.69.16",
+      "status": "\ud83d\udfe2 ONLINE",
+      "response_time_ms": 34.36899185180664,
+      "health_score": 100
+    },
+    "sync_server": {
+      "ip": "212.227.127.144",
+      "status": "\ud83d\udd34 OFFLINE",
+      "response_time_ms": null,
+      "health_score": 0
+    }
+  },
+  "network_recovery": {
+    "Google": {
+      "url": "https://google.com",
+      "status": "\u2705 CONNECTED",
+      "status_code": 200,
+      "response_time_ms": 293.05577278137207
+    },
+    "GitHub": {
+      "url": "https://github.com",
+      "status": "\u2705 CONNECTED",
+      "status_code": 200,
+      "response_time_ms": 120.33224105834961
+    },
+    "HuggingFace": {
+      "url": "https://huggingface.co",
+      "status": "\u2705 CONNECTED",
+      "status_code": 200,
+      "response_time_ms": 85.19554138183594
+    }
+  },
+  "performance_improvements": {
+    "cpu_usage_percent": 74.0,
+    "memory_usage_percent": 94.4,
+    "memory_available_gb": 0.4323844909667969,
+    "disk_usage_percent": 0.5189548600577488,
+    "disk_free_gb": 1464.041358947754,
+    "python_version": "3.13.5",
+    "optimization_timestamp": "2025-08-19T22:49:16.011083"
+  },
+  "recommendations": [
+    {
+      "category": "\ud83d\udea8 CRITICAL",
+      "issue": "Memory usage extremely high: 94.4%",
+      "recommendation": "Immediate restart recommended or close major applications",
+      "priority": "URGENT"
+    },
+    {
+      "category": "\ud83d\udea8 CRITICAL",
+      "issue": "Offline servers: sync_server",
+      "recommendation": "Investigate network connectivity and server status",
+      "priority": "HIGH"
+    }
+  ]
+}

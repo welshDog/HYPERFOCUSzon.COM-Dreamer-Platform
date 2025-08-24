@@ -1,0 +1,106 @@
+{
+    "dashboard": {
+        "id": null,
+        "title": "🌌 HyperFocus Empire Dashboard ⚡",
+        "tags": [
+            "empire",
+            "hyperfocus",
+            "strategic"
+        ],
+        "timezone": "browser",
+        "panels": [
+            {
+                "id": 1,
+                "title": "🧠 Ultra-Thinking Boardroom Status",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "up{job=\"ultra-thinking-boardroom\"}",
+                        "legendFormat": "Boardroom Health"
+                    }
+                ],
+                "fieldConfig": {
+                    "defaults": {
+                        "color": {
+                            "mode": "thresholds"
+                        },
+                        "thresholds": {
+                            "steps": [
+                                {
+                                    "color": "red",
+                                    "value": 0
+                                },
+                                {
+                                    "color": "green",
+                                    "value": 1
+                                }
+                            ]
+                        }
+                    }
+                },
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            {
+                "id": 2,
+                "title": "⚡ Empire Request Rate",
+                "type": "graph",
+                "targets": [
+                    {
+                        "expr": "rate(http_requests_total[5m])",
+                        "legendFormat": "Requests/sec"
+                    }
+                ],
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 0
+                }
+            },
+            {
+                "id": 3,
+                "title": "🚀 Strategic Decisions Made",
+                "type": "stat",
+                "targets": [
+                    {
+                        "expr": "empire_decisions_total",
+                        "legendFormat": "Total Decisions"
+                    }
+                ],
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 0,
+                    "y": 8
+                }
+            },
+            {
+                "id": 4,
+                "title": "💎 Empire System Health",
+                "type": "table",
+                "targets": [
+                    {
+                        "expr": "up",
+                        "legendFormat": "{{job}}"
+                    }
+                ],
+                "gridPos": {
+                    "h": 8,
+                    "w": 12,
+                    "x": 12,
+                    "y": 8
+                }
+            }
+        ],
+        "time": {
+            "from": "now-1h",
+            "to": "now"
+        },
+        "refresh": "5s"
+    }
+}

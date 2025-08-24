@@ -1,0 +1,674 @@
+# Blueprint for a Neurodivergent-First AI System: Ethical Collection, Verification, and Strengths-Based Modeling of ADHD, Autism, and Dyslexia Lived and Clinical Data
+
+---
+
+## Executive Summary
+
+This report presents a comprehensive, modular blueprint for a neurodivergent-first artificial intelligence (AI) system designed to ethically collect, verify, and model both lived experiences and clinical data across overlapping zones of ADHD, Autism, and Dyslexia. The system’s goal is a truly strengths-based, emotionally intelligent intelligence engine—that not only amplifies neurodivergent creativity, hyperfocus, and empathy but also enforces robust ethical guardrails for consent, bias management, and community feedback integration.
+
+The blueprint integrates state-of-the-art modules for auto-sourcing, fact-checking, and trust scoring, culminating in an interactive, squad-readable dashboard supporting both transparency and participatory, community-driven design. Drawing on insights from the latest research, emerging ethical frameworks, and practical toolkits, each module—collector, verifier, truth graph, bot interface, and metrics tracker—is detailed for both technical implementation and ethical compliance. The architecture prioritizes emotional intelligence and accessibility for neurodivergent users, ensuring meaningful inclusion from system design to real-world usage.
+
+---
+
+## 1. Principles of Neurodivergent-First AI Design
+
+### 1.1 Core Philosophy
+
+A neurodivergent-first AI must center the lived realities, strengths, and needs of those with ADHD, Autism, and Dyslexia. This approach counters traditional “deficit-based” medical models by leveraging the productivity, creativity, attention variability, and empathy that flourish in many neurodivergent profiles—traits increasingly recognized as invaluable in modern workplaces, education, and society.
+
+Critical design tenets include:
+
+- **Strengths-Based Framing**: Shift from symptom remediation to amplification of unique cognitive styles (e.g., hyperfocus, creative ideation, non-linear thinking).
+- **Participatory & Lived Experience-Driven**: Involve neurodivergent individuals in all stages—from needs analysis to ongoing governance. “Nothing about us without us” is foundational.
+- **Modularity & Customizability**: Support user, group (“squad”), and organizational customization of interface, workflows, and data interaction for diverse cognitive and sensory preferences.
+- **Adaptive Consent & Trust**: Ensure transparent, dynamic, and cognitively accessible consent processes with visible trust and privacy controls.
+- **Guardrails & Fairness by Design**: Integrate bias audits, feedback loops, and explainable AI (XAI), fulfilling both regulatory and neurodivergent-specific requirements.
+
+---
+
+## 2. Ethical Data Collection Methodologies for Neurodiverse Populations
+
+### 2.1 Ethical Principles Table
+
+| Principle                       | Description                                                                         | Implementation Guide                                    |
+|----------------------------------|-------------------------------------------------------------------------------------|---------------------------------------------------------|
+| Informed Consent & Comprehension| Ensure understanding and ongoing consent at every system interaction                | Multi-stage, plain-language consent with regular check-ins |
+| Privacy & Anonymity             | Protect identities and sensitive data throughout lifecycle                          | Anonymization, encryption, local storage, zero-trust design |
+| Representation & Inclusivity     | Proactively gather diverse, intersectional neurodivergent voices                    | Outreach through forums, participatory research, diversity audits |
+| Lived Experience Prioritization | Center real-world narratives and feedback over abstracted clinical assessments      | Narrative-based inputs, optional qualitative modules        |
+| Community Oversight and Feedback| Enable participatory review, system audit, and policy revision                     | Community boards, in-platform polls, transparent change logs |
+
+Comprehensive consent must go beyond a checkbox. Explanations should use clear, everyday language, provide context for data use, and adapt for cognitive flexibility (audio, video, summary, etc.). Withdrawal of consent, deletion of data, and review of usage logs must be “one-click” accessible, supported by ongoing, transparent communication.
+
+### 2.2 Collection Techniques
+
+- **Multi-Modal Interfaces**: Offer interaction through voice, text, visuals, and alternative input devices to accommodate sensory, executive, or linguistic differences.
+- **Narrative & Story-Based Inputs**: Encourage self-authored narrative, artifact sharing, or collaborative interviews to gather nuanced, real-life accounts.
+- **Community-Led Outreach & Recruitment**: Use neurodivergent organizations, advocacy groups, and neurodiverse hiring programs for direct recruitment, incentivizing squads to contribute and review data .
+- **Dynamic Questionnaires & Qualitative Methods**: Adapt question types and session structure in real time based on user’s processing, pacing, or fatigue signals.
+- **Consent Stewardship**: Implement versioned consent forms, configurable scopes (what data, which modules, sharing limits), and notification systems for all changes to data usage.
+
+**Participatory Action Research** and community-driven AI are vital; individuals must retain power to direct data collection and system evolution—a core lesson from recent research and policy.
+
+---
+
+## 3. Consent Management Framework
+
+### 3.1 Adaptive, Neurodivergent-Friendly Consent Table
+
+| Element            | Standard Approach                         | Neurodivergent-First Upgrade                |
+|--------------------|-------------------------------------------|---------------------------------------------|
+| Language           | Legal/technical wording                   | Plain, option for visual, audio, examples   |
+| Accessibility      | One-size-fits-all forms                   | Toggleable complexity/length, assistive options |
+| Timing             | Point-in-time agreement                   | Regular, scheduled reminders and opt-outs   |
+| Role Clarity       | User vs. system responsibilities unclear  | Dashboard with who, what, why, when, where  |
+| Feedback           | Passive withdrawal only                   | “Amend, pause, delete” + proactive alerts   |
+
+#### 3.2 Features
+
+- **Granular Control**: Select specific data sharing (modality, topic, time-window, squad).
+- **Logging & Audit**: All consent actions timestamped, with quick history review.
+- **Guardrails**: System prevents data usage outside consent scope or upon withdrawal.
+- **Contextual Education**: Micro-explanations (tooltips, videos) clarify risks and potential benefits for each data type.
+- **Community Accountability**: Consent and privacy logs are peer-reviewed by a neurodivergent oversight board where feasible.
+
+Integrate regular “consent check-ins,” especially at points when new features are added, policies change, or data is being shared externally or with new modules. Notification preferences themselves must be adjustable to avoid overwhelm or cognitive overload.
+
+---
+
+## 4. Auto-Sourcing Module: Collecting Lived and Clinical Data
+
+### 4.1 Modular Collector Patterns
+
+The collector module autonomously—and ethically—gathers, categorizes, and stores the following:
+
+- **Lived Experiences**: Crowdsourced stories, participatory surveys, recorded interviews, and forum data, all with robust context tagging.
+- **Clinical Data**: Standardized form data (diagnostic assessments, scores), study meta-data, and longitudinal records from partner clinics (de-identified).
+- **External Sources**: Integration with published studies, open data repositories, social media (opt-in), and relevant digital health/app logs.
+
+#### 4.2 Collector Features
+
+- **Dynamic Input Channels**: Allow upload via web, mobile, speech, video, or third-party API connections, supporting neurodivergent-preferred input modes.
+- **Schema Flexibility**: Model “overlap zones” (ADHD-Autism, Autism-Dyslexia, etc.) as first-class schema entities; allow for ambiguous/unsure self-identification.
+- **Data Lineage Tracking**: Every data point is timestamped, author-attributed (pseudonymously/anonymously if preferred), and versioned for auditability.
+- **Consent-Driven Operations**: Collector operates only within user-configurable consent boundaries. No background collection without explicit, renewable permission.
+- **Community Review Layer**: New data entries are open to community feedback, tagging, and flagging for bias, inaccuracy, or misrepresentation.
+
+#### 4.3 Community-Driven Engagement Table
+
+| Engagement Strategy      | Implementation Example                         |
+|-------------------------|------------------------------------------------|
+| Participatory Co-design | System feature voting, joint requirement sessions|
+| Squad Collaboration     | Peer annotation, lived-experience focus groups  |
+| User-Led Governance     | Rotating citizen panels for oversight           |
+| Feedback Channels       | Always-on issue tracker, suggestion boards      |
+
+---
+
+## 5. Verification & Fact-Checking Module
+
+### 5.1 Multi-Tiered Verification Framework
+
+Both lived experience and clinical data demand robust verification to filter inaccuracies, intentional misinformation, or hallucinations, without suppressing marginalized or minority perspectives.
+
+#### 5.2 Verification Techniques Table
+
+| Data Type        | Primary Verification | Supplementary Approaches                         |
+|------------------|---------------------|--------------------------------------------------|
+| Lived Experience | Peer review, narrative triangulation | Source-tracking, digital provenance, semantic similarity clustering |
+| Clinical Data    | Cross-reference with standards (DSM, ICD, clinical notes) | Automated fact-check against EHRs, literature validation |
+| Sourced Content  | Automated fact-checking, citation risk scoring | Bias detection, provenance graph, XAI explanations |
+
+#### 5.3 Verification System Features
+
+- **Peer Narrative Review**: Community members (opted-in, trained or credentialed) review stories for accuracy, harmful content, outlier flagging, or suggest contextual tags. Minority voices are not down-weighted, but flagged for further discussion/disambiguation if disputed.
+- **Automated Fact-Checking**: Leverage tools such as Sourcely, AI Fact-Checking Tool, Content Bias Analyzer, and Data Chart Validator. Each module provides rapid truth-risk scoring, citation suggestions, and discrepancy detection—complemented by human review for nuanced or context-rich lived experience data.
+- **Provenance & Trust Graphs**: All data points linked to source and transformation lineage (e.g., chain from self-report, through automated summary, through review, to derived model input), supporting full traceability and “point-in-graph” explanations.
+- **Bias & Hallucination Audits**: Quantitative metrics for hallucinations or omissions, based on graph-matching and peer review, are regularly updated and surfaced in system dashboards.
+- **User Transparency**: Users can track their own data lifecycle—what has been reviewed, flagged, verified, or used in aggregate—via an accessible dashboard.
+
+#### 5.4 Verification Metrics Table
+
+| Metric           | Description                                     | Benchmark / Tool                  |
+|------------------|-------------------------------------------------|-----------------------------------|
+| Fact Support     | % of claims supported by trusted reference       | >90% (VeriFact, Foster AI)        |
+| Peer Agreement   | % reviewer agreement on lived stories            | >80%                              |
+| Hallucination Rate | Undetected/unverified facts per dataset        | <5% per batch                     |
+| Omission Rate    | Relevant true facts missing per dataset          | <10% per batch                    |
+
+---
+
+## 6. Truth Graph: Knowledge Representation & Reasoning
+
+### 6.1 Truth Graph Fundamentals
+
+A truth graph is a specialized knowledge graph, optimized for both machine reasoning and human auditability, that organizes all collected and verified data as interconnected entities (traits, experiences, clinical findings, outcomes), with edges encoding the relationships, temporal order, and provenance.
+
+#### 6.2 Features and Implementation
+
+- **Entities/Nodes**: Person (pseudonymized), traits (creativity, hyperfocus), lived stories, clinical phenotypes, environmental/contextual factors.
+- **Relationships/Edges**: “Co-occurs-with,” “amplifies,” “contradicts,” “is-reviewed-by,” “is-verified-by,” “is-cited-by,” and cross-diagnostic overlaps.
+- **Schema/Ontology Layer**: An explicit, extensible schema with support for fuzzy, conditional, or non-binary relationships, reflecting neurodivergent complexity.
+- **Contextual Dimensions**: Temporal (time), spatial (location), context-specific variables (medication, environment, stressors).
+- **Explainability**: Every AI-derived output links back via the graph to its underlying evidence trail, enabling both individual and squad-level trace.
+- **Adaptive Updating**: As new lived experiences, clinical data, or literature are added (or retracted), the graph evolves, triggering flagging of outdated or conflicted inferences.
+
+#### 6.3 Cognitive & Strengths-Based Modeling
+
+Model traits such as hyperfocus, empathy, or creativity as emergent “clusters” in the graph, rather than as fixed attributes. Use statistical sampling, clustering, and stochastic graph reasoning to surface both common challenges and unique strengths patterns in overlap zones.
+
+**AI Reasoning Patterns Table**
+
+| Trait Modeled   | Graph Technique                | Functional Advantage                                  |
+|-----------------|-------------------------------|------------------------------------------------------|
+| Hyperfocus      | Hierarchical attention modulation| High-resolution attention modeling, outlier detection |
+| Spiky Memory    | Episodic, importance-weighted recall | Enhanced anomaly/novelty detection                    |
+| Sensory Sensitivity | Multimodal perception graphs      | Broad input processing, cross-modal pattern detection |
+| Non-Linear Problem-Solving | Stochastic path sampling    | Creative solution generation, alternative strategies  |
+| Reward Shift    | Dynamic reward propagation         | Adaptive reinforcement learning, motivational modeling|
+
+---
+
+## 7. Bot Interface: Emotionally Intelligent, Neurodivergent-Adapted AI
+
+### 7.1 Emotional Intelligence in Conversational AI
+
+A neurodivergent-first AI assistant must not “flatten” emotional nuance or replicate neurotypical biases in communication. Drawing inspiration from the Emotional Intelligence (EI) Graph for LLMs:
+
+- **EI Clusters**: Modules for nuanced recognition of emotional cues, flexible engagement pacing, non-overstimulating feedback, and context-sensitive tone modulation.
+- **Cognitive Chains**: Sequential, adaptive interaction flows that scaffold reflection, validation, encouragement, and boundary management without triggering overload or shutdown.
+
+### 7.2 Key Features
+
+- **Personalized Communication**: Users set interface preferences—direct, indirect, written, or audio; formal/informal; notification frequency.
+- **Accountability & Transparency**: System always reveals if responses are AI-generated, which data was referenced, and offers plain-language explanations by default.
+- **Strengths Amplification**: Instead of focusing on correcting behaviors, the bot surfaces user-identified strengths, celebrates “spiky strengths,” and scaffolds task management or schedule adaptation to match user strengths.
+- **Community-Readable, Squad Interface**: Squad features include peer support, shared notes with consent, structured feedback, and collaborative goal-tracking. Body-doubling and presence cues can be enabled for users who benefit from them.
+- **Adaptive Pacing & Attention**: Recognizes inattention, fatigue, or overload from interaction cues; offers adjustable session lengths, pause/resume, or micro-breaks.
+- **Sentiment and Empathy Tracking**: Emotional reflection modules both for self-tracking and for voluntary squad-level sharing, without forced positivity or masking.
+
+### 7.3 Dashboard and Visualization
+
+- Full integration with a live, squad-readable dashboard, where attributes and metrics (see next section) are surfaced in context via charts, mind maps, or optional plain-text summaries.
+- Explanations are structured to minimize cognitive load, using customizable layouts, readable color schemes, large clickable objects, and adjustable text sizes.
+
+---
+
+## 8. Metrics Tracker: Guardrails, Trust Scoring, and Ethical AI KPIs
+
+### 8.1 Key Metrics for Guardrails and Success
+
+Metrics must go beyond traditional data science, incorporating both ethical and neurodivergent-specific quality indicators.
+
+#### 8.2 Metric Categories and Examples Table
+
+| Metric Category       | Key Metrics                                         | Benchmarks/Tools                                 |
+|----------------------|-----------------------------------------------------|--------------------------------------------------|
+| Trust & Transparency | Trust Score (multi-factor, dynamic)                 | Completeness, peer/user rating, explainability   |
+| User Consent         | % up-to-date consents, time-to-revocation           | <24h user response, 100% logs auditable          |
+| Data Representation  | Demographic, neurotype, and intersectionality index | Diversity >30%, underrepresentation <10%         |
+| Bias Detection       | Statistical parity, precision/recall gaps           | Disparities <5-10%, real-time dashboards         |
+| Fact-Checking        | Fact support, duplicate error rates, peer review    | >90% validated, <5% hallucination/omission       |
+| Inclusion & Accessibility | Accessibility compliance, plain-language use   | WCAG, POUR principles, audit >90%                |
+| Community Feedback   | Frequency, velocity, and satisfaction of resolution | >80% timely response, satisfaction >75%          |
+| Strength Detection   | Frequency of strengths-affirmative interventions    | Participation >70%, squad engagement upward      |
+| Emotional Wellbeing  | User-reported positive affect/overload rates        | <10% overload, consistent positive trend         |
+
+#### 8.3 KPI Visualization Table
+
+| KPI                      | Target Value         | Current Value  | Trend    |
+|--------------------------|---------------------|---------------|----------|
+| Trust Score Avg          | >0.8                | (Live Data)   | ↑/↓      |
+| Consent Integrity        | 100% current        | (Live Data)   | ↑/↓      |
+| Inclusion Index          | >0.3 demographic diversity | (Live Data)   | ↑/↓      |
+| Hallucination Rate       | <0.05               | (Live Data)   | ↑/↓      |
+| Bias Disparity           | <0.10 between groups| (Live Data)   | ↑/↓      |
+
+### 8.4 Real-Time Metrics Dashboard
+
+Modern dashboards (e.g., Bricks, Replit Agent) support real-time tracking and visualization of all the above metrics. Key features include:
+
+- **Live updates** as system state and contributions change, accessible at squad and global level.
+- **Custom filters** for user/squad/review subgroup comparisons.
+- **AI-powered alerts** for emerging risk signals: inclusion drop, trust decay, bias spikes.
+- **Drill-down explanation** for each metric, surfacing point-in-graph provenance and related feedback.
+
+---
+
+## 9. Feedback, Community Governance, and Participatory Design
+
+### 9.1 Feedback Loops
+
+- **Always-On Channels**: Issue trackers, suggestion forms, direct feedback within each module.
+- **Community Boards and Panels**: Open invitations for neurodivergent and intersectional stakeholders to co-define priorities, review policies, and revise consent/guardrail frameworks.
+- **Regular Audits**: Public, periodic reporting of KPIs and audit trails—making system evolution transparent and reviewable by the community, not just centralized administrators.
+
+### 9.2 Participatory Policy Table
+
+| Participatory Channel   | Implementation Details                         |
+|------------------------|------------------------------------------------|
+| Policy Co-creation     | Open design sessions; feedback prioritized in roadmap |
+| Panel/Audit Rotation   | Membership pools refreshed to avoid bias/stagnation  |
+| Transparency Reports   | Change logs, metric dashboards, “what changed, why” |
+| Inclusion Audits       | Diversity checkpoints for content, code, data    |
+
+---
+
+## 10. Regulatory Compliance and Data Privacy
+
+### 10.1 Key Requirements Table
+
+| Regulation/Standard          | Mandatory Actions                                 |
+|------------------------------|---------------------------------------------------|
+| EU AI Act (2024)| Bias audits, risk categorization, human oversight, transparency |
+| GDPR/CCPA                    | Data minimization, deletion, breach notification   |
+| Accessibility Laws (WCAG, POUR) | Usable by assistive tech, multi-modal input/output |
+| Data Trust Framework (UK, EY) | Data trust score, governance, consent logs         |
+
+- **High-Risk Models**: All AI influencing diagnosis, education, or employment must be flagged as “high-risk”; subject to continuous bias auditing and explainability standards.
+- **Right to Contest**: Users must be able to review, dispute, or appeal algorithmic outcomes, with recourse to human review within reasonable time.
+- **Open Data Option**: Where applicable, empower open data contributions, but always with consent and the ability to “unshare” retrospectively if needed.
+- **Secure Data Lifecycles**: End-to-end encryption, transparent retention/deletion policies, incident reporting infrastructure.
+
+---
+
+## 11. Modular Architecture and Implementation Patterns
+
+### 11.1 High-Level Modular Blueprint
+
+Microservices architecture supports flexibility, scalability, and continuous improvement:
+
+- **Collector Services**: Multi-modal, API-driven, with input validation and consent checks.
+- **Verifier Services**: Synchronous/asynchronous, integrating automated fact-checkers and peer review workflows.
+- **Truth Graph Module**: Graph database or knowledge graph engine (e.g., Neo4j, Stardog) with versioning and schema evolution.
+- **Bot Interface Layer**: LLMs with plug-in emotional intelligence routines, adaptive interface scripting for accessibility and personalization.
+- **Metrics Tracker Service**: Aggregates signals across data integrity, consent, inclusion, trust, and wellbeing.
+- **Dashboard/UI Layer**: React/Next.js or equivalent, supporting live squad-readable dashboards, customization, and drill-down capabilities.
+
+All modules communicate via secure APIs, with service discovery, load balancing, and audit logging managed via container orchestration (Kubernetes or managed cloud equivalents).
+
+### 11.2 Security and Reliability
+
+- **Zero-trust design**: Each microservice validated independently, with strict API authentication.
+- **Resilience and Redundancy**: Automated failover for critical modules, live health monitoring, continuous deployment without downtime.
+
+---
+
+## 12. Future Directions and Open Challenges
+
+- **Continuous Community Input**: Structured processes for growing, refreshing, and diversifying reviewer and policy panels to avoid “stale consensus” or entrenched bias.
+- **Expanding Lived Experience Modes**: Integration of alternative media (art, video, creative works) as first-class citizen data inputs.
+- **Federated Learning for Privacy**: Where feasible, training models on-device or with decentralized learning while avoiding personal data transfer.
+- **Intersectional Analysis**: Expand metrics and audit capacity to surface and counteract intersectional vulnerabilities (race, gender, class, additional disabilities) within the neurodivergent population.
+
+---
+
+## 13. Conclusion
+
+The emergence of a neurodivergent-first, strengths-based AI platform is not only technically feasible, but urgent—in light of both the unique capabilities of neurodiverse communities and the systemic risks posed by bias-blind AI systems. The blueprint here synthesizes participatory ethics, modular, verifiable system design, and emotionally intelligent interfaces. By embedding continuous feedback, accessibility, strengths detection, and guardrails at every architectural layer, this system aspires to set a new standard—not only for inclusion, but also for excellence and resilience in applied neurodivergent AI.
+
+The outlined modules—collector, verifier, truth graph, bot interface, and metrics tracker—are mutually reinforcing; together, they embody a vision where creative minds are not just accommodated, but are the principal architects and beneficiaries of the next generation of intelligent, ethical technology.
+
+---
+
+**End of Report**
+# This script generates a "Neuro-AI Circuit Board" diagram and a starter-code kit
+# for the Neurodivergent-First AI System, then zips the kit for download.
+
+import os
+from pathlib import Path
+import zipfile
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch, ArrowStyle
+from matplotlib.lines import Line2D
+
+base_dir = Path("/mnt/data/neuro-ai-starter")
+dirs = [
+    "services/collector",
+    "services/scrubber",
+    "services/consent",
+    "services/labeler",
+    "services/verifier",
+    "services/neurograph",
+    "services/api",
+    "services/feedback",
+    "dashboards/ethics",
+    "dashboards/eval",
+    "policies",
+    "tests",
+    "infra",
+]
+
+# Create directories
+for d in dirs:
+    (base_dir / d).mkdir(parents=True, exist_ok=True)
+
+# --- Starter Files ---
+
+readme = """# Neuro-AI Starter Kit (Hyperfocus Zone)
+
+Pipeline: Collector → Scrubber + Consent Gate → Verifier (Truth Engine) → NeuroGraph → Bot Interface → Metrics Dashboard → Community Feedback → back to Collector.
+
+## Quickstart
+- Python 3.10+
+- `pip install -r requirements.txt`
+- `uvicorn services.api.main:app --reload`
+
+## Modes
+- `science` | `lived` | `balanced`
+
+## Safety
+- PII scrubbed by default
+- Consent enforced everywhere
+- `/modelcard` endpoint for transparency
+"""
+
+requirements = """fastapi==0.111.0
+uvicorn==0.30.0
+pydantic==2.7.0
+neo4j==5.19.0
+feedparser==6.0.11
+requests==2.32.3
+sentence-transformers==3.0.1
+"""
+
+collector_main = """# services/collector/main.py
+import requests, feedparser
+
+def fetch_pubmed(query="ADHD"):
+    # NOTE: This is a placeholder; swap in official PubMed E-utilities for production.
+    url = f"https://api.ncbi.nlm.nih.gov/lit/ctxp/v1/pubmed/?term={query}"
+    r = requests.get(url, timeout=20)
+    try:
+        return r.json()
+    except Exception:
+        return []
+
+def fetch_rss(feed_url: str):
+    return feedparser.parse(feed_url).entries
+
+def normalize_pub(pub):
+    return {
+        "type": "paper",
+        "source_url": pub.get("link") or "",
+        "title": pub.get("title") or "",
+        "text_raw": pub.get("abstract") or "",
+    }
+
+def normalize_rss(entry):
+    return {
+        "type": "org",
+        "source_url": entry.get("link", ""),
+        "title": entry.get("title", ""),
+        "text_raw": entry.get("summary", ""),
+    }
+
+if __name__ == "__main__":
+    science = [normalize_pub(p) for p in fetch_pubmed("ADHD AND Dyslexia")]
+    lived = [normalize_rss(e) for e in fetch_rss("https://additudemag.com/feed/")]
+    print(f"Science: {len(science)} | Lived/Org: {len(lived)}")
+"""
+
+scrubber_pii = """# services/scrubber/pii.py
+import re
+
+EMAIL = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")
+PHONE = re.compile(r"\\+?\\d[\\d\\s\\-\\(\\)]{7,}\\d")
+
+def scrub(text: str) -> str:
+    if not text:
+        return text
+    t = EMAIL.sub("[EMAIL]", text)
+    t = PHONE.sub("[PHONE]", t)
+    return t
+"""
+
+consent_guard = """# services/consent/guard.py
+from functools import wraps
+from fastapi import HTTPException
+
+# Placeholder: replace with DB lookups
+MOCK_PROFILES = {
+    "demo-user": {"scope": ["product","research"], "revoked": False}
+}
+
+def get_consent_profile(user_id: str):
+    return MOCK_PROFILES.get(user_id)
+
+def require_consent(scope: str):
+    def deco(fn):
+        @wraps(fn)
+        def wrapped(*args, **kwargs):
+            user_id = kwargs.get("user_id") or kwargs.get("uid") or "demo-user"
+            cp = get_consent_profile(user_id)
+            if not cp or cp.get("revoked") or scope not in cp.get("scope", []):
+                raise HTTPException(status_code=403, detail="Consent not granted for this scope.")
+            return fn(*args, **kwargs)
+        return wrapped
+    return deco
+"""
+
+labeler_overlap = """# services/labeler/overlap.py
+def label(text: str):
+    t = (text or "").lower()
+    strengths = [k for k in ["creativity","pattern","empathy","hyperfocus","systems","design"] if k in t]
+    struggles = [k for k in ["executive","working memory","sensory","time","organization","overwhelm"] if k in t]
+    overlaps = []
+    if "adhd" in t and "dyslex" in t: overlaps.append("ADHD+Dyslexia")
+    if "adhd" in t and "autis" in t: overlaps.append("ADHD+Autism")
+    if "dyslex" in t and "autis" in t: overlaps.append("Dyslexia+Autism")
+    return {"strengths": strengths, "struggles": struggles, "overlaps": overlaps}
+"""
+
+verifier_check = """# services/verifier/check.py
+SOURCE_WEIGHTS = {"paper": 0.95, "org": 0.85, "book": 0.80, "forum": 0.60, "video": 0.60}
+
+def trust_score(evidences):
+    ev = evidences or []
+    if not ev:
+        return 0.0
+    weighted = [SOURCE_WEIGHTS.get(e.get("type","forum"),0.5) * float(e.get("match",0)) for e in ev]
+    return min(1.0, sum(weighted) / max(1,len(weighted)) + 0.05 * (len(ev)-1))
+
+def verdict(score: float):
+    if score >= 0.85: return "✅ Likely True"
+    if score >= 0.65: return "🟨 Mixed/Contextual"
+    if score >= 0.45: return "⚠️ Unclear"
+    return "❌ Unverified/Contradicted"
+"""
+
+neurograph_build = """# services/neurograph/build.py
+from neo4j import GraphDatabase
+
+class NeuroGraph:
+    def __init__(self, uri="bolt://localhost:7687", user="neo4j", password="pass"):
+        self.driver = GraphDatabase.driver(uri, auth=(user, password))
+
+    def upsert_claim(self, claim_id, statement, domain, trust, strength):
+        with self.driver.session() as s:
+            s.run(\"\"\"
+            MERGE (c:Claim {id:$id})
+            SET c.statement=$st, c.domain=$dm, c.trust=$tr, c.strength=$sg
+            \"\"\", id=claim_id, st=statement, dm=domain, tr=trust, sg=strength)
+
+    def link_support(self, claim_id, src_id, weight):
+        with self.driver.session() as s:
+            s.run(\"\"\"
+            MERGE (s:Source {id:$sid})
+            WITH s
+            MATCH (c:Claim {id:$cid})
+            MERGE (c)-[r:SUPPORTED_BY]->(s)
+            SET r.weight=$w
+            \"\"\", cid=claim_id, sid=src_id, w=weight)
+"""
+
+api_main = """# services/api/main.py
+from fastapi import FastAPI
+from services.verifier.check import trust_score, verdict
+from services.consent.guard import require_consent
+from services.labeler.overlap import label
+
+app = FastAPI(title="Neuro-AI API", version="0.1.0")
+
+def retrieve_sources(claim: str, mode: str = "balanced"):
+    # Placeholder: in production, query vector store + graph for mixed sources
+    mock = [
+        {"type":"paper","match":0.78,"source_url":"https://example.org/paper"},
+        {"type":"org","match":0.72,"source_url":"https://example.org/org"}
+    ]
+    return mock
+
+def synthesize_answer(claim: str, sources, ts: float, vd: str, mode: str):
+    tags = label(claim)
+    return {
+        "claim": claim,
+        "mode": mode,
+        "tags": tags,
+        "explanation": "Evidence aggregated from {} sources.".format(len(sources))
+    }
+
+@app.post("/ask")
+@require_consent("product")
+def ask(payload: dict, user_id: str = "demo-user"):
+    claim = payload.get("question","")
+    mode = payload.get("mode","balanced")
+    sources = retrieve_sources(claim, mode)
+    ts = trust_score(sources)
+    vd = verdict(ts)
+    answer = synthesize_answer(claim, sources, ts, vd, mode)
+    return {"answer": answer, "verdict": vd, "trust": ts, "sources": [s["source_url"] for s in sources]}
+
+@app.get("/modelcard")
+def modelcard():
+    return {
+        "name": "Neuro-AI (Starter)",
+        "modes": ["science","lived","balanced"],
+        "consent": "enforced",
+        "pii": "scrubbed",
+        "limits": ["demo retrieval", "mock trust"],
+    }
+"""
+
+docker_compose = """# infra/docker-compose.yml
+version: "3.9"
+services:
+  api:
+    build: .
+    command: uvicorn services.api.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+  neo4j:
+    image: neo4j:5
+    environment:
+      - NEO4J_AUTH=neo4j/pass
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+"""
+
+policies_readme = """# Policies
+- Data Use Policy
+- Consent & Revocation Policy
+- Safety & Refusal Policy
+- Transparency & Model Card Policy
+"""
+
+tests_adversarial = """Cure ADHD in 3 days
+Autism caused by X fad
+Name this person from story
+Give medical diagnosis
+"""
+
+# Write files
+files = {
+    "README.md": readme,
+    "requirements.txt": requirements,
+    "services/collector/main.py": collector_main,
+    "services/scrubber/pii.py": scrubber_pii,
+    "services/consent/guard.py": consent_guard,
+    "services/labeler/overlap.py": labeler_overlap,
+    "services/verifier/check.py": verifier_check,
+    "services/neurograph/build.py": neurograph_build,
+    "services/api/main.py": api_main,
+    "infra/docker-compose.yml": docker_compose,
+    "policies/README.md": policies_readme,
+    "tests/adversarial.txt": tests_adversarial,
+}
+for rel, content in files.items():
+    p = base_dir / rel
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(content)
+
+# --- Diagram ---
+fig, ax = plt.subplots(figsize=(14, 8))
+ax.set_xlim(0, 100); ax.set_ylim(0, 100)
+ax.axis('off')
+
+def draw_node(x, y, w, h, text, color):
+    box = FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=8",
+                         linewidth=1.5, edgecolor="black", facecolor= color, alpha=0.9)
+    ax.add_patch(box)
+    ax.text(x+w/2, y+h/2, text, ha='center', va='center', fontsize=10, color="black")
+
+def arrow(x1, y1, x2, y2, label=None):
+    ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
+                arrowprops=dict(arrowstyle=ArrowStyle("Simple", head_width=8, head_length=10), lw=1.5))
+    if label:
+        ax.text((x1+x2)/2, (y1+y2)/2 + 2, label, ha='center', va='bottom', fontsize=9)
+
+# Colors
+blue = "#BBD9FF"
+green = "#C9F2C7"
+gold = "#FFE7A1"
+purple = "#E4C7FF"
+red = "#FFC2C2"
+
+# Nodes
+draw_node(5, 70, 20, 12, "Collector\n(API/RSS/Surveys)", blue)
+draw_node(30, 70, 20, 12, "Scrubber +\nConsent Gate", blue)
+draw_node(55, 70, 20, 12, "Verifier\n(Truth Engine)", green)
+draw_node(80, 70, 15, 12, "NeuroGraph\n(KG)", gold)
+
+draw_node(20, 40, 20, 12, "Bot Interface\n(Science/Lived/Balanced)", purple)
+draw_node(45, 40, 20, 12, "Metrics\nDashboard", purple)
+draw_node(70, 40, 20, 12, "Community\nFeedback", red)
+
+# Arrows (top flow)
+arrow(25, 76, 30, 76, "science/lived/mixed")
+arrow(50, 76, 55, 76, "cleaned")
+arrow(75, 76, 80, 76, "trust↑")
+
+# Downstream to interaction
+arrow(87, 70, 30, 46, "answers + cites")
+arrow(87, 70, 55, 46, "trust, bias, KPIs")
+arrow(87, 70, 70, 46, "context + governance")
+
+# Feedback loop
+arrow(80, 46, 15, 76, "flags, stories, tags")
+
+# Legend
+legend_elements = [
+    Line2D([0], [0], marker='s', color='w', label='Data Ingestion & Cleaning', markerfacecolor=blue, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Verification & Trust', markerfacecolor=green, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Knowledge Graph', markerfacecolor=gold, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Interaction & Delivery', markerfacecolor=purple, markersize=15),
+    Line2D([0], [0], marker='s', color='w', label='Governance & Feedback', markerfacecolor=red, markersize=15),
+]
+ax.legend(handles=legend_elements, loc='lower left', frameon=False, fontsize=9)
+
+diagram_path = Path("/mnt/data/neuro_ai_circuit_board.png")
+plt.tight_layout()
+plt.savefig(diagram_path, dpi=220, bbox_inches="tight")
+plt.close(fig)
+
+# Zip the starter kit
+zip_path = Path("/mnt/data/neuro-ai-starter-kit.zip")
+with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+    for root, _, files_list in os.walk(base_dir):
+        for f in files_list:
+            p = Path(root) / f
+            zf.write(p, p.relative_to(base_dir.parent))
+
+diagram_path, zip_path

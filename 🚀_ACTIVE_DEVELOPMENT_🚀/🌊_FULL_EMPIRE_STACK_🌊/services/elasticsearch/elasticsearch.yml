@@ -1,0 +1,37 @@
+# Elasticsearch Configuration for HyperFocus Empire
+# Optimized for empire log analytics and search
+
+cluster.name: hyperfocus-empire-cluster
+node.name: empire-analytics-node
+network.host: 0.0.0.0
+http.port: 9200
+transport.port: 9300
+
+# Discovery settings for single node
+discovery.type: single-node
+
+# Security settings
+xpack.security.enabled: false
+xpack.license.self_generated.type: basic
+
+# Performance settings
+bootstrap.memory_lock: false
+indices.fielddata.cache.size: 40%
+indices.breaker.fielddata.limit: 60%
+indices.breaker.request.limit: 40%
+indices.breaker.total.limit: 70%
+
+# Empire log settings
+index.number_of_shards: 1
+index.number_of_replicas: 0
+action.auto_create_index: "+empire-logs-*,+empire-metrics-*,+empire-events-*,-*"
+
+# JVM heap size (will be overridden by ES_JAVA_OPTS)
+# -Xms512m
+# -Xmx512m
+
+# Empire-specific index templates
+path.repo: ["/usr/share/elasticsearch/backups"]
+cluster.routing.allocation.disk.watermark.low: 85%
+cluster.routing.allocation.disk.watermark.high: 90%
+cluster.routing.allocation.disk.watermark.flood_stage: 95%

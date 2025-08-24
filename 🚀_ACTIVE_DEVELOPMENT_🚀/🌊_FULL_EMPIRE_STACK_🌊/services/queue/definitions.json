@@ -1,0 +1,146 @@
+{
+    "rabbit_version": "3.12.0",
+    "rabbitmq_version": "3.12.0",
+    "product_name": "RabbitMQ",
+    "product_version": "3.12.0",
+    "users": [
+        {
+            "name": "empire_user",
+            "password_hash": "empire_hash",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": [
+                "administrator"
+            ]
+        }
+    ],
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "permissions": [
+        {
+            "user": "empire_user",
+            "vhost": "/",
+            "configure": ".*",
+            "write": ".*",
+            "read": ".*"
+        }
+    ],
+    "parameters": [],
+    "global_parameters": [
+        {
+            "name": "cluster_name",
+            "value": "hyperfocus-empire"
+        }
+    ],
+    "policies": [
+        {
+            "vhost": "/",
+            "name": "empire-ha-policy",
+            "pattern": "empire\\.",
+            "apply-to": "queues",
+            "definition": {
+                "ha-mode": "all",
+                "ha-sync-mode": "automatic"
+            },
+            "priority": 0
+        }
+    ],
+    "queues": [
+        {
+            "name": "empire.decisions",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-message-ttl": 86400000,
+                "x-max-length": 10000
+            }
+        },
+        {
+            "name": "empire.metrics",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-message-ttl": 3600000,
+                "x-max-length": 50000
+            }
+        },
+        {
+            "name": "empire.notifications",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-message-ttl": 43200000,
+                "x-max-length": 5000
+            }
+        },
+        {
+            "name": "empire.ai-tasks",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-message-ttl": 172800000,
+                "x-max-length": 1000
+            }
+        }
+    ],
+    "exchanges": [
+        {
+            "name": "empire.events",
+            "vhost": "/",
+            "type": "topic",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        },
+        {
+            "name": "empire.deadletter",
+            "vhost": "/",
+            "type": "direct",
+            "durable": true,
+            "auto_delete": false,
+            "internal": false,
+            "arguments": {}
+        }
+    ],
+    "bindings": [
+        {
+            "source": "empire.events",
+            "vhost": "/",
+            "destination": "empire.decisions",
+            "destination_type": "queue",
+            "routing_key": "decision.*",
+            "arguments": {}
+        },
+        {
+            "source": "empire.events",
+            "vhost": "/",
+            "destination": "empire.metrics",
+            "destination_type": "queue",
+            "routing_key": "metric.*",
+            "arguments": {}
+        },
+        {
+            "source": "empire.events",
+            "vhost": "/",
+            "destination": "empire.notifications",
+            "destination_type": "queue",
+            "routing_key": "notification.*",
+            "arguments": {}
+        },
+        {
+            "source": "empire.events",
+            "vhost": "/",
+            "destination": "empire.ai-tasks",
+            "destination_type": "queue",
+            "routing_key": "ai.*",
+            "arguments": {}
+        }
+    ]
+}

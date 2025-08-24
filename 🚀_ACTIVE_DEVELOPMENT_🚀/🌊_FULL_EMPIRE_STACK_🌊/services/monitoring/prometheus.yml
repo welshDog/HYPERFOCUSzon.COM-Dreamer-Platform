@@ -1,0 +1,97 @@
+# 🌌♾️⚡ HYPERFOCUS EMPIRE PROMETHEUS CONFIGURATION ⚡♾️🌌
+# Legendary Monitoring for Ultra-Thinking Boardroom Empire
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: 'hyperfocus-empire'
+    environment: 'ultra-legendary'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+# Load rules once and periodically evaluate them
+rule_files:
+  - "alert_rules.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus itself
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 5s
+    metrics_path: '/metrics'
+
+  # Ultra-Thinking Boardroom Command Center
+  - job_name: 'ultra-thinking-boardroom'
+    static_configs:
+      - targets: ['ultra-thinking-boardroom:8000']
+    scrape_interval: 10s
+    metrics_path: '/metrics'
+    scheme: 'http'
+
+  # API Gateway
+  - job_name: 'empire-api-gateway'
+    static_configs:
+      - targets: ['empire-api-gateway:8000']
+    scrape_interval: 10s
+    metrics_path: '/metrics'
+
+  # PostgreSQL Database
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres:5432']
+    scrape_interval: 30s
+
+  # Redis Cache
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis:6379']
+    scrape_interval: 15s
+
+  # RabbitMQ Message Queue
+  - job_name: 'rabbitmq'
+    static_configs:
+      - targets: ['rabbitmq:15692']
+    scrape_interval: 30s
+
+  # MinIO Object Storage
+  - job_name: 'minio'
+    static_configs:
+      - targets: ['minio:9000']
+    scrape_interval: 30s
+    metrics_path: '/minio/v2/metrics/cluster'
+
+  # Nginx Reverse Proxy
+  - job_name: 'nginx'
+    static_configs:
+      - targets: ['nginx:80']
+    scrape_interval: 15s
+
+  # Docker Container Metrics (cAdvisor)
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    scrape_interval: 15s
+
+  # Node Exporter (System Metrics)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 15s
+
+  # Custom Empire Metrics
+  - job_name: 'empire-metrics'
+    static_configs:
+      - targets:
+        - 'ultra-thinking-boardroom:8000'
+        - 'empire-api-gateway:8000'
+    scrape_interval: 5s
+    metrics_path: '/empire/metrics'
+    params:
+      format: ['prometheus']

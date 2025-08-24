@@ -1,0 +1,210 @@
+hey Bro — nice hardware! that Ryzen 5 3550H + 8GB RAM is a solid little dev box. i tuned everything below specifically for **Windows (64-bit)** and your 8 GB of RAM so you can drop these straight in and start squeezing memory without touching a screwdriver.
+
+i’ll give you:
+
+1. quick, priority actions you can take right now,
+2. two ready-to-run Python scripts (watchdog + Memory Oracle) tuned for your machine,
+3. instructions to run them at startup via Task Scheduler, and
+4. extra tips (pagefile, startup trimming, apps to watch).
+
+no questions — i picked sensible defaults (you can edit them later).
+
+---
+
+# 1 — Quick priorities (do these first)
+
+1. **Enable / increase pagefile** (Windows virtual memory) to 2–4 GB (instructions below).
+2. **Trim startup apps**: open Task Manager → Startup → disable anything you don’t need (big culprits: Edge/Chrome, Spotify, OneDrive, Slack, Discord, Teams).
+3. **Install Python & tools** (if you don’t have it): go to python.org or use Microsoft Store. Then run:
+
+   ```
+   python -m pip install --upgrade pip
+   pip install psutil win10toast
+   ```
+4. **Run the watchdog** (script below) — monitors memory and restarts/kills heavy processes automatically.
+5. **Run the Memory Oracle** (script below) — desktop notifications when a top process crosses a threshold so you get the dopamine ping.
+
+---
+
+# 2 — Windows-tailored memory\_watchdog (drop as `memory_watchdog_win.py`)
+
+Defaults chosen for your 8GB: per-process limit **LIMIT\_MB = 900** (you can raise to 1200 if you want fewer restarts). Targets include common heavy apps; edit `targets` to match your real processes.
+
+```python
+#!/usr/bin/env python3
+# memory_watchdog_win.py  (for Windows 10/11)
+# requires: pip install psutil
+
+import time, subprocess, shlex, psutil
+from pathlib import Path
+
+# --- CONFIG (edit these) ---
+CHECK_INTERVAL = 6    # seconds between checks
+LIMIT_MB = 900        # per-process memory limit in MB (sensible for 8GB RAM)
+LOG_FILE = Path.home() / "memory_watchdog.log"
+
+# target process names (case-insensitive substrings). If restart_cmd is None,
+# the script will attempt a graceful terminate; if restart_cmd set, it will run it.
+# EDIT: change or add your own process names (eg "Code.exe", "chrome.exe", "msedge.exe", "discord.exe")
+targets = [
+    ("chrome", None),
+    ("msedge", None),
+    ("Code.exe", None),          # VSCode
+    ("discord", None),
+    ("python", None),
+]
+
+def log(msg):
+    line = f"{time.strftime('%Y-%m-%d %H:%M:%S')}  {msg}"
+    print(line)
+    try:
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass
+
+def restart_cmd(cmd):
+    try:
+        subprocess.Popen(shlex.split(cmd))
+    except Exception as e:
+        log(f"failed to start '{cmd}': {e}")
+
+def try_terminate(p):
+    try:
+        p.terminate()
+        gone, alive = psutil.wait_procs([p], timeout=5)
+        if alive:
+            p.kill()
+    except Exception as e:
+        log(f"error terminating pid {p.pid}: {e}")
+
+def monitor_once():
+    procs = list(psutil.process_iter(['pid','name','cmdline','memory_info']))
+    for name_sub, cmd in targets:
+        name_sub_lower = name_sub.lower()
+        matched = [p for p in procs if (p.info['name'] or "").lower().find(name_sub_lower) != -1 or any(name_sub_lower in (c or "").lower() for c in (p.info['cmdline'] or []))]
+        for p in matched:
+            try:
+                mem_mb = p.info['memory_info'].rss / 1024**2
+            except Exception:
+                continue
+            if mem_mb > LIMIT_MB:
+                log(f"⚠ {p.info['name']} (pid {p.pid}) using {mem_mb:.0f}MB > {LIMIT_MB}MB")
+                # terminate & optionally restart
+                try_terminate(p)
+                if cmd:
+                    restart_cmd(cmd)
+
+    vm = psutil.virtual_memory()
+    if vm.available / 1024**2 < 300:
+        log("🔥 System available memory < 300MB — overall pressure is high")
+
+if __name__ == "__main__":
+    log("Memory Watchdog starting (Windows mode).")
+    while True:
+        monitor_once()
+        time.sleep(CHECK_INTERVAL)
+```
+
+How to run:
+
+* Save file, open PowerShell, run `python memory_watchdog_win.py`.
+* To run in background: create a Task Scheduler task (instructions below).
+
+---
+
+# 3 — Memory Oracle (desktop notifications) — `memory_oracle_win.py`
+
+Uses `win10toast` to pop a toast when the top process exceeds threshold. Tuned threshold **THRESH\_MB = 900**.
+
+```python
+#!/usr/bin/env python3
+# memory_oracle_win.py
+# requires: pip install psutil win10toast
+
+import time, psutil
+from win10toast import ToastNotifier
+
+THRESH_MB = 900
+CHECK_INTERVAL = 12
+
+toaster = ToastNotifier()
+
+def top_processes(n=3):
+    procs = sorted(psutil.process_iter(['name','memory_info']), key=lambda p: (p.info['memory_info'].rss if p.info['memory_info'] else 0), reverse=True)
+    out = []
+    for p in procs[:n]:
+        try:
+            mem = p.info['memory_info'].rss // 1024**2
+            out.append((p.info['name'], mem))
+        except Exception:
+            continue
+    return out
+
+if __name__ == "__main__":
+    while True:
+        tops = top_processes(4)
+        msg_lines = [f"{name}: {mem}MB" for name, mem in tops]
+        if any(mem > THRESH_MB for _, mem in tops):
+            toaster.show_toast("Memory Oracle", "\n".join(msg_lines), duration=6, threaded=True)
+        time.sleep(CHECK_INTERVAL)
+```
+
+Customize: change `THRESH_MB` if you want earlier/later warnings.
+
+---
+
+# 4 — Run these at startup (Task Scheduler quick guide)
+
+1. Open **Task Scheduler** → “Create Task…”.
+2. General: name it `Hyperfocus Memory Watchdog`, choose “Run whether user is logged on or not” and tick “Run with highest privileges”.
+3. Triggers: New → Begin the task “At startup”.
+4. Actions: New → Action: Start a program → Program/script: `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe`
+
+   * Add arguments: `-NoProfile -WindowStyle Hidden -Command "Start-Process python -ArgumentList 'C:\path\to\memory_watchdog_win.py' -WindowStyle Hidden"`
+     (or point directly to `python.exe` and script path).
+5. Conditions: uncheck “Start the task only if the computer is on AC power” if you want it on battery.
+6. OK and enter your password.
+
+Do the same for `memory_oracle_win.py` (or combine both into a single launcher script).
+
+---
+
+# 5 — Pagefile (virtual memory) — set to 2–4 GB (safe)
+
+**Manual GUI (safe, recommended):**
+
+* Win key → type **Performance** → “Adjust the appearance and performance of Windows” → Advanced → Virtual memory → Change.
+* Uncheck “Automatically manage pagefile size for all drives”. Select your C: drive → Custom size. Set **Initial size = 2048 MB**, **Maximum size = 4096 MB** (2–4 GB), then Set → OK → reboot.
+
+This is reversible and safe. It gives Windows more virtual room without hardware changes.
+
+---
+
+# 6 — Other Windows-specific tips
+
+* **Turn off OneDrive sync** temporarily if you’re low on RAM while working on heavy tasks.
+* **Trim background apps**: Settings → Privacy → Background apps — disable those you don’t need.
+* **Use lighter apps**: prefer VSCode (with fewer extensions) over heavy IDE modes, avoid too many browser tabs—Memory Oracle will nag you about that.
+* **Clear browser profile caches** occasionally (profile folder can balloon).
+
+---
+
+# 7 — Defaults & tuning notes (why i picked these numbers)
+
+* On 8GB, keeping single heavy process limit around **900 MB** is a reasonable default so the system stays responsive. If you run large models/datasets raise to **1200–1500 MB** and rely on the watchdog less aggressively.
+* `CHECK_INTERVAL` 5–12s is responsive without being noisy. Change if you want slower/less restarts.
+
+---
+
+# 8 — Want me to create the files for you now?
+
+i can:
+
+* produce the two `.py` files ready to copy/paste,
+* produce a single Windows batch or PowerShell launcher that starts both, and
+* create the Task Scheduler XML so you can import a task directly.
+
+tell me which of those you want me to drop here (i’ll use your device details as defaults), or say “do it all — drop files” and i’ll paste the final file contents right away.
+
+you’re almost at zero-hardware kung fu, Bro — want me to generate the Task Scheduler XML + scripts now?

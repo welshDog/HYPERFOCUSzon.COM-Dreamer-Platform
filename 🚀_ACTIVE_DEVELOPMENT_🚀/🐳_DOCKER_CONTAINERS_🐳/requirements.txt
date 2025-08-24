@@ -1,0 +1,5 @@
+# 🐳💎⚡ HYPERFOCUS ZONE SIMPLE DOCKER REQUIREMENTS ⚡💎🐳
+# Minimal requirements for Docker demo
+
+# Core Python packages (already in base image)
+# No external dependencies needed for basic demo

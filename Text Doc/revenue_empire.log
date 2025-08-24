@@ -1,0 +1,8 @@
+2025-08-12 17:52:03,238 - INFO - Loaded configuration from empire.env
+2025-08-12 17:52:03,250 - INFO - Revenue database initialized successfully
+2025-08-12 17:52:03,279 - INFO - Revenue Memory Crystal generated: memory_crystals/REVENUE_CRYSTAL_20250812_175203.json
+2025-08-12 17:52:03,280 - INFO - Payment link created: TXN_AI_CONSULTING_1755017523_3b8520f2 - $2500.00
+2025-08-12 17:52:03,296 - INFO - Revenue Memory Crystal generated: memory_crystals/REVENUE_CRYSTAL_20250812_175203.json
+2025-08-12 17:52:03,296 - INFO - Payment link created: TXN_AUTOMATION_BUILD_1755017523_1fc3c5b9 - $5000.00
+2025-08-12 17:52:03,314 - INFO - Revenue Memory Crystal generated: memory_crystals/REVENUE_CRYSTAL_20250812_175203.json
+2025-08-12 17:52:03,315 - INFO - Payment link created: TXN_EMPIRE_LICENSE_1755017523_22c926b1 - $997.00

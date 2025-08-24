@@ -1,0 +1,29 @@
+{
+  "launcher": {
+    "version": "2.0",
+    "last_launch": "2025-08-22T20:03:33.743233",
+    "launch_count": 0
+  },
+  "components": {
+    "sync_guardian": {
+      "enabled": true,
+      "auto_start": true,
+      "priority": 1
+    },
+    "dashboard": {
+      "enabled": true,
+      "auto_start": true,
+      "priority": 2
+    },
+    "discord": {
+      "enabled": false,
+      "auto_start": false,
+      "priority": 3
+    }
+  },
+  "monitoring": {
+    "health_checks": true,
+    "performance_tracking": true,
+    "auto_restart": true
+  }
+}

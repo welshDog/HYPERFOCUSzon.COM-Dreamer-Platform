@@ -1,0 +1,111 @@
+{
+  "timestamp": "20250820_191806",
+  "ssl_analysis": {
+    "hyperfocuszone.com": {
+      "domain": "hyperfocuszone.com",
+      "status": "VALID",
+      "issuer": {
+        "countryName": "US",
+        "organizationName": "Google Trust Services",
+        "commonName": "WE1"
+      },
+      "subject": {
+        "commonName": "hyperfocuszone.com"
+      },
+      "not_before": "2025-08-01T01:28:32",
+      "not_after": "2025-10-30T02:28:12",
+      "days_until_expiry": 70,
+      "is_expired": false,
+      "is_valid": true
+    },
+    "www.hyperfocuszone.com": {
+      "domain": "www.hyperfocuszone.com",
+      "status": "VALID",
+      "issuer": {
+        "countryName": "US",
+        "organizationName": "Google Trust Services",
+        "commonName": "WE1"
+      },
+      "subject": {
+        "commonName": "hyperfocuszone.com"
+      },
+      "not_before": "2025-08-01T01:28:32",
+      "not_after": "2025-10-30T02:28:12",
+      "days_until_expiry": 70,
+      "is_expired": false,
+      "is_valid": true
+    },
+    "support.hyperfocuszone.com": {
+      "domain": "support.hyperfocuszone.com",
+      "status": "ERROR",
+      "error": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'support.hyperfocuszone.com'. (_ssl.c:1028)",
+      "suggestion": "Certificate may be missing, expired, or misconfigured"
+    },
+    "api.hyperfocuszone.com": {
+      "domain": "api.hyperfocuszone.com",
+      "status": "VALID",
+      "issuer": {
+        "countryName": "US",
+        "organizationName": "Google Trust Services",
+        "commonName": "WE1"
+      },
+      "subject": {
+        "commonName": "hyperfocuszone.com"
+      },
+      "not_before": "2025-08-01T01:28:32",
+      "not_after": "2025-10-30T02:28:12",
+      "days_until_expiry": 70,
+      "is_expired": false,
+      "is_valid": true
+    },
+    "admin.hyperfocuszone.com": {
+      "domain": "admin.hyperfocuszone.com",
+      "status": "VALID",
+      "issuer": {
+        "countryName": "US",
+        "organizationName": "Google Trust Services",
+        "commonName": "WE1"
+      },
+      "subject": {
+        "commonName": "hyperfocuszone.com"
+      },
+      "not_before": "2025-08-01T01:28:32",
+      "not_after": "2025-10-30T02:28:12",
+      "days_until_expiry": 70,
+      "is_expired": false,
+      "is_valid": true
+    }
+  },
+  "issues_found": [
+    {
+      "domain": "support.hyperfocuszone.com",
+      "issue": "[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate is not valid for 'support.hyperfocuszone.com'. (_ssl.c:1028)",
+      "priority": "HIGH",
+      "action_needed": "Certificate installation/renewal required"
+    }
+  ],
+  "completion_plan": {
+    "status": "NEEDS_ACTION",
+    "total_issues": 1,
+    "high_priority": 1,
+    "actions": [
+      {
+        "domain": "support.hyperfocuszone.com",
+        "type": "certificate_installation",
+        "priority": "HIGH",
+        "commands": [
+          "Update DNS configuration",
+          "Generate/install SSL certificate",
+          "Update NGINX server block",
+          "Reload NGINX configuration",
+          "Verify SSL certificate"
+        ]
+      }
+    ]
+  },
+  "empire_integration": {
+    "server_ip": "212.227.127.144",
+    "nginx_config": "nginx_config.conf",
+    "memory_crystal_update": true
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "time": "2025-08-22T20:21:41.842684",
+    "event": "full_scan",
+    "path": "all",
+    "status": "ok"
+  },
+  {
+    "time": "2025-08-22T20:16:41.842730",
+    "event": "sync",
+    "path": "test_file.py",
+    "status": "verified"
+  }
+]

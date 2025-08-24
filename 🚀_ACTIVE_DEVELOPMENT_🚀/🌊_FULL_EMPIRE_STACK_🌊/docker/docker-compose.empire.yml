@@ -1,0 +1,276 @@
+name: hyperfocus-empire
+
+# 🌌♾️⚡ HYPERFOCUS EMPIRE - FULL STACK DEPLOYMENT ⚡♾️🌌
+# Ultra-Thinking Boardroom Command Center with Complete Empire Infrastructure
+# Powered by: Multi-Service Architecture Excellence
+
+services:
+  # 🧠 COMMAND CENTER: Ultra-Thinking Boardroom (Your Strategic AI)
+  ultra-thinking-boardroom:
+    build:
+      context: ./services/command-center
+      dockerfile: Dockerfile
+    container_name: hyperfocus-command-center
+    environment:
+      - WINDSURF_KEY=${WINDSURF_KEY}
+      - WINDSURF_API_URL=https://api.windsurf.dev
+      - WINDSURF_ENABLED=true
+      - EMPIRE_MODE=ULTRA_LEGENDARY
+      - DATABASE_URL=postgresql://empire_user:legendary_pass@postgres:5432/hyperfocus_empire
+      - REDIS_URL=redis://redis:6379/0
+      - RABBITMQ_URL=amqp://empire_user:legendary_pass@rabbitmq:5672/
+      - MINIO_ENDPOINT=minio:9000
+      - MINIO_ACCESS_KEY=empire_access_key
+      - MINIO_SECRET_KEY=legendary_secret_key
+    ports:
+      - "8001:8000"
+    depends_on:
+      - postgres
+      - redis
+      - rabbitmq
+      - minio
+    volumes:
+      - ./data/logs:/app/logs
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 🚀 API GATEWAY: FastAPI with Authentication
+  empire-api-gateway:
+    build:
+      context: ./services/api-gateway
+      dockerfile: Dockerfile
+    container_name: hyperfocus-api-gateway
+    environment:
+      - COMMAND_CENTER_URL=http://ultra-thinking-boardroom:8000
+      - DATABASE_URL=postgresql://empire_user:legendary_pass@postgres:5432/hyperfocus_empire
+      - REDIS_URL=redis://redis:6379/0
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-legendary_jwt_secret_key}
+      - WINDSURF_INTEGRATION=true
+    ports:
+      - "8000:8000"
+    depends_on:
+      - ultra-thinking-boardroom
+      - postgres
+      - redis
+    volumes:
+      - ./data/api-logs:/app/logs
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+  # 🗄️ DATABASE: PostgreSQL with Performance Optimization
+  postgres:
+    image: postgres:15-alpine
+    container_name: hyperfocus-postgres
+    environment:
+      - POSTGRES_DB=hyperfocus_empire
+      - POSTGRES_USER=empire_user
+      - POSTGRES_PASSWORD=legendary_pass
+      - POSTGRES_INITDB_ARGS=--encoding=UTF-8 --lc-collate=C --lc-ctype=C
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./services/database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./services/database/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U empire_user -d hyperfocus_empire"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ⚡ CACHE: Redis for Ultra Performance
+  redis:
+    image: redis:7-alpine
+    container_name: hyperfocus-redis
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+      - ./services/cache/redis.conf:/usr/local/etc/redis/redis.conf:ro
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # 🐰 MESSAGE QUEUE: RabbitMQ for Async Processing
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: hyperfocus-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=empire_user
+      - RABBITMQ_DEFAULT_PASS=legendary_pass
+      - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+      - "5672:5672"
+      - "15672:15672"  # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - ./services/queue/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./services/queue/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 📦 FILE STORAGE: MinIO (S3-compatible)
+  minio:
+    image: minio/minio:latest
+    container_name: hyperfocus-minio
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=empire_access_key
+      - MINIO_ROOT_PASSWORD=legendary_secret_key
+    ports:
+      - "9000:9000"
+      - "9001:9001"  # Console UI
+    volumes:
+      - minio_data:/data
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # 📊 MONITORING: Prometheus for Metrics Collection
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: hyperfocus-prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./services/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+  # 📈 VISUALIZATION: Grafana for Legendary Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: hyperfocus-grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=empire_admin
+      - GF_SECURITY_ADMIN_PASSWORD=legendary_grafana_pass
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./services/monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./services/monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    depends_on:
+      - prometheus
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+  # 🔍 LOG AGGREGATION: ELK Stack (Elasticsearch + Logstash + Kibana)
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.0
+    container_name: hyperfocus-elasticsearch
+    environment:
+      - node.name=elasticsearch
+      - cluster.name=hyperfocus-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.11.0
+    container_name: hyperfocus-kibana
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+  # 🌐 REVERSE PROXY: Nginx for Load Balancing
+  nginx:
+    image: nginx:alpine
+    container_name: hyperfocus-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./services/nginx/ssl:/etc/nginx/ssl:ro
+      - ./data/nginx-logs:/var/log/nginx
+    depends_on:
+      - empire-api-gateway
+      - ultra-thinking-boardroom
+      - grafana
+      - kibana
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+# 💾 PERSISTENT VOLUMES
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  rabbitmq_data:
+    driver: local
+  minio_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+  elasticsearch_data:
+    driver: local
+
+# 🌐 NETWORKS
+networks:
+  empire-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16

@@ -1,0 +1,34 @@
+# 🔎 Fake TikTok Username Checker
+# BROski Edition 🛡️
+
+from difflib import SequenceMatcher
+
+# ✅ Trusted account (the real one)
+REAL_ACCOUNT = "tectipstictok"
+
+def check_fake(real, suspect):
+    similarity = SequenceMatcher(None, real.lower(), suspect.lower()).ratio()
+    score = round(similarity * 100, 2)
+
+    if suspect.lower() == real.lower():
+        verdict = "✅ Exact match – SAFE"
+    elif score >= 85:
+        verdict = "🚨 VERY SIMILAR – LIKELY FAKE"
+    elif score >= 70:
+        verdict = "⚠️ Somewhat similar – check carefully"
+    else:
+        verdict = "✅ Not similar – safe"
+
+    return {
+        "real": real,
+        "suspect": suspect,
+        "similarity": f"{score}%",
+        "verdict": verdict
+    }
+
+# 🧪 Test
+if __name__ == "__main__":
+    suspects = ["tectipstictok_", "tectipsticktok", "tectipstictoc", "tectech123"]
+    for s in suspects:
+        result = check_fake(REAL_ACCOUNT, s)
+        print(result)

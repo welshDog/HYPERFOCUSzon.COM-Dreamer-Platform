@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline Mode - Ultra dOoK Portal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 100%);
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    
+    .offline-container {
+      text-align: center;
+      max-width: 500px;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.05);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #60a5fa;
+    }
+    
+    .message {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      color: #cbd5e1;
+    }
+    
+    .adhd-friendly {
+      background: linear-gradient(45deg, #6366f1, #8b5cf6);
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+      margin: 10px;
+    }
+    
+    .adhd-friendly:hover {
+      transform: translateY(-2px);
+    }
+    
+    .status-indicator {
+      margin-top: 30px;
+      padding: 15px;
+      background: rgba(239, 68, 68, 0.1);
+      border-radius: 10px;
+      border-left: 4px solid #ef4444;
+    }
+    
+    .cached-crystals {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(16, 185, 129, 0.1);
+      border-radius: 10px;
+      border-left: 4px solid #10b981;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="icon">📱💎</div>
+    <h1>ADHD Brain Mode: Offline</h1>
+    <div class="message">
+      Your Ultra dOoK Portal is working offline! Your ADHD-optimized experience continues with cached memory crystals and empire data.
+    </div>
+    
+    <button class="adhd-friendly" onclick="checkConnection()">
+      🔄 Check Connection
+    </button>
+    
+    <button class="adhd-friendly" onclick="viewCachedCrystals()">
+      💎 View Cached Crystals
+    </button>
+    
+    <div class="status-indicator">
+      <strong>🌐 Network Status:</strong> <span id="network-status">Disconnected</span>
+    </div>
+    
+    <div class="cached-crystals">
+      <strong>💎 Available Offline:</strong> Your recent memory crystals and empire data are cached for ADHD-friendly offline access!
+    </div>
+  </div>
+
+  <script>
+    // Network status monitoring
+    function updateNetworkStatus() {
+      const status = document.getElementById('network-status');
+      if (navigator.onLine) {
+        status.textContent = 'Connected - Attempting to reload...';
+        status.style.color = '#10b981';
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      } else {
+        status.textContent = 'Disconnected';
+        status.style.color = '#ef4444';
+      }
+    }
+    
+    function checkConnection() {
+      updateNetworkStatus();
+      if (navigator.onLine) {
+        window.location.href = '/';
+      }
+    }
+    
+    function viewCachedCrystals() {
+      // Try to navigate to cached crystal page
+      window.location.href = '/crystals?offline=true';
+    }
+    
+    // Monitor network status changes
+    window.addEventListener('online', updateNetworkStatus);
+    window.addEventListener('offline', updateNetworkStatus);
+    
+    // Initial status check
+    updateNetworkStatus();
+    
+    // ADHD-friendly auto-retry with exponential backoff
+    let retryAttempts = 0;
+    const maxRetries = 5;
+    
+    function autoRetry() {
+      if (navigator.onLine && retryAttempts < maxRetries) {
+        retryAttempts++;
+        console.log(`🔄 Auto-retry attempt ${retryAttempts}/${maxRetries}`);
+        
+        fetch('/')
+          .then(() => {
+            window.location.href = '/';
+          })
+          .catch(() => {
+            const delay = Math.min(1000 * Math.pow(2, retryAttempts), 30000);
+            setTimeout(autoRetry, delay);
+          });
+      }
+    }
+    
+    // Start auto-retry after 3 seconds
+    setTimeout(autoRetry, 3000);
+  </script>
+</body>
+</html>

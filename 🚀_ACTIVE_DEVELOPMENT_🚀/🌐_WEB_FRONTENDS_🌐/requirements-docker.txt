@@ -1,0 +1,50 @@
+# 🐳 HyperFocus Zone System Monitor - Python Requirements
+# Production-ready dependencies with version pinning
+
+# Core monitoring dependencies
+psutil==5.9.8          # System and process monitoring
+typing-extensions==4.9.0  # Enhanced type hints support
+
+# Data handling and storage
+pandas==2.1.4          # Data analysis and manipulation
+numpy==1.24.4          # Numerical computing support
+
+# Visualization and plotting (optional)
+matplotlib==3.8.2      # Plotting and visualization
+seaborn==0.13.0        # Statistical data visualization
+
+# Database connectivity
+psycopg2-binary==2.9.9 # PostgreSQL adapter
+redis==5.0.1           # Redis client
+
+# Web framework for API (future enhancement)
+fastapi==0.104.1       # Modern web framework
+uvicorn==0.24.0        # ASGI server
+pydantic==2.5.2        # Data validation
+
+# Configuration management
+python-dotenv==1.0.0   # Environment variable management
+pyyaml==6.0.1          # YAML configuration support
+
+# Logging and monitoring
+structlog==23.2.0      # Structured logging
+prometheus-client==0.19.0  # Metrics collection
+
+# Development and testing dependencies
+pytest==7.4.3         # Testing framework
+pytest-cov==4.1.0     # Coverage reporting
+pytest-asyncio==0.21.1 # Async testing support
+black==23.11.0         # Code formatting
+flake8==6.1.0          # Code linting
+mypy==1.7.1            # Type checking
+
+# Security
+cryptography==41.0.8   # Cryptographic recipes
+python-jose==3.3.0     # JWT handling
+
+# Performance optimization
+ujson==5.8.0          # Ultra-fast JSON encoder/decoder
+orjson==3.9.10         # Fast JSON library
+
+# Container utilities
+gunicorn==21.2.0       # WSGI HTTP Server

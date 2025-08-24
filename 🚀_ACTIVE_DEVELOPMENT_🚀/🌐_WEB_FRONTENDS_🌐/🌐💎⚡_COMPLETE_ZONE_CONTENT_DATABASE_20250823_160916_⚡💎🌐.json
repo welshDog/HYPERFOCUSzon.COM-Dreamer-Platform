@@ -1,0 +1,466 @@
+{
+  "zone1_focus_productivity": {
+    "name": "🧠 Focus & Productivity Zone",
+    "description": "Master your focus, boost productivity, and achieve flow state",
+    "emoji": "🧠",
+    "commands": {
+      "!focus": "Start a focus session with Pomodoro timer",
+      "!break": "Take a structured break",
+      "!flowstate": "Enter deep work flow state",
+      "!productivity": "Check productivity metrics",
+      "!distractions": "Block distractions and notifications",
+      "!goals": "Set and track daily focus goals",
+      "!energy": "Check energy levels and optimize",
+      "!schedule": "Plan focused work blocks"
+    },
+    "features": [
+      "🍅 Pomodoro Timer with ADHD-friendly intervals",
+      "🎯 Distraction blocking and focus reminders",
+      "📊 Productivity tracking and analytics",
+      "⚡ Energy level monitoring and optimization",
+      "🧘 Mindfulness breaks and breathing exercises",
+      "🎵 Focus-enhancing music and soundscapes",
+      "📱 Phone/notification management tools",
+      "🏆 Achievement tracking for focus sessions"
+    ],
+    "help_content": {
+      "getting_started": "Use !focus to start a 25-minute focus session. The bot will guide you through setup and provide reminders.",
+      "best_practices": [
+        "Start with shorter sessions (15-20 min) if you're new to focus work",
+        "Use !break between sessions to prevent burnout",
+        "Set clear intentions before each focus session",
+        "Track your peak focus times with !energy"
+      ],
+      "troubleshooting": {
+        "cant_focus": "Try !distractions to block interruptions, or !energy to check if you need a break",
+        "too_long": "Customize session length with !focus 15 for shorter periods",
+        "getting_distracted": "Use !flowstate for deeper immersion techniques"
+      }
+    },
+    "resources": [
+      "📚 ADHD focus strategies guide",
+      "🎧 Curated focus playlists",
+      "📝 Focus session templates",
+      "🔬 Productivity research articles"
+    ]
+  },
+  "zone2_community": {
+    "name": "👥 Community Engagement Zone",
+    "description": "Connect, collaborate, and build meaningful relationships",
+    "emoji": "👥",
+    "commands": {
+      "!connect": "Find community members with similar interests",
+      "!collaborate": "Start or join collaborative projects",
+      "!mentor": "Find mentors or become a mentor",
+      "!events": "View upcoming community events",
+      "!introduce": "Create your community introduction",
+      "!skills": "Share or find skills exchanges",
+      "!support": "Give or receive peer support",
+      "!celebrate": "Share achievements with the community"
+    },
+    "features": [
+      "🤝 Smart member matching based on interests",
+      "🎯 Project collaboration boards",
+      "👨‍🏫 Mentor-mentee pairing system",
+      "📅 Community event calendar",
+      "💬 Safe discussion spaces",
+      "🎉 Achievement celebration hub",
+      "🔄 Skill sharing marketplace",
+      "🛡️ Moderated support groups"
+    ],
+    "help_content": {
+      "getting_started": "Use !introduce to create your profile and !connect to find like-minded community members.",
+      "best_practices": [
+        "Be genuine and authentic in your interactions",
+        "Offer help before asking for it",
+        "Respect neurodiversity and different communication styles",
+        "Use !support when you need help - the community is here for you"
+      ],
+      "community_guidelines": [
+        "Be kind, patient, and understanding",
+        "Respect different neurotypes and experiences",
+        "No judgment zone - we're all learning together",
+        "Celebrate each other's victories, big and small"
+      ]
+    },
+    "resources": [
+      "📖 Community interaction guides",
+      "🎯 Collaboration project templates",
+      "💬 Communication style guides",
+      "🌟 Success story showcase"
+    ]
+  },
+  "zone3_achievement": {
+    "name": "🏆 Achievement & Progress Zone",
+    "description": "Track progress, celebrate wins, and unlock achievements",
+    "emoji": "🏆",
+    "commands": {
+      "!achievements": "View all earned achievements",
+      "!progress": "Check progress on current goals",
+      "!milestones": "Set and track major milestones",
+      "!badges": "View earned badges and next targets",
+      "!leaderboard": "See community achievement rankings",
+      "!streak": "Check and maintain activity streaks",
+      "!rewards": "Claim available rewards",
+      "!level": "Check your current level and XP"
+    },
+    "features": [
+      "🎖️ 50+ unique achievement categories",
+      "📈 Visual progress tracking and analytics",
+      "🔥 Streak maintenance and rewards",
+      "🎯 Milestone celebration system",
+      "🏅 Badge collection and display",
+      "📊 Personal progress dashboard",
+      "🎁 Reward redemption system",
+      "🌟 Level progression with unlockable features"
+    ],
+    "help_content": {
+      "getting_started": "Use !progress to see your current goals and !achievements to view what you can unlock.",
+      "achievement_categories": [
+        "🧠 Focus & Productivity achievements",
+        "👥 Community engagement milestones",
+        "💡 Learning and skill development",
+        "🎯 Goal completion rewards",
+        "🌟 Special event achievements"
+      ],
+      "tips": [
+        "Set small, achievable goals to build momentum",
+        "Use !streak to maintain daily habits",
+        "Celebrate small wins - they add up!",
+        "Share achievements with !celebrate"
+      ]
+    },
+    "resources": [
+      "🎯 Goal setting frameworks",
+      "📊 Progress tracking templates",
+      "🏆 Achievement inspiration gallery",
+      "📈 Success measurement guides"
+    ]
+  },
+  "zone4_crisis_support": {
+    "name": "🛡️ Crisis Support Zone",
+    "description": "Immediate help, resources, and professional support",
+    "emoji": "🛡️",
+    "commands": {
+      "!crisis": "Access immediate crisis support resources",
+      "!help": "Get help with current challenges",
+      "!resources": "Find professional mental health resources",
+      "!hotlines": "Access crisis hotlines and emergency contacts",
+      "!breathing": "Start guided breathing exercises",
+      "!grounding": "Use grounding techniques for anxiety",
+      "!selfcare": "Get immediate self-care suggestions",
+      "!support": "Connect with peer support network"
+    },
+    "features": [
+      "🚨 24/7 crisis intervention protocols",
+      "📞 Direct hotline connections",
+      "🧘 Immediate calming techniques",
+      "👥 Peer support network activation",
+      "🏥 Professional resource directory",
+      "📱 Emergency contact management",
+      "🌙 Sleep and rest support",
+      "💊 Medication reminder system"
+    ],
+    "help_content": {
+      "immediate_help": "If you're in crisis, use !crisis for immediate resources or !hotlines for professional support.",
+      "available_support": [
+        "🚨 Crisis hotlines and emergency contacts",
+        "🧘 Breathing and grounding exercises",
+        "👥 Peer support network",
+        "🏥 Professional mental health resources",
+        "💬 Safe space for expressing feelings"
+      ],
+      "when_to_seek_help": [
+        "Feeling overwhelmed or unable to cope",
+        "Having thoughts of self-harm",
+        "Experiencing severe anxiety or panic",
+        "Feeling isolated or disconnected"
+      ]
+    },
+    "emergency_resources": [
+      "🇺🇸 National Suicide Prevention Lifeline: 988",
+      "🇺🇸 Crisis Text Line: Text HOME to 741741",
+      "🇬🇧 Samaritans: 116 123",
+      "🌍 International Association for Suicide Prevention"
+    ]
+  },
+  "zone5_creative": {
+    "name": "🎨 Creative Collaboration Zone",
+    "description": "Unleash creativity through collaborative projects and artistic expression",
+    "emoji": "🎨",
+    "commands": {
+      "!create": "Start a new creative project",
+      "!collaborate": "Join creative collaborations",
+      "!showcase": "Share your creative work",
+      "!inspire": "Get creative inspiration and prompts",
+      "!feedback": "Give or receive creative feedback",
+      "!gallery": "Browse community creative gallery",
+      "!challenges": "Join creative challenges",
+      "!tools": "Discover creative tools and resources"
+    },
+    "features": [
+      "🎭 Multi-media project collaboration",
+      "🖼️ Community art gallery",
+      "💡 AI-powered creative prompts",
+      "🎵 Music collaboration tools",
+      "📝 Writing workshops and critique groups",
+      "🎮 Game development projects",
+      "🎥 Video and multimedia creation",
+      "🏆 Creative challenges and contests"
+    ],
+    "help_content": {
+      "getting_started": "Use !create to start a project or !inspire for creative prompts. Share your work with !showcase.",
+      "creative_areas": [
+        "🎨 Visual arts and design",
+        "📝 Writing and storytelling",
+        "🎵 Music and audio creation",
+        "🎥 Video and animation",
+        "🎮 Game and app development",
+        "🏗️ 3D modeling and architecture"
+      ],
+      "collaboration_tips": [
+        "Be open to different creative perspectives",
+        "Give constructive, kind feedback",
+        "Respect creative ownership and attribution",
+        "Experiment and don't fear failure"
+      ]
+    },
+    "resources": [
+      "🎨 Free creative software recommendations",
+      "📚 Tutorials and learning materials",
+      "🎯 Project management templates",
+      "🌟 Inspiration galleries and case studies"
+    ]
+  },
+  "zone6_learning": {
+    "name": "📚 Learning & Growth Zone",
+    "description": "Expand knowledge, develop skills, and pursue continuous learning",
+    "emoji": "📚",
+    "commands": {
+      "!learn": "Start a new learning path",
+      "!skills": "Assess and develop skills",
+      "!courses": "Browse available courses and tutorials",
+      "!study": "Access study tools and techniques",
+      "!quiz": "Take knowledge quizzes",
+      "!mentor": "Find learning mentors",
+      "!library": "Access learning resource library",
+      "!progress": "Track learning progress"
+    },
+    "features": [
+      "📖 Personalized learning paths",
+      "🧠 ADHD-friendly study techniques",
+      "🎯 Skill assessment tools",
+      "👨‍🏫 Mentor matching system",
+      "📊 Progress tracking and analytics",
+      "🏆 Learning achievement system",
+      "💡 Spaced repetition tools",
+      "🎮 Gamified learning experiences"
+    ],
+    "help_content": {
+      "getting_started": "Use !learn to explore available paths or !skills to assess your current abilities.",
+      "learning_strategies": [
+        "🕐 Use spaced repetition for long-term retention",
+        "🎯 Break large topics into smaller chunks",
+        "🔄 Practice active recall and testing",
+        "👥 Join study groups for accountability"
+      ],
+      "adhd_friendly_tips": [
+        "Use timers for focused study sessions",
+        "Create visual mind maps and diagrams",
+        "Take frequent breaks to maintain focus",
+        "Use multiple learning modalities (visual, auditory, kinesthetic)"
+      ]
+    },
+    "resources": [
+      "📚 Curated course recommendations",
+      "🧠 Learning science research",
+      "🎯 Study planning templates",
+      "🔬 Skill development frameworks"
+    ]
+  },
+  "zone7_wellness": {
+    "name": "🌿 Wellness & Self-Care Zone",
+    "description": "Prioritize mental health, physical wellness, and emotional balance",
+    "emoji": "🌿",
+    "commands": {
+      "!wellness": "Check wellness status and get recommendations",
+      "!mood": "Track and analyze mood patterns",
+      "!meditation": "Access guided meditation sessions",
+      "!exercise": "Get movement and exercise suggestions",
+      "!sleep": "Optimize sleep habits and tracking",
+      "!nutrition": "Get nutrition tips and meal planning",
+      "!stress": "Access stress management tools",
+      "!selfcare": "Get personalized self-care recommendations"
+    },
+    "features": [
+      "🧘 Guided meditation and mindfulness",
+      "📊 Mood tracking and pattern analysis",
+      "💪 Movement and exercise programs",
+      "😴 Sleep optimization tools",
+      "🥗 Nutrition guidance and meal planning",
+      "🌬️ Breathing exercises and relaxation",
+      "📱 Digital wellness and screen time management",
+      "💚 Emotional regulation techniques"
+    ],
+    "help_content": {
+      "getting_started": "Use !wellness for a comprehensive health check or !mood to start tracking emotional patterns.",
+      "wellness_pillars": [
+        "🧘 Mental health and emotional wellness",
+        "💪 Physical activity and movement",
+        "😴 Quality sleep and rest",
+        "🥗 Nutrition and hydration",
+        "🌱 Stress management and resilience"
+      ],
+      "self_care_strategies": [
+        "Start small with 5-minute daily practices",
+        "Listen to your body and energy levels",
+        "Create consistent routines that work for you",
+        "Practice self-compassion and patience"
+      ]
+    },
+    "resources": [
+      "🧘 Meditation app recommendations",
+      "💪 ADHD-friendly exercise routines",
+      "😴 Sleep hygiene guides",
+      "🥗 Neurodivergent-friendly meal planning"
+    ]
+  },
+  "zone8_goals": {
+    "name": "🎯 Goal Setting & Planning Zone",
+    "description": "Set meaningful goals, create actionable plans, and track progress",
+    "emoji": "🎯",
+    "commands": {
+      "!goals": "Set and manage personal goals",
+      "!plan": "Create detailed action plans",
+      "!tasks": "Break goals into manageable tasks",
+      "!deadlines": "Set and track important deadlines",
+      "!review": "Review and adjust goals regularly",
+      "!priorities": "Organize tasks by priority",
+      "!habits": "Build and track positive habits",
+      "!vision": "Create and refine life vision"
+    },
+    "features": [
+      "🎯 SMART goal setting framework",
+      "📅 Visual planning and calendar tools",
+      "✅ Task breakdown and management",
+      "🔄 Regular review and adjustment cycles",
+      "📊 Progress visualization and tracking",
+      "🏆 Milestone celebration system",
+      "⚡ Priority matrix and time management",
+      "🌟 Vision board creation tools"
+    ],
+    "help_content": {
+      "getting_started": "Use !goals to set your first goal or !plan to create an action plan for existing goals.",
+      "goal_setting_tips": [
+        "Make goals Specific, Measurable, Achievable, Relevant, Time-bound",
+        "Start with smaller goals to build confidence",
+        "Break large goals into smaller, actionable steps",
+        "Regular review and adjustment is key to success"
+      ],
+      "planning_strategies": [
+        "Use backward planning from your desired outcome",
+        "Identify potential obstacles and plan solutions",
+        "Set both process goals and outcome goals",
+        "Build in flexibility for unexpected changes"
+      ]
+    },
+    "resources": [
+      "🎯 Goal setting templates and worksheets",
+      "📊 Progress tracking tools",
+      "⏰ Time management techniques",
+      "🏆 Success story examples"
+    ]
+  },
+  "zone9_social": {
+    "name": "💬 Social Connection Zone",
+    "description": "Build meaningful relationships and strengthen social bonds",
+    "emoji": "💬",
+    "commands": {
+      "!connect": "Find and connect with like-minded people",
+      "!chat": "Join social conversations and discussions",
+      "!groups": "Discover or create interest-based groups",
+      "!events": "Find social events and meetups",
+      "!friendship": "Get friendship building tips",
+      "!communication": "Improve communication skills",
+      "!boundaries": "Learn about healthy boundaries",
+      "!conflict": "Get help with conflict resolution"
+    },
+    "features": [
+      "🤝 Smart friend matching algorithms",
+      "💬 Safe conversation spaces",
+      "👥 Interest-based group formation",
+      "📅 Social event organization",
+      "🎯 Communication skill building",
+      "🛡️ Boundary setting tools",
+      "🤔 Social situation guidance",
+      "💚 Relationship maintenance tips"
+    ],
+    "help_content": {
+      "getting_started": "Use !connect to find people with shared interests or !groups to join communities around your hobbies.",
+      "social_tips": [
+        "Be genuine and authentic in your interactions",
+        "Ask open-ended questions to show interest",
+        "Practice active listening",
+        "Respect others' communication styles and boundaries"
+      ],
+      "neurodivergent_socializing": [
+        "It's okay to need breaks from social interaction",
+        "Communicate your needs clearly",
+        "Find your preferred communication style",
+        "Quality connections matter more than quantity"
+      ]
+    },
+    "resources": [
+      "💬 Communication guide for neurodivergent individuals",
+      "🤝 Friendship building strategies",
+      "🎯 Social skills practice exercises",
+      "📚 Relationship maintenance guides"
+    ]
+  },
+  "zone10_celebration": {
+    "name": "🎉 Celebration & Recognition Zone",
+    "description": "Celebrate achievements, recognize progress, and spread joy",
+    "emoji": "🎉",
+    "commands": {
+      "!celebrate": "Share and celebrate achievements",
+      "!recognition": "Give recognition to community members",
+      "!wins": "Track and celebrate daily wins",
+      "!gratitude": "Express gratitude and appreciation",
+      "!party": "Organize celebration events",
+      "!highlights": "View community achievement highlights",
+      "!appreciate": "Show appreciation for others",
+      "!joy": "Share moments of joy and happiness"
+    },
+    "features": [
+      "🎊 Achievement celebration system",
+      "🏆 Community recognition program",
+      "📸 Victory photo and story sharing",
+      "🎁 Celebration rewards and badges",
+      "💌 Appreciation and gratitude tools",
+      "🎈 Virtual celebration events",
+      "🌟 Daily wins tracking",
+      "❤️ Joy and positivity spreading"
+    ],
+    "help_content": {
+      "getting_started": "Use !celebrate to share your achievements or !wins to track daily victories, no matter how small.",
+      "celebration_philosophy": [
+        "Every achievement deserves recognition",
+        "Small wins lead to big victories",
+        "Celebrating others amplifies joy",
+        "Progress is more important than perfection"
+      ],
+      "ways_to_celebrate": [
+        "Share your story with the community",
+        "Create a visual representation of your achievement",
+        "Thank those who helped you along the way",
+        "Set a new goal to maintain momentum"
+      ]
+    },
+    "resources": [
+      "🎉 Celebration idea generator",
+      "📸 Achievement documentation templates",
+      "💌 Gratitude practice guides",
+      "🎯 Goal progression celebrations"
+    ]
+  }
+}

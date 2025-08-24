@@ -1,0 +1,18 @@
+2025-08-07 22:51:56,006 - INFO - System Metrics: {
+  "timestamp": "2025-08-07T22:51:54.983392",
+  "cpu_usage": 36.0,
+  "memory_usage": 90.7,
+  "disk_usage": 0.4,
+  "network_io": {
+    "bytes_sent": 1493799990,
+    "bytes_recv": 2618016796,
+    "packets_sent": 3047723,
+    "packets_recv": 2171493,
+    "errin": 7776,
+    "errout": 0,
+    "dropin": 7776,
+    "dropout": 0
+  },
+  "process_count": 293
+}
+2025-08-07 22:51:56,009 - WARNING - HIGH MEMORY USAGE: 90.7%

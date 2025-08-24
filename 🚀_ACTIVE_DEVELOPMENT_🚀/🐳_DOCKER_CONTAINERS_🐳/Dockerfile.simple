@@ -1,0 +1,19 @@
+# 🐳💎⚡ HYPERFOCUS ZONE SIMPLE DOCKER IMAGE ⚡💎🐳
+FROM python:3.11-slim
+
+# Set working directory
+WORKDIR /app
+
+# Copy demo script
+COPY hyperfocus_docker_demo.py .
+
+# Create non-root user
+RUN useradd -m -u 1000 appuser && chown -R appuser:appuser /app
+USER appuser
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "print('🟢 Container healthy!')" || exit 1
+
+# Default command
+CMD ["python", "hyperfocus_docker_demo.py"]

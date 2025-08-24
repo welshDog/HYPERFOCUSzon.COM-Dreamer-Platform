@@ -1,0 +1,196 @@
+# Hyperfocus Zone
+
+> **Dream it. Build it. Feel it. Ship it.**
+
+Hyperfocus Zone is an immortal, AI-powered ecosystem built with the **Hyperfocus Vibe Coding Protocol**. This repo contains bots, agents, a web portal, automation, experiments, and assets (including the Hyperfocus Vibe Coding infographic) so ideas can be prototyped fast and hardened to run forever.
+
+---
+
+## Quick links
+
+* **Infographic asset (recommended):** `assets/final/hyperfocus-vibe-protocol-infographic.png`
+* **Local dev (one command):** `make dev`
+* **Docs:** `docs/ARCHITECTURE.md`
+
+---
+
+## Quick start (dev)
+
+1. Copy environment example and fill local values:
+
+   ```bash
+   cp .env.example .env
+   # edit .env with your local values
+   ```
+2. Boot everything locally (docker-compose dev):
+
+   ```bash
+   make dev
+   # or
+   docker-compose up --build
+   ```
+3. Open the web portal: `http://localhost:3000`
+
+---
+
+## Repo layout (opinionated, monorepo)
+
+```
+hyperfocus-zone/
+├─ .github/                     # CI workflows, issue/pr templates, actions
+├─ infra/                       # infra-as-code (terraform / k8s / cloud)
+├─ services/                    # deployable services / microservices
+│  ├─ web-portal/               # Next.js / React site
+│  ├─ api-gateway/              # API gateway / auth
+│  ├─ agent-runner/             # orchestrates AI agents (Python)
+│  ├─ bro-ski-bot/              # Discord bot (Node/Python)
+│  └─ worker/                   # background jobs / schedulers
+├─ libs/                        # shared libraries (JS, Python, Rust, etc.)
+├─ tools/                       # developer tools and small CLIs
+├─ packages/                    # optional: npm/pip packages for publishing
+├─ experiments/                 # prototype & vibe-code quick builds
+├─ docs/                        # docs, handbooks, onboarding, architecture
+├─ assets/                      # logos, posters, video, stickers, fonts
+├─ data/                        # small seed data / sample datasets
+├─ backups/                     # encrypted snapshots (not in git; listed)
+├─ .env.example
+├─ docker-compose.yml
+├─ Makefile
+├─ README.md
+└─ CODEOWNERS
+```
+
+### Per-service standard (use as a template)
+
+```
+services/<name>/
+├─ src/
+├─ tests/
+├─ Dockerfile
+├─ Makefile (or tasks)
+├─ pyproject.toml / package.json
+├─ .env.example
+├─ README.md
+└─ .github/ (optional: service-specific workflows)
+```
+
+Each service should expose a `/healthz` endpoint, structured logs, and Prometheus metrics when appropriate.
+
+---
+
+## Hyperfocus Vibe Coding Protocol (summary)
+
+Follow the six-step protocol when building or reviewing projects in this repo:
+
+1. **Vision Spark** — start with the vibe (no perfect spec).
+2. **AI Summoning** — prompt the AI and get the first draft.
+3. **Rapid Prototyping Loops** — build → test → feel → tweak.
+4. **Layer the Magic** — add automation, security, gamification, AI features.
+5. **Immortality Pass** — backups, monitoring, self-heal scripts.
+6. **Ship & Celebrate** — release, celebrate, iterate.
+
+---
+
+## Asset: Hyperfocus Vibe Protocol Infographic
+
+**Path:** `assets/final/hyperfocus-vibe-protocol-infographic.png`
+
+**Use cases:** README hero, docs, social posts, video storyboard frames, onboarding slides.
+
+**Alt text (SEO & a11y):**
+
+> "Infographic: Hyperfocus Vibe Coding Protocol — six steps from Vision Spark to Ship & Celebrate; emphasizes AI collaboration, rapid prototyping, layering features, and making systems immortal."
+
+**Suggested placements:**
+
+* `README.md` hero (top of this file)
+* `docs/INFRASTRUCTURE_GUIDE/infographic.md` (embed + short explainer)
+* `assets/social/` `assets/video/vertical-crops/`
+
+---
+
+## Video voiceover script & timing (30–40s trailer)
+
+Drop this straight into your editor as a voice track. Keep the tempo energetic; start low and build to a punch.
+
+* 0.0–3.0s — SFX: low rumble
+
+  * Voice: *"It starts with a vibe."*
+* 3.0–9.0s — SFX: typing + subtle build
+
+  * Voice: *"Vision Spark — see the future. No long specs. Just the feeling."*
+* 9.0–15.0s — SFX: whoosh + synth rise
+
+  * Voice: *"AI Summoning — tell the machine the vibe. It brings the first draft to life."*
+* 15.0–22.0s — SFX: rapid digital clicks
+
+  * Voice: *"Rapid prototyping — build, test, tweak. Repeat until it feels right."*
+* 22.0–27.0s — SFX: explosive synth hit
+
+  * Voice: *"Layer the magic — automation, security, gamification — upgrade the core."*
+* 27.0–33.0s — SFX: heartbeat → swelling tone
+
+  * Voice: *"Immortality pass — backup, monitor, self-heal. Make it forever."*
+* 33.0–38.0s — SFX: celebratory hit
+
+  * Voice (big): *"Ship and celebrate. Dream it. Build it. Feel it. Ship it."*
+* 38.0–40.0s — Final stinger, show BROski♾️ logo
+
+---
+
+## Social captions (ready)
+
+**YouTube / Instagram:**
+
+> Dream it. Build it. Feel it. Ship it. ⚡️
+> Hyperfocus Vibe Coding — the six-step playbook for turning ideas into immortal systems. #vibecoding #hyperfocuszone #ai
+
+**TikTok (snappy):**
+
+> Vibe → AI → ship. 30s to build a prototype. Welcome to Hyperfocus Vibe Coding. ♾️ #vibecoding
+
+**LinkedIn (longer):**
+
+> Built something fast with AI? That’s vibe coding. Here’s the official Hyperfocus Vibe Coding Protocol — a six-step playbook for turning instinct + AI into long-running systems. Free to use, remix, and build on. #AI #Productivity #Hyperfocus
+
+---
+
+## CI / CD (must-haves)
+
+* Central `.github/workflows/ci.yml` that runs tests only for changed packages.
+* Dependency & container scanning (Trivy, Snyk, or GitHub native alerts).
+* Automatic staging deploys for `develop`/`staging`; production on tagged releases `v*`.
+
+---
+
+## Secrets & envs
+
+* Use Vault / AWS/GCP secret managers.
+* `.env` files are local only and must be in `.gitignore`.
+* `infra/secrets/README.md` should document how to fetch and rotate keys.
+
+---
+
+## Docs & onboarding
+
+* `docs/QUICK_START.md` — how to spin up locally (one command).
+* `docs/ARCHITECTURE.md` — diagrams for agents, bots, web, DBs.
+* `docs/PROMPT_LIBRARY.md` — canonical prompts & change log (CRITICAL).
+
+---
+
+## ADHD / Hyperfocus friendly tips
+
+* Keep an `experiments/` folder for messy vibe-code. Promote winners to `services/` with a short migration checklist.
+* Add `NEXT_ACTIONS.md` to each service with 3 bullet items (helps reduce friction and decision paralysis).
+* Use commit hooks or CI to remind you to add a short PR description and tags.
+
+---
+
+## Want me to scaffold this? (pick one)
+
+* `scaffold`: generate a full repo skeleton + sample `docker-compose.yml` and `make dev`.
+* `readme-only`: produce alternate shorter README variations (tiny / medium / long).
+* `video-pack`: produce final voiceover files, thumbnail, and TikTok cuts ready to drop in editor.
+
+Say which you want and I’ll generate it next. Cheers — bro.

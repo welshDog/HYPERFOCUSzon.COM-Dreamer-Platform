@@ -1,0 +1,160 @@
+import os
+import time
+import json
+import hashlib
+import shutil
+from pathlib import Path
+from datetime import datetime
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+
+# 🔥 CONFIG
+HYPERFOCUS_ROOT = Path(r"C:\Users\YourName\HYPERFOCUSzone")  # Source empire root
+SYNC_TARGET = Path(r"D:\Hyperfocus_Backup")                   # Backup target
+SYNC_DB = HYPERFOCUS_ROOT / "hyperfocus_sync.json"            # Memory crystal
+CHRONICLE_LOG = HYPERFOCUS_ROOT / "empire_chronicle.json"     # Empire event history
+NIGHTLY_SCAN_HOUR = 3  # run full integrity scan at 03:00 AM
+
+# --- CORE TOOLS ---
+def hash_file(filepath):
+    """Create a hash of a file so we know if it changed."""
+    h = hashlib.sha256()
+    with open(filepath, "rb") as f:
+        for chunk in iter(lambda: f.read(4096), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+def log_event(event_type, rel_path, status="ok"):
+    """Append event to Empire Chronicle."""
+    entry = {
+        "time": datetime.now().isoformat(timespec="seconds"),
+        "event": event_type,
+        "path": str(rel_path),
+        "status": status
+    }
+    if CHRONICLE_LOG.exists():
+        log_data = json.loads(CHRONICLE_LOG.read_text())
+    else:
+        log_data = []
+    log_data.append(entry)
+    CHRONICLE_LOG.write_text(json.dumps(log_data, indent=2))
+    print(f"📜 Logged: {event_type} → {rel_path} ({status})")
+
+def safe_copy(src, dst):
+    try:
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(src, dst)
+        # Verify integrity
+        if hash_file(src) == hash_file(dst):
+            log_event("sync", dst.relative_to(SYNC_TARGET), "verified")
+        else:
+            log_event("sync", dst.relative_to(SYNC_TARGET), "hash_mismatch")
+    except Exception as e:
+        log_event("sync_error", src, str(e))
+
+# --- SNAPSHOT SCAN ---
+def scan_folder(root):
+    file_index = {}
+    for dirpath, _, filenames in os.walk(root):
+        for filename in filenames:
+            filepath = Path(dirpath) / filename
+            try:
+                file_index[str(filepath.relative_to(root))] = {
+                    "hash": hash_file(filepath),
+                    "size": filepath.stat().st_size,
+                    "modified": filepath.stat().st_mtime
+                }
+            except Exception as e:
+                log_event("scan_error", filepath, str(e))
+    return file_index
+
+def load_sync_db():
+    if SYNC_DB.exists():
+        return json.loads(SYNC_DB.read_text())
+    return {}
+
+def save_sync_db(data):
+    SYNC_DB.write_text(json.dumps(data, indent=2))
+
+def full_sync():
+    """Perform full hash-based sync of all files."""
+    old_index = load_sync_db()
+    new_index = scan_folder(HYPERFOCUS_ROOT)
+
+    for rel_path, info in new_index.items():
+        if rel_path not in old_index or old_index[rel_path]["hash"] != info["hash"]:
+            src_file = HYPERFOCUS_ROOT / rel_path
+            dst_file = SYNC_TARGET / rel_path
+            safe_copy(src_file, dst_file)
+
+    # Handle deletions
+    for rel_path in old_index.keys() - new_index.keys():
+        dst_file = SYNC_TARGET / rel_path
+        if dst_file.exists():
+            dst_file.unlink()
+            log_event("delete", rel_path)
+
+    save_sync_db(new_index)
+    log_event("full_scan", "all")
+
+# --- REAL-TIME WATCHER ---
+class HyperfocusHandler(FileSystemEventHandler):
+    def on_modified(self, event):
+        if not event.is_directory:
+            self.sync_file(event.src_path)
+
+    def on_created(self, event):
+        if not event.is_directory:
+            self.sync_file(event.src_path)
+
+    def on_moved(self, event):
+        if not event.is_directory:
+            old_target = SYNC_TARGET / Path(event.src_path).relative_to(HYPERFOCUS_ROOT)
+            if old_target.exists():
+                old_target.unlink()
+                log_event("move_delete", event.src_path)
+            self.sync_file(event.dest_path)
+
+    def on_deleted(self, event):
+        if not event.is_directory:
+            rel_path = Path(event.src_path).relative_to(HYPERFOCUS_ROOT)
+            target_file = SYNC_TARGET / rel_path
+            if target_file.exists():
+                target_file.unlink()
+                log_event("delete", rel_path)
+
+    def sync_file(self, src_path):
+        src = Path(src_path)
+        rel_path = src.relative_to(HYPERFOCUS_ROOT)
+        dst = SYNC_TARGET / rel_path
+        safe_copy(src, dst)
+
+# --- NIGHTLY SCHEDULER ---
+def run_nightly(observer):
+    """Check if it's time for nightly full scan."""
+    now = datetime.now()
+    if now.hour == NIGHTLY_SCAN_HOUR and now.minute == 0:
+        print("🌙 Running nightly full scan...")
+        full_sync()
+        time.sleep(60)  # avoid re-triggering within the same minute
+
+# --- MAIN LOOP ---
+if __name__ == "__main__":
+    # Initial full sync on startup
+    print("🌌 Initial Empire sync starting...")
+    full_sync()
+
+    # Start live watcher
+    event_handler = HyperfocusHandler()
+    observer = Observer()
+    observer.schedule(event_handler, str(HYPERFOCUS_ROOT), recursive=True)
+    observer.start()
+    print("⚡ Real-time Hyperfocus Watcher active...")
+
+    try:
+        while True:
+            run_nightly(observer)
+            time.sleep(1)
+    except KeyboardInterrupt:
+        observer.stop()
+    observer.join()

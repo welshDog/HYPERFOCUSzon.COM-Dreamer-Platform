@@ -1,0 +1,75 @@
+[
+    {
+        "key": "ctrl+shift+f",
+        "command": "workbench.action.toggleZenMode",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+shift+h",
+        "command": "workbench.action.tasks.runTask",
+        "args": "🌟 Hyperfocus Zone: Start Work Session"
+    },
+    {
+        "key": "ctrl+shift+e",
+        "command": "workbench.view.explorer"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "f5",
+        "command": "workbench.action.tasks.runTask",
+        "args": "🏥 Health Check: Full System Scan"
+    },
+    {
+        "key": "ctrl+f5",
+        "command": "workbench.action.tasks.runTask",
+        "args": "🤖 AI Assistant: Start SmolLM2"
+    },
+    {
+        "key": "shift+f5",
+        "command": "workbench.action.tasks.runTask",
+        "args": "📊 Monitor: Empire Status Dashboard"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.duplicateSelection"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "editor.action.deleteLines"
+    },
+    {
+        "key": "alt+up",
+        "command": "editor.action.moveLinesUpAction"
+    },
+    {
+        "key": "alt+down",
+        "command": "editor.action.moveLinesDownAction"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "editor.action.startFindReplaceAction"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "editor.action.selectHighlights"
+    },
+    {
+        "key": "ctrl+shift+i",
+        "command": "editor.action.formatDocument"
+    },
+    {
+        "key": "ctrl+k ctrl+f",
+        "command": "editor.action.formatSelection"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "github.copilot.interactiveEditor.explain"
+    },
+    {
+        "key": "ctrl+alt+i",
+        "command": "github.copilot.generate"
+    }
+]

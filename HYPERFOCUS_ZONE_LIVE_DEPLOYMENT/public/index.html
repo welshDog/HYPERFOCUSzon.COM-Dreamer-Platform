@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 HyperFocus Zone - The Ultimate Neurodivergent Platform</title>
+    <link rel="canonical" href="https://hyperfocuszone.com/">
+    <meta name="description"
+        content="The ultimate productivity platform designed specifically for neurodivergent minds. ADHD-friendly tools, hyperfocus enhancement, and legendary productivity systems.">
+    <meta name="keywords"
+        content="ADHD, neurodivergent, productivity, hyperfocus, focus tools, ADHD support, neurodiversity">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="HyperFocus Zone - Ultimate Neurodivergent Platform">
+    <meta property="og:description" content="Legendary productivity tools designed for ADHD and neurodivergent minds">
+    <meta property="og:url" content="https://hyperfocuszone.com">
+    <meta property="og:type" content="website">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            z-index: 2;
+            position: relative;
+            max-width: 900px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: -2px;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .features {
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .coming-soon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .portal-link {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .portal-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="coming-soon">🚀 LEGENDARY LAUNCH IN PROGRESS</div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🌟 HyperFocus Zone</h1>
+            <p class="subtitle">The Ultimate Productivity Platform for Neurodivergent Minds</p>
+            <p>Designed specifically for ADHD, autism, and neurodivergent individuals who want to transform their unique
+                thinking patterns into legendary productivity.</p>
+
+            <div class="cta-buttons">
+                <a href="/portal" class="btn btn-primary">🚀 Access Portal Hub</a>
+                <a href="#features" class="btn btn-secondary">✨ Explore Features</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <h3>ADHD-Optimized Tools</h3>
+                <p>Specially designed interfaces that work WITH your neurodivergent brain, not against it. Reduced
+                    distractions, enhanced focus flows.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h3>Hyperfocus Enhancement</h3>
+                <p>Tools and techniques to harness and extend your natural hyperfocus states for maximum productivity
+                    and creative output.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>Smart Task Management</h3>
+                <p>AI-powered task prioritization that understands your energy levels, attention spans, and optimal
+                    working patterns.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🌈</div>
+                <h3>Accessibility First</h3>
+                <p>Full WCAG compliance with dyslexia-friendly fonts, high contrast modes, and screen reader
+                    optimization.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🔥</div>
+                <h3>Community Support</h3>
+                <p>Connect with other neurodivergent individuals, share strategies, and build a supportive productivity
+                    network.</p>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">💎</div>
+                <h3>Evidence-Based</h3>
+                <p>Built on the latest neuroscience research and real-world testing with neurodivergent users worldwide.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <a href="/portal" class="portal-link" id="portals">🌟 Portal Access</a>
+
+    <script>
+        // Add some interactivity
+        document.addEventListener('DOMContentLoaded', function () {
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Add some dynamic effects
+            const features = document.querySelectorAll('.feature');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            features.forEach(feature => {
+                feature.style.opacity = '0';
+                feature.style.transform = 'translateY(20px)';
+                feature.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(feature);
+            });
+        });
+    </script>
+</body>
+
+</html>

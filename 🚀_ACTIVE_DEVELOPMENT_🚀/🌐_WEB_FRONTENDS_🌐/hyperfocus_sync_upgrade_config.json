@@ -1,0 +1,32 @@
+{
+  "discord": {
+    "enabled": false,
+    "token": "YOUR_DISCORD_BOT_TOKEN_HERE",
+    "channel_id": 12345678901234567890,
+    "broadcast_events": [
+      "full_scan",
+      "sync_error",
+      "scan_error"
+    ]
+  },
+  "dashboard": {
+    "enabled": true,
+    "auto_refresh_seconds": 5,
+    "max_chronicle_entries": 50
+  },
+  "multi_target_sync": {
+    "enabled": true,
+    "targets": [
+      {
+        "path": "D:\\Hyperfocus_Backup",
+        "type": "local",
+        "priority": 1
+      },
+      {
+        "path": "E:\\External_Backup",
+        "type": "external",
+        "priority": 2
+      }
+    ]
+  }
+}

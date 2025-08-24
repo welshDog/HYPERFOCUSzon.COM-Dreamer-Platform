@@ -1,0 +1,37 @@
+{
+  "database": {
+    "primary": "PostgreSQL",
+    "caching": "Redis",
+    "search": "Elasticsearch",
+    "features": [
+      "User profiles",
+      "Social graphs",
+      "Content management",
+      "Analytics"
+    ]
+  },
+  "api": {
+    "framework": "GraphQL",
+    "real_time": "WebSocket subscriptions",
+    "authentication": "OAuth 2.0 + JWT",
+    "rate_limiting": "ADHD-friendly (higher limits for hyperfocus sessions)"
+  },
+  "scaling": {
+    "orchestration": "Kubernetes",
+    "load_balancing": "NGINX",
+    "auto_scaling": "Horizontal Pod Autoscaler",
+    "target_capacity": "100K+ concurrent users"
+  },
+  "security": {
+    "encryption": "End-to-end encryption",
+    "data_protection": "GDPR/CCPA compliant",
+    "privacy": "Neurodivergent-safe community guidelines",
+    "moderation": "AI-powered content moderation with human oversight"
+  },
+  "analytics": {
+    "user_behavior": "Focus session analytics",
+    "engagement_metrics": "ADHD-specific engagement patterns",
+    "performance_monitoring": "Real-time system health",
+    "privacy_preserving": "Anonymized data collection"
+  }
+}

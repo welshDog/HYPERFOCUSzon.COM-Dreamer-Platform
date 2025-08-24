@@ -1,0 +1,113 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "🌟 Hyperfocus Zone: Debug Mode",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "HYPERFOCUS_DEBUG": "true"
+            },
+            "justMyCode": false,
+            "stopOnEntry": false,
+            "presentation": {
+                "hidden": false,
+                "group": "hyperfocus",
+                "order": 1
+            }
+        },
+        {
+            "name": "🤖 AI Assistant Debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/🌟💎⚡_HYPERFOCUS_ZONE_ULTIMATE_AUTO_FINISHER_ENGINE_⚡💎🌟.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "DEBUG_MODE": "true"
+            },
+            "justMyCode": true,
+            "presentation": {
+                "hidden": false,
+                "group": "hyperfocus",
+                "order": 2
+            }
+        },
+        {
+            "name": "🏥 Health System Debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/⚡💎🏆_ULTRA_LEGENDARY_HEALTH_CHECK_SYSTEM_🏆💎⚡.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "HEALTH_DEBUG": "true"
+            },
+            "justMyCode": true,
+            "presentation": {
+                "hidden": false,
+                "group": "systems",
+                "order": 1
+            }
+        },
+        {
+            "name": "🐳 Docker Debug",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/⚡💎_INSTANT_DOCKER_EMPIRE_ACTIVATOR_💎⚡.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}",
+                "DOCKER_DEBUG": "true"
+            },
+            "justMyCode": true,
+            "presentation": {
+                "hidden": false,
+                "group": "deployment",
+                "order": 1
+            }
+        },
+        {
+            "name": "🎯 Focus Session Attach",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "."
+                }
+            ],
+            "justMyCode": false,
+            "presentation": {
+                "hidden": false,
+                "group": "remote",
+                "order": 1
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "🚀 Full Empire Debug",
+            "configurations": [
+                "🤖 AI Assistant Debug",
+                "🏥 Health System Debug"
+            ],
+            "presentation": {
+                "hidden": false,
+                "group": "empire",
+                "order": 1
+            }
+        }
+    ]
+}

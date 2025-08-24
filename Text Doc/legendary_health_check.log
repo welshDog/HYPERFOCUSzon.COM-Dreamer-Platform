@@ -1,0 +1,8 @@
+2025-08-11 01:08:40,430 - ERROR - Health check system error: 'charmap' codec can't encode character '\U0001f48e' in position 4: character maps to <undefined>
+2025-08-12 20:36:54,058 - WARNING - Docker container check failed: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+2025-08-12 20:43:32,405 - WARNING - Docker container check failed: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+2025-08-12 22:05:20,862 - WARNING - Docker container check failed: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+2025-08-12 22:07:36,884 - WARNING - Docker container check failed: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+2025-08-12 22:42:43,715 - WARNING - Docker container check failed: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+2025-08-12 22:47:06,989 - INFO - Docker Desktop not running - container check skipped
+2025-08-14 23:07:21,744 - INFO - Docker unavailable: Error while fetching server API version: 500 Server Error for http+docker://localnpipe/version: Inte

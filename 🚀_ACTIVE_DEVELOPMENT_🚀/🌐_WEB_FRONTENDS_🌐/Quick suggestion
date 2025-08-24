@@ -1,0 +1,6 @@
+Quick suggestions — choose one to proceed (need approval):
+
+Produce a detailed index (paths + sizes + modified dates) for top folders.
+Run a secrets/sensitive-file scan (search for .env, key, password, private_key, portal_identity_database.sqlite exposure).
+List largest files (top 50 by size).
+Extract & summarize Azure deployment files and produce a short deployment checklist.

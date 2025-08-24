@@ -1,0 +1,81 @@
+{
+  "scan_timestamp": "2025-08-19T22:36:27.586720",
+  "optimizations_performed": [],
+  "memory_optimization": {
+    "before_percent": 99.9,
+    "after_percent": 99.9,
+    "memory_freed_percent": 0.0,
+    "objects_collected": 0,
+    "temp_files_cleaned": 0,
+    "status": "STABLE"
+  },
+  "server_optimization": {
+    "main_server": {
+      "ip": "100.68.37.27",
+      "status": "\ud83d\udfe2 ONLINE",
+      "response_time_ms": 344.01869773864746,
+      "health_score": 25
+    },
+    "mini_server": {
+      "ip": "100.71.69.16",
+      "status": "\ud83d\udfe2 ONLINE",
+      "response_time_ms": 75.70385932922363,
+      "health_score": 75
+    },
+    "sync_server": {
+      "ip": "212.227.127.144",
+      "status": "\ud83d\udd34 OFFLINE",
+      "response_time_ms": null,
+      "health_score": 0
+    }
+  },
+  "network_recovery": {
+    "Google": {
+      "url": "https://google.com",
+      "status": "\u2705 CONNECTED",
+      "status_code": 200,
+      "response_time_ms": 435.33968925476074
+    },
+    "GitHub": {
+      "url": "https://github.com",
+      "status": "\u2705 CONNECTED",
+      "status_code": 200,
+      "response_time_ms": 239.30954933166504
+    },
+    "HuggingFace": {
+      "url": "https://huggingface.co",
+      "status": "\u2705 CONNECTED",
+      "status_code": 200,
+      "response_time_ms": 114.1970157623291
+    }
+  },
+  "performance_improvements": {
+    "cpu_usage_percent": 98.2,
+    "memory_usage_percent": 97.6,
+    "memory_available_gb": 0.18493270874023438,
+    "disk_usage_percent": 0.5189527864000967,
+    "disk_free_gb": 1464.041389465332,
+    "python_version": "3.13.5",
+    "optimization_timestamp": "2025-08-19T22:36:35.426390"
+  },
+  "recommendations": [
+    {
+      "category": "\ud83d\udea8 CRITICAL",
+      "issue": "Memory usage extremely high: 97.6%",
+      "recommendation": "Immediate restart recommended or close major applications",
+      "priority": "URGENT"
+    },
+    {
+      "category": "\u26a1 PERFORMANCE",
+      "issue": "main_server slow response: 344ms",
+      "recommendation": "Investigate server load and network connectivity",
+      "priority": "MEDIUM"
+    },
+    {
+      "category": "\ud83d\udea8 CRITICAL",
+      "issue": "Offline servers: sync_server",
+      "recommendation": "Investigate network connectivity and server status",
+      "priority": "HIGH"
+    }
+  ]
+}

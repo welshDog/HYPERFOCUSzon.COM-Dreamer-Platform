@@ -1,0 +1,148 @@
+name: hyperfocus-empire-minimal
+
+# 🌌♾️⚡ HYPERFOCUS EMPIRE - MINIMAL STACK FOR TESTING ⚡♾️🌌
+# Core Infrastructure Services Only
+
+services:
+  # 🗄️ DATABASE: PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    container_name: hyperfocus-postgres
+    environment:
+      - POSTGRES_DB=hyperfocus_empire
+      - POSTGRES_USER=empire_user
+      - POSTGRES_PASSWORD=legendary_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U empire_user -d hyperfocus_empire"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ⚡ CACHE: Redis
+  redis:
+    image: redis:7-alpine
+    container_name: hyperfocus-redis
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # 🐰 MESSAGE QUEUE: RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: hyperfocus-rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=empire_user
+      - RABBITMQ_DEFAULT_PASS=legendary_pass
+    ports:
+      - "5672:5672"
+      - "15672:15672"  # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 📦 FILE STORAGE: MinIO
+  minio:
+    image: minio/minio:latest
+    container_name: hyperfocus-minio
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=empire_access_key
+      - MINIO_ROOT_PASSWORD=legendary_secret_key
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    networks:
+      - empire-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  # 📊 MONITORING: Prometheus
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: hyperfocus-prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./services/monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+  # 📈 VISUALIZATION: Grafana
+  grafana:
+    image: grafana/grafana:latest
+    container_name: hyperfocus-grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=empire_admin
+      - GF_SECURITY_ADMIN_PASSWORD=legendary_grafana_pass
+      - GF_USERS_ALLOW_SIGN_UP=false
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    networks:
+      - empire-network
+    restart: unless-stopped
+
+# 💾 PERSISTENT VOLUMES
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  rabbitmq_data:
+    driver: local
+  minio_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+# 🌐 NETWORKS
+networks:
+  empire-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.25.0.0/16

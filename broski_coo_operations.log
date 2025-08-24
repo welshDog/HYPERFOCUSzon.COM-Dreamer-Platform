@@ -1,0 +1,510 @@
+BROski COO: 2025-08-23 02:02:30,665 - Setting up BROski Auto COO handover system...
+BROski COO: 2025-08-23 02:02:30,667 - BROski Auto COO Control System initialized
+BROski COO: 2025-08-23 02:02:30,668 - BROski Auto COO handover system commands registered
+BROski COO: 2025-08-23 02:02:30,669 - BROski Auto COO handover system integrated successfully!
+BROski COO: 2025-08-23 02:02:30,670 - Launching LEGENDARY BROski Discord Bot...
+BROski COO: 2025-08-23 02:02:30,674 - logging in using static token
+BROski COO: 2025-08-23 02:02:42,242 - Shard ID None has sent the IDENTIFY payload.
+BROski COO: 2025-08-23 02:02:42,563 - Shard ID None has connected to Gateway: ["gateway-prd-arm-us-east1-b-kqhh",{"micros":221829,"calls":["id_created",{"micros":529,"calls":[]},"session_lookup_time",{"micros":2218,"calls":[]},"session_lookup_finished",{"micros":10,"calls":[]},"discord-sessions-prd-2-178",{"micros":217709,"calls":["start_session",{"micros":167192,"calls":["discord-api-rpc-776b66bb9f-f9hgv",{"micros":128972,"calls":["get_user",{"micros":19277},"get_guilds",{"micros":14866},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":3},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":15870},"apex_experiments",{"micros":5046},"user_activities",{"micros":4},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":26,"calls":[]},"presence_started",{"micros":12417,"calls":[]},"guilds_started",{"micros":58,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":37997,"calls":[]},"connect_finished",{"micros":38000,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: deb00834ce790b0eb1d78068b7ad65ec).
+BROski COO: 2025-08-23 02:02:44,586 - LEGENDARY BROski Bot is ALIVE!
+BROski COO: 2025-08-23 02:02:44,588 - Connected to 1 guild(s)
+BROski COO: 2025-08-23 02:02:44,589 - Serving 6 members
+BROski COO: 2025-08-23 02:02:44,591 - Running periodic empire status check...
+BROski COO: 2025-08-23 02:05:27,877 - Verifying Discord Bot...
+BROski COO: 2025-08-23 02:05:27,881 - Verifying Economy System...
+BROski COO: 2025-08-23 02:05:27,881 - Verifying Memory Crystals...
+BROski COO: 2025-08-23 02:05:27,881 - Verifying Infrastructure...
+BROski COO: 2025-08-23 02:05:28,369 - Zone hyperfocus_zone authority transferred to COO
+BROski COO: 2025-08-23 02:05:28,370 - Zone economy_zone authority transferred to COO
+BROski COO: 2025-08-23 02:05:28,371 - Zone memory_crystal_zone authority transferred to COO
+BROski COO: 2025-08-23 02:05:28,371 - Zone development_zone authority transferred to COO
+BROski COO: 2025-08-23 02:05:28,371 - Zone community_zone authority transferred to COO
+BROski COO: 2025-08-23 02:05:28,372 - Zone infrastructure_zone authority transferred to COO
+BROski COO: 2025-08-23 02:05:32,896 - Activating protocol: auto_resolve_issues
+BROski COO: 2025-08-23 02:05:32,897 - Activating protocol: escalation_threshold
+BROski COO: 2025-08-23 02:05:32,897 - Activating protocol: crisis_intervention
+BROski COO: 2025-08-23 02:05:32,898 - Activating protocol: performance_optimization
+BROski COO: 2025-08-23 02:05:32,898 - Activating protocol: resource_allocation
+BROski COO: 2025-08-23 02:05:33,671 - Handover sequence completed successfully!
+BROski COO: 2025-08-23 02:05:33,675 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:05:33,677 - COO addressing issue in hyperfocus_zone
+BROski COO: 2025-08-23 02:05:33,678 - COO resolved issue in hyperfocus_zone
+BROski COO: 2025-08-23 02:05:33,678 - COO addressing issue in economy_zone
+BROski COO: 2025-08-23 02:05:33,679 - COO resolved issue in economy_zone
+BROski COO: 2025-08-23 02:05:33,680 - COO addressing issue in memory_crystal_zone
+BROski COO: 2025-08-23 02:05:33,680 - COO resolved issue in memory_crystal_zone
+BROski COO: 2025-08-23 02:05:33,681 - COO addressing issue in development_zone
+BROski COO: 2025-08-23 02:05:33,682 - COO resolved issue in development_zone
+BROski COO: 2025-08-23 02:05:33,683 - COO addressing issue in community_zone
+BROski COO: 2025-08-23 02:05:33,688 - COO resolved issue in community_zone
+BROski COO: 2025-08-23 02:05:33,690 - COO addressing issue in infrastructure_zone
+BROski COO: 2025-08-23 02:05:33,691 - COO resolved issue in infrastructure_zone
+BROski COO: 2025-08-23 02:05:33,697 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:10:33,683 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:10:33,687 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:15:33,692 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:15:33,714 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:20:33,712 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:20:33,718 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:25:33,711 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:25:33,716 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:30:33,731 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:30:33,746 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:32:44,616 - Running periodic empire status check...
+BROski COO: 2025-08-23 02:35:33,766 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:35:33,774 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:36:56,032 - Received signal to terminate bot and event loop.
+BROski COO: 2025-08-23 02:36:56,037 - Cleaning up tasks.
+BROski COO: 2025-08-23 02:36:56,046 - Cleaning up after 3 tasks.
+BROski COO: 2025-08-23 02:36:56,114 - All tasks finished cancelling.
+BROski COO: 2025-08-23 02:36:56,115 - Closing the event loop.
+BROski COO: 2025-08-23 02:39:47,913 - Setting up BROski Auto COO handover system...
+BROski COO: 2025-08-23 02:39:47,913 - BROski Auto COO Control System initialized
+BROski COO: 2025-08-23 02:39:47,914 - BROski Auto COO handover system commands registered
+BROski COO: 2025-08-23 02:39:47,914 - BROski Auto COO handover system integrated successfully!
+BROski COO: 2025-08-23 02:39:47,914 - Launching LEGENDARY BROski Discord Bot...
+BROski COO: 2025-08-23 02:39:47,915 - logging in using static token
+BROski COO: 2025-08-23 02:39:59,417 - Shard ID None has sent the IDENTIFY payload.
+BROski COO: 2025-08-23 02:39:59,876 - Shard ID None has connected to Gateway: ["gateway-prd-arm-us-east1-d-4fmv",{"micros":359725,"calls":["id_created",{"micros":397,"calls":[]},"session_lookup_time",{"micros":1164,"calls":[]},"session_lookup_finished",{"micros":11,"calls":[]},"discord-sessions-prd-2-81",{"micros":357748,"calls":["start_session",{"micros":340255,"calls":["discord-api-rpc-74c4f6c6d5-rqcnc",{"micros":314744,"calls":["get_user",{"micros":58284},"get_guilds",{"micros":17818},"send_scheduled_deletion_message",{"micros":10},"guild_join_requests",{"micros":7108},"authorized_ip_coro",{"micros":8},"pending_payments",{"micros":14196},"apex_experiments",{"micros":5406},"user_activities",{"micros":4},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":25,"calls":[]},"presence_started",{"micros":386,"calls":[]},"guilds_started",{"micros":56,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":17000,"calls":[]},"connect_finished",{"micros":17004,"calls":[]},"build_ready",{"micros":18,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: afe655cd427ed01a6b71153ffbd90bf1).
+BROski COO: 2025-08-23 02:40:01,897 - LEGENDARY BROski Bot is ALIVE!
+BROski COO: 2025-08-23 02:40:01,898 - Connected to 1 guild(s)
+BROski COO: 2025-08-23 02:40:01,899 - Serving 6 members
+BROski COO: 2025-08-23 02:40:01,900 - Running periodic empire status check...
+BROski COO: 2025-08-23 02:46:50,718 - Verifying Discord Bot...
+BROski COO: 2025-08-23 02:46:50,734 - Verifying Economy System...
+BROski COO: 2025-08-23 02:46:50,735 - Verifying Memory Crystals...
+BROski COO: 2025-08-23 02:46:50,736 - Verifying Infrastructure...
+BROski COO: 2025-08-23 02:46:51,315 - Zone hyperfocus_zone authority transferred to COO
+BROski COO: 2025-08-23 02:46:51,316 - Zone economy_zone authority transferred to COO
+BROski COO: 2025-08-23 02:46:51,316 - Zone memory_crystal_zone authority transferred to COO
+BROski COO: 2025-08-23 02:46:51,318 - Zone development_zone authority transferred to COO
+BROski COO: 2025-08-23 02:46:51,318 - Zone community_zone authority transferred to COO
+BROski COO: 2025-08-23 02:46:51,318 - Zone infrastructure_zone authority transferred to COO
+BROski COO: 2025-08-23 02:46:51,864 - Activating protocol: auto_resolve_issues
+BROski COO: 2025-08-23 02:46:51,865 - Activating protocol: escalation_threshold
+BROski COO: 2025-08-23 02:46:51,865 - Activating protocol: crisis_intervention
+BROski COO: 2025-08-23 02:46:51,865 - Activating protocol: performance_optimization
+BROski COO: 2025-08-23 02:46:51,865 - Activating protocol: resource_allocation
+BROski COO: 2025-08-23 02:46:58,331 - Handover sequence completed successfully!
+BROski COO: 2025-08-23 02:46:58,354 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:46:58,379 - COO addressing issue in hyperfocus_zone
+BROski COO: 2025-08-23 02:46:58,396 - COO resolved issue in hyperfocus_zone
+BROski COO: 2025-08-23 02:46:58,397 - COO addressing issue in economy_zone
+BROski COO: 2025-08-23 02:46:58,397 - COO resolved issue in economy_zone
+BROski COO: 2025-08-23 02:46:58,397 - COO addressing issue in memory_crystal_zone
+BROski COO: 2025-08-23 02:46:58,398 - COO resolved issue in memory_crystal_zone
+BROski COO: 2025-08-23 02:46:58,410 - COO addressing issue in development_zone
+BROski COO: 2025-08-23 02:46:58,434 - COO resolved issue in development_zone
+BROski COO: 2025-08-23 02:46:58,484 - COO addressing issue in community_zone
+BROski COO: 2025-08-23 02:46:58,530 - COO resolved issue in community_zone
+BROski COO: 2025-08-23 02:46:58,565 - COO addressing issue in infrastructure_zone
+BROski COO: 2025-08-23 02:46:58,604 - COO resolved issue in infrastructure_zone
+BROski COO: 2025-08-23 02:46:58,654 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:51:58,369 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:51:58,372 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:56:58,376 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 02:56:58,386 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 02:57:24,381 - Got a request to RESUME the websocket.
+BROski COO: 2025-08-23 02:57:25,108 - Shard ID None has sent the RESUME payload.
+BROski COO: 2025-08-23 02:57:25,268 - Shard ID None has successfully RESUMED session afe655cd427ed01a6b71153ffbd90bf1 under trace ["gateway-prd-arm-us-east1-c-n4gc",{"micros":40591,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":16831,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-81",{"micros":23}]}].
+BROski COO: 2025-08-23 03:01:58,400 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 03:01:58,427 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 03:06:58,559 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 03:06:58,577 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 03:10:01,954 - Running periodic empire status check...
+BROski COO: 2025-08-23 03:11:58,445 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 03:11:58,460 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 03:16:58,557 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 03:16:58,633 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 03:21:58,503 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 03:21:58,518 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 03:26:58,525 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 03:26:58,539 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 03:30:06,466 - Received signal to terminate bot and event loop.
+BROski COO: 2025-08-23 03:30:06,880 - Cleaning up tasks.
+BROski COO: 2025-08-23 03:30:06,927 - Cleaning up after 3 tasks.
+BROski COO: 2025-08-23 03:30:07,476 - All tasks finished cancelling.
+BROski COO: 2025-08-23 03:30:07,520 - Closing the event loop.
+BROski COO: 2025-08-23 14:51:26,910 - BROski Auto COO Control System initialized
+BROski COO: 2025-08-23 14:51:26,912 - BROski Auto COO handover system commands registered
+BROski COO: 2025-08-23 14:51:26,926 - logging in using static token
+BROski COO: 2025-08-23 14:51:27,523 - Shard ID None has sent the IDENTIFY payload.
+BROski COO: 2025-08-23 14:51:27,854 - Shard ID None has connected to Gateway: ["gateway-prd-arm-us-east1-d-rpws",{"micros":225983,"calls":["id_created",{"micros":825,"calls":[]},"session_lookup_time",{"micros":570,"calls":[]},"session_lookup_finished",{"micros":15,"calls":[]},"discord-sessions-prd-2-180",{"micros":224064,"calls":["start_session",{"micros":220571,"calls":["discord-api-prd-canary-rpc-58545cb684-x5ws9",{"micros":128829,"calls":["get_user",{"micros":12250},"get_guilds",{"micros":2079},"send_scheduled_deletion_message",{"micros":12},"guild_join_requests",{"micros":4038},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":24158},"apex_experiments",{"micros":12471},"user_activities",{"micros":12},"played_application_ids",{"micros":3}]}]},"starting_guild_connect",{"micros":58,"calls":[]},"presence_started",{"micros":294,"calls":[]},"guilds_started",{"micros":66,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":3051,"calls":[]},"connect_finished",{"micros":3055,"calls":[]},"build_ready",{"micros":16,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: 85d9b60ddc810cfbc2b81dcf1a588c1f).
+BROski COO: 2025-08-23 14:55:02,501 - Setting up BROski Auto COO handover system...
+BROski COO: 2025-08-23 14:55:02,520 - BROski Auto COO Control System initialized
+BROski COO: 2025-08-23 14:55:02,534 - BROski Auto COO handover system commands registered
+BROski COO: 2025-08-23 14:55:02,550 - BROski Auto COO handover system integrated successfully!
+BROski COO: 2025-08-23 14:55:02,556 - Launching LEGENDARY BROski Discord Bot...
+BROski COO: 2025-08-23 14:55:02,572 - logging in using static token
+BROski COO: 2025-08-23 14:55:03,395 - Shard ID None has sent the IDENTIFY payload.
+BROski COO: 2025-08-23 14:55:03,842 - Shard ID None has connected to Gateway: ["gateway-prd-arm-us-east1-b-1pl8",{"micros":343681,"calls":["id_created",{"micros":400,"calls":[]},"session_lookup_time",{"micros":324,"calls":[]},"session_lookup_finished",{"micros":12,"calls":[]},"discord-sessions-prd-2-148",{"micros":342528,"calls":["start_session",{"micros":332560,"calls":["discord-api-rpc-b498b7cfc-cljrv",{"micros":290001,"calls":["get_user",{"micros":14606},"get_guilds",{"micros":6324},"send_scheduled_deletion_message",{"micros":14},"guild_join_requests",{"micros":16643},"authorized_ip_coro",{"micros":13},"pending_payments",{"micros":14714},"apex_experiments",{"micros":11558},"user_activities",{"micros":5},"played_application_ids",{"micros":2}]}]},"starting_guild_connect",{"micros":57,"calls":[]},"presence_started",{"micros":6247,"calls":[]},"guilds_started",{"micros":63,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":3581,"calls":[]},"connect_finished",{"micros":3584,"calls":[]},"build_ready",{"micros":13,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":0,"calls":[]},"split_ready",{"micros":1,"calls":[]}]}]}] (Session ID: df7ffc85ef8fc50a92f9b323fa604afc).
+BROski COO: 2025-08-23 14:55:05,870 - LEGENDARY BROski Bot is ALIVE!
+BROski COO: 2025-08-23 14:55:05,870 - Connected to 1 guild(s)
+BROski COO: 2025-08-23 14:55:05,871 - Serving 6 members
+BROski COO: 2025-08-23 14:55:05,873 - Running periodic empire status check...
+BROski COO: 2025-08-23 15:00:53,098 - Verifying Discord Bot...
+BROski COO: 2025-08-23 15:00:53,102 - Verifying Economy System...
+BROski COO: 2025-08-23 15:00:53,102 - Verifying Memory Crystals...
+BROski COO: 2025-08-23 15:00:53,102 - Verifying Infrastructure...
+BROski COO: 2025-08-23 15:00:53,191 - Verifying Discord Bot...
+BROski COO: 2025-08-23 15:00:53,192 - Verifying Economy System...
+BROski COO: 2025-08-23 15:00:53,192 - Verifying Memory Crystals...
+BROski COO: 2025-08-23 15:00:53,193 - Verifying Infrastructure...
+BROski COO: 2025-08-23 15:00:53,333 - We are being rate limited. Retrying in 0.37 seconds. Handled under the bucket "1385041507891019787:None:/channels/{channel_id}/messages"
+BROski COO: 2025-08-23 15:00:58,057 - Zone hyperfocus_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:58,058 - Zone economy_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:58,059 - Zone memory_crystal_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:58,059 - Zone development_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:58,059 - Zone community_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:58,060 - Zone infrastructure_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:58,639 - Activating protocol: auto_resolve_issues
+BROski COO: 2025-08-23 15:00:58,640 - Activating protocol: escalation_threshold
+BROski COO: 2025-08-23 15:00:58,640 - Activating protocol: crisis_intervention
+BROski COO: 2025-08-23 15:00:58,641 - Activating protocol: performance_optimization
+BROski COO: 2025-08-23 15:00:58,641 - Activating protocol: resource_allocation
+BROski COO: 2025-08-23 15:00:59,047 - We are being rate limited. Retrying in 0.66 seconds. Handled under the bucket "1385041507891019787:None:/channels/{channel_id}/messages"
+BROski COO: 2025-08-23 15:00:59,949 - Zone hyperfocus_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:59,950 - Zone economy_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:59,950 - Zone memory_crystal_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:59,951 - Zone development_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:59,951 - Zone community_zone authority transferred to COO
+BROski COO: 2025-08-23 15:00:59,952 - Zone infrastructure_zone authority transferred to COO
+BROski COO: 2025-08-23 15:01:04,078 - Handover sequence completed successfully!
+BROski COO: 2025-08-23 15:01:04,081 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:01:04,082 - COO addressing issue in hyperfocus_zone
+BROski COO: 2025-08-23 15:01:04,082 - COO resolved issue in hyperfocus_zone
+BROski COO: 2025-08-23 15:01:04,083 - COO addressing issue in economy_zone
+BROski COO: 2025-08-23 15:01:04,083 - COO resolved issue in economy_zone
+BROski COO: 2025-08-23 15:01:04,083 - COO addressing issue in memory_crystal_zone
+BROski COO: 2025-08-23 15:01:04,083 - COO resolved issue in memory_crystal_zone
+BROski COO: 2025-08-23 15:01:04,084 - COO addressing issue in development_zone
+BROski COO: 2025-08-23 15:01:04,084 - COO resolved issue in development_zone
+BROski COO: 2025-08-23 15:01:04,085 - COO addressing issue in community_zone
+BROski COO: 2025-08-23 15:01:04,085 - COO resolved issue in community_zone
+BROski COO: 2025-08-23 15:01:04,086 - COO addressing issue in infrastructure_zone
+BROski COO: 2025-08-23 15:01:04,086 - COO resolved issue in infrastructure_zone
+BROski COO: 2025-08-23 15:01:04,086 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:01:06,223 - Activating protocol: auto_resolve_issues
+BROski COO: 2025-08-23 15:01:06,224 - Activating protocol: escalation_threshold
+BROski COO: 2025-08-23 15:01:06,224 - Activating protocol: crisis_intervention
+BROski COO: 2025-08-23 15:01:06,224 - Activating protocol: performance_optimization
+BROski COO: 2025-08-23 15:01:06,225 - Activating protocol: resource_allocation
+BROski COO: 2025-08-23 15:01:07,106 - Handover sequence completed successfully!
+BROski COO: 2025-08-23 15:01:07,109 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:01:07,109 - COO addressing issue in hyperfocus_zone
+BROski COO: 2025-08-23 15:01:07,110 - COO resolved issue in hyperfocus_zone
+BROski COO: 2025-08-23 15:01:07,110 - COO addressing issue in economy_zone
+BROski COO: 2025-08-23 15:01:07,110 - COO resolved issue in economy_zone
+BROski COO: 2025-08-23 15:01:07,111 - COO addressing issue in memory_crystal_zone
+BROski COO: 2025-08-23 15:01:07,111 - COO resolved issue in memory_crystal_zone
+BROski COO: 2025-08-23 15:01:07,112 - COO addressing issue in development_zone
+BROski COO: 2025-08-23 15:01:07,112 - COO resolved issue in development_zone
+BROski COO: 2025-08-23 15:01:07,112 - COO addressing issue in community_zone
+BROski COO: 2025-08-23 15:01:07,113 - COO resolved issue in community_zone
+BROski COO: 2025-08-23 15:01:07,113 - COO addressing issue in infrastructure_zone
+BROski COO: 2025-08-23 15:01:07,114 - COO resolved issue in infrastructure_zone
+BROski COO: 2025-08-23 15:01:07,114 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:06:04,096 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:06:04,097 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:06:07,110 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:06:07,111 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:11:04,102 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:11:04,105 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:11:07,115 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:11:07,118 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:16:04,103 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:16:04,103 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:16:07,129 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:16:07,130 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:21:04,115 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:21:04,116 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:21:07,136 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:21:07,136 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:25:05,889 - Running periodic empire status check...
+BROski COO: 2025-08-23 15:26:04,121 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:26:04,122 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:26:07,136 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:26:07,137 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:31:04,122 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:31:04,122 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:31:07,141 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:31:07,141 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:36:04,126 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:36:04,128 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:36:07,152 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:36:07,153 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:41:04,139 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:41:04,140 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:41:07,153 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:41:07,154 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:46:04,155 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:46:04,156 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:46:07,164 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:46:07,164 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:51:04,162 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:51:04,163 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:51:07,166 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:51:07,168 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:55:05,892 - Running periodic empire status check...
+BROski COO: 2025-08-23 15:56:04,203 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:56:04,218 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 15:56:07,176 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 15:56:07,195 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:01:04,198 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:01:04,215 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:01:07,238 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:01:07,286 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:06:04,229 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:06:04,281 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:06:07,222 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:06:07,241 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:11:04,230 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:11:04,235 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:11:07,226 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:11:07,236 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:16:04,245 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:16:04,255 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:16:07,241 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:16:07,246 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:21:04,245 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:21:04,326 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:21:07,250 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:21:07,268 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:25:05,942 - Running periodic empire status check...
+BROski COO: 2025-08-23 16:26:04,270 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:26:04,273 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:26:07,255 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:26:07,257 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:31:04,278 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:31:04,293 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:31:07,260 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:31:07,261 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:36:04,292 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:36:04,292 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:36:07,261 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:36:07,262 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:41:04,296 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:41:04,299 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:41:07,267 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:41:07,269 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:46:04,297 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:46:04,298 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:46:07,268 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:46:07,271 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:51:04,302 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:51:04,305 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:51:07,275 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:51:07,277 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:55:05,940 - Running periodic empire status check...
+BROski COO: 2025-08-23 16:56:04,303 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:56:04,305 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 16:56:07,280 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 16:56:07,281 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:01:04,314 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:01:04,315 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:01:07,283 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:01:07,284 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:06:04,323 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:06:04,323 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:06:07,290 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:06:07,291 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:08:56,015 - Got a request to RESUME the websocket.
+BROski COO: 2025-08-23 17:08:56,717 - Shard ID None has sent the RESUME payload.
+BROski COO: 2025-08-23 17:08:56,825 - Shard ID None has successfully RESUMED session df7ffc85ef8fc50a92f9b323fa604afc under trace ["gateway-prd-arm-us-east1-c-07mj",{"micros":540,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":272,"calls":[]},"session_lookup_finished",{"micros":11,"calls":[]},"discord-sessions-prd-2-148",{"micros":17}]}].
+BROski COO: 2025-08-23 17:11:04,328 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:11:04,337 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:11:07,301 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:11:07,301 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:16:04,341 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:16:04,342 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:16:07,311 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:16:07,311 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:19:47,116 - Websocket closed with 1006, attempting a reconnect.
+BROski COO: 2025-08-23 17:19:47,177 - Got a request to RESUME the websocket.
+BROski COO: 2025-08-23 17:19:47,587 - Shard ID None has sent the RESUME payload.
+BROski COO: 2025-08-23 17:19:47,688 - Shard ID None has successfully RESUMED session 85d9b60ddc810cfbc2b81dcf1a588c1f under trace ["gateway-prd-arm-us-east1-c-tjlx",{"micros":481,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":241,"calls":[]},"session_lookup_finished",{"micros":13,"calls":[]},"discord-sessions-prd-2-180",{"micros":16}]}].
+BROski COO: 2025-08-23 17:21:04,349 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:21:04,349 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:21:07,321 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:21:07,321 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:25:05,953 - Running periodic empire status check...
+BROski COO: 2025-08-23 17:26:04,358 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:26:04,359 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:26:07,323 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:26:07,324 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:31:04,361 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:31:04,361 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:31:07,331 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:31:07,331 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:36:04,374 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:36:04,375 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:36:07,337 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:36:07,337 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:41:04,390 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:41:04,390 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:41:07,349 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:41:07,349 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:46:04,394 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:46:04,395 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:46:07,357 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:46:07,357 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:51:04,407 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:51:04,408 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:51:07,363 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:51:07,363 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:55:05,963 - Running periodic empire status check...
+BROski COO: 2025-08-23 17:56:04,420 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:56:04,421 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 17:56:07,376 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 17:56:07,376 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:01:04,425 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:01:04,426 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:01:07,379 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:01:07,380 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:06:04,440 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:06:04,441 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:06:07,390 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:06:07,391 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:11:04,447 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:11:04,449 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:11:07,398 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:11:07,400 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:16:04,470 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:16:04,483 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:16:07,403 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:16:07,407 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:21:04,477 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:21:04,479 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:21:07,427 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:21:07,429 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:21:50,503 - Websocket closed with 1006, attempting a reconnect.
+BROski COO: 2025-08-23 18:21:50,524 - Got a request to RESUME the websocket.
+BROski COO: 2025-08-23 18:21:51,338 - Shard ID None has sent the RESUME payload.
+BROski COO: 2025-08-23 18:21:51,437 - Shard ID None has successfully RESUMED session df7ffc85ef8fc50a92f9b323fa604afc under trace ["gateway-prd-arm-us-east1-d-vnff",{"micros":477,"calls":["id_created",{"micros":0,"calls":[]},"session_lookup_time",{"micros":224,"calls":[]},"session_lookup_finished",{"micros":10,"calls":[]},"discord-sessions-prd-2-148",{"micros":16}]}].
+BROski COO: 2025-08-23 18:25:05,965 - Running periodic empire status check...
+BROski COO: 2025-08-23 18:25:23,466 - Setting up BROski Auto COO handover system...
+BROski COO: 2025-08-23 18:25:23,467 - BROski Auto COO Control System initialized
+BROski COO: 2025-08-23 18:25:23,468 - BROski Auto COO handover system commands registered
+BROski COO: 2025-08-23 18:25:23,469 - BROski Auto COO handover system integrated successfully!
+BROski COO: 2025-08-23 18:25:23,474 - Launching LEGENDARY BROski Discord Bot...
+BROski COO: 2025-08-23 18:25:23,477 - logging in using static token
+BROski COO: 2025-08-23 18:25:24,129 - Shard ID None has sent the IDENTIFY payload.
+BROski COO: 2025-08-23 18:25:24,332 - Shard ID None has connected to Gateway: ["gateway-prd-arm-us-east1-d-mm1w",{"micros":100387,"calls":["id_created",{"micros":358,"calls":[]},"session_lookup_time",{"micros":773,"calls":[]},"session_lookup_finished",{"micros":11,"calls":[]},"discord-sessions-prd-2-180",{"micros":99007,"calls":["start_session",{"micros":75906,"calls":["discord-api-rpc-b498b7cfc-lsc5p",{"micros":54794,"calls":["get_user",{"micros":6100},"get_guilds",{"micros":11121},"send_scheduled_deletion_message",{"micros":11},"guild_join_requests",{"micros":35},"authorized_ip_coro",{"micros":11},"pending_payments",{"micros":12696},"apex_experiments",{"micros":1990},"user_activities",{"micros":4},"played_application_ids",{"micros":5}]}]},"starting_guild_connect",{"micros":29,"calls":[]},"presence_started",{"micros":357,"calls":[]},"guilds_started",{"micros":84,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":22609,"calls":[]},"connect_finished",{"micros":22613,"calls":[]},"build_ready",{"micros":14,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 39b3ce37d98cc0b86892f637d0e1b304).
+BROski COO: 2025-08-23 18:25:26,349 - LEGENDARY BROski Bot is ALIVE!
+BROski COO: 2025-08-23 18:25:26,351 - Connected to 1 guild(s)
+BROski COO: 2025-08-23 18:25:26,353 - Serving 6 members
+BROski COO: 2025-08-23 18:25:26,360 - Running periodic empire status check...
+BROski COO: 2025-08-23 18:26:04,486 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:26:04,488 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:26:07,434 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:26:07,435 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:31:04,514 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:31:04,566 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:31:07,458 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:31:07,484 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:31:15,216 - Received signal to terminate bot and event loop.
+BROski COO: 2025-08-23 18:31:15,219 - Cleaning up tasks.
+BROski COO: 2025-08-23 18:31:15,226 - Cleaning up after 3 tasks.
+BROski COO: 2025-08-23 18:31:15,284 - All tasks finished cancelling.
+BROski COO: 2025-08-23 18:31:15,299 - Closing the event loop.
+BROski COO: 2025-08-23 18:31:30,395 - Received signal to terminate bot and event loop.
+BROski COO: 2025-08-23 18:31:30,397 - Cleaning up tasks.
+BROski COO: 2025-08-23 18:31:30,400 - Cleaning up after 3 tasks.
+BROski COO: 2025-08-23 18:31:30,431 - All tasks finished cancelling.
+BROski COO: 2025-08-23 18:31:30,433 - Closing the event loop.
+BROski COO: 2025-08-23 18:31:43,113 - Received signal to terminate bot and event loop.
+BROski COO: 2025-08-23 18:31:43,137 - Cleaning up tasks.
+BROski COO: 2025-08-23 18:31:43,141 - Cleaning up after 2 tasks.
+BROski COO: 2025-08-23 18:31:43,325 - All tasks finished cancelling.
+BROski COO: 2025-08-23 18:31:43,326 - Closing the event loop.
+BROski COO: 2025-08-23 18:32:08,779 - Setting up BROski Auto COO handover system...
+BROski COO: 2025-08-23 18:32:08,821 - BROski Auto COO Control System initialized
+BROski COO: 2025-08-23 18:32:08,829 - BROski Auto COO handover system commands registered
+BROski COO: 2025-08-23 18:32:08,830 - BROski Auto COO handover system integrated successfully!
+BROski COO: 2025-08-23 18:32:08,949 - Launching LEGENDARY BROski Discord Bot...
+BROski COO: 2025-08-23 18:32:08,951 - logging in using static token
+BROski COO: 2025-08-23 18:32:09,607 - Shard ID None has sent the IDENTIFY payload.
+BROski COO: 2025-08-23 18:32:09,814 - Shard ID None has connected to Gateway: ["gateway-prd-arm-us-east1-d-rfhr",{"micros":101028,"calls":["id_created",{"micros":347,"calls":[]},"session_lookup_time",{"micros":460,"calls":[]},"session_lookup_finished",{"micros":9,"calls":[]},"discord-sessions-prd-2-135",{"micros":99957,"calls":["start_session",{"micros":70531,"calls":["discord-api-rpc-b498b7cfc-qrvr2",{"micros":47996,"calls":["get_user",{"micros":5501},"get_guilds",{"micros":2366},"send_scheduled_deletion_message",{"micros":12},"guild_join_requests",{"micros":1911},"authorized_ip_coro",{"micros":10},"pending_payments",{"micros":11885},"apex_experiments",{"micros":4633},"user_activities",{"micros":5},"played_application_ids",{"micros":8}]}]},"starting_guild_connect",{"micros":28,"calls":[]},"presence_started",{"micros":346,"calls":[]},"guilds_started",{"micros":67,"calls":[]},"lobbies_started",{"micros":1,"calls":[]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":28960,"calls":[]},"connect_finished",{"micros":28966,"calls":[]},"build_ready",{"micros":15,"calls":[]},"clean_ready",{"micros":1,"calls":[]},"optimize_ready",{"micros":1,"calls":[]},"split_ready",{"micros":0,"calls":[]}]}]}] (Session ID: 318153d240f4d59a58ef7d3417a63793).
+BROski COO: 2025-08-23 18:32:11,844 - LEGENDARY BROski Bot is ALIVE!
+BROski COO: 2025-08-23 18:32:11,846 - Connected to 1 guild(s)
+BROski COO: 2025-08-23 18:32:11,847 - Serving 6 members
+BROski COO: 2025-08-23 18:32:11,849 - Running periodic empire status check...
+BROski COO: 2025-08-23 18:34:31,654 - Verifying Discord Bot...
+BROski COO: 2025-08-23 18:34:31,656 - Verifying Economy System...
+BROski COO: 2025-08-23 18:34:31,657 - Verifying Memory Crystals...
+BROski COO: 2025-08-23 18:34:31,659 - Verifying Infrastructure...
+BROski COO: 2025-08-23 18:34:32,052 - Zone hyperfocus_zone authority transferred to COO
+BROski COO: 2025-08-23 18:34:32,052 - Zone economy_zone authority transferred to COO
+BROski COO: 2025-08-23 18:34:32,053 - Zone memory_crystal_zone authority transferred to COO
+BROski COO: 2025-08-23 18:34:32,053 - Zone development_zone authority transferred to COO
+BROski COO: 2025-08-23 18:34:32,053 - Zone community_zone authority transferred to COO
+BROski COO: 2025-08-23 18:34:32,054 - Zone infrastructure_zone authority transferred to COO
+BROski COO: 2025-08-23 18:34:36,687 - Activating protocol: auto_resolve_issues
+BROski COO: 2025-08-23 18:34:36,687 - Activating protocol: escalation_threshold
+BROski COO: 2025-08-23 18:34:36,688 - Activating protocol: crisis_intervention
+BROski COO: 2025-08-23 18:34:36,688 - Activating protocol: performance_optimization
+BROski COO: 2025-08-23 18:34:36,688 - Activating protocol: resource_allocation
+BROski COO: 2025-08-23 18:34:37,492 - Handover sequence completed successfully!
+BROski COO: 2025-08-23 18:34:37,494 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:34:37,495 - COO addressing issue in hyperfocus_zone
+BROski COO: 2025-08-23 18:34:37,495 - COO resolved issue in hyperfocus_zone
+BROski COO: 2025-08-23 18:34:37,496 - COO addressing issue in economy_zone
+BROski COO: 2025-08-23 18:34:37,496 - COO resolved issue in economy_zone
+BROski COO: 2025-08-23 18:34:37,497 - COO addressing issue in memory_crystal_zone
+BROski COO: 2025-08-23 18:34:37,499 - COO resolved issue in memory_crystal_zone
+BROski COO: 2025-08-23 18:34:37,500 - COO addressing issue in development_zone
+BROski COO: 2025-08-23 18:34:37,501 - COO resolved issue in development_zone
+BROski COO: 2025-08-23 18:34:37,503 - COO addressing issue in community_zone
+BROski COO: 2025-08-23 18:34:37,503 - COO resolved issue in community_zone
+BROski COO: 2025-08-23 18:34:37,504 - COO addressing issue in infrastructure_zone
+BROski COO: 2025-08-23 18:34:37,505 - COO resolved issue in infrastructure_zone
+BROski COO: 2025-08-23 18:34:37,505 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:39:37,496 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:39:37,498 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:44:37,536 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:44:37,543 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:49:37,542 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:49:37,549 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:54:37,548 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:54:37,561 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 18:59:37,560 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 18:59:37,564 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:02:11,871 - Running periodic empire status check...
+BROski COO: 2025-08-23 19:04:37,567 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:04:37,573 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:09:37,570 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:09:37,574 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:14:37,576 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:14:37,581 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:19:37,593 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:19:37,600 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:24:37,630 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:24:37,659 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:29:37,631 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:29:37,638 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:32:11,871 - Running periodic empire status check...
+BROski COO: 2025-08-23 19:34:37,633 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:34:37,635 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:39:37,806 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:39:38,008 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:44:37,700 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:44:37,709 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:49:37,716 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:49:37,726 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:54:37,727 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:54:37,728 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 19:59:37,731 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 19:59:37,732 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 20:02:11,884 - Running periodic empire status check...
+BROski COO: 2025-08-23 20:04:37,734 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 20:04:37,735 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 20:09:37,736 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 20:09:37,738 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 20:14:37,763 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 20:14:37,771 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 20:19:37,766 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 20:19:37,766 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 20:24:37,780 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 20:24:37,853 - Empire monitoring cycle completed
+BROski COO: 2025-08-23 20:29:37,794 - Empire health: EXCELLENT
+BROski COO: 2025-08-23 20:29:37,795 - Empire monitoring cycle completed

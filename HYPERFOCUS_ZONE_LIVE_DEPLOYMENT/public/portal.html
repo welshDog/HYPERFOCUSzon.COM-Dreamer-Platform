@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 HyperFocus Zone Portal Launcher</title>
+
+    <!-- MCP Dashboard Integration -->
+    <link rel="stylesheet" href="dashboard.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+
+            to {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .status-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .status-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .status-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 10px;
+        }
+
+        .status-online {
+            background: #4CAF50;
+        }
+
+        .status-offline {
+            background: #f44336;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .link-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .portal-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 15px;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+
+        .portal-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .portal-button.primary {
+            background: linear-gradient(135deg, #66bb6a, #43a047);
+        }
+
+        .portal-button.secondary {
+            background: linear-gradient(135deg, #42a5f5, #1e88e5);
+        }
+
+        .portal-button.accent {
+            background: linear-gradient(135deg, #ffa726, #ff7043);
+        }
+
+        .server-status {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+
+            .status-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="server-status" id="serverStatus">
+        🔍 Checking servers...
+    </div>
+
+    <div class="hero">
+        <h1 class="hero-title">🚀 HYPERFOCUS ZONE PORTAL LAUNCHER</h1>
+        <p>✨ Your neurodivergent superpower command center ✨</p>
+        <p id="connectionStatus">🔄 Initializing portal connections...</p>
+    </div>
+
+    <div class="status-section">
+        <h2>🌐 Portal Server Status</h2>
+        <div class="status-grid">
+            <div class="status-card">
+                <h3>Primary Server (8080)</h3>
+                <span id="status-8080">Checking...</span>
+                <span class="status-indicator" id="indicator-8080"></span>
+            </div>
+            <div class="status-card">
+                <h3>Secondary Server (8081)</h3>
+                <span id="status-8081">Checking...</span>
+                <span class="status-indicator" id="indicator-8081"></span>
+            </div>
+            <div class="status-card">
+                <h3>Archive Server (8082)</h3>
+                <span id="status-8082">Checking...</span>
+                <span class="status-indicator" id="indicator-8082"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="quick-links">
+        <div class="link-card">
+            <h3 class="link-title">🌟 MASTER NAVIGATION</h3>
+            <button class="portal-button primary" onclick="openPortal('ultimate-navigator')">
+                🧭 Ultimate Accessible Navigator
+            </button>
+            <button class="portal-button" onclick="openPortal('master-navigator')">
+                🌟 Master Portal Navigator
+            </button>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">🎯 INSTANT FOCUS</h3>
+            <button class="portal-button accent" onclick="openPortal('hyperfocus-optimizer')">
+                🎯 HyperFocus Session Optimizer
+            </button>
+            <button class="portal-button" onclick="openPortal('gamified-challenge')">
+                🎮 Gamified Focus Challenge
+            </button>
+            <button class="portal-button" onclick="openPortal('sprint-tracker')">
+                ⏰ 30-Minute Sprint Tracker
+            </button>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">🧠 COMMUNITY & SUPPORT</h3>
+            <button class="portal-button secondary" onclick="openPortal('brain-twin')">
+                🧠 ADHD Brain Twin Matching
+            </button>
+            <button class="portal-button" onclick="openPortal('executive-ai')">
+                🤖 Personal Executive Function AI
+            </button>
+            <button class="portal-button" onclick="openPortal('celebration')">
+                🎊 Ultimate Celebration Portal
+            </button>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">💰 MONETIZATION</h3>
+            <button class="portal-button accent" onclick="openPortal('economy')">
+                💰 Neurodivergent Economy Portal
+            </button>
+            <button class="portal-button" onclick="openPortal('revenue-dashboard')">
+                🏆 Revenue Empire Dashboard
+            </button>
+            <button class="portal-button" onclick="openPortal('marketplace')">
+                🏪 Marketplace Portal
+            </button>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">⚡ ADVANCED PORTALS</h3>
+            <button class="portal-button secondary" onclick="openPortal('web3')">
+                ♾️ Immortal Web3 Portal
+            </button>
+            <button class="portal-button" onclick="openPortal('quantum-memory')">
+                ⚡ Quantum Memory Navigator
+            </button>
+            <button class="portal-button" onclick="openPortal('bci-neural')">
+                🧠 BCI Neural Development
+            </button>
+        </div>
+
+        <div class="link-card">
+            <h3 class="link-title">🛠️ SYSTEM TOOLS</h3>
+            <button class="portal-button" onclick="openPortal('mobile-command')">
+                📱 Mobile Command Center
+            </button>
+            <button class="portal-button" onclick="openPortal('debug-center')">
+                🔧 Help & Debug Center
+            </button>
+            <button class="portal-button primary" onclick="emergencyFocus()">
+                🚨 EMERGENCY FOCUS NOW!
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Portal mapping with simplified names
+        const portals = {
+            'ultimate-navigator': 'http://localhost:8080/🌟💎⚡_HYPERFOCUSZONE_ULTIMATE_ACCESSIBLE_NAVIGATOR_⚡💎🌟.html',
+            'master-navigator': 'http://localhost:8080/🌟💎⚡_HYPERFOCUSZONE_MASTER_PORTAL_NAVIGATOR_⚡💎🌟.html',
+            'hyperfocus-optimizer': 'http://localhost:8080/🎯⚡🔥_HYPERFOCUS_SESSION_OPTIMIZER_🔥⚡🎯.html',
+            'gamified-challenge': 'http://localhost:8080/💎🎮⚡_GAMIFIED_FOCUS_CHALLENGE_PORTAL_⚡🎮💎.html',
+            'sprint-tracker': 'http://localhost:8082/🚀💰⚡30MinuteSprintTrackerFixed⚡💰🚀.html',
+            'brain-twin': 'http://localhost:8080/🧠❤️‍🔥⚡_ADHD_BRAIN_TWIN_MATCHING_PORTAL_⚡❤️‍🔥🧠.html',
+            'executive-ai': 'http://localhost:8080/🤖🧠⚡_PERSONAL_EXECUTIVE_FUNCTION_AI_⚡🧠🤖.html',
+            'celebration': 'http://localhost:8082/🎊🚀💎⚡UltimateFocusrelicCelebrationPage⚡💎🚀🎊.html',
+            'economy': 'http://localhost:8080/💰🚀⚡_NEURODIVERGENT_ECONOMY_PORTAL_⚡🚀💰.html',
+            'revenue-dashboard': 'http://localhost:8082/🏆💎⚡RevenueEmpireVisionbeacon⚡💎🏆.html',
+            'marketplace': 'http://localhost:8082/HyperfocusMarketplaceVisionbeacon.html',
+            'web3': 'http://localhost:8080/♾️💎🌐_IMMORTAL_WEB3_HYPERFOCUS_ZONE_PORTAL_🌐💎♾️.html',
+            'quantum-memory': 'http://localhost:8082/QuantumMemoryTimelineNavigator.html',
+            'bci-neural': 'http://localhost:8082/BciFusionForgeNeuralDevelopment.html',
+            'mobile-command': 'http://localhost:8082/📱💎⚡MobileFocustotemCommandCenter⚡💎📱.html',
+            'debug-center': 'http://localhost:8082/🔧💎⚡MobileFocustotemDebugCenter⚡💎🔧.html'
+        };
+
+        // Check server status
+        async function checkServerStatus(port) {
+            try {
+                const response = await fetch(`http://localhost:${port}/`);
+                return response.ok;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        async function updateServerStatus() {
+            const ports = [8080, 8081, 8082];
+            let onlineCount = 0;
+
+            for (const port of ports) {
+                const isOnline = await checkServerStatus(port);
+                const statusElement = document.getElementById(`status-${port}`);
+                const indicatorElement = document.getElementById(`indicator-${port}`);
+
+                if (isOnline) {
+                    statusElement.textContent = 'Online';
+                    indicatorElement.className = 'status-indicator status-online';
+                    onlineCount++;
+                } else {
+                    statusElement.textContent = 'Offline';
+                    indicatorElement.className = 'status-indicator status-offline';
+                }
+            }
+
+            const connectionStatus = document.getElementById('connectionStatus');
+            const serverStatus = document.getElementById('serverStatus');
+
+            if (onlineCount === 3) {
+                connectionStatus.textContent = '✅ All portal servers online! Ready for hyperfocus!';
+                serverStatus.textContent = '✅ All Systems Online';
+                serverStatus.style.background = 'rgba(76, 175, 80, 0.8)';
+            } else if (onlineCount > 0) {
+                connectionStatus.textContent = `⚠️ ${onlineCount}/3 servers online. Some portals may be unavailable.`;
+                serverStatus.textContent = `⚠️ ${onlineCount}/3 Online`;
+                serverStatus.style.background = 'rgba(255, 193, 7, 0.8)';
+            } else {
+                connectionStatus.textContent = '❌ No servers online. Please start HTTP servers.';
+                serverStatus.textContent = '❌ Servers Offline';
+                serverStatus.style.background = 'rgba(244, 67, 54, 0.8)';
+            }
+        }
+
+        function openPortal(portalKey) {
+            const url = portals[portalKey];
+            if (url) {
+                console.log(`🚀 Opening portal: ${portalKey}`);
+                window.open(url, '_blank');
+
+                // Track usage
+                const usage = JSON.parse(localStorage.getItem('portalUsage') || '{}');
+                usage[portalKey] = (usage[portalKey] || 0) + 1;
+                localStorage.setItem('portalUsage', JSON.stringify(usage));
+            } else {
+                alert(`Portal "${portalKey}" not found!`);
+            }
+        }
+
+        function emergencyFocus() {
+            alert('🚨 EMERGENCY HYPERFOCUS ACTIVATED! 🚨\n\n🎯 Opening Focus Session Optimizer...\n⏰ 30-minute timer starting NOW!\n🔥 You\'ve got this!');
+            openPortal('hyperfocus-optimizer');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function () {
+            updateServerStatus();
+
+            // Update status every 30 seconds
+            setInterval(updateServerStatus, 30000);
+
+            console.log('🚀❤️‍🔥🪄 HYPERFOCUS ZONE PORTAL LAUNCHER READY! 🪄❤️‍🔥🚀');
+            console.log('🌟 All neurodivergent superpowers accessible! 🌟');
+        });
+    </script>
+
+    <!-- MCP Dashboard Integration -->
+    <script src="dashboard.js"></script>
+
+    <!-- Dashboard Container -->
+    <div id="dashboard-container" style="margin-top: 2rem;"></div>
+
+</body>
+
+</html>

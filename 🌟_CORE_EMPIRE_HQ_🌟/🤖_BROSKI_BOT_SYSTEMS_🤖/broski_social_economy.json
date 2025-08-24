@@ -1,0 +1,38 @@
+{
+  "token_integration": {
+    "base_token": "BROski (existing)",
+    "social_rewards": {
+      "focus_session_completion": 10,
+      "helping_community_member": 25,
+      "sharing_productivity_tip": 15,
+      "creating_quality_content": 50,
+      "moderating_discussion": 30,
+      "completing_weekly_challenge": 100
+    }
+  },
+  "spending_mechanisms": {
+    "premium_features": {
+      "advanced_focus_analytics": 200,
+      "custom_ai_coach_training": 500,
+      "exclusive_hyperspaces": 300,
+      "priority_support": 150
+    },
+    "social_features": {
+      "boost_content_visibility": 25,
+      "send_appreciation_gifts": 10,
+      "create_private_hyperspace": 1000,
+      "host_focus_session": 50
+    }
+  },
+  "creator_economy": {
+    "content_monetization": "Tips from community members",
+    "coaching_services": "Direct payment for ADHD coaching",
+    "workshop_hosting": "Paid workshops and focus sessions",
+    "affiliate_commissions": "ADHD-friendly product recommendations"
+  },
+  "sustainability_model": {
+    "token_sink_mechanisms": "Premium features, content boosts, gifts",
+    "token_generation": "Limited to valuable community contributions",
+    "economic_balance": "Designed to prevent inflation while rewarding engagement"
+  }
+}

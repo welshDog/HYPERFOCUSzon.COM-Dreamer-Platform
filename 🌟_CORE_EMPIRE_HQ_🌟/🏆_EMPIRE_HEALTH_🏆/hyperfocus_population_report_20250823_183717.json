@@ -1,0 +1,172 @@
+{
+  "guild_name": "HYPERFOCUSzone",
+  "guild_id": 1212443870856613949,
+  "population_started": "2025-08-23T18:37:08.705651",
+  "categories_created": [
+    {
+      "name": "💎 HyperFocus Zones",
+      "id": 1408867688859832441
+    },
+    {
+      "name": "🚨 Safety & Support",
+      "id": 1408867689929375775
+    },
+    {
+      "name": "🏛️ Empire Infrastructure",
+      "id": 1408867691267231814
+    },
+    {
+      "name": "💎 BROski Systems",
+      "id": 1408867692483576000
+    },
+    {
+      "name": "🤖 Bot Operations",
+      "id": 1408867693561647116
+    }
+  ],
+  "channels_created": [
+    {
+      "name": "🧠-focus-productivity",
+      "id": 1408867694371147817,
+      "zone": "focus_productivity",
+      "description": "ADHD-friendly focus sessions, productivity tips, and time management"
+    },
+    {
+      "name": "👥-community-hub",
+      "id": 1408867695788687401,
+      "zone": "community_engagement",
+      "description": "Connect with fellow neurodivergent minds and build supportive relationships"
+    },
+    {
+      "name": "🛡️-crisis-support",
+      "id": 1408867697311092868,
+      "zone": "crisis_support",
+      "description": "24/7 crisis support and mental health resources (PRIVATE)"
+    },
+    {
+      "name": "🎨-creative-space",
+      "id": 1408867698804392036,
+      "zone": "creative_collaboration",
+      "description": "Share art, music, writing, and collaborate on creative projects"
+    },
+    {
+      "name": "📚-learning-zone",
+      "id": 1408867700658405569,
+      "zone": "learning_growth",
+      "description": "Skill development, educational resources, and learning support"
+    },
+    {
+      "name": "🌿-wellness-garden",
+      "id": 1408867702319222927,
+      "zone": "wellness_selfcare",
+      "description": "Mental health, self-care practices, and wellness strategies"
+    },
+    {
+      "name": "🎯-goals-planning",
+      "id": 1408867703548018729,
+      "zone": "goal_planning",
+      "description": "Set goals, plan projects, and organize life with ADHD-friendly tools"
+    },
+    {
+      "name": "🎪-social-lounge",
+      "id": 1408867704898584706,
+      "zone": "social_connection",
+      "description": "Casual conversations, social events, and community fun"
+    },
+    {
+      "name": "🎊-celebration-hall",
+      "id": 1408867705951490128,
+      "zone": "celebration_recognition",
+      "description": "Celebrate achievements, milestones, and community victories"
+    },
+    {
+      "name": "🌟-welcome-portal",
+      "id": 1408867707134283898,
+      "type": "infrastructure",
+      "description": "New member onboarding and server introduction"
+    },
+    {
+      "name": "📜-community-guidelines",
+      "id": 1408867708337913918,
+      "type": "infrastructure",
+      "description": "Community rules and neurodivergent-friendly guidelines"
+    },
+    {
+      "name": "📢-empire-announcements",
+      "id": 1408867709306802259,
+      "type": "infrastructure",
+      "description": "Important community updates and announcements"
+    },
+    {
+      "name": "🤖-bot-central",
+      "id": 1408867710837723259,
+      "type": "infrastructure",
+      "description": "Bot commands, testing, and technical discussions"
+    }
+  ],
+  "roles_created": [
+    {
+      "name": "🏆 HyperFocus Legend",
+      "id": 1408867677979545780,
+      "description": "Ultimate HyperFocus Zone community leaders"
+    },
+    {
+      "name": "🛡️ Zone Guardian",
+      "id": 1408867678969663608,
+      "description": "Zone moderators and community support"
+    },
+    {
+      "name": "🧠 Focus Master",
+      "id": 1408867679602868225,
+      "description": "ADHD productivity experts and mentors"
+    },
+    {
+      "name": "🎨 Creative Genius",
+      "id": 1408867680970342531,
+      "description": "Artists, writers, musicians, and creators"
+    },
+    {
+      "name": "🌿 Wellness Warrior",
+      "id": 1408867681557413919,
+      "description": "Mental health advocates and wellness guides"
+    },
+    {
+      "name": "🤝 Community Connector",
+      "id": 1408867682857517187,
+      "description": "Social bridge-builders and event organizers"
+    },
+    {
+      "name": "⚡ ADHD Advocate",
+      "id": 1408867684069802106,
+      "description": "ADHD awareness and support specialists"
+    },
+    {
+      "name": "🌈 Autism Ally",
+      "id": 1408867685399527607,
+      "description": "Autism support and understanding advocates"
+    },
+    {
+      "name": "🧭 Neurodivergent Navigator",
+      "id": 1408867686577995888,
+      "description": "Guides for neurodivergent community navigation"
+    },
+    {
+      "name": "💰 BROski Economist",
+      "id": 1408867687479644180,
+      "description": "BROski economy specialists and reward distributors"
+    }
+  ],
+  "permissions_configured": [
+    {
+      "channel": "crisis-support",
+      "type": "privacy_protection"
+    },
+    {
+      "target": "bot",
+      "type": "administrative_access"
+    }
+  ],
+  "population_complete": true,
+  "welcome_configured": true,
+  "population_finished": "2025-08-23T18:37:17.624897"
+}
