@@ -30,7 +30,7 @@
     },
     "homepage": "https://welshdog.github.io/HYPERFOCUSzon.COM-V10",
     "devDependencies": {
-        "concurrently": "^8.2.2",
+        "concurrently": "^9.2.0",
         "express": "^4.18.2"
     },
     "engines": {
