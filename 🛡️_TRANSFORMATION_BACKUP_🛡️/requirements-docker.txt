@@ -39,7 +39,7 @@ flake8==6.1.0          # Code linting
 mypy==1.7.1            # Type checking
 
 # Security
-cryptography==41.0.8   # Cryptographic recipes
+cryptography==45.0.7   # Cryptographic recipes
 python-jose==3.3.0     # JWT handling
 
 # Performance optimization
