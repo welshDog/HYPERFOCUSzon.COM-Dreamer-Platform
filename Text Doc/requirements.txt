@@ -11,7 +11,7 @@ psutil>=5.9.0
 
 # Azure deployment additions
 # Web framework and ASGI server
-fastapi==0.104.1
+fastapi==0.118.0
 uvicorn[standard]==0.24.0
 
 # Azure SDK components
