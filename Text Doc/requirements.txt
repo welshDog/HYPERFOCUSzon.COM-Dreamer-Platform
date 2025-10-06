@@ -30,5 +30,5 @@ python-dotenv==1.0.0
 aiofiles==23.2.1
 
 # Security and performance
-cryptography==41.0.7
+cryptography==46.0.2
 gunicorn==21.2.0
