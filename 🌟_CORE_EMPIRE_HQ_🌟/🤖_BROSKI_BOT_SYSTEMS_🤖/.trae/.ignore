@@ -1,0 +1,64 @@
+# TRAE Agent Ignore File
+# Files/folders that agents should skip during indexing
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+venv/
+venv-trae/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+.gitkeep
+
+# Git
+.git/
+.gitignore
+
+# Backups
+*.bak
+*.backup
+*~
+
+# Node (if any JS utilities)
+node_modules/
+package-lock.json
+
+# Database (future)
+*.db
+*.sqlite
+*.sqlite3
+*.sqlalchemy
+
+# Build
+dist/
+build/
+*.egg
+
+# Temporary
+.tmp/
+temp/
+.cache/
+
+# This file itself
+.trae/.ignore
