@@ -1,0 +1,46 @@
+# 🤖 BROSKI LEGENDARY BOT - PHASE 11
+# Discord Bot Dependencies
+# ========================================
+
+# Discord.py framework (latest)
+discord.py==2.3.2
+
+# Environment variable management
+python-dotenv==1.0.0
+
+# Async HTTP client (for API calls)
+aiohttp==3.9.1
+
+# Database options (optional, uncomment if needed)
+# sqlalchemy==2.0.23
+# asyncpg==0.29.0  # PostgreSQL async driver
+# motor==3.3.2     # MongoDB async driver
+
+# Data processing
+numpy==1.24.3
+pandas==2.0.3
+
+# Date/time handling
+python-dateutil==2.8.2
+pytz==2023.3
+
+# JSON processing
+jsonschema==4.19.2
+
+# Logging enhancements (optional)
+coloredlogs==15.0.1
+
+# Performance monitoring (optional)
+psutil==5.9.5
+
+# Testing (optional)
+pytest==7.4.3
+pytest-asyncio==0.21.1
+
+# Code quality (optional)
+black==23.11.0
+flake8==6.1.0
+pylint==3.0.3
+
+# Development server (optional)
+ipython==8.18.1
