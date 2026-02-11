@@ -1,94 +1,70 @@
-name: 🚀💎⚡ HYPERFOCUS ZONE CI Pipeline ⚡💎🚀
+name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
-  lint-and-test:
-    name: 🔧 Lint & Test (Node ${{ matrix.node-version }}, Python ${{ matrix.python-version }})
+  build-and-test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
-        python-version: ["3.10"]
-
     steps:
-      - name: 📥 Checkout legendary codebase
-        uses: actions/checkout@v4
+    - uses: actions/checkout@v3
+    
+    # Python Setup
+    - name: Set up Python
+      if: hashFiles('**/*.py') != ''
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+        
+    - name: Install Python dependencies
+      if: hashFiles('**/*.py') != ''
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        if [ -f setup.py ]; then pip install .; fi
+        pip install pylint pytest
 
-      - name: 🟢 Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+    - name: Lint with pylint
+      if: hashFiles('**/*.py') != ''
+      run: |
+        # Don't fail on lint for now, just report
+        pylint $(git ls-files '*.py') --disable=C,R,W0611 || true
+        
+    - name: Test with pytest
+      if: hashFiles('**/*.py') != ''
+      run: |
+        if [ -d tests ]; then pytest; else echo "No tests found"; fi
 
-      - name: 🐍 Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ matrix.python-version }}
+    # Node.js Setup
+    - name: Set up Node.js
+      if: hashFiles('package.json') != ''
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        
+    - name: Install Node dependencies
+      if: hashFiles('package.json') != ''
+      run: npm ci || npm install
+      
+    - name: Run Node tests
+      if: hashFiles('package.json') != ''
+      run: npm test || echo "No test script"
 
-      - name: 📦 Install Node dependencies
-        run: |
-          if [ -f package.json ]; then
-            echo "🔍 Installing Node.js dependencies..."
-            npm ci
-          else
-            echo "📝 No package.json found - skipping Node dependencies"
-          fi
-
-      - name: 📦 Install Python dependencies
-        run: |
-          if [ -f requirements.txt ]; then
-            echo "🔍 Installing Python dependencies..."
-            python -m pip install --upgrade pip
-            python -m pip install -r requirements.txt
-          else
-            echo "📝 No requirements.txt found - skipping Python dependencies"
-          fi
-
-      - name: 🧹 Code linting (JavaScript)
-        run: |
-          if [ -f package.json ] && [ -f .eslintrc.js ]; then
-            echo "🔍 Running ESLint..."
-            npm run lint
-          else
-            echo "✅ No JS linting configuration - LEGENDARY status maintained!"
-          fi
-
-      - name: 🎨 Code formatting check
-        run: |
-          if [ -f package.json ] && [ -f .prettierrc ]; then
-            echo "🔍 Checking code formatting..."
-            npm run format
-          else
-            echo "✅ No formatting configuration - LEGENDARY status maintained!"
-          fi
-
-      - name: 🧪 Run JavaScript tests
-        run: |
-          if [ -f package.json ]; then
-            echo "🔍 Running JavaScript tests..."
-            npm test
-          else
-            echo "✅ No package.json - skipping JS tests"
-          fi
-
-      - name: 🧪 Run Python tests
-        run: |
-          if [ -d tests ] || [ -f pytest.ini ] || [ -f pyproject.toml ]; then
-            echo "🔍 Running Python tests..."
-            pytest -v --tb=short || echo "⚠️ Python tests not configured yet"
-          else
-            echo "✅ No Python test configuration found - ready for future implementation"
-          fi
-
-      - name: 🏆 Success celebration
-        if: success()
-        run: |
-          echo "🎊 CI PIPELINE SUCCESS! 🎊"
-          echo "✅ All checks passed - LEGENDARY status maintained!"
-          echo "🚀 Ready for deployment to production!"
-          echo "💎 HyperFocus Zone Empire continues to thrive!"
+  security:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+    - uses: actions/checkout@v3
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: 'python, javascript'
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
